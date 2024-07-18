@@ -1,0 +1,21 @@
+site_name: Documentation for Tape-out Templates
+site_url: https://bwoah-kimi.github.io/Tape-out_template_doc/
+site_author: Bwoah-Kimi
+
+theme:
+  name: material
+  language: zh
+  font:
+    code: JetBrainsMono
+  features:
+    - navigation.instant
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+nav:
+  - Overview: 1_index.md
+  - Submodule Synthesis: 2_submodule_synthesis.md
