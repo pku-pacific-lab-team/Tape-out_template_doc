@@ -34,10 +34,13 @@
 
 在`./sram/`路径下新建文件夹，并在该文件夹下启动`SRAM Compiler`/`Register File Compiler`，用于存放生成的文件。
 
-<figure>
+![ARM SRAM Compiler](./figs/sram_compiler.png)
+*ARM SRAM Compiler*
+
+<!-- <figure>
   <img src="./figs/sram_compiler.png" alt="ARM SRAM Compiler">
   <figcaption>ARM SRAM Compiler</figcaption>
-</figure>
+</figure> -->
 
 > **注意**：`./sram/`路径下新建的**文件夹名称**与SRAM模块的`Instance Name`需保持一致！
 
