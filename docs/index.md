@@ -4,9 +4,9 @@
 
 我们希望通过模板文件和说明文档，帮助后续接触该模板的朋友们快速熟悉数字后端设计流程。然而，一份说明文档不可能做到面面俱到，要更加深入地了解数字后端设计流程，还需要阅读EDA工具的用户手册和其他官方文档，并通过实践和不断试错来积累经验。
 
-<figure style="text-align: center;">
+<figure>
   <img src="./figs/digital_design_flow.png" alt="数字芯片设计流程">
-  <figcaption style="text-align: center;">数字芯片设计流程</figcaption>
+  <figcaption>数字芯片设计流程</figcaption>
 </figure>
 
 > 注意：该文档还在开发之中，若出现错误或纰漏，还请在GitHub仓库中提出Issue！
