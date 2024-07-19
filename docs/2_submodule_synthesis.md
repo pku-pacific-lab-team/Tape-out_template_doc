@@ -58,10 +58,13 @@
 
 在`Corners`菜单中勾选所有的DOMAINS与PROCESSES，以保证生成综合报告的完整性。
 
-<figure>
+![SRAM Compiler Available Corners](./figs/corners.png)
+*SRAM Compiler Available Corners*
+
+<!-- <figure>
   <img src="./figs/corners.png" alt="ARM SRAM Compiler Corners">
   <figcaption>SRAM Compiler Available Corners </figcaption>
-</figure>
+</figure> -->
 
 在`views`部分依次选择`LEF Footprint`, `LVS Netlist`, `Liberty Model`, `Verilog Model`，点击`Generate`生成相应的文件，这些文件的用途大致如下：
 
@@ -70,19 +73,25 @@
 * `LEF Footprint`：包含SRAM的版图信息（使用的金属层、IO位置等），为逻辑综合和后端设计提供SRAM的面积信息；
 * `LVS Netlist`：用于后端设计的LVS检查，在逻辑综合阶段暂不需要。
 
-<figure>
+![SRAM Compiler Available Views](./figs/views.png)
+*SRAM Compiler Available Views*
+
+<!-- <figure>
   <img src="./figs/views.png" alt="ARM SRAM Compiler Views">
   <figcaption>SRAM Compiler Available Views </figcaption>
-</figure>
+</figure> -->
 
 #### Register File Compiler使用说明
 
 与`SRAM Compiler`流程类似。
 
-<figure>
+![ARM Register File Compiler](./figs/register_file_compiler.png)
+*ARM Register File Compiler*
+
+<!-- <figure>
   <img src="./figs/register_file_compiler.png" alt="ARM Register File Compiler">
   <figcaption>ARM Register File Compiler</figcaption>
-</figure>
+</figure> -->
 
 ### 添加RTL代码
 
