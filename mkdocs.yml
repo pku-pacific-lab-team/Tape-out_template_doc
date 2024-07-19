@@ -17,7 +17,7 @@ plugins:
         - en
 
 nav:
-  - Overview: 1_index.md
+  - Overview: index.md
   - Submodule Synthesis: 2_submodule_synthesis.md
   - Submodule Place & Route: 3_submodule_place_n_route.md
   - IO Module: 4_io.md
