@@ -163,7 +163,7 @@ set sram_insts [concat $MACROname_rams \
 ```tcl
 set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/lef/${std_lib}_110a/lef/${std_lib}.lef \
     /path/to/foundry/lef/files \ # not shown for simplicity
-    /work/home/tapeout_templates/submodule/macro/lef_files/CIM.lef \ # add lef file here
+    /work/home/ztzhu/tapeout_templates/submodule_tapeout/cim_macro/lef_files/DCIM_32_4_64.lef \ # add lef file here
 ]
 ```
 
@@ -185,7 +185,7 @@ set rm_clock_period 5
 ```tcl
 # FFGNP 0p88V m40C Libs
 set ff_0p88v_m40c_libs [list ${base_lib_dir}/${base_ff_0p88v_m40c_lib}.lib ${io_lib}ffg08ppv2p75vm40c.lib \ 
-    /work/home/tapeout_templates/submodule/macro/lib_files/CIM_ff_0p88v_m40c.lib \
+    /work/home/ztzhu/tapeout_templates/submodule_tapeout/cim_macro/cim.lib \
 ]
 
 foreach sram ${sram_insts} { \
@@ -197,7 +197,9 @@ foreach sram ${sram_insts} { \
 可以看到，除了标准单元和子模块的`LIB`文件，此处也自动添加了Compiler生成的SRAM IP的`LIB`文件。
 
 一个较完整的例子如下：
-TODO： ADD FIG
+
+![Add LIB Files](./figs/add_lib_files.png)
+*添加`LIB`文件*
 
 ### 启动Genus综合
 
