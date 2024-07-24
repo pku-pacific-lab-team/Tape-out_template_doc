@@ -24,6 +24,8 @@ plugins:
 
 nav:
   - Overview: index.md
+  - Submodule Behavioral Simulation: 1_submodule_behavioral_simulation.md
   - Submodule Synthesis: 2_submodule_synthesis.md
-  - Submodule Place & Route: 3_submodule_place_n_route.md
-  - IO Module: 4_io.md
+  - Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
+  - Submodule Place & Route: 4_submodule_implementation.md
+  - IO Module: 5_io.md

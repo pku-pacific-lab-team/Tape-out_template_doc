@@ -52,18 +52,26 @@ enc::gui_off
 
 替换SRAM时，我们通常使用ARM提供的`High Density Single Port SRAM SHVT MVT Compiler`。
 
-二进制执行文件位于：`/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/bin/sram_sp_hde_shvt_mvt`。
+**二进制执行文件**位于：`/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/bin/sram_sp_hde_shvt_mvt`。
 
 在命令行中输入该执行文件即可启动。
+
+**用户手册**位于：
 
 ### ARM Register File Compiler
 
 替换寄存器堆时，我们使用ARM提供的`High Density Single Port Register File SHVT MVT Compiler`。
 
-二进制执行文件位于：`/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/bin/rf_sp_hde_shvt_mvt`。
+**二进制执行文件**位于：`/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/bin/rf_sp_hde_shvt_mvt`。
 
 在命令行中输入该执行文件即可启动。
+
+**用户手册**位于：
 
 ### Cadence Virtuoso 6.1.8
 
 在进行数字模块的DRC与LVS检查时，会使用到Cadence Virtuoso工具。在终端中输入`b virtuoso`打开Virtuoso工具。
+
+### Synopsys VCS
+
+### Synopsys Verdi
