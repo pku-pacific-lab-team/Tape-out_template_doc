@@ -17,8 +17,8 @@
 
 因此，在此整理归纳出**两份不同**的流片模板文件，一份用于**数字子系统**的后端设计，一份用于**顶层模块**的后端设计。
 
-* **数字子系统**的流片模板位于：`/work/home/ztzhu/tapeout_template/submodule/`
-* **顶层模块**的流片模板位于：`/work/home/ztzhu/tapeout_template/top/`
+* **数字子系统**的流片模板位于：`/work/home/ztzhu/tapeout_template/submodule_tapeout/`
+* **顶层模块**的流片模板位于：`/work/home/ztzhu/tapeout_template/top_io_tapeout/`
 
 在该文档后续章节中，将会先介绍**数字子系统**的流片模板，这是任何流片项目后端设计的基础，再介绍**顶层模块**的流片模板。
 
