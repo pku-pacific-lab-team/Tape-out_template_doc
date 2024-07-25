@@ -11,10 +11,15 @@ theme:
     - navigation.instant
 
 markdown_extensions:
-  - codehilite
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - pymdownx.details
+  - pymdownx.inlinehilite
 
-extra_css:
-  - css/custom.css
+# extra_css:
+#   - css/custom.css
 
 plugins:
   - search:
@@ -29,3 +34,6 @@ nav:
   - Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - Submodule Place & Route: 4_submodule_implementation.md
   - IO Module: 5_io.md
+  - PCB: 6_PCB.md
+  - Packaging: 7_package.md
+  - Testing: 8_testing.md

@@ -38,13 +38,10 @@
 
 #### SRAM Compiler使用说明
 
-![ARM SRAM Compiler](./figs/sram_compiler.png)
-*ARM SRAM Compiler*
-
-<!-- <figure>
-  <img src="./figs/sram_compiler.png" alt="ARM SRAM Compiler">
+<figure>
+  <img src="../figs/sram_compiler.png" width=80%>
   <figcaption>ARM SRAM Compiler</figcaption>
-</figure> -->
+</figure>
 
 `SRAM Compiler`部分常用的设置选项如下：
 
@@ -59,14 +56,10 @@
 
 在`Corners`菜单中DOMAINS（电压域）一般选择`0p80v`，PROCESSES（工艺角）全选，可选tt (typical)，ffg (best)，ssg (worst)。在选择了电压域之后，点击`All`全选所有的温度值（包括负40摄氏度，80摄氏度等）。
 
-![SRAM Compiler Available Corners](./figs/corners.png)
-
-*SRAM Compiler Available Corners*
-
-<!-- <figure>
-  <img src="./figs/corners.png" alt="ARM SRAM Compiler Corners">
+<figure>
+  <img src="../figs/corners.png">
   <figcaption>SRAM Compiler Available Corners </figcaption>
-</figure> -->
+</figure>
 
 在`views`部分依次选择`LEF Footprint`, `LVS Netlist`, `Liberty Model`, `Verilog Model`, `GDSII Layout`，点击`Generate`生成相应的文件，这些文件的用途大致如下：
 
@@ -76,31 +69,24 @@
 * `LVS Netlist`：用于后端设计的LVS检查，在逻辑综合阶段暂不需要；
 * `GDSII Layout`：用于后端设计的DRC检查和最终版图导出。
 
-![SRAM Compiler Available Views](./figs/views.png)
-
-*SRAM Compiler Available Views*
-
-<!-- <figure>
-  <img src="./figs/views.png" alt="ARM SRAM Compiler Views">
+<figure>
+  <img src="../figs/views.png">
   <figcaption>SRAM Compiler Available Views </figcaption>
-</figure> -->
+</figure>
 
 #### Register File Compiler使用说明
 
 与`SRAM Compiler`流程类似，少了一个`Number of Banks`选择。
 
-![ARM Register File Compiler](./figs/register_file_compiler.png)
-*ARM Register File Compiler*
-
-<!-- <figure>
-  <img src="./figs/register_file_compiler.png" alt="ARM Register File Compiler">
+<figure>
+  <img src="../figs/register_file_compiler.png" width=80%>
   <figcaption>ARM Register File Compiler</figcaption>
-</figure> -->
+</figure>
 
 #### SRAM IP的例化
 
 不带`Bit-Write Mask`功能的SRAM例化示例如下：
-```Verilog
+```verilog
 
 ```
 
@@ -229,9 +215,11 @@ foreach sram ${sram_insts} { \
 
 一个较完整的例子如下：
 
-![Add LIB Files](./figs/add_lib_files.png)
+<figure>
+  <img src="../figs/add_lib_files.png" width=80%>
+  <figcaption>添加 LIB 文件</figcaption>
+</figure>
 
-*添加`LIB`文件*
 
 ### 启动Genus综合
 
