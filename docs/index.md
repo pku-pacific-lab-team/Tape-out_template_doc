@@ -31,6 +31,12 @@
 在该流片模板文件中，我们主要依赖于`Makefile`和`TCL`自动化脚本文件进行逻辑综合，一般情况下不需要单独启动Genus综合工具。如需进行较为细致的调试，在终端输入`b genus`启动Genus综合工具。
 默认情况下在当前目录下生成`genus.log`和`genus.cmd`日志文件，分别记录了Genus的终端输出和用户输入的命令。
 
+为了更加全面了解Genus综合工具，可以查看Cadence的官方说明手册和文件：
+
+* **Genus Synthesis Flow Guide**: `/cadtools/cadence/genus19.12/doc/genus_start/genus_start.pdf`
+* **Genus User Guide**: `/cadtools/cadence/genus19.12/doc/genus_user/genus_user.pdf`
+* **Genus Command Reference**: `/cadtools/cadence/genus19.12/doc/genus_comref/genus_comref.pdf`
+
 ### Cadence Innovus 20.10
 
 该流片模板文件中，将主要围绕Innovus工具进行数字模块的后端设计。在终端中输入`b innovus`启动Innovus工具，默认情况会自动启动GUI界面，有助于我们观察后端版图的各类情况，方便迭代设计与优化。
@@ -46,27 +52,48 @@ enc::gui_off
 大部分的设计流程使用Innovus的终端输入`TCL`脚本命令。
 若使用GUI界面进行操作，相应的操作也会自动转化成`TCL`指令，可以打开`innovus.cmd`查看GUI界面的操作与Innovus指令的对应关系。
 
+Cadence的官方说明手册和文件：
+
+* **Innovus User Guide**: `/cadtools/cadence/innovus20.10/doc/innovusUG/innovusUG.pdf`
+* **Innovus Error Messege**: `/cadtools/cadence/innovus20.10/doc/innovuserrmsg/innovuserrmsgTOC.html`
+
 ### ARM SRAM Compiler
 
 许多数字模块中依赖于较大规模的寄存器堆/SRAM高速缓存，这些模块需要替换成专门的IP核，而不是使用RTL代码直接综合，从而可以显著减小模块面积。
 
 替换SRAM时，我们通常使用ARM提供的`High Density Single Port SRAM SHVT MVT Compiler`。
 
-**二进制执行文件**位于：`/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/bin/sram_sp_hde_shvt_mvt`。
+**二进制执行文件**位于：
+
+```
+/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/bin/sram_sp_hde_shvt_mvt
+```
 
 在命令行中输入该执行文件即可启动。
 
 **用户手册**位于：
+
+```
+/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/doc/sram_sp_hde_shvt_mvt_userguide.pdf
+```
 
 ### ARM Register File Compiler
 
 替换寄存器堆时，我们使用ARM提供的`High Density Single Port Register File SHVT MVT Compiler`。
 
-**二进制执行文件**位于：`/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/bin/rf_sp_hde_shvt_mvt`。
+**二进制执行文件**位于：
+
+```
+/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/bin/rf_sp_hde_shvt_mvt
+```
 
 在命令行中输入该执行文件即可启动。
 
 **用户手册**位于：
+
+```
+/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/doc/rf_sp_hde_shvt_mvt_userguide.pdf
+```
 
 ### Cadence Virtuoso 6.1.8
 
