@@ -18,12 +18,15 @@
 * `./asic_ip/`（_可选_）：数字子系统中例化的其他IP核（例如CIM Macro），或者更低层级的数字子系统的相关文件（`CDL`, `LEF`, `LIB`, `Verilog`等）。
 
 该模板文件以一个**CVA6 RISC-V CPU**的后端设计流程作为一个示例。
-在这个CPU中，包括用SRAM Compiler生成的I-Cache和D-Cache，以及定制设计的CIM模块。
+在这个CPU中，包括用SRAM Compiler生成的Main Memory，I-Cache和D-Cache，以及定制设计的CIM模块。
 我们按照顺序逐一介绍数字子模块物理设计的流程。
 
 ### 修改`init_invs.tcl`
 
-在使用Innovus进行后端设计前，需要对工程脚本进行一些修改。在此，我们默认已经在逻辑综合之前修改了`./scripts/core_config.tcl`, `./scripts/design_inputs_macro.tcl`, `./scripts/tech.tcl`中部分内容（包括时钟周期、标准工艺库，添加了SRAM IP文件、ASIC IP文件等）。
+在使用Innovus进行后端设计前，需要对工程脚本进行一些修改。
+
+!!! tip "注意"
+    在此，我们默认已经在逻辑综合之前修改了`./scripts/core_config.tcl`, `./scripts/design_inputs_macro.tcl`, `./scripts/tech.tcl`中部分内容（包括时钟周期、标准工艺库，添加了SRAM IP文件、ASIC IP文件等）。
 
 在`./scripts/init_invs.tcl`中，定义了数字子系统的Power与Ground信号名称。
 
@@ -40,17 +43,19 @@ set init_pwr_net {VDD VDD_CIM}
 
 ```bash
 cd /work/home/ztzhu/tapeout_templates/submodule_tapeout/work/
-rm -rf innovus.cmd* innovus.log* # clear previous innovus output files 
+rm -rf innovus.cmd* innovus.log* # clear previous innovus output files
 b innovus
 ```
 
+!!! tip "提示"
+    每次启动innovus都会生成一个新的日志文件，所以我们建议经常清理，以免文件过多影响后续操作。
+
 在终端中启动Innovus之后，可以在该终端中输入`TCL`脚本命令，也可以在弹出的Innovus GUI进行操作。
 在我们的模板文件中主要依赖于命令行脚本进行后端设计。使用Innovus进行后端设计所用到的`TCL`命令均存放在`./my_scripts/`中。
-使用文本编辑器打开`./my_scripts/innovus_script.tcl`（推荐使用GVIM或者Gedit）。
+使用文本编辑器打开`./my_scripts/innovus_script.tcl`（推荐使用GVIM）。
 
 ```bash
-cd /work/home/ztzhu/tapeout_templates/submodule_tapeout/innovus_script.tcl
-gvim innovus_script.tcl
+gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_script.tcl
 ```
 
 观察`./my_scripts/innovus_script.tcl`，可以看到Innovus的物理设计流程大致分成了几个阶段，在Innovus终端中读入相应的命令即可（例如`source ../my_scripts/add_pin.tcl`）。
@@ -67,7 +72,9 @@ setMultiCpuUsage -localCpu 32
 ```
 
 `setMultiCpuUsage`设置Innovus可以使用的CPU核数。对于现有的服务器，选择`-localCpu 32`可以保证Innovus稳定运行。
-若使用`setMultiCpuUsage -localCpu max -cpuAutoAdjust true -verbose`，可能会导致Innovus闪退。
+
+!!! Warning "警告"
+    若使用`setMultiCpuUsage -localCpu max -cpuAutoAdjust true -verbose`，可能会导致Innovus闪退。
 
 
 ```tcl
@@ -86,8 +93,11 @@ saveDesign ${rm_core_top}.design_planning_init.enc
 
 `saveDesign`命令在后端设计流程的各个步骤均会出现，用于保存目前后端设计的进度。
 
-> 在使用`saveDesign`保存设计之后，可以使用`restoreDesign`来载入此前保存的设计。
-> 例如：`restoreDesign `
+!!! tip "提示"
+    在后续的物理设计流程中，若出现错误或者需要回溯到之前的设计进度，可以使用`restoreDesign`命令载入之前保存的设计。
+    例如(bug here)：`restoreDesign ${rm_core_top}.design_planning_init.enc`
+
+!!! bug
 
 #### 设置后端不使用的标准单元
 
@@ -116,6 +126,9 @@ set die_sizey 1200
 * `$macro_halo_spc`用于设置Macro Route Blockage的宽度。
 * `$die_sizex`, `$die_sizey`分别是该模块版图的物理宽度与物理高度。
 
+!!! Bug
+    Route Blockage vs. Halo
+
 ```tcl
 floorPlan -d $die_sizex $die_sizey 3.5 3.5 3.5 3.5
 uiSetTool select
@@ -124,9 +137,10 @@ getIoFlowFlag
 
 一个初始的版图类似下图所示。
 
-![example floorplan](./figs/example_floorplan.png)
-
-*Example Floorplan*
+<figure>
+  <img src="../figs/example_floorplan.png" width=80%>
+  <figcaption>Example Floorplan</figcaption>
+</figure>
 
 中央带有横条纹的区域称为Core box，用于摆放Macro和标准单元。所有标准单元的宽度各不相同，但是高度均为`$cell_height`（对于22nm工艺，即为0.7um）。
 在Core box的四周到I/O管脚之间通常留有一定的间距，用于摆放Core Ring和I/O管脚布线。
@@ -152,23 +166,29 @@ getIoFlowFlag
 
 在Innovus GUI界面右上角选择`Floorplan View`，如下图所示。
 
-![check floorplan view](./figs/check_floorplan_view.png) 
-*Check Floorplan View*
+<figure>
+  <img src="../figs/check_floorplan_view.png" width=100%>
+  <figcaption>Check Floorplan View</figcaption>
+</figure>
 
 可以看到初始的版图如下所示。
 
-![init floorplan view](./figs/init_floorplan_view.png)
-*Initial Floorplan View*
+<figure>
+  <img src="../figs/init_floorplan_view.png" width=80%>
+  <figcaption>Initial Floorplan View</figcaption>
+</figure>
 
 除去Die Box之外，左侧的粉色正方形为RTL代码中的模块层次，正方形的大小表示了模块的预估面积。
-正方形左上角`TU=64.7%`为Target Utilization (TU)，是指所有的标准单元和Macro的面积除以版图的面积。
-此外，还有Effective Utilization (EU)，在整体版图面积的基础上除掉了Placement，Routing Blockage等其他阻碍物的面积，Innovus默认不会显示EU。
+
+??? Tip "TU & EU"
+    正方形左上角`TU=64.7%`为Target Utilization (TU)，是指所有的标准单元和Macro的面积除以版图的面积。
+    此外，还有Effective Utilization (EU)，在整体版图面积的基础上除掉了Placement，Routing Blockage等其他阻碍物的面积，Innovus默认不会显示EU。
 
 Die Box右侧为该数字模块中例化的IP核，在该案例中包括若干SRAM和2个CIM Macro。
 
-> 在这个时候可以检查此前例化的SRAM等IP是否有成功导入Innovus。
-
-> 有时因为文件路径设置错误，会出现没有成功例化的情况。
+!!! Tip "检查Macro"
+    在这个时候可以检查此前例化的SRAM等IP是否有成功导入Innovus。
+    有时因为文件路径设置错误，会出现没有成功例化的情况。
 
 #### 给Macro设置别名
 
@@ -215,9 +235,9 @@ set basey 350
 set deltax 150
 set deltay 250
 placeInstance [set icache_tag0] [expr $basex + $deltax * 0] [expr $basey - $deltay * 0] R180
-placeInstance [set icache_tag1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 0] 
+placeInstance [set icache_tag1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 0]
 placeInstance [set icache_data0] [expr $basex + $deltax * 0] [expr $basey - $deltay * 1] R180
-placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 1] 
+placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 1]
 
 # place D$
 # not shown for simplicity
@@ -227,13 +247,18 @@ placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $del
 
 * `instance_name`：想要摆放的Macro名称。可以使用别名，例如：`[set icache_data0]`或`$icache_data0`；
 * `<location>`：有X和Y两个数值，分别表示Macro左下角的宽度方向和高度方向的坐标；
-* `<orientation>`：设置Macro的摆放方向，可以选择`R0`, `R90`, `R180`, `R270`, `MX`, `MX90`, `MY`, `MY90`。需要注意的是，SRAM IP的摆放方向有所限制。
+* `<orientation>`：设置Macro的摆放方向，可以选择`R0`, `R90`, `R180`, `R270`, `MX`, `MX90`, `MY`, `MY90`。
+
+!!! Warning "Macro摆放方向"
+    由于22nm工艺中栅极必须纵向摆放，所以在摆放Macro时只能选择`R0`, `R180`,`MX`, `MY`。
 
 摆放好所有Macro之后的版图如下所示。
 
-![place macro](./figs/place_macro.png)
+<figure>
+  <img src="../figs/place_macro.png" width=80%>
+  <figcaption>Layout after placing macros</figcaption>
+</figure>
 
-*Layout after placing macros*
 
 ### 执行`add_halo_routeblk.tcl`
 
