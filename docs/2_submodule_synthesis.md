@@ -98,12 +98,12 @@
 #### Register File IP的例化
 
 不带`Bit-Write Mask`功能的Register File例化示例如下：
-```Verilog
+``` Verilog
 
 ```
 
 带有`Bit-Write Mask`功能的Register File例化示例如下：
-```Verilog
+``` Verilog
 
 ```
 
@@ -111,7 +111,7 @@
 
 将数字子系统的可综合RTL代码放在`./rtl/`目录下，并在`./rtl/srcs.tcl`中添加所有RTL代码的文件名称。`srcs.tcl`的示例如下。
 
-```tcl
+``` tcl
 set_db hdl_unconnected_value 0
 set_db hdl_max_loop_limit 8192
 set_db hdl_track_filename_row_col true
@@ -128,7 +128,7 @@ read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/S
 
 在`./scripts/core_config.tcl`中定义了数字系统的**顶层模块名称**、**时钟信号名称**等信息，需要根据情况进行调整。
 
-```tcl
+``` tcl
 set rm_core_top MY_TOP_MODULE
 
 set rm_clock_pin clk
@@ -138,7 +138,7 @@ set rm_clock_pin clk
 
 #### 选择逻辑综合和后端设计使用的**标准单元库**
 
-```tcl
+``` tcl
 set std_lib MY_STD_LIB
 ```
 
@@ -154,7 +154,7 @@ set std_lib MY_STD_LIB
 
 选择后端设计中使用和不使用的标准单元，此处`cell_ext`需和上述的`std_lib`保持一直。
 
-```tcl
+``` tcl
 set cell_ext [list BWP7T30P140HVT]
 set rm_dont_use_list [list ]
 ```
@@ -163,7 +163,7 @@ set rm_dont_use_list [list ]
 
 添加SRAM Compiler，Register File Compiler生成的IP文件。
 
-```tcl
+``` tcl
 set sram_insts [concat $MACROname_rams \
     "sram_128x128" \
     "other_sram_name" \
@@ -177,7 +177,7 @@ set sram_insts [concat $MACROname_rams \
 子模块（例如CIM，eDRAM等定制单元）作为完整的一个设计，在这一层级通过`LIB`, `LEF`等文件体现时序、面积、布局等信息。
 `LEF`文件包括模块各层金属的尺寸，以及管脚的大小和位置。
 
-```tcl
+``` tcl
 set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/lef/${std_lib}_110a/lef/${std_lib}.lef \
     /path/to/foundry/lef/files \ # not shown for simplicity
     /work/home/ztzhu/tapeout_templates/submodule_tapeout/asic_ip/DCIM_32_4_64.lef \ # add LEF file here
@@ -188,7 +188,7 @@ set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/le
 
 设置逻辑综合、布局布线的时钟周期，时钟周期越小，则对时序要求越高，所需要的优化迭代时间越长。时钟周期单位为纳秒。
 
-```tcl
+``` tcl
 set rm_clock_period 5
 ```
 
@@ -199,7 +199,7 @@ set rm_clock_period 5
 `LIB`文件包含时序信息，对于Genus逻辑综合是必须的。对于不同的PVT都会有相应的`LIB`文件。
 对于`ff_0p88v_m40c`，添加`LIB`文件的示例如下：
 
-```tcl
+``` tcl
 # FFGNP 0p88V m40C Libs
 set ff_0p88v_m40c_libs [list ${base_lib_dir}/${base_ff_0p88v_m40c_lib}.lib ${io_lib}ffg08ppv2p75vm40c.lib \ 
     /work/home/ztzhu/tapeout_templates/submodule_tapeout/cim_macro/cim.lib \ # example
@@ -223,7 +223,7 @@ foreach sram ${sram_insts} { \
 
 ### 启动Genus综合
 
-```bash
+``` shell
 b make genus_syn
 ```
 

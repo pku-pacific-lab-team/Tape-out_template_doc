@@ -30,7 +30,7 @@
 
 在`./scripts/init_invs.tcl`中，定义了数字子系统的Power与Ground信号名称。
 
-```tcl
+``` tcl
 set init_gnd_net {VSS}
 set init_pwr_net {VDD VDD_CIM}
 ```
@@ -41,7 +41,7 @@ set init_pwr_net {VDD VDD_CIM}
 
 打开一个终端，进入到`./work/`文件夹中，并启动Innovus。Innovus的日志文件位于`innovus.log`，用户通过终端命令行和GUI界面操作所对应执行的命令记录在`innovus.cmd`，均在`./work/`文件夹中。
 
-```bash
+``` shell
 cd /work/home/ztzhu/tapeout_templates/submodule_tapeout/work/
 rm -rf innovus.cmd* innovus.log* # clear previous innovus output files
 b innovus
@@ -54,7 +54,7 @@ b innovus
 在我们的模板文件中主要依赖于命令行脚本进行后端设计。使用Innovus进行后端设计所用到的`TCL`命令均存放在`./my_scripts/`中。
 使用文本编辑器打开`./my_scripts/innovus_script.tcl`（推荐使用GVIM）。
 
-```bash
+``` shell 
 gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_script.tcl
 ```
 
@@ -67,7 +67,7 @@ gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_scr
 
 #### 导入设计到Innovus
 
-```tcl
+``` tcl
 setMultiCpuUsage -localCpu 32
 ```
 
@@ -77,7 +77,7 @@ setMultiCpuUsage -localCpu 32
     若使用`setMultiCpuUsage -localCpu max -cpuAutoAdjust true -verbose`，可能会导致Innovus闪退。
 
 
-```tcl
+``` tcl
 source -verbose ../scripts/core_config.tcl
 source -verbose ../scripts/tech.tcl
 source -verbose ../scripts/init_invs.tcl
@@ -87,7 +87,7 @@ source -verbose ../scripts/invs_setting.tcl
 将此前修改过的4个脚本文件读入到Innovus中，包括数字子系统顶层模块名称（`$rm_core_top`）、各个文件的路径、标准工艺库的选择等内容。
 此时我们经过逻辑综合的数字子系统已经导入到Innovus中。
 
-```tcl
+``` tcl
 saveDesign ${rm_core_top}.design_planning_init.enc
 ```
 
@@ -101,7 +101,7 @@ saveDesign ${rm_core_top}.design_planning_init.enc
 
 #### 设置后端不使用的标准单元
 
-```tcl
+``` tcl
 set_dont_use [get_lib_cellls FA1D0BWP7T30P140HVT]
 set_dont_use [get_lib_cellls FA1D1BWP7T30P140HVT]
 set_dont_use [get_lib_cellls FA1D2BWP7T30P140HVT]
@@ -111,7 +111,7 @@ set_dont_use [get_lib_cellls FA1D2BWP7T30P140HVT]
 
 #### 设置版图大小
 
-```tcl
+``` tcl
 set cell_height 0.7
 set macro_halo_spc [expr 1 * $cell_height]
 set macro_halo_spc_2 [expr 2 * $cell_height]
@@ -129,7 +129,7 @@ set die_sizey 1200
 !!! Bug
     Route Blockage vs. Halo
 
-```tcl
+``` tcl
 floorPlan -d $die_sizex $die_sizey 3.5 3.5 3.5 3.5
 uiSetTool select
 getIoFlowFlag
@@ -192,7 +192,7 @@ Die Box右侧为该数字模块中例化的IP核，在该案例中包括若干SR
 
 #### 给Macro设置别名
 
-```tcl
+``` tcl
 # Main Memory
 set mainmem i_sram
 
@@ -218,7 +218,7 @@ set dcim_macro1 i_ariane/gen_coprocessor.i_in_pipeline_coprocessor/u_CIM_block_w
 
 #### 摆放Macro
 
-```tcl
+``` tcl
 # place Main Memory
 placeInstance [set mainmem] 20 400 R180
 

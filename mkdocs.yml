@@ -9,17 +9,17 @@ theme:
     code: JetBrainsMono
   features:
     - navigation.instant
+    - content.code.copy
+    - content.code.annotate
 
 markdown_extensions:
   - admonition
-  - codehilite:
-      guess_lang: false
-      linenums: false
+  - pymdownx.highlight:
+      anchor_linenums: true
   - pymdownx.details
   - pymdownx.inlinehilite
-
-# extra_css:
-#   - css/custom.css
+  - pymdownx.superfences
+  - pymdownx.snippets
 
 plugins:
   - search:
