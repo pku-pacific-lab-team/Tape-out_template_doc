@@ -5,11 +5,13 @@
 我们希望通过模板文件和说明文档，帮助后续接触该模板的朋友们快速熟悉数字后端设计流程。然而，一份说明文档不可能做到面面俱到，要更加深入地了解数字后端设计流程，还需要阅读EDA工具的用户手册和其他官方文档，并通过实践和不断试错来积累经验。
 
 <figure>
-  <img src="./figs/digital_design_flow.png" alt="数字芯片设计流程">
+  <img src="./figs/digital_design_flow.png" width=80%>
   <figcaption>数字芯片设计流程</figcaption>
 </figure>
 
-> 注意：该文档还在开发之中，若出现错误或纰漏，还请在GitHub仓库中提出Issue！
+!!! question "关于文档"
+    该文档还在持续开发更新之中，若出现错误或纰漏，还请在GitHub仓库中提出Issue！
+    如果有改进意见，欢迎提交Pull Request！
 
 ## 模板文件结构
 
@@ -24,84 +26,34 @@
 * **顶层模块**的流片模板位于：`/work/home/ztzhu/tapeout_template/top_io_tapeout/`
 
 在该文档后续章节中，将会先介绍**数字子系统**的流片模板，这是任何流片项目后端设计的基础，再介绍**顶层模块**的流片模板。
+最后介绍流片之后的**封装测试**。
 
-## EDA工具介绍
+## 目录
 
-该流片模板主要依赖于以下的EDA工具：
+* [Linux环境下EDA工具介绍](./0_eda.md)
+* 前端设计
+    * [数字子系统的行为级仿真](./1_submodule_behavioral_simulation.md)
+    * [数字子系统的逻辑综合](./2_submodule_synthesis.md)
+    * [数字子系统的门级仿真](./3_submodule_gate_level_simulation.md)
+* 后端实现
+    * [数字子系统的后端设计](./4_submodule_implementation.md)
+    * [顶层模块的后端设计](./5_io.md)
+    * [DRC/LVS验证](./6_drc_lvs.md)
+    * [拼版](./7_final_layout.md)
+* 回片测试
+    * [PCB绘制](./8_PCB.md)
+    * [封装](./9_package.md)
+    * [测试](./10_testing.md)
 
-### Cadence Genus 19.12
+## 更新日志
 
-在该流片模板文件中，我们主要依赖于`Makefile`和`TCL`自动化脚本文件进行逻辑综合，一般情况下不需要单独启动Genus综合工具。如需进行较为细致的调试，在终端输入`b genus`启动Genus综合工具。
-默认情况下在当前目录下生成`genus.log`和`genus.cmd`日志文件，分别记录了Genus的终端输出和用户输入的命令。
+### 当前版本
 
-为了更加全面了解Genus综合工具，可以查看Cadence的官方说明手册和文件：
+!!! Bug "当前版本尚未公测"
+    开发中，尚未公测，敬请期待！
 
-* **Genus Synthesis Flow Guide**: `/cadtools/cadence/genus19.12/doc/genus_start/genus_start.pdf`
-* **Genus User Guide**: `/cadtools/cadence/genus19.12/doc/genus_user/genus_user.pdf`
-* **Genus Command Reference**: `/cadtools/cadence/genus19.12/doc/genus_comref/genus_comref.pdf`
+### 历史版本
 
-### Cadence Innovus 20.10
+## 致谢
 
-该流片模板文件中，将主要围绕Innovus工具进行数字模块的后端设计。在终端中输入`b innovus`启动Innovus工具，默认情况会自动启动GUI界面，有助于我们观察后端版图的各类情况，方便迭代设计与优化。
-使用以下命令可以打开、关闭GUI界面。
-```tcl
-# Turn on GUI
-enc::gui_on 
-
-# Turn off GUI
-enc::gui_off 
-```
-
-大部分的设计流程使用Innovus的终端输入`TCL`脚本命令。
-若使用GUI界面进行操作，相应的操作也会自动转化成`TCL`指令，可以打开`innovus.cmd`查看GUI界面的操作与Innovus指令的对应关系。
-
-Cadence的官方说明手册和文件：
-
-* **Innovus User Guide**: `/cadtools/cadence/innovus20.10/doc/innovusUG/innovusUG.pdf`
-* **Innovus Error Messege**: `/cadtools/cadence/innovus20.10/doc/innovuserrmsg/innovuserrmsgTOC.html`
-
-### ARM SRAM Compiler
-
-许多数字模块中依赖于较大规模的寄存器堆/SRAM高速缓存，这些模块需要替换成专门的IP核，而不是使用RTL代码直接综合，从而可以显著减小模块面积。
-
-替换SRAM时，我们通常使用ARM提供的`High Density Single Port SRAM SHVT MVT Compiler`。
-
-**二进制执行文件**位于：
-
-```
-/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/bin/sram_sp_hde_shvt_mvt
-```
-
-在命令行中输入该执行文件即可启动。
-
-**用户手册**位于：
-
-```
-/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/doc/sram_sp_hde_shvt_mvt_userguide.pdf
-```
-
-### ARM Register File Compiler
-
-替换寄存器堆时，我们使用ARM提供的`High Density Single Port Register File SHVT MVT Compiler`。
-
-**二进制执行文件**位于：
-
-```
-/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/bin/rf_sp_hde_shvt_mvt
-```
-
-在命令行中输入该执行文件即可启动。
-
-**用户手册**位于：
-
-```
-/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/doc/rf_sp_hde_shvt_mvt_userguide.pdf
-```
-
-### Cadence Virtuoso 6.1.8
-
-在进行数字模块的DRC与LVS检查时，会使用到Cadence Virtuoso工具。在终端中输入`b virtuoso`打开Virtuoso工具。
-
-### Synopsys VCS
-
-### Synopsys Verdi
+感谢所有为该文档提供帮助的朋友们！

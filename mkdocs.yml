@@ -1,10 +1,14 @@
-site_name: Documentation for Tape-out Templates
+site_name: Documentation for Tape-out
 site_url: https://bwoah-kimi.github.io/Tape-out_template_doc/
 site_author: Bwoah-Kimi
 
 theme:
   name: material
   language: zh
+  logo: figs/pku_logo.png
+  palette:
+    primary: custom
+    accent: pink
   font:
     code: JetBrainsMono
   features:
@@ -27,13 +31,19 @@ plugins:
         - zh
         - en
 
+extra_css:
+  - extra.css
+
 nav:
-  - Overview: index.md
+  - Welcome to Tape-out Docs!: index.md
+  - EDA Tools & Environment: 0_eda.md
   - Submodule Behavioral Simulation: 1_submodule_behavioral_simulation.md
   - Submodule Synthesis: 2_submodule_synthesis.md
   - Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - Submodule Implementation: 4_submodule_implementation.md
-  - IO Module: 5_io.md
-  - PCB: 6_PCB.md
-  - Packaging: 7_package.md
-  - Testing: 8_testing.md
+  - TOP IO Implementation: 5_io.md
+  - DRC/LVS: 6_lvs_drc.md
+  - Tape-out: 7_final_layout.md
+  - PCB: 8_PCB.md
+  - Packaging: 9_package.md
+  - Testing: 10_testing.md

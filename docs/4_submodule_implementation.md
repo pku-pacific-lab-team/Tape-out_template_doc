@@ -6,7 +6,8 @@
 
 ## 物理设计流程介绍
 
-> 同[数字子系统的逻辑综合](./2_submodule_synthesis.md)，在后端设计中，我们继续使用`/work/home/ztzhu/tapeout_templates/submodule_tapeout/`文件夹。
+!!! Warning "注意"
+    同[数字子系统的逻辑综合](./2_submodule_synthesis.md)，在后端设计中，我们继续使用`/work/home/ztzhu/tapeout_templates/submodule_tapeout/`文件夹。
 
 物理设计的输入主要用到模板文件中的以下内容：
 
@@ -54,7 +55,7 @@ b innovus
 在我们的模板文件中主要依赖于命令行脚本进行后端设计。使用Innovus进行后端设计所用到的`TCL`命令均存放在`./my_scripts/`中。
 使用文本编辑器打开`./my_scripts/innovus_script.tcl`（推荐使用GVIM）。
 
-``` shell 
+``` shell
 gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_script.tcl
 ```
 
@@ -93,11 +94,10 @@ saveDesign ${rm_core_top}.design_planning_init.enc
 
 `saveDesign`命令在后端设计流程的各个步骤均会出现，用于保存目前后端设计的进度。
 
-!!! tip "提示"
+!!! bug "FIXME!!!"
     在后续的物理设计流程中，若出现错误或者需要回溯到之前的设计进度，可以使用`restoreDesign`命令载入之前保存的设计。
     例如(bug here)：`restoreDesign ${rm_core_top}.design_planning_init.enc`
 
-!!! bug
 
 #### 设置后端不使用的标准单元
 
@@ -126,7 +126,7 @@ set die_sizey 1200
 * `$macro_halo_spc`用于设置Macro Route Blockage的宽度。
 * `$die_sizex`, `$die_sizey`分别是该模块版图的物理宽度与物理高度。
 
-!!! Bug
+!!! Bug "FIXME!!!"
     Route Blockage vs. Halo
 
 ``` tcl

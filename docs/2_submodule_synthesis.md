@@ -8,9 +8,9 @@
 
 ## 逻辑综合流程介绍
 
-> **注意**：数字子系统的逻辑综合使用`/work/home/ztzhu/tapeout_templates/submodule_tapeout/`文件夹。
-
-> 若未做额外说明，**我们默认处于该文件夹路径下**。
+!!! Warning "注意"
+    数字子系统的逻辑综合使用`/work/home/ztzhu/tapeout_templates/submodule_tapeout/`文件夹。
+    若未做额外说明，**我们默认处于该文件夹路径下**。
 
 逻辑综合的输入主要用到模板文件中的以下内容：
 
@@ -28,13 +28,15 @@
 
 ### SRAM/Register File替换 _（可选）_
 
-> 该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
+!!! question "提示"
+    该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
 
 主要用到的是ARM提供的`SRAM Compiler`和`Register File Compiler`（[工具路径](./index.md#arm-sram-compiler)）
 
 在`./sram/`路径下新建文件夹，并在该文件夹下启动`SRAM Compiler`/`Register File Compiler`，用于存放生成的文件。
 
-> **注意**：`./sram/`路径下新建的**文件夹名称**与IP模块的`Instance Name`需保持一致！
+!!! Warning "注意"
+    `./sram/`路径下新建的**文件夹名称**与IP模块的`Instance Name`需保持一致！
 
 #### SRAM Compiler使用说明
 
