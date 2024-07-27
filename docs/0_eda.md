@@ -56,6 +56,37 @@ VAR2 = $(VAR1)
 
 ### TCL
 
+目前大部分的EDA工具都支持 `TCL` (Tool Command Language) 脚本语言，主要使用于发布命令给一些交互程序如文本编辑器、调试器和 Shell 。
+`TCL` 的常用语法简单易懂，一些常用的用法示例如下：
+
+``` tcl
+# print a string
+puts "Hello World!"
+
+# set a variable
+set variableA 10
+set {variable B} test
+puts $variableA  # 10
+puts ${variable B}  # test
+
+# perform arithmetic calculations
+set a 21
+set b 10
+set c [expr $a + $b]
+puts "Line 1 - Value of c is $c\n"  # Line 1 - Value of c is 31
+set d [expr $a - $b]
+puts "Line 2 - Value of d is $d\n"  # Line 2 - Value of d is 11
+set e [expr $a * $b]
+puts "Line 3 - Value of e is $e\n"  # Line 3 - Value of e is 210
+set f [expr $a / $b]
+puts "Line 4 - Value of f is $f\n"  # Line 4 - Value of f is 2
+set g [expr $a % $b]
+puts "Line 5 - Value of g is $g\n"  # Line 5 - Value of g is 1
+```
+
+此外还有for循环和if-else分支语句也是常用的语法。
+配合[网络教程]<https://www.yiibai.com/tcl/tcl_basic_syntax.html>和 ChatGPT 可以应对在本文档中碰到的所有 `TCL` 语句。
+
 ---
 
 ### RISC-V Toolchain
