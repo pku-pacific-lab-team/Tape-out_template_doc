@@ -84,7 +84,7 @@ set g [expr $a % $b]
 puts "Line 5 - Value of g is $g\n"  # Line 5 - Value of g is 1
 ```
 
-此外还有for循环和if-else分支语句也是常用的语法。
+此外还有 for 循环和 if-else 分支语句也是常用的语法。
 配合[网络教程](https://www.yiibai.com/tcl/tcl_basic_syntax.html)和 ChatGPT 可以应对在本文档中碰到的所有 `TCL` 语句。
 
 ---
@@ -129,12 +129,12 @@ puts "Line 5 - Value of g is $g\n"  # Line 5 - Value of g is 1
 
 ## 0.2 EDA工具介绍
 
-该流片模板主要依赖于以下的EDA工具：
+该流片模板主要依赖于以下的 EDA 工具：
 
 ### Cadence Genus 19.12
 
-在该流片模板文件中，我们主要依赖于`Makefile`和`TCL`自动化脚本文件进行逻辑综合，一般情况下不需要单独启动Genus综合工具。如需进行较为细致的调试，在终端输入`b genus`启动Genus综合工具。
-默认情况下在当前目录下生成`genus.log`和`genus.cmd`日志文件，分别记录了Genus的终端输出和用户输入的命令。
+在该流片模板文件中，我们主要依赖于 `Makefile` 和 `TCL` 自动化脚本文件进行逻辑综合，一般情况下不需要单独启动 Genus 综合工具。如需进行较为细致的调试，在终端输入 `b genus` 启动 Genus 综合工具。
+默认情况下在当前目录下生成 `genus.log` 和 `genus.cmd` 日志文件，分别记录了 Genus 的终端输出和用户输入的命令。
 
 为了更加全面了解Genus综合工具，可以查看Cadence的官方说明手册和文件：
 
@@ -146,8 +146,8 @@ puts "Line 5 - Value of g is $g\n"  # Line 5 - Value of g is 1
 
 ### Cadence Innovus 20.10
 
-该流片模板文件中，将主要围绕Innovus工具进行数字模块的后端设计。在终端中输入`b innovus`启动Innovus工具，默认情况会自动启动GUI界面，有助于我们观察后端版图的各类情况，方便迭代设计与优化。
-使用以下命令可以打开、关闭GUI界面。
+该流片模板文件中，将主要围绕 Innovus 工具进行数字模块的后端设计。在终端中输入 `b innovus` 启动 Innovus 工具，默认情况会自动启动 GUI 界面，有助于我们观察后端版图的各类情况，方便迭代设计与优化。
+使用以下命令可以打开、关闭 GUI 界面。
 ```tcl
 # Turn on GUI
 enc::gui_on 
@@ -156,10 +156,10 @@ enc::gui_on
 enc::gui_off 
 ```
 
-大部分的设计流程使用Innovus的终端输入`TCL`脚本命令。
-若使用GUI界面进行操作，相应的操作也会自动转化成`TCL`指令，可以打开`innovus.cmd`查看GUI界面的操作与Innovus指令的对应关系。
+大部分的设计流程使用 Innovus 的终端输入 `TCL` 脚本命令。
+若使用 GUI 界面进行操作，相应的操作也会自动转化成 `TCL` 指令，可以打开 `innovus.cmd` 查看 GUI 界面的操作与 Innovus 指令的对应关系。
 
-Cadence的官方说明手册和文件：
+Cadence 的官方说明手册和文件：
 
 * **Innovus User Guide**: `/cadtools/cadence/innovus20.10/doc/innovusUG/innovusUG.pdf`
 * **Innovus Error Messege**: `/cadtools/cadence/innovus20.10/doc/innovuserrmsg/innovuserrmsgTOC.html`
@@ -168,9 +168,9 @@ Cadence的官方说明手册和文件：
 
 ### ARM SRAM Compiler
 
-许多数字模块中依赖于较大规模的寄存器堆/SRAM高速缓存，这些模块需要替换成专门的IP核，而不是使用RTL代码直接综合，从而可以显著减小模块面积。
+许多数字模块中依赖于较大规模的寄存器堆/SRAM高速缓存，这些模块需要替换成专门的 IP 核，而不是使用 RTL 代码直接综合，从而可以显著减小模块面积。
 
-替换SRAM时，我们通常使用ARM提供的`High Density Single Port SRAM SHVT MVT Compiler`。
+替换 SRAM 时，我们通常使用 ARM 提供的 `High Density Single Port SRAM SHVT MVT Compiler`。
 
 **二进制执行文件**位于：
 
@@ -190,7 +190,7 @@ Cadence的官方说明手册和文件：
 
 ### ARM Register File Compiler
 
-替换寄存器堆时，我们使用ARM提供的`High Density Single Port Register File SHVT MVT Compiler`。
+替换寄存器堆时，我们使用 ARM 提供的 `High Density Single Port Register File SHVT MVT Compiler`。
 
 **二进制执行文件**位于：
 
@@ -210,14 +210,14 @@ Cadence的官方说明手册和文件：
 
 ### Cadence Virtuoso 6.1.8
 
-在进行数字模块的DRC与LVS检查时，会使用到Cadence Virtuoso工具。在终端中输入`b virtuoso`打开Virtuoso工具。
+在进行数字模块的 DRC 与 LVS 检查时，会使用到 Cadence Virtuoso 工具。在终端中输入`b virtuoso`打开 Virtuoso 工具。
 
 ---
 
 ### Synopsys VCS
 
-我们所说的VCS，指的是全套“功能验证解决方案”（a full suite of "Functional Verification Solution"）。
-另一个容易混淆的概念是VCS-MX，它相比VCS，增加了对VHDL的支持，相应地，处理RTL的步骤也会比VCS多。
+我们所说的 VCS，指的是全套“功能验证解决方案”（a full suite of "Functional Verification Solution"）。
+另一个容易混淆的概念是 VCS-MX，它相比 VCS，增加了对 VHDL 的支持，相应地，处理 RTL 的步骤也会比 VCS 多。
 
 !!! Bug "FIXME!!!"
     **用户手册**位于：
@@ -227,9 +227,9 @@ Cadence的官方说明手册和文件：
     ```
 
 
-#### VCS-MX流程
+#### VCS-MX 流程
 
-VCS-MX通过以下三步来处理 RTL：
+VCS-MX 通过以下三步来处理 RTL：
 
 - 分析源文件（analyze）。
 - 处理源文件（elaborate）。
@@ -242,9 +242,9 @@ $ vcs [compile_options] design_unit             // elaborate
 $ simv [run_options]                            // simulate
 ```
 
-#### VCS流程
+#### VCS 流程
 
-VCS将前两步合并，简化为了两步。
+VCS 将前两步合并，简化为了两步。
 
 - 编译源文件（compile）。
 - 仿真可执行文件（simulate）。
@@ -256,7 +256,7 @@ $ simv [run_options]                            // simulate
 
 #### 生成波形文件
 
-生成`.fsdb`波形文件需要用到如下4个系统函数：
+生成 `.fsdb` 波形文件需要用到如下4个系统函数：
 
 1. `$fsdbDumpfile(“<filename.fsdb>”)`
 2. `$fsdbDumpvars(<levels>,<module_name>)`
@@ -282,7 +282,7 @@ end
 
 ### Synopsys Verdi
 
-Verdi是一个自动调试平台（automated debug platform），用于观察波形、调试 RTL。
+Verdi 是一个自动调试平台（automated debug platform），用于观察波形、调试 RTL。
 
 !!! Bug "FIXME!!!"
     **用户手册**位于：
@@ -297,21 +297,21 @@ Verdi是一个自动调试平台（automated debug platform），用于观察波
 
 #### 编译器和接口
 
-- 编译器：Verdi为大多数设计和验证环境中使用的语言提供编译器，如Verilog、VHDL和SystemVerilog以及电源代码（CPF或UPF）。在分析和编译代码时，会检查语法和语义错误。
-- 接口：Verdi可以导入其他仿真器生成的标准VCD和SDF数据，并将结果存储在快速信号数据库（Fast Signal Database，FSDB）中。也可以通过对象文件（object files）链接到仿真器（例如VCS）直接生成FSDB。
+- 编译器：Verdi 为大多数设计和验证环境中使用的语言提供编译器，如 Verilog、VHDL 和 SystemVerilog 以及电源代码（CPF 或 UPF）。在分析和编译代码时，会检查语法和语义错误。
+- 接口：Verdi 可以导入其他仿真器生成的标准 VCD 和 SDF 数据，并将结果存储在快速信号数据库（Fast Signal Database，FSDB）中。也可以通过对象文件（object files）链接到仿真器（例如 VCS）直接生成 FSDB。
 
 #### 数据库
 
-- 知识数据库（Knowledge Database，KDB）：在编译时，Verdi会识别和提取设计的特定结构、逻辑和功能信息，并将由此产生的详细设计信息存储在KDB中。
-- 快速信号数据库（Fast Signal Database，FSDB）：FSDB以高效紧凑的格式存储仿真结果。Synopsys提供可以链接到常见仿真器的对象文件用来直接以FSDB格式存储仿真结果。你也可以通过转换VCD文件的方式生成FSDB。
+- 知识数据库（Knowledge Database，KDB）：在编译时，Verdi 会识别和提取设计的特定结构、逻辑和功能信息，并将由此产生的详细设计信息存储在 KDB中。
+- 快速信号数据库（Fast Signal Database，FSDB）：FSDB 以高效紧凑的格式存储仿真结果。Synopsys 提供可以链接到常见仿真器的对象文件用来直接以FSDB 格式存储仿真结果。你也可以通过转换 VCD 文件的方式生成 FSDB。
 
 #### 分析引擎
 
-使用来自KDB和FSDB的信息进行分析。
+使用来自 KDB 和 FSDB 的信息进行分析。
 
 #### 可视化
 
-Verdi中有如下的结构可视化和分析工具：
+Verdi 中有如下的结构可视化和分析工具：
 
 - nTrace：用于源代码
 - nWave：用于波形

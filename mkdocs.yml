@@ -2,6 +2,10 @@ site_name: Documentation for Tape-out
 site_url: https://bwoah-kimi.github.io/Tape-out_template_doc/
 site_author: Bwoah-Kimi
 
+repo_url: https://github.com/Bwoah-Kimi/Tape-out_template_doc
+repo_name: Source Code
+edit_uri: edit/main/docs/
+
 theme:
   name: material
   language: zh
@@ -13,10 +17,12 @@ theme:
   font:
     code: JetBrainsMono
   features:
+    - navigation.top
     - navigation.instant
     - navigation.footer
     - content.code.copy
     - content.code.annotate
+    - content.action.view
 markdown_extensions:
   - admonition
   - pymdownx.highlight:
@@ -31,6 +37,14 @@ plugins:
       lang:
         - zh
         - en
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+  - git-authors:
+      show_contribution: true
+      href: "https://github.com/{name}"
+
+copyright: Copyright &copy; 2024 School of Intergrated Circuits, Peking University
 
 extra_css:
   - extra.css
