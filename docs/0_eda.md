@@ -85,7 +85,7 @@ puts "Line 5 - Value of g is $g\n"  # Line 5 - Value of g is 1
 ```
 
 此外还有for循环和if-else分支语句也是常用的语法。
-配合[网络教程]<https://www.yiibai.com/tcl/tcl_basic_syntax.html>和 ChatGPT 可以应对在本文档中碰到的所有 `TCL` 语句。
+配合[网络教程](https://www.yiibai.com/tcl/tcl_basic_syntax.html)和 ChatGPT 可以应对在本文档中碰到的所有 `TCL` 语句。
 
 ---
 
