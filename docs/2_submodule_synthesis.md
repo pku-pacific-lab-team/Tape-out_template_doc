@@ -1,4 +1,4 @@
-# 数字子系统的逻辑综合
+# 2. 数字子系统的逻辑综合
 
 在数字芯片的设计流程中，后端设计是在逻辑综合的基础上进行的。在我们的模板文件中，逻辑综合和后端设计均会调用部分相同的脚本文件，因此先对数字子系统的逻辑综合流程做简要说明。
 
@@ -26,7 +26,7 @@
 
 以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要4-5小时）
 
-### SRAM/Register File替换 _（可选）_
+### 2.1 SRAM/Register File替换 _（可选）_
 
 !!! question "提示"
     该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
@@ -109,7 +109,7 @@
 
 ```
 
-### 添加可综合RTL代码
+### 2.2 添加可综合RTL代码
 
 将数字子系统的可综合RTL代码放在`./rtl/`目录下，并在`./rtl/srcs.tcl`中添加所有RTL代码的文件名称。`srcs.tcl`的示例如下。
 
@@ -126,7 +126,7 @@ read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/S
 read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/SystemVerilog_MODULE_2.sv
 ```
 
-### 修改`core_config.tcl`
+### 2.3 修改`core_config.tcl`
 
 在`./scripts/core_config.tcl`中定义了数字系统的**顶层模块名称**、**时钟信号名称**等信息，需要根据情况进行调整。
 
@@ -136,7 +136,7 @@ set rm_core_top MY_TOP_MODULE
 set rm_clock_pin clk
 ```
 
-### 修改`design_inputs_macro.tcl`
+### 2.4 修改`design_inputs_macro.tcl`
 
 #### 选择逻辑综合和后端设计使用的**标准单元库**
 
@@ -194,7 +194,7 @@ set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/le
 set rm_clock_period 5
 ```
 
-### 修改`tech.tcl`
+### 2.5 修改`tech.tcl`
 
 #### 添加子模块所需的`LIB`文件
 
@@ -223,13 +223,13 @@ foreach sram ${sram_insts} { \
 </figure>
 
 
-### 启动Genus综合
+### 2.6 启动Genus综合
 
 ``` shell
 b make genus_syn
 ```
 
-### 查看综合报告
+### 2.7 查看综合报告
 
 * `./data/MY_TOP_MODULE-genus.v`：生成的门级网表，用于后续Innovus的后端设计
 * `./logs/genus_synthesis.log`：逻辑综合的日志文件，可以查找`Error`, `Warning`等关键词检查流程是否有误。

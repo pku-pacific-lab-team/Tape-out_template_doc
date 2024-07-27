@@ -1,4 +1,4 @@
-# 数字子系统的物理设计
+# 4. 数字子系统的物理设计
 
 在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用Cadence Innovus进行数字子系统的物理设计（后端设计）。
 
@@ -22,7 +22,7 @@
 在这个CPU中，包括用SRAM Compiler生成的Main Memory，I-Cache和D-Cache，以及定制设计的CIM模块。
 我们按照顺序逐一介绍数字子模块物理设计的流程。
 
-### 修改`init_invs.tcl`
+### 4.1 修改`init_invs.tcl`
 
 在使用Innovus进行后端设计前，需要对工程脚本进行一些修改。
 
@@ -38,7 +38,7 @@ set init_pwr_net {VDD VDD_CIM}
 
 在这个设计中，定制设计的CIM有单独的供电`VDD_CIM`，其余SRAM IP和标准单元共用`VDD`。
 
-### 启动Cadence Innovus
+### 4.2 启动Cadence Innovus
 
 打开一个终端，进入到`./work/`文件夹中，并启动Innovus。Innovus的日志文件位于`innovus.log`，用户通过终端命令行和GUI界面操作所对应执行的命令记录在`innovus.cmd`，均在`./work/`文件夹中。
 
@@ -62,7 +62,7 @@ gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_scr
 观察`./my_scripts/innovus_script.tcl`，可以看到Innovus的物理设计流程大致分成了几个阶段，在Innovus终端中读入相应的命令即可（例如`source ../my_scripts/add_pin.tcl`）。
 接下来按照顺序对物理设计流程中的关键命令进行说明。
 
-### 执行`invs_init_setting.tcl`
+### 4.3 执行`invs_init_setting.tcl`
 
 观察`./my_scripts/invs_init_setting.tcl`中包含的命令。
 
@@ -158,7 +158,7 @@ getIoFlowFlag
 
 因此，设置上述版图大小的命令为：`floorPlan -d 100 100 10 10 10 10`。
 
-### 执行`place_macro.tcl`
+### 4.4 执行`place_macro.tcl`
 
 查看`./my_scripts/place_macro.tcl`中包含的命令。
 
@@ -260,28 +260,28 @@ placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $del
 </figure>
 
 
-### 执行`add_halo_routeblk.tcl`
+### 4.5 执行`add_halo_routeblk.tcl`
 
-### 执行`global_net_connect.tcl`
+### 4.6 执行`global_net_connect.tcl`
 
-### 执行`add_pin.tcl`
+### 4.7 执行`add_pin.tcl`
 
-### 执行`add_endcap_wellcap.tcl`
+### 4.8 执行`add_endcap_wellcap.tcl`
 
-### 执行`add_power_ring.tcl`
+### 4.9 执行`add_power_ring.tcl`
 
-### 执行`add_power_stripe.tcl`
+### 4.10 执行`add_power_stripe.tcl`
 
-### 执行`place.tcl`
+### 4.11 执行`place.tcl`
 
-### 执行`cts.tcl`
+### 4.12 执行`cts.tcl`
 
-### 执行`route.tcl`
+### 4.13 执行`route.tcl`
 
-### 修DRC报错
+### 4.14 修DRC报错
 
-### 执行`add_core_filler.tcl`
+### 4.15 执行`add_core_filler.tcl`
 
-### 执行`add_PG_pin.tcl`
+### 4.16 执行`add_PG_pin.tcl`
 
-### 执行`gen_files.tcl`
+### 4.17 执行`gen_files.tcl`
