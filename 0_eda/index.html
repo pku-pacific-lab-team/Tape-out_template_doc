@@ -1,0 +1,1638 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Bwoah-Kimi">
+      
+      
+        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/0_eda/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../1_submodule_behavioral_simulation/">
+      
+      
+      <link rel="icon" href="../figs/pku_logo_red.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+    
+    
+      
+        <title>I. EDA Tools & Environment - Documentation for Tape-out</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrainsMono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrainsMono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0-linuxeda" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Documentation for Tape-out" class="md-header__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
+      
+  <img src="../figs/pku_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation for Tape-out
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              I. EDA Tools & Environment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source Code
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Documentation for Tape-out" class="md-nav__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
+      
+  <img src="../figs/pku_logo.png" alt="logo">
+
+    </a>
+    Documentation for Tape-out
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Source Code
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to Tape-out Docs!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    I. EDA Tools & Environment
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    I. EDA Tools & Environment
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 Linux常用工具
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1 Linux常用工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vim-gvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vim (Gvim)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vim (Gvim)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      GVIM 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      复制粘贴
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Makefile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Makefile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      赋值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risc-v-toolchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V Toolchain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISC-V Toolchain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-eda" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 EDA工具介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.2 EDA工具介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cadence-genus-1912" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadence Genus 19.12
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadence-innovus-2010" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadence Innovus 20.10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arm-sram-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARM SRAM Compiler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arm-register-file-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARM Register File Compiler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadence-virtuoso-618" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadence Virtuoso 6.1.8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synopsys-vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsys VCS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synopsys VCS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vcs-mx" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCS-MX 流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCS 流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成波形文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synopsys-verdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsys Verdi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synopsys Verdi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      编译器和接口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      分析引擎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      可视化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    II. Frontend
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            II. Frontend
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_submodule_behavioral_simulation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Submodule Behavioral Simulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_submodule_synthesis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Submodule Synthesis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_submodule_gate_level_simulation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Submodule Gate Level Simulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    III. Backend
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            III. Backend
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_submodule_implementation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Submodule Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. TOP IO Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_lvs_drc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. DRC/LVS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_final_layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Tape-out
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IV. Post-tapeout
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            IV. Post-tapeout
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_PCB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. PCB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_package/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Packaging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 Linux常用工具
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1 Linux常用工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vim-gvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vim (Gvim)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vim (Gvim)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      GVIM 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      复制粘贴
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Makefile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Makefile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      赋值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risc-v-toolchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V Toolchain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISC-V Toolchain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-eda" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 EDA工具介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.2 EDA工具介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cadence-genus-1912" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadence Genus 19.12
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadence-innovus-2010" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadence Innovus 20.10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arm-sram-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARM SRAM Compiler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arm-register-file-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARM Register File Compiler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadence-virtuoso-618" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cadence Virtuoso 6.1.8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synopsys-vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsys VCS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synopsys VCS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vcs-mx" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCS-MX 流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCS 流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成波形文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synopsys-verdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsys Verdi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synopsys Verdi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      编译器和接口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      分析引擎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      可视化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+    
+      
+    
+    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/0_eda.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="0-linuxeda">0. Linux环境下的EDA工具使用</h1>
+<h2 id="01-linux">0.1 Linux常用工具</h2>
+<h3 id="terminal">Terminal</h3>
+<hr />
+<h3 id="vim-gvim">Vim (Gvim)</h3>
+<h4 id="gvim">GVIM 配置</h4>
+<p>全局配置文件：<code>~/.vimrc</code>。</p>
+<p>设置字体的命令 <code>:set guifont = Courier\   14</code>，如果你不知道可用的字体名字，使用下面的命令可以得到一个字体名字的列表：<code>:set guifont=*</code>。</p>
+<h4 id="_1">复制粘贴</h4>
+<ol>
+<li>进入 normal /正常模式（刚进入 vim 的默认模式），如果你在 insert 模式，按下若干次 Esc 可以进入 normal 模式。</li>
+<li>把光标移动到开始复制的位置。</li>
+<li>按下 v 来选择字符（光标移动到结束复制的位置）。</li>
+<li>按下 y 来复制。</li>
+<li>光标移动到想要粘贴的位置，按下 p 粘贴。</li>
+</ol>
+<hr />
+<h3 id="makefile">Makefile</h3>
+<div class="admonition bug">
+<p class="admonition-title">FIXME!!!</p>
+<p>基本结构</p>
+</div>
+<h4 id="_2">赋值</h4>
+<p>在 Makefile 中，= 用于定义递归变量，这意味着变量的值在每次使用时都会重新计算。
+这在你需要在变量的值中使用其他变量，并且希望这些变量在使用时才被计算时非常有用。</p>
+<p>例如，假设你有两个变量 <code>VAR1</code> 和 <code>VAR2</code>，你希望 <code>VAR2</code> 的值依赖于 <code>VAR1</code> 的当前值。你可以这样定义这两个变量：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VAR1 = value1
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>VAR2 = $(VAR1)
+</code></pre></div></p>
+<p>然后，你可以在后续的代码中改变 <code>VAR1</code> 的值，<code>VAR2</code> 的值会随之改变：</p>
+<p>在这个例子中，如果你打印 <code>VAR2</code> 的值，你会看到 <code>value2</code>，而不是 <code>value1</code>。这是因为 <code>VAR2</code> 的值在每次使用时都会重新计算，所以它总是等于 <code>VAR1</code> 的当前值。</p>
+<p>如果你在这个例子中使用 <code>:=</code> 而不是 <code>=</code>，<code>VAR2</code> 的值在定义时就被计算出来，所以无论 <code>VAR1</code> 如何改变，<code>VAR2</code> 的值都不会改变。</p>
+<h4 id="_3">函数</h4>
+<ul>
+<li><code>$(filter-out pattern…,text)</code>：从 text 中过滤掉与 pattern 匹配的单词。</li>
+<li><code>$(wildcard pattern)</code>：返回与 pattern 匹配的所有文件名。注意，该函数不会递归寻找！</li>
+<li><code>$(addprefix prefix, names…)</code>：在 names 的每一个单词前面添加 prefix。</li>
+</ul>
+<hr />
+<h3 id="tcl">TCL</h3>
+<p>目前大部分的EDA工具都支持 <code>TCL</code> (Tool Command Language) 脚本语言，主要使用于发布命令给一些交互程序如文本编辑器、调试器和 Shell 。
+<code>TCL</code> 的常用语法简单易懂，一些常用的用法示例如下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># print a string</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Hello World!&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c"># set a variable</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">set</span><span class="w"> </span>variableA<span class="w"> </span><span class="mi">10</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">set</span><span class="w"> </span><span class="k">{variable</span><span class="w"> </span>B<span class="k">}</span><span class="w"> </span>test
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">puts</span><span class="w"> </span><span class="nv">$variableA</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="mi">10</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">puts</span><span class="w"> </span><span class="err">$</span><span class="k">{variable</span><span class="w"> </span>B<span class="k">}</span><span class="w">  </span><span class="err">#</span><span class="w"> </span>test
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c"># perform arithmetic calculations</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">set</span><span class="w"> </span>a<span class="w"> </span><span class="mi">21</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">set</span><span class="w"> </span>b<span class="w"> </span><span class="mi">10</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">set</span><span class="w"> </span>c<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$b</span><span class="k">]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Line 1 - Value of c is $c\n&quot;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span>Line<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>Value<span class="w"> </span>of<span class="w"> </span>c<span class="w"> </span>is<span class="w"> </span><span class="mi">31</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="k">set</span><span class="w"> </span>d<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$b</span><span class="k">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Line 2 - Value of d is $d\n&quot;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span>Line<span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>Value<span class="w"> </span>of<span class="w"> </span>d<span class="w"> </span>is<span class="w"> </span><span class="mi">11</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">set</span><span class="w"> </span>e<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$b</span><span class="k">]</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Line 3 - Value of e is $e\n&quot;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span>Line<span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>Value<span class="w"> </span>of<span class="w"> </span>e<span class="w"> </span>is<span class="w"> </span><span class="mi">210</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="k">set</span><span class="w"> </span>f<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">$b</span><span class="k">]</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Line 4 - Value of f is $f\n&quot;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span>Line<span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>Value<span class="w"> </span>of<span class="w"> </span>f<span class="w"> </span>is<span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="k">set</span><span class="w"> </span>g<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nv">$b</span><span class="k">]</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Line 5 - Value of g is $g\n&quot;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span>Line<span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>Value<span class="w"> </span>of<span class="w"> </span>g<span class="w"> </span>is<span class="w"> </span><span class="mi">1</span>
+</code></pre></div>
+<p>此外还有 for 循环和 if-else 分支语句也是常用的语法。
+配合<a href="https://www.yiibai.com/tcl/tcl_basic_syntax.html">网络教程</a>和 ChatGPT 可以应对在本文档中碰到的所有 <code>TCL</code> 语句。</p>
+<hr />
+<h3 id="risc-v-toolchain">RISC-V Toolchain</h3>
+<h4 id="gdb">GDB</h4>
+<p><em>查看内存中的数据</em></p>
+<p>在 GDB 中，您可以使用 x 命令来查看内存中的数据。x 命令后面可以跟一个或多个参数，用于指定要查看的内存地址和格式。</p>
+<p>以下是一些常见的使用方式：</p>
+<ul>
+<li><code>x/10b 0x12345</code>：以字节为单位，查看地址 0x12345 开始的 10 个字节的内容。</li>
+<li><code>x/10h 0x12345</code>：以半字（2 字节）为单位，查看地址 0x12345 开始的 10 个半字的内容。</li>
+<li><code>x/10w 0x12345</code>：以字（4 字节）为单位，查看地址 0x12345 开始的 10 个字的内容。</li>
+<li><code>x/10g 0x12345</code>：以巨字（8 字节）为单位，查看地址 0x12345 开始的 10 个巨字的内容。</li>
+<li><code>x/i</code>：一种特殊的格式，用于将内存中的内容解释为机器指令。i 代表 "instruction"，即指令。例如，<code>x/i $pc</code> 这条命令会显示程序计数器（PC）当前指向的机器指令。</li>
+</ul>
+<p><em>查看寄存器中的数据</em></p>
+<ul>
+<li>
+<p>使用 x 命令来查看寄存器中的内容。
+例如，<code>x/1w $sp</code> 会显示栈指针（SP）当前指向的内存位置的内容。</p>
+</li>
+<li>
+<p>使用 info registers 命令来查看所有寄存器的当前值。这个命令会显示所有通用寄存器和一些特殊寄存器（如程序计数器）的值。</p>
+</li>
+<li>
+<p><code>info all-registers</code> 列出所有寄存器的值，包括通用寄存器（如x0到x31），特权模式寄存器（如mstatus、mcause等），以及其他CSR寄存器。</p>
+</li>
+<li>
+<p>如果您只想查看某个特定寄存器的值，可以使用 print 命令。例如，<code>print $r0</code> 会显示 r0 寄存器的值（在 ARM 架构中）。</p>
+</li>
+</ul>
+<p><em>写入内存或寄存器</em></p>
+<ul>
+<li>使用 set 命令来写入内存。例如，<code>set {int}0x12345 = 0</code> 会将地址 0x12345 处的 4 个字节的内容设置为 0，<code>set {int}0x54321 = 0xabcdf</code> 会将地址 0x54321 处的 4 个字节的内容设置为 16 进制的 abcdf。</li>
+<li>使用 set 命令来写入寄存器。例如，<code>set $r0 = 0</code> 会将 r0 寄存器的值设置为 0。</li>
+<li>使用 set 命令来写入特殊寄存器。例如，<code>set $pc = 0x12345</code> 会将程序计数器（PC）的值设置为 0x12345。/x 用于16进制格式，/d 用于十进制格式等</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">危险</p>
+<p>ROM（只读存储器）是一种只能读取不能写入的存储器。
+如果你试图在 GDB 中使用 set 命令写入 ROM 地址的数据，GDB 可能不会显示错误，但实际上数据并没有被写入 ROM。
+当你使用 x 命令读取该地址时，GDB 可能会显示你之前尝试写入的数据，但这只是 GDB 内部状态的一部分，不代表实际的硬件状态。
+在真实的硬件中，ROM 的内容在写入后就不能更改。</p>
+</div>
+<h2 id="02-eda">0.2 EDA工具介绍</h2>
+<p>该流片模板主要依赖于以下的 EDA 工具：</p>
+<h3 id="cadence-genus-1912">Cadence Genus 19.12</h3>
+<p>在该流片模板文件中，我们主要依赖于 <code>Makefile</code> 和 <code>TCL</code> 自动化脚本文件进行逻辑综合，一般情况下不需要单独启动 Genus 综合工具。如需进行较为细致的调试，在终端输入 <code>b genus</code> 启动 Genus 综合工具。
+默认情况下在当前目录下生成 <code>genus.log</code> 和 <code>genus.cmd</code> 日志文件，分别记录了 Genus 的终端输出和用户输入的命令。</p>
+<p>为了更加全面了解Genus综合工具，可以查看Cadence的官方说明手册和文件：</p>
+<ul>
+<li><strong>Genus Synthesis Flow Guide</strong>: <code>/cadtools/cadence/genus19.12/doc/genus_start/genus_start.pdf</code></li>
+<li><strong>Genus User Guide</strong>: <code>/cadtools/cadence/genus19.12/doc/genus_user/genus_user.pdf</code></li>
+<li><strong>Genus Command Reference</strong>: <code>/cadtools/cadence/genus19.12/doc/genus_comref/genus_comref.pdf</code></li>
+</ul>
+<hr />
+<h3 id="cadence-innovus-2010">Cadence Innovus 20.10</h3>
+<p>该流片模板文件中，将主要围绕 Innovus 工具进行数字模块的后端设计。在终端中输入 <code>b innovus</code> 启动 Innovus 工具，默认情况会自动启动 GUI 界面，有助于我们观察后端版图的各类情况，方便迭代设计与优化。
+使用以下命令可以打开、关闭 GUI 界面。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c"># Turn on GUI</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">enc</span><span class="o">::</span>gui_on<span class="w"> </span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="err">#</span><span class="w"> </span>Turn<span class="w"> </span>off<span class="w"> </span>GUI
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">enc</span><span class="o">::</span>gui_off<span class="w"> </span>
+</code></pre></div></p>
+<p>大部分的设计流程使用 Innovus 的终端输入 <code>TCL</code> 脚本命令。
+若使用 GUI 界面进行操作，相应的操作也会自动转化成 <code>TCL</code> 指令，可以打开 <code>innovus.cmd</code> 查看 GUI 界面的操作与 Innovus 指令的对应关系。</p>
+<p>Cadence 的官方说明手册和文件：</p>
+<ul>
+<li><strong>Innovus User Guide</strong>: <code>/cadtools/cadence/innovus20.10/doc/innovusUG/innovusUG.pdf</code></li>
+<li><strong>Innovus Error Messege</strong>: <code>/cadtools/cadence/innovus20.10/doc/innovuserrmsg/innovuserrmsgTOC.html</code></li>
+</ul>
+<hr />
+<h3 id="arm-sram-compiler">ARM SRAM Compiler</h3>
+<p>许多数字模块中依赖于较大规模的寄存器堆/SRAM高速缓存，这些模块需要替换成专门的 IP 核，而不是使用 RTL 代码直接综合，从而可以显著减小模块面积。</p>
+<p>替换 SRAM 时，我们通常使用 ARM 提供的 <code>High Density Single Port SRAM SHVT MVT Compiler</code>。</p>
+<p><strong>二进制执行文件</strong>位于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/bin/sram_sp_hde_shvt_mvt
+</code></pre></div>
+<p>在命令行中输入该执行文件即可启动。</p>
+<p><strong>用户手册</strong>位于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/work/home/tyjia/common/TSMC_22NM_ULL/CA001/arm/tsmc/cln22ul/sram_sp_hde_shvt_mvt/r6p0/doc/sram_sp_hde_shvt_mvt_userguide.pdf
+</code></pre></div>
+<hr />
+<h3 id="arm-register-file-compiler">ARM Register File Compiler</h3>
+<p>替换寄存器堆时，我们使用 ARM 提供的 <code>High Density Single Port Register File SHVT MVT Compiler</code>。</p>
+<p><strong>二进制执行文件</strong>位于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/bin/rf_sp_hde_shvt_mvt
+</code></pre></div>
+<p>在命令行中输入该执行文件即可启动。</p>
+<p><strong>用户手册</strong>位于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/work/home/limingxuan/common/TSMC_22NM_ULL/arm_rf_sp_shvt_mvt/tsmc/cln22ul/rf_sp_hde_shvt_mvt/r3p1/doc/rf_sp_hde_shvt_mvt_userguide.pdf
+</code></pre></div>
+<hr />
+<h3 id="cadence-virtuoso-618">Cadence Virtuoso 6.1.8</h3>
+<p>在进行数字模块的 DRC 与 LVS 检查时，会使用到 Cadence Virtuoso 工具。在终端中输入<code>b virtuoso</code>打开 Virtuoso 工具。</p>
+<hr />
+<h3 id="synopsys-vcs">Synopsys VCS</h3>
+<p>我们所说的 VCS，指的是全套“功能验证解决方案”（a full suite of "Functional Verification Solution"）。
+另一个容易混淆的概念是 VCS-MX，它相比 VCS，增加了对 VHDL 的支持，相应地，处理 RTL 的步骤也会比 VCS 多。</p>
+<div class="admonition bug">
+<p class="admonition-title">FIXME!!!</p>
+<p><strong>用户手册</strong>位于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>/cadtools/synopsys/vcs-mx-2019.06-SP1/docs/vcs_mx.pdf
+</code></pre></div>
+</div>
+<h4 id="vcs-mx">VCS-MX 流程</h4>
+<p>VCS-MX 通过以下三步来处理 RTL：</p>
+<ul>
+<li>分析源文件（analyze）。</li>
+<li>处理源文件（elaborate）。</li>
+<li>仿真可执行文件（simulate）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ vlogan [vlogan_options] file1.v file2.v       // analyze
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>$ vhdlan [vhdlan_options] file3.vhd file4.vhd   // analyze
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>$ vcs [compile_options] design_unit             // elaborate
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>$ simv [run_options]                            // simulate
+</code></pre></div>
+<h4 id="vcs">VCS 流程</h4>
+<p>VCS 将前两步合并，简化为了两步。</p>
+<ul>
+<li>编译源文件（compile）。</li>
+<li>仿真可执行文件（simulate）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ vcs [compile_options] Verilog_files           // compile
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>$ simv [run_options]                            // simulate
+</code></pre></div>
+<h4 id="_4">生成波形文件</h4>
+<p>生成 <code>.fsdb</code> 波形文件需要用到如下4个系统函数：</p>
+<ol>
+<li><code>$fsdbDumpfile(“&lt;filename.fsdb&gt;”)</code></li>
+<li><code>$fsdbDumpvars(&lt;levels&gt;,&lt;module_name&gt;)</code></li>
+<li><code>$fsdbDumpon</code></li>
+<li><code>$fsdbDumpoff</code></li>
+</ol>
+<p>下面是一个实例：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">$fsdbDumpfile</span><span class="p">(</span><span class="err">“</span><span class="n">dump</span><span class="p">.</span><span class="n">fsdb</span><span class="err">”</span><span class="p">);</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">$fsdbDumpvars</span><span class="p">();</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="p">#</span><span class="mh">100</span><span class="p">;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="n">$fsdbDumpoff</span><span class="p">;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="p">#</span><span class="mh">700</span><span class="p">;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="n">$fsdbDumpon</span><span class="p">;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="p">#</span><span class="mh">10500</span><span class="p">;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="n">$fsdbDumpoff</span><span class="p">;</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">end</span>
+</code></pre></div>
+<hr />
+<h3 id="synopsys-verdi">Synopsys Verdi</h3>
+<p>Verdi 是一个自动调试平台（automated debug platform），用于观察波形、调试 RTL。</p>
+<div class="admonition bug">
+<p class="admonition-title">FIXME!!!</p>
+<p><strong>用户手册</strong>位于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/cadtools/synopsys/verdi-2019.06-SP1/docs/verdi_user_guide.pdf
+</code></pre></div>
+</div>
+<figure>
+  <img src="../figs/verdi_tech.png" width=60%>
+</figure>
+
+<h4 id="_5">编译器和接口</h4>
+<ul>
+<li>编译器：Verdi 为大多数设计和验证环境中使用的语言提供编译器，如 Verilog、VHDL 和 SystemVerilog 以及电源代码（CPF 或 UPF）。在分析和编译代码时，会检查语法和语义错误。</li>
+<li>接口：Verdi 可以导入其他仿真器生成的标准 VCD 和 SDF 数据，并将结果存储在快速信号数据库（Fast Signal Database，FSDB）中。也可以通过对象文件（object files）链接到仿真器（例如 VCS）直接生成 FSDB。</li>
+</ul>
+<h4 id="_6">数据库</h4>
+<ul>
+<li>知识数据库（Knowledge Database，KDB）：在编译时，Verdi 会识别和提取设计的特定结构、逻辑和功能信息，并将由此产生的详细设计信息存储在 KDB中。</li>
+<li>快速信号数据库（Fast Signal Database，FSDB）：FSDB 以高效紧凑的格式存储仿真结果。Synopsys 提供可以链接到常见仿真器的对象文件用来直接以FSDB 格式存储仿真结果。你也可以通过转换 VCD 文件的方式生成 FSDB。</li>
+</ul>
+<h4 id="_7">分析引擎</h4>
+<p>使用来自 KDB 和 FSDB 的信息进行分析。</p>
+<h4 id="_8">可视化</h4>
+<p>Verdi 中有如下的结构可视化和分析工具：</p>
+<ul>
+<li>nTrace：用于源代码</li>
+<li>nWave：用于波形</li>
+<li>nSchema：用于原理逻辑图</li>
+<li>nState：用于有限状态机（FSM）</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 27, 2024</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 27, 2024</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:jameszhu.20021122@gmail.com">Bwoah-Kimi</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="上一页: Welcome to Tape-out Docs!">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Welcome to Tape-out Docs!
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../1_submodule_behavioral_simulation/" class="md-footer__link md-footer__link--next" aria-label="下一页: 1. Submodule Behavioral Simulation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                1. Submodule Behavioral Simulation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 School of Intergrated Circuits, Peking University
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
