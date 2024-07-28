@@ -1,6 +1,7 @@
 site_name: Documentation for Tape-out
 site_url: https://bwoah-kimi.github.io/Tape-out_template_doc/
 site_author: Bwoah-Kimi
+copyright: Copyright &copy; 2024 School of Intergrated Circuits, Peking University
 
 repo_url: https://github.com/Bwoah-Kimi/Tape-out_template_doc
 repo_name: Source Code
@@ -8,6 +9,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  custom_dir: docs/overrides
   language: zh
   logo: figs/pku_logo.png
   favicon: figs/pku_logo_red.png
@@ -42,9 +44,8 @@ plugins:
 
   - git-authors:
       show_contribution: true
-      href: "https://github.com/{name}"
-
-copyright: Copyright &copy; 2024 School of Intergrated Circuits, Peking University
+      show_line_count: true
+      count_empty_lines: true
 
 extra_css:
   - extra.css
