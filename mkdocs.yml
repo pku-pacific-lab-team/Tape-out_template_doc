@@ -41,7 +41,10 @@ plugins:
         - en
   - git-revision-date-localized:
       enable_creation_date: true
-
+  - git-committers:
+      repository: Bwoah-Kimi/Tape-out_template_doc
+      branch: main
+      token: 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
   - git-authors:
       show_contribution: true
       show_line_count: true
