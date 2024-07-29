@@ -71,12 +71,109 @@ QFN后面的数字（如QFN64、QFN88 10\*10）通常指的是封装上的pad的
 
 插座封装需要提供的资料如下：
 
-- 打线图：封装厂商需要根据该图完成引线
-- 封装类型和尺寸：即 QFN64 8\*8、QFN88 10\*10等
-- QFN插座：需要淘宝自行购买与封装类型相匹配的socket，直接邮寄给PCB厂商焊接
+- **打线图**：封装厂商需要根据该图完成引线
+- **封装类型和尺寸**：即 QFN64 8\*8、QFN88 10\*10等
+- **QFN插座**：需要淘宝自行购买与封装类型相匹配的socket，直接邮寄给PCB厂商焊接
 
 !!! Warning "注意"
     留意封装厂商提供的封装类型和尺寸信息，以确保购买正确的插座！
+    有些封装尺寸不支持快封，支持快封的类型和尺寸如下：
+
+    <div style="display: flex; justify-content: center;">
+
+    <table style="border-collapse: collapse;">
+        <thead>
+            <tr style="border: 2px solid black; background-color: #9a0000; color: white;">
+                <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">封装类型</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">芯片长度（mm）</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">芯片宽度（mm）</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">封装尺寸（mm x mm x mm）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN28</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4 x 4 x 0.4</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN32</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">3.30</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">3.30</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">5 x 5 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.24</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.24</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6 x 6 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6 x 6 x 0.4</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN48</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6 x 6 x 0.4</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN48</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">5.20</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">5.20</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">7 x 7 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN56</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.00</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.00</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8 x 8 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN56</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8 x 8 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN64</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">7.00</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">7.00</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">9 x 9 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN68</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8 x 8 x 0.4</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN72</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10 x 10 x 0.5</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN88</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10 x 10 x 0.4</td>
+            </tr>
+            <tr style="border: 2px solid black; background-color: white; color: black;">
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN100</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10.00</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10.00</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">12 x 12 x 0.4</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
 
 封装厂商一般会提供**快封**和**塑封**两种管壳封装形式。
 快封划片后大概**1-2天**封好；塑封要等芯片划片完成后大概**一周**左右出货。
@@ -95,7 +192,7 @@ COB，全称Chip On Board，即直接将芯片安装在电路板上的封装技�
   <figcaption>COB封装示例</figcaption>
 </figure>
 
-COB封装流程划片后大概需要**1-2天**完成。
+COB封装**不需要**提供打线图和插座，只需要将芯片寄给封装厂商即可，划片后大概需要**1-2天**完成。
 
 !!! success ""
-    特别感谢 [Yanchi Dong](https://easylink.cc/dg5rzq)，Yiyang Sun 对本页内容的贡献和校对！
+    特别感谢 [Yanchi Dong](https://easylink.cc/dg5rzq)，[Yiyang Sun](https://ieeexplore.ieee.org/author/37089999502)，[Yiqi Jing](https://ieeexplore.ieee.org/author/37089916688) 对本页内容的贡献和校对！

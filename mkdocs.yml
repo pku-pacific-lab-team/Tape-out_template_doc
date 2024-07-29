@@ -14,8 +14,21 @@ theme:
   logo: figs/pku_logo.png
   favicon: figs/pku_logo_red.png
   palette:
-    primary: custom
-    accent: pink
+    # Palette toggle for light mode
+    - scheme: default
+      primary: custom
+      accent: pink
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   font:
     code: JetBrainsMono
   features:
