@@ -343,7 +343,6 @@ globalNetConnect VSS -type tielo
     SRAM/Register File Compiler 生成的 IP 有两个 Power 管脚，其具体区别详见 Compiler 的用户手册。
     在我们的设计和常规的学术流片中，可以都连接到全局的 Power 网络上，不做特别区分。
 
-
 ### 4.7 执行 `add_pin.tcl`
 
 ### 4.8 执行 `add_endcap_wellcap.tcl`
