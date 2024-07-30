@@ -59,6 +59,6 @@
 
 ## 致谢
 
-感谢所有为该文档提供帮助的朋友们以及ChatGPT！
+感谢所有为该文档提供帮助的朋友们以及 ChatGPT！
 
 {{ git_site_authors }}

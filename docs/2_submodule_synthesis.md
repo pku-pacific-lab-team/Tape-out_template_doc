@@ -26,7 +26,7 @@
 
 以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要4-5小时）
 
-### 2.1 SRAM/Register File替换 _（可选）_
+### 2.1 SRAM/Register File 替换 _（可选）_
 
 !!! question "提示"
     该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
@@ -109,7 +109,7 @@
 
 ```
 
-### 2.2 添加可综合RTL代码
+### 2.2 添加可综合 RTL 代码
 
 将数字子系统的可综合 RTL 代码放在 `./rtl/` 目录下，并在 `./rtl/srcs.tcl` 中添加所有 RTL 代码的文件名称。`srcs.tcl` 的示例如下。
 
@@ -126,7 +126,7 @@ read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/S
 read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/SystemVerilog_MODULE_2.sv
 ```
 
-### 2.3 修改`core_config.tcl`
+### 2.3 修改 `core_config.tcl`
 
 在 `./scripts/core_config.tcl` 中定义了数字系统的**顶层模块名称**、**时钟信号名称**等信息，需要根据情况进行调整。
 
@@ -136,7 +136,7 @@ set rm_core_top MY_TOP_MODULE
 set rm_clock_pin clk
 ```
 
-### 2.4 修改`design_inputs_macro.tcl`
+### 2.4 修改 `design_inputs_macro.tcl`
 
 #### 选择逻辑综合和后端设计使用的**标准单元库**
 
@@ -193,9 +193,9 @@ set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/le
 set rm_clock_period 5
 ```
 
-### 2.5 修改`tech.tcl`
+### 2.5 修改 `tech.tcl`
 
-#### 添加子模块所需的`LIB`文件
+#### 添加子模块所需的 `LIB` 文件
 
 `LIB` 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的PVT都会有相应的 `LIB` 文件。
 对于 `ff_0p88v_m40c`，添加 `LIB` 文件的示例如下：
