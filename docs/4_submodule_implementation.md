@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 4. 数字子系统的物理设计
 
 在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用 Cadence Innovus 进行数字子系统的物理设计（后端设计）。
@@ -73,7 +72,6 @@ set init_gnd_net {VSS}
 set init_pwr_net {VDD VDD_CIM}
 ```
 
-<<<<<<< HEAD
 在这个设计中，定制设计的CIM有单独的供电 `VDD_CIM` ，其余 SRAM IP 和标准单元共用 `VDD`。
 
 ### 4.2 启动Cadence Innovus
@@ -168,7 +166,6 @@ source -verbose ../scripts/init_invs.tcl
 source -verbose ../scripts/invs_setting.tcl
 ```
 
-<<<<<<< HEAD
 将此前修改过的4个脚本文件读入到 Innovus 中，包括数字子系统顶层模块名称（`$rm_core_top`）、各个文件的路径、标准工艺库的选择等内容。
 此时我们经过逻辑综合的数字子系统已经导入到 Innovus 中。
 
@@ -210,7 +207,6 @@ set_dont_use [get_lib_cellls FA1D1BWP7T30P140HVT]
 set_dont_use [get_lib_cellls FA1D2BWP7T30P140HVT]
 ```
 
-<<<<<<< HEAD
 上述三个全加器标准单元在后续 DRC 检查时会报错，因此在布局布线之前设置不使用这些标准单元。
 
 #### 设置版图大小
@@ -233,7 +229,6 @@ set die_sizey 1200
 
 以上命令设置了几个物理设计中所使用到的变量大小：
 
-<<<<<<< HEAD
 * `$cell_height` 是标准单元的高度；
 * `$macro_halo_spc` 用于设置 Macro Routing Blockage 的宽度。
 * `$die_sizex`, `$die_sizey` 分别是该模块版图的物理宽度与物理高度。
@@ -259,7 +254,6 @@ getIoFlowFlag
 
 一个初始的版图类似下图所示。
 
-<<<<<<< HEAD
 <figure>
   <img src="../figs/example_floorplan.png" width=80%>
   <figcaption>Example Floorplan</figcaption>
@@ -285,7 +279,6 @@ getIoFlowFlag
 * 完整版图 (Die box) 的宽度
 * 完整版图 的高度
 * Core box（用于摆放标准单元的版图部分）到I/O左侧边界的距离
-<<<<<<< HEAD
 * Core box 到 I/O 底部边界的距离
 * Core box 到 I/O 右侧边界的距离
 * Core box 到 I/O 上方边界的距离
@@ -390,7 +383,6 @@ set dcim_macro0 i_ariane/gen_coprocessor.i_in_pipeline_coprocessor/u_CIM_block_w
 set dcim_macro1 i_ariane/gen_coprocessor.i_in_pipeline_coprocessor/u_CIM_block_wrapper/CIM_core_unit_inst_DCIM_macro_2_inst
 ```
 
-<<<<<<< HEAD
 鼠标左键单击某一个 Macro，并按 `Q` 查看该 Macro 的属性，可以看到该 Macro 的名称，通常由 RTL 模块名称和 IP 名称组合而成。
 如上所示，Macro 的名称通常比较长，为了后续脚本简洁，给 Macro 设置简短的别名。（例如 `icache_data0`, `icache_data1`）
 
@@ -421,7 +413,6 @@ set basey 350
 set deltax 150
 set deltay 250
 placeInstance [set icache_tag0] [expr $basex + $deltax * 0] [expr $basey - $deltay * 0] R180
-<<<<<<< HEAD
 placeInstance [set icache_tag1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 0]
 placeInstance [set icache_data0] [expr $basex + $deltax * 0] [expr $basey - $deltay * 1] R180
 placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 1]
@@ -429,7 +420,6 @@ placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $del
 placeInstance [set icache_tag1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 0] 
 placeInstance [set icache_data0] [expr $basex + $deltax * 0] [expr $basey - $deltay * 1] R180
 placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $deltay * 1] 
->>>>>>> 6a956eb (finish submodule implementation up to place macro)
 
 # place D$
 # not shown for simplicity
@@ -437,7 +427,6 @@ placeInstance [set icache_data1] [expr $basex + $deltax * 1] [expr $basey - $del
 
 命令格式为：`placeInstance instance_name <location> <orientation>`
 
-<<<<<<< HEAD
 * `instance_name`：想要摆放的 Macro 名称。可以使用别名，例如：`[set icache_data0]`或`$icache_data0`；
 * `<location>`：有 X 和 Y 两个数值，分别表示 Macro 左下角的宽度方向和高度方向的坐标；
 * `<orientation>`：设置 Macro 的摆放方向，可以选择 `R0`, `R90`, `R180`, `R270`, `MX`, `MX90`, `MY`, `MY90`。
@@ -624,4 +613,3 @@ globalNetConnect VSS -type tielo
 ### 4.16 执行`add_PG_pin.tcl`
 
 ### 执行`gen_files.tcl`
->>>>>>> 6a956eb (finish submodule implementation up to place macro)
