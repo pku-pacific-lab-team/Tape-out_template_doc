@@ -935,7 +935,6 @@
   
 
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <h1 id="4">4. 数字子系统的物理设计</h1>
 <p>在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用 Cadence Innovus 进行数字子系统的物理设计（后端设计）。</p>
 <p>在后端设计中，许多脚本参数设置，例如电源网络的 Width，Spacing，以及 Macro 的摆放位置需要根据版图大小和布局布线情况来设定，需要多次的迭代优化。</p>
@@ -1002,8 +1001,7 @@
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">set</span><span class="w"> </span>init_gnd_net<span class="w"> </span><span class="k">{</span><span class="nv">VSS</span><span class="k">}</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">set</span><span class="w"> </span>init_pwr_net<span class="w"> </span><span class="k">{</span><span class="nv">VDD</span><span class="w"> </span>VDD_CIM<span class="k">}</span>
 </code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-在这个设计中，定制设计的CIM有单独的供电 <code>VDD_CIM</code> ，其余 SRAM IP 和标准单元共用 <code>VDD</code>。</p>
+<p>在这个设计中，定制设计的CIM有单独的供电 <code>VDD_CIM</code> ，其余 SRAM IP 和标准单元共用 <code>VDD</code>。</p>
 <h3 id="42-cadence-innovus">4.2 启动Cadence Innovus</h3>
 <p>打开一个终端，进入到 <code>./work/</code> 文件夹中，并启动 Innovus。Innovus 的日志文件位于 <code>innovus.log</code>，用户通过终端命令行和 GUI 界面操作所对应执行的命令记录在 <code>innovus.cmd</code>，均在 <code>./work/</code> 文件夹中。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/work/home/ztzhu/tapeout_templates/submodule_tapeout/work/
@@ -1070,8 +1068,7 @@
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">source</span><span class="w"> </span><span class="o">-</span>verbose<span class="w"> </span>..<span class="o">/</span>scripts<span class="o">/</span>init_invs.tcl
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nb">source</span><span class="w"> </span><span class="o">-</span>verbose<span class="w"> </span>..<span class="o">/</span>scripts<span class="o">/</span>invs_setting.tcl
 </code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-将此前修改过的4个脚本文件读入到 Innovus 中，包括数字子系统顶层模块名称（<code>$rm_core_top</code>）、各个文件的路径、标准工艺库的选择等内容。
+<p>将此前修改过的4个脚本文件读入到 Innovus 中，包括数字子系统顶层模块名称（<code>$rm_core_top</code>）、各个文件的路径、标准工艺库的选择等内容。
 此时我们经过逻辑综合的数字子系统已经导入到 Innovus 中。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">saveDesign</span><span class="w"> </span><span class="nv">${rm_core_top}</span>.design_planning_init.enc
 </code></pre></div>
@@ -1101,8 +1098,7 @@
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nv">set_dont_use</span><span class="w"> </span><span class="k">[</span><span class="nv">get_lib_cellls</span><span class="w"> </span>FA1D1BWP7T30P140HVT<span class="k">]</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nv">set_dont_use</span><span class="w"> </span><span class="k">[</span><span class="nv">get_lib_cellls</span><span class="w"> </span>FA1D2BWP7T30P140HVT<span class="k">]</span>
 </code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-上述三个全加器标准单元在后续 DRC 检查时会报错，因此在布局布线之前设置不使用这些标准单元。</p>
+<p>上述三个全加器标准单元在后续 DRC 检查时会报错，因此在布局布线之前设置不使用这些标准单元。</p>
 <h4 id="_4">设置版图大小</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">======</span><span class="err">=</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">上述三个全加器标准单元在后续DRC验证时会报错</span><span class="err">，</span>因此在布局布线之前设置不使用这些标准单元<span class="err">。</span>
@@ -1119,10 +1115,11 @@
 <a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="k">set</span><span class="w"> </span>die_sizey<span class="w"> </span><span class="mi">1200</span>
 </code></pre></div>
 <p>以上命令设置了几个物理设计中所使用到的变量大小：</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-* <code>$cell_height</code> 是标准单元的高度；
-* <code>$macro_halo_spc</code> 用于设置 Macro Routing Blockage 的宽度。
-* <code>$die_sizex</code>, <code>$die_sizey</code> 分别是该模块版图的物理宽度与物理高度。</p>
+<ul>
+<li><code>$cell_height</code> 是标准单元的高度；</li>
+<li><code>$macro_halo_spc</code> 用于设置 Macro Routing Blockage 的宽度。</li>
+<li><code>$die_sizex</code>, <code>$die_sizey</code> 分别是该模块版图的物理宽度与物理高度。</li>
+</ul>
 <div class="admonition bug">
 <p class="admonition-title">FIXME!!!</p>
 <p>Routing Blockage vs. Halo</p>
@@ -1142,7 +1139,6 @@
 <a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="nv">getIoFlowFlag</span>
 </code></pre></div>
 <p>一个初始的版图类似下图所示。</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <figure>
   <img src="../figs/example_floorplan.png" width=80%>
   <figcaption>Example Floorplan</figcaption>
@@ -1175,8 +1171,7 @@
 <ul>
 <li>完整版图 (Die box) 的宽度</li>
 <li>完整版图 的高度</li>
-<li>Core box（用于摆放标准单元的版图部分）到I/O左侧边界的距离
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
+<li>Core box（用于摆放标准单元的版图部分）到I/O左侧边界的距离</li>
 <li>Core box 到 I/O 底部边界的距离</li>
 <li>Core box 到 I/O 右侧边界的距离</li>
 <li>Core box 到 I/O 上方边界的距离</li>
@@ -1272,8 +1267,7 @@
 <a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a><span class="k">set</span><span class="w"> </span>dcim_macro0<span class="w"> </span>i_ariane<span class="o">/</span>gen_coprocessor.i_in_pipeline_coprocessor<span class="o">/</span>u_CIM_block_wrapper<span class="o">/</span>CIM_core_unit_inst_DCIM_macro_1_inst
 <a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a><span class="k">set</span><span class="w"> </span>dcim_macro1<span class="w"> </span>i_ariane<span class="o">/</span>gen_coprocessor.i_in_pipeline_coprocessor<span class="o">/</span>u_CIM_block_wrapper<span class="o">/</span>CIM_core_unit_inst_DCIM_macro_2_inst
 </code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-鼠标左键单击某一个 Macro，并按 <code>Q</code> 查看该 Macro 的属性，可以看到该 Macro 的名称，通常由 RTL 模块名称和 IP 名称组合而成。
+<p>鼠标左键单击某一个 Macro，并按 <code>Q</code> 查看该 Macro 的属性，可以看到该 Macro 的名称，通常由 RTL 模块名称和 IP 名称组合而成。
 如上所示，Macro 的名称通常比较长，为了后续脚本简洁，给 Macro 设置简短的别名。（例如 <code>icache_data0</code>, <code>icache_data1</code>）</p>
 <h4 id="macro_2">摆放 Macro</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">======</span><span class="err">=</span>
@@ -1300,24 +1294,23 @@
 <a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="k">set</span><span class="w"> </span>deltax<span class="w"> </span><span class="mi">150</span>
 <a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="k">set</span><span class="w"> </span>deltay<span class="w"> </span><span class="mi">250</span>
 <a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_tag0<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span>R180
-<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="w"> </span><span class="nv">HEAD</span>
-<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_tag1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span>
-<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data0<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>R180
-<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span>
-<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="o">======</span><span class="err">=</span>
-<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_tag1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span>
-<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>placeInstance<span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data0<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>R180
-<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>
-<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="w"> </span><span class="mi">6</span>a956eb<span class="w"> </span><span class="k">(</span><span class="nv">finish</span><span class="w"> </span>submodule<span class="w"> </span>implementation<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>place<span class="w"> </span>macro<span class="k">)</span>
-<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>
-<a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="c"># place D$</span>
-<a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="c"># not shown for simplicity</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_tag1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data0<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>R180
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="o">======</span><span class="err">=</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_tag1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>placeInstance<span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data0<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>R180
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="nv">placeInstance</span><span class="w"> </span><span class="k">[set</span><span class="w"> </span>icache_data1<span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$deltax</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$basey</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$deltay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="k">]</span><span class="w"> </span>
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="err">#</span><span class="w"> </span>place<span class="w"> </span>D<span class="err">$</span>
+<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="c"># not shown for simplicity</span>
 </code></pre></div>
 <p>命令格式为：<code>placeInstance instance_name &lt;location&gt; &lt;orientation&gt;</code></p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-* <code>instance_name</code>：想要摆放的 Macro 名称。可以使用别名，例如：<code>[set icache_data0]</code>或<code>$icache_data0</code>；
-* <code>&lt;location&gt;</code>：有 X 和 Y 两个数值，分别表示 Macro 左下角的宽度方向和高度方向的坐标；
-* <code>&lt;orientation&gt;</code>：设置 Macro 的摆放方向，可以选择 <code>R0</code>, <code>R90</code>, <code>R180</code>, <code>R270</code>, <code>MX</code>, <code>MX90</code>, <code>MY</code>, <code>MY90</code>。</p>
+<ul>
+<li><code>instance_name</code>：想要摆放的 Macro 名称。可以使用别名，例如：<code>[set icache_data0]</code>或<code>$icache_data0</code>；</li>
+<li><code>&lt;location&gt;</code>：有 X 和 Y 两个数值，分别表示 Macro 左下角的宽度方向和高度方向的坐标；</li>
+<li><code>&lt;orientation&gt;</code>：设置 Macro 的摆放方向，可以选择 <code>R0</code>, <code>R90</code>, <code>R180</code>, <code>R270</code>, <code>MX</code>, <code>MX90</code>, <code>MY</code>, <code>MY90</code>。</li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">Macro 摆放方向</p>
 <p>由于 22nm 工艺中栅极必须纵向摆放，所以在摆放 Macro 时只能选择 <code>R0</code>, <code>R180</code>,<code>MX</code>, <code>MY</code>。</p>
@@ -1457,21 +1450,6 @@
 <h3 id="415-add_core_fillertcl_1">4.15 执行<code>add_core_filler.tcl</code></h3>
 <h3 id="416-add_pg_pintcl_1">4.16 执行<code>add_PG_pin.tcl</code></h3>
 <h3 id="gen_filestcl">执行<code>gen_files.tcl</code></h3>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>6a956eb (finish submodule implementation up to place macro)</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 
 
 
@@ -1538,14 +1516,14 @@
     
     <nav>
       
-        <a href="https://github.com/Bwoah-Kimi" class="md-author" title="@Bwoah-Kimi">
-          
-          <img src="https://avatars.githubusercontent.com/u/96295156?v=4&size=72" alt="Bwoah-Kimi">
-        </a>
-      
         <a href="https://github.com/Siris-Li" class="md-author" title="@Siris-Li">
           
           <img src="https://avatars.githubusercontent.com/u/73060160?v=4&size=72" alt="Siris-Li">
+        </a>
+      
+        <a href="https://github.com/Bwoah-Kimi" class="md-author" title="@Bwoah-Kimi">
+          
+          <img src="https://avatars.githubusercontent.com/u/96295156?v=4&size=72" alt="Bwoah-Kimi">
         </a>
       
       
@@ -1565,7 +1543,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (82.3%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (17.7%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (81.95%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (18.05%)</span>
       </small>
     </div>
   
