@@ -58,10 +58,7 @@ plugins:
       repository: Bwoah-Kimi/Tape-out_template_doc
       branch: main
       token: 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
-  - git-authors:
-      show_contribution: true
-      show_line_count: true
-      count_empty_lines: true
+  - git-authors
 
 extra_css:
   - extra.css
