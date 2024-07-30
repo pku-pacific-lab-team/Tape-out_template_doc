@@ -97,7 +97,7 @@
 
 ```
 
-#### Register File IP的例化
+#### Register File IP 的例化
 
 不带 `Bit-Write Mask` 功能的 Register File 例化示例如下：
 ``` Verilog
