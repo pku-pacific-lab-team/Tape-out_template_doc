@@ -222,7 +222,7 @@ foreach sram ${sram_insts} { \
 </figure>
 
 
-### 2.6 启动Genus综合
+### 2.6 启动 Genus 综合
 
 ``` shell
 b make genus_syn
