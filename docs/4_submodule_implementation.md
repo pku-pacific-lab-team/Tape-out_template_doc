@@ -549,6 +549,63 @@ createRouteBlk -cover -inst $dcim_macro1 -exceptpgnet -layer {M1 M2 M3 M4 M5 M6 
 ### 4.7 执行`add_pin.tcl`
 
 ### 4.8 执行`add_endcap_wellcap.tcl`
+``` tcl
+# connect std cells
+globalNetConnect VDD -type pgpin -pin VDD -all -override
+globalNetConnect VSS -type pgpin -pin VSS -all -override
+
+# connect dcim_macro0
+globalNetConnect VDD_CIM -type pgpin -pin VDDC -sinst $dcim_macro0 -override
+globalNetConnect VSS -type pgpin -pin VSSC -sinst $dcim_macro0 -override
+
+# connect dcim_macro1
+globalNetConnect VDD_CIM -type pgpin -pin VDDC -sinst $dcim_macro1 -override
+globalNetConnect VSS -type pgpin -pin VSSC -sinst $dcim_macro1 -override
+
+# connect $mainmem
+globalNetConnect VDD -type pgpin -pin VDDCE -sinst $mainmem -override
+globalNetConnect VDD -type pgpin -pin VDDPE -sinst $mainmem -override
+globalNetConnect VSS -type pgpin -pin VSSE -sinst $mainmem -override
+
+# connect $dcache_tag0
+globalNetConnect VDD -type pgpin -pin VDDCE -sinst $dcache_tag0 -override
+globalNetConnect VDD -type pgpin -pin VDDPE -sinst $dcache_tag0 -override
+globalNetConnect VSS -type pgpin -pin VSSE -sinst $dcache_tag0 -override
+
+# connect $dcache_tag1
+globalNetConnect VDD -type pgpin -pin VDDCE -sinst $dcache_tag1 -override
+globalNetConnect VDD -type pgpin -pin VDDPE -sinst $dcache_tag1 -override
+globalNetConnect VSS -type pgpin -pin VSSE -sinst $dcache_tag1 -override
+
+# connect $dcache_data0
+globalNetConnect VDD -type pgpin -pin VDDCE -sinst $dcache_data0 -override
+globalNetConnect VDD -type pgpin -pin VDDPE -sinst $dcache_data0 -override
+globalNetConnect VSS -type pgpin -pin VSSE -sinst $dcache_data0 -override
+
+# connect $dcache_data1, $icache_tag0, $icache_tag1, $icache_data0, $icache_data1
+# not shown for simplicity
+
+# connect tiehi and tielo
+globalNetConnect VDD -type tiehi
+globalNetConnect VSS -type tielo
+```
+
+`globalNetConnect` 连接 Power/Ground 管脚和 1'b1/1'b0 管脚到指定的一个全局网络。
+
+该命令的基本格式为 `globalNetConnect <globalNetName> {-type pgpin -pin <pinNamePattern> | -type tiehi -pin <pinNamePattern> | -type tielo -pin <pinNamePattern>} {-sinst <instName> | -all} [-override]`
+
+* `<globalNetNet>` ：指定要连接到指定管脚的全局网络的名称，也就是我们在 `init_invs.tcl` 定义的 `init_pwr_net` 和 `init_gnd_net`；
+* `-type` 我们会用到三个选项：`pgpin`, `tiehi`, `tielo`，分别是 Power/Ground，1'b1，1'b0；
+* `-pin <pinNamePattern>` 是指定的 Instance 中 Power/Ground 管脚的名称。对于标准工艺库中的元件，是 `VDD` 和 `VSS`；对于 CIM Macro，是 `VDDC` 和 `VSSC`；对于 SRAM/Register File Compiler 生成的 IP，是 `VDDCE`, `VDDPE` 和 `VSSE`；
+* `-sinst <instName>` 选择指定的 Instance 名称，与 `placeMacro` 命令中的用法类似；
+* `-all` 指该命令适用于该设计中所有的 Instance，包括标准单元和 Macro。
+* `-override` 指定使用 `globalNetConnect` 命令的值覆盖先前设置的全局网络连接值。
+
+!!! tip "关于 `VDDPE` 和 `VDDCE`"
+  SRAM/Register File Compiler 生成的 IP 有两个 Power 管脚，其具体区别详见 Compiler 的用户手册。
+  在我们的设计和常规的学术流片中，可以都连接到全局的 Power 网络上，不做特别区分。
+
+### 4.7 执行 `add_pin.tcl`
 
 ### 4.9 执行`add_power_ring.tcl`
 
