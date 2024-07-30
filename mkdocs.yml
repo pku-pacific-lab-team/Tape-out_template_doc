@@ -67,7 +67,6 @@ extra_css:
   - extra.css
 
 nav:
-<<<<<<< HEAD
   - Welcome to Tape-out Docs!: index.md
   - I. EDA Tools & Environment: 0_eda.md
   - II. Frontend:
@@ -83,14 +82,3 @@ nav:
     - 8. PCB: 8_PCB.md
     - 9. Packaging: 9_package.md
     - 10. Testing: 10_testing.md
-=======
-  - Overview: index.md
-  - Submodule Behavioral Simulation: 1_submodule_behavioral_simulation.md
-  - Submodule Synthesis: 2_submodule_synthesis.md
-  - Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
-  - Submodule Implementation: 4_submodule_implementation.md
-  - IO Module: 5_io.md
-  - PCB: 6_PCB.md
-  - Packaging: 7_package.md
-  - Testing: 8_testing.md
->>>>>>> 6a956eb (finish submodule implementation up to place macro)
