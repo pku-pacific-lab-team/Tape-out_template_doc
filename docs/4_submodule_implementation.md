@@ -345,6 +345,20 @@ globalNetConnect VSS -type tielo
 
 ### 4.7 执行 `add_pin.tcl`
 
+对于大规模的数字模块，信号 I/O 管脚数量可能是成百上千的，手动编写命令设置每个管脚的摆放过于繁琐。
+因此，我们使用 Innovus GUI 界面添加数字子系统的信号 I/O 管脚。
+
+* 在上方工具栏选择 `Edit -> Pin Editor` 添加相应的管脚。
+* 打开 `./work/innovus.cmd` （Innovus 生成的日志文件）查看我们在 GUI 界面每一步操作所对应的命令，其中就有我们所需要的 `editPin` 命令。
+
+!!! tip "关于 I/O 管脚金属层数的选择"
+    在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为**奇横偶纵**），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。
+
+!!! tip "关于数字子系统的 Power/Ground 的 I/O 管脚"
+    数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在[后续步骤](./4_submodule_implementation.md#416-执行-add_pg_pintcl)做进一步介绍。
+
+!!! Warning "Under development!"
+
 ### 4.8 执行 `add_endcap_wellcap.tcl`
 
 ### 4.9 执行 `add_power_ring.tcl`

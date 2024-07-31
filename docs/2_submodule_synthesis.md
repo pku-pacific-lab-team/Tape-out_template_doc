@@ -31,7 +31,7 @@
 !!! question "提示"
     该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
 
-主要用到的是ARM提供的 `SRAM Compiler` 和 `Register File Compiler`（[工具路径](./index.md#arm-sram-compiler)）
+主要用到的是ARM提供的 `SRAM Compiler` 和 `Register File Compiler`（[工具路径](./0_eda.md#arm-sram-compiler)）
 
 在 `./sram/` 路径下新建文件夹，并在该文件夹下启动 `SRAM Compiler`/`Register File Compiler`，用于存放生成的文件。
 
