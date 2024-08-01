@@ -359,7 +359,12 @@ globalNetConnect VSS -type tielo
 
 !!! Warning "Under development!"
 
-### 4.8 执行 `add_endcap_wellcap.tcl`
+### 4.8 执行 `add_endcap_welltap.tcl`
+
+??? tip "关于 EndCap Cells 与 WellTap Cells"
+    **EndCap Cells**：在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。当最后一个标准单元不能完美地适应行的长度时，EndCap Cells（端帽单元）用于**填充标准单元行末端的剩余空间**。它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。
+
+    **WellTap Cells**：为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在CMOS工艺中确保适当的电气连接并防止闩锁效应。WellTap Cells 在整个IC布局中被有规律地摆放，特别是在电源和接地连接附近。它们的放置通常由代工厂指定的设计规则所规定。
 
 ### 4.9 执行 `add_power_ring.tcl`
 
