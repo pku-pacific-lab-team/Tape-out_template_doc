@@ -348,16 +348,42 @@ globalNetConnect VSS -type tielo
 对于大规模的数字模块，信号 I/O 管脚数量可能是成百上千的，手动编写命令设置每个管脚的摆放过于繁琐。
 因此，我们使用 Innovus GUI 界面添加数字子系统的信号 I/O 管脚。
 
-* 在上方工具栏选择 `Edit -> Pin Editor` 添加相应的管脚。
+* 在上方工具栏选择 `Edit -> Pin Editor` 添加相应的管脚（详见下方 Pin Editor GUI 界面）。
 * 打开 `./work/innovus.cmd` （Innovus 生成的日志文件）查看我们在 GUI 界面每一步操作所对应的命令，其中就有我们所需要的 `editPin` 命令。
 
+<figure>
+  <img src="../figs/pin_editor.png" width=80%>
+  <figcaption>Innovus Pin Editor</figcaption>
+</figure>
+
+因为模板文件中设计较为复杂，在此以 **2-bit 加法器的 I/O 管脚**为例，脚本命令如下。
+
+``` tcl
+setPinAssignMode -pinEditInBatch true
+
+editPin -pinWidth 0.05 -pinDepth 0.34 -fixOverlap 1 -unit MICRON -spreadDirection clockwise -side Left -layer 5 -spreadType center -spacing 20.0 -pin {clk rst_n}
+
+editPin -pinWidth 0.05 -pinDepth 0.34 -fixOverlap 1 -unit MICRON -spreadDirection clockwise -side Top -layer 6 -spreadType range -start 10.0 100.0 -end 90.0 100.0 -pin {cin {a_in[0]} {a_in[1]} {b_in[0]} {b_in[1]}}
+
+editPin -pinWidth 0.05 -pinDepth 0.34 -fixOverlap 1 -unit MICRON -spreadDirection clockwise -side Bottom -layer 6 -spreadType range -start 10.0 0.0 -end 90.0 0.0 -pin {cout {c_out[0]} {c_out[1]}}
+
+setPinAssignMode -pinEditInBatch false
+```
+
+可以设想，如果管脚数量增加，例如有2组 64-bit 输入信号和1组 64-bit 输出信号，手写脚本命令过于繁琐，这也是我们在此使用 GUI 界面的原因。
+
 !!! tip "关于 I/O 管脚金属层数的选择"
-    在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为**奇横偶纵**），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。
+    在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为**奇横偶纵**），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。在上面 2-bit 加法器的例子中，每一边（Left/Top/Bottom）仅仅用到了一层金属，在管脚较多的情况下，可以将不同的管脚分配到同一条边的不同金属层。
 
 !!! tip "关于数字子系统的 Power/Ground 的 I/O 管脚"
     数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在[后续步骤](./4_submodule_implementation.md#416-执行-add_pg_pintcl)做进一步介绍。
 
-!!! Warning "Under development!"
+在执行 `add_pin.tcl` 之后，版图如下图所示，每一个黄色的三角形代表一个 I/O 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。
+
+<figure>
+  <img src="../figs/add_pin.png" width=80%>
+  <figcaption>Layout after adding I/O pins</figcaption>
+</figure>
 
 ### 4.8 执行 `add_endcap_welltap.tcl`
 
