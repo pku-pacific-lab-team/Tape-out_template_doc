@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -1534,20 +1534,40 @@
 <p>对于大规模的数字模块，信号 I/O 管脚数量可能是成百上千的，手动编写命令设置每个管脚的摆放过于繁琐。
 因此，我们使用 Innovus GUI 界面添加数字子系统的信号 I/O 管脚。</p>
 <ul>
-<li>在上方工具栏选择 <code>Edit -&gt; Pin Editor</code> 添加相应的管脚。</li>
+<li>在上方工具栏选择 <code>Edit -&gt; Pin Editor</code> 添加相应的管脚（详见下方 Pin Editor GUI 界面）。</li>
 <li>打开 <code>./work/innovus.cmd</code> （Innovus 生成的日志文件）查看我们在 GUI 界面每一步操作所对应的命令，其中就有我们所需要的 <code>editPin</code> 命令。</li>
 </ul>
+<figure>
+  <img src="../figs/pin_editor.png" width=80%>
+  <figcaption>Innovus Pin Editor</figcaption>
+</figure>
+
+<p>因为模板文件中设计较为复杂，在此以 <strong>2-bit 加法器的 I/O 管脚</strong>为例，脚本命令如下。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">setPinAssignMode</span><span class="w"> </span><span class="o">-</span>pinEditInBatch<span class="w"> </span>true
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">editPin</span><span class="w"> </span><span class="o">-</span>pinWidth<span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="o">-</span>pinDepth<span class="w"> </span><span class="mf">0.34</span><span class="w"> </span><span class="o">-</span>fixOverlap<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span>unit<span class="w"> </span>MICRON<span class="w"> </span><span class="o">-</span>spreadDirection<span class="w"> </span>clockwise<span class="w"> </span><span class="o">-</span>side<span class="w"> </span>Left<span class="w"> </span><span class="o">-</span>layer<span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-</span>spreadType<span class="w"> </span>center<span class="w"> </span><span class="o">-</span>spacing<span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="o">-</span>pin<span class="w"> </span><span class="k">{</span><span class="nv">clk</span><span class="w"> </span>rst_n<span class="k">}</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nv">editPin</span><span class="w"> </span><span class="o">-</span>pinWidth<span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="o">-</span>pinDepth<span class="w"> </span><span class="mf">0.34</span><span class="w"> </span><span class="o">-</span>fixOverlap<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span>unit<span class="w"> </span>MICRON<span class="w"> </span><span class="o">-</span>spreadDirection<span class="w"> </span>clockwise<span class="w"> </span><span class="o">-</span>side<span class="w"> </span>Top<span class="w"> </span><span class="o">-</span>layer<span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">-</span>spreadType<span class="w"> </span>range<span class="w"> </span><span class="o">-</span>start<span class="w"> </span><span class="mf">10.0</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">-</span>end<span class="w"> </span><span class="mf">90.0</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">-</span>pin<span class="w"> </span><span class="k">{</span><span class="nv">cin</span><span class="w"> </span><span class="k">{</span><span class="nv">a_in</span><span class="k">[</span><span class="nv">0</span><span class="k">]}</span><span class="w"> </span><span class="k">{</span><span class="nv">a_in</span><span class="k">[</span><span class="nv">1</span><span class="k">]}</span><span class="w"> </span><span class="k">{</span><span class="nv">b_in</span><span class="k">[</span><span class="nv">0</span><span class="k">]}</span><span class="w"> </span><span class="k">{</span><span class="nv">b_in</span><span class="k">[</span><span class="nv">1</span><span class="k">]}}</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nv">editPin</span><span class="w"> </span><span class="o">-</span>pinWidth<span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="o">-</span>pinDepth<span class="w"> </span><span class="mf">0.34</span><span class="w"> </span><span class="o">-</span>fixOverlap<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span>unit<span class="w"> </span>MICRON<span class="w"> </span><span class="o">-</span>spreadDirection<span class="w"> </span>clockwise<span class="w"> </span><span class="o">-</span>side<span class="w"> </span>Bottom<span class="w"> </span><span class="o">-</span>layer<span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">-</span>spreadType<span class="w"> </span>range<span class="w"> </span><span class="o">-</span>start<span class="w"> </span><span class="mf">10.0</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">-</span>end<span class="w"> </span><span class="mf">90.0</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">-</span>pin<span class="w"> </span><span class="k">{</span><span class="nv">cout</span><span class="w"> </span><span class="k">{</span><span class="nv">c_out</span><span class="k">[</span><span class="nv">0</span><span class="k">]}</span><span class="w"> </span><span class="k">{</span><span class="nv">c_out</span><span class="k">[</span><span class="nv">1</span><span class="k">]}}</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="nv">setPinAssignMode</span><span class="w"> </span><span class="o">-</span>pinEditInBatch<span class="w"> </span>false
+</code></pre></div>
+<p>可以设想，如果管脚数量增加，例如有2组 64-bit 输入信号和1组 64-bit 输出信号，手写脚本命令过于繁琐，这也是我们在此使用 GUI 界面的原因。</p>
 <div class="admonition tip">
 <p class="admonition-title">关于 I/O 管脚金属层数的选择</p>
-<p>在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为<strong>奇横偶纵</strong>），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。</p>
+<p>在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为<strong>奇横偶纵</strong>），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。在上面 2-bit 加法器的例子中，每一边（Left/Top/Bottom）仅仅用到了一层金属，在管脚较多的情况下，可以将不同的管脚分配到同一条边的不同金属层。</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">关于数字子系统的 Power/Ground 的 I/O 管脚</p>
 <p>数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 <code>createPGPin</code> 命令生成，在<a href="./#416-执行-add_pg_pintcl">后续步骤</a>做进一步介绍。</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Under development!</p>
-</div>
+<p>在执行 <code>add_pin.tcl</code> 之后，版图如下图所示，每一个黄色的三角形代表一个 I/O 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。</p>
+<figure>
+  <img src="../figs/add_pin.png" width=80%>
+  <figcaption>Layout after adding I/O pins</figcaption>
+</figure>
+
 <h3 id="48-add_endcap_welltaptcl">4.8 执行 <code>add_endcap_welltap.tcl</code></h3>
 <details class="tip">
 <summary>关于 EndCap Cells 与 WellTap Cells</summary>
@@ -1589,7 +1609,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 1, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 3, 2024</span>
   </span>
 
     
@@ -1660,7 +1680,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (79.38%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (20.62%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (74.4%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (25.6%)</span>
       </small>
     </div>
   
