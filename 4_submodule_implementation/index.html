@@ -1254,12 +1254,16 @@
 
 
 <h1 id="4">4. 数字子系统的物理设计</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Under Development!</p>
+</div>
 <p>在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用 Cadence Innovus 进行数字子系统的物理设计（后端设计）。</p>
 <p>在后端设计中，许多脚本参数设置，例如电源网络的 Width，Spacing，以及 Macro 的摆放位置需要根据版图大小和布局布线情况来设定，需要多次的迭代优化。</p>
 <h2 id="_1">物理设计流程介绍</h2>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>同<a href="../2_submodule_synthesis/">数字子系统的逻辑综合</a>，在后端设计中，我们继续使用 <code>/work/home/ztzhu/tapeout_templates/submodule_tapeout/</code> 文件夹。</p>
+<p>同<a href="../2_submodule_synthesis/">数字子系统的逻辑综合</a>一样，在后端设计中，我们继续使用 <code>/work/home/ztzhu/tapeout_templates/submodule_tapeout/</code> 文件夹。</p>
 </div>
 <p>物理设计的输入主要用到模板文件中的以下内容：</p>
 <ul>
@@ -1270,9 +1274,9 @@
 <li><code>./sram/</code>（<em>可选</em>）：数字子系统中例化的SRAM高速缓存或寄存器堆的专用 IP 核（<code>CDL</code>, <code>LEF</code>, <code>LIB</code>, <code>Verilog</code>等）；</li>
 <li><code>./asic_ip/</code>（<em>可选</em>）：数字子系统中例化的其他 IP 核（例如 CIM Macro），或者更低层级的数字子系统的相关文件（<code>CDL</code>, <code>LEF</code>, <code>LIB</code>, <code>Verilog</code>等）。</li>
 </ul>
-<p>该模板文件以一个 <strong>CVA6 RISC-V CPU</strong> 的后端设计流程作为一个示例。
-在这个 CPU 中，包括用 SRAM Compiler 生成的 Main Memory，I-Cache和D-Cache，以及定制设计的 CIM 模块。
-我们按照顺序逐一介绍数字子模块物理设计的流程。</p>
+<p>该模板文件以 <strong>CVA6 RISC-V CPU</strong> 的后端设计流程作为示例。
+在这个 CPU 中，包括用 SRAM Compiler 生成的主存储器、I-Cache 和 D-Cache，以及定制设计的 CIM 模块。
+我们将按照顺序逐一介绍数字子模块物理设计的流程。</p>
 <h3 id="41-init_invstcl">4.1 修改 <code>init_invs.tcl</code></h3>
 <p>在使用 Innovus 进行后端设计前，需要对工程脚本进行一些修改。</p>
 <div class="admonition tip">
@@ -1570,10 +1574,33 @@
 
 <h3 id="48-add_endcap_welltaptcl">4.8 执行 <code>add_endcap_welltap.tcl</code></h3>
 <details class="tip">
-<summary>关于 EndCap Cells 与 WellTap Cells</summary>
-<p><strong>EndCap Cells</strong>：在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。当最后一个标准单元不能完美地适应行的长度时，EndCap Cells（端帽单元）用于<strong>填充标准单元行末端的剩余空间</strong>。它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。</p>
-<p><strong>WellTap Cells</strong>：为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在CMOS工艺中确保适当的电气连接并防止闩锁效应。WellTap Cells 在整个IC布局中被有规律地摆放，特别是在电源和接地连接附近。它们的放置通常由代工厂指定的设计规则所规定。</p>
+<summary>关于 Endcap Cells， Welltap Cells 和 Decap Cells</summary>
+<p><strong>Endcap Cells</strong>（端帽单元）：在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。当最后一个标准单元不能完美地适应行的长度时，Endcap Cells用于<strong>填充标准单元行末端的剩余空间</strong>。它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。</p>
+<p><strong>Welltap Cells</strong>（接地单元）：为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在 CMOS 工艺中确保适当的电气连接并防止闩锁效应。Welltap Cells 在整个 IC 布局中被有规律地摆放，特别是在电源和接地连接附近。它们的放置通常由代工厂指定的设计规则所规定。</p>
+<p><strong>Decap Cells</strong>（去耦电容单元）：主要用于减少电源噪声和稳定电源电压。它们通过提供额外的电容来平滑电源电压的波动，防止电源噪声影响电路性能。Decap Cells 常放置在电源网络中，以确保电源电压的稳定性，特别是在高频信号和快速开关电路中。Decap Cells 主要关注电源电压的稳定性，而 Welltap Cells 主要关注衬底电位的稳定性。</p>
 </details>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">set</span><span class="w"> </span>itx<span class="w"> </span><span class="nv">$rm_tap_cell_distance</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">set</span><span class="w"> </span>tap_rule<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$itx</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="k">]</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>place_detail_legalization_inst_gap<span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>place_detail_use_no_diffusion_one_site_filler<span class="w"> </span>false
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nv">setEndCapMode</span><span class="w"> </span><span class="o">-</span>rightEdge<span class="w"> </span><span class="nv">$endcap_left</span><span class="w"> </span><span class="o">-</span>leftEdge<span class="w"> </span><span class="nv">$endcap_right</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="nv">addEndCap</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="nv">addWellTap</span><span class="w"> </span><span class="o">-</span>cell<span class="w"> </span><span class="nv">${rm_tap_cell}</span><span class="w"> </span><span class="o">-</span>cellInterval<span class="w"> </span><span class="nv">$rm_tap_cell_distance</span><span class="w"> </span><span class="o">-</span>checkerboard
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="nv">addWellTap</span><span class="w"> </span><span class="o">-</span>prefix<span class="w"> </span><span class="o">-</span>DECAP<span class="w"> </span><span class="o">-</span>cellInterval<span class="w"> </span><span class="nv">$rm_tap_cell_distance</span><span class="w"> </span><span class="o">-</span>cell<span class="w"> </span><span class="nv">${dcap_cell}</span><span class="w"> </span><span class="o">-</span>skipRow<span class="w"> </span><span class="mi">1</span>
+</code></pre></div>
+<p>在此对上述几条命令做些说明：</p>
+<ul>
+<li><code>setPlaceMode</code>：控制 Innovus 布局工具如何排放标准单元，可以使用 <code>getPlaceMode</code> 命令查看目前 <code>setPlaceMode</code> 所设置的摆放规则。该命令会影响后续 <code>place_design</code> 和 <code>refinePlace</code> 的命令；</li>
+<li><code>setPlaceMode -place_detail_legalization_inst_gap &lt;numberOfSites&gt;</code>：指定两个 Instance 之间所允许的最小横向间距（是 Site 的整数倍）；</li>
+<li><code>setPlaceMode -place_detail_use_no_diffusion_one_site_filler {true|false}</code>：指定所有的 one-site Fillers 没有 Diffusion OBS。</li>
+<li><code>setEndCapMode</code>：用于控制 <code>addEndCap</code> 命令的行为；</li>
+<li><code>setEndCapMode -leftEdge &lt;cellName&gt; -rightEdge &lt;cellName&gt;</code></li>
+<li><code>addEndCap</code>：用于添加 Endcap Cells 填充标准单元行末端的剩余空间。</li>
+<li><code>addWellTap -cell &lt;cellName&gt; -cellInterval &lt;microns&gt; -checkerBoard</code>：用于添加 Welltap Cells，<code>-cell</code> 指定所使用的 Welltap Cells 的名称，<code>-cellInterval</code> 指定每一行之间相邻两个 Welltap Cells 的最大距离，<code>-checkerBoard</code> 指定 Welltap Cells 以棋盘格模式放置，即每隔一行偏移半个间距；</li>
+<li><code>addWellTap -prefix DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell} -skipRow 1</code>：用于放置 Decap Cells。</li>
+</ul>
 <h3 id="49-add_power_ringtcl">4.9 执行 <code>add_power_ring.tcl</code></h3>
 <h3 id="410-add_power_stripetcl">4.10 执行 <code>add_power_stripe.tcl</code></h3>
 <h3 id="411-placetcl">4.11 执行 <code>place.tcl</code></h3>
@@ -1583,10 +1610,6 @@
 <h3 id="415-add_core_fillertcl">4.15 执行 <code>add_core_filler.tcl</code></h3>
 <h3 id="416-add_pg_pintcl">4.16 执行 <code>add_PG_pin.tcl</code></h3>
 <h3 id="417-gen_filestcl">4.17 执行 <code>gen_files.tcl</code></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Under Development!</p>
-</div>
 
 
 
@@ -1609,7 +1632,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 3, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 4, 2024</span>
   </span>
 
     
@@ -1680,7 +1703,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (74.4%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (25.6%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (68.41%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (31.59%)</span>
       </small>
     </div>
   
