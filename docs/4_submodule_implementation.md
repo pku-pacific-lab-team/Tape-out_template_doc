@@ -1,5 +1,8 @@
 # 4. 数字子系统的物理设计
 
+!!! Warning
+    Under Development!
+
 在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用 Cadence Innovus 进行数字子系统的物理设计（后端设计）。
 
 在后端设计中，许多脚本参数设置，例如电源网络的 Width，Spacing，以及 Macro 的摆放位置需要根据版图大小和布局布线情况来设定，需要多次的迭代优化。
@@ -7,7 +10,7 @@
 ## 物理设计流程介绍
 
 !!! Warning "注意"
-    同[数字子系统的逻辑综合](./2_submodule_synthesis.md)，在后端设计中，我们继续使用 `/work/home/ztzhu/tapeout_templates/submodule_tapeout/` 文件夹。
+    同[数字子系统的逻辑综合](./2_submodule_synthesis.md)一样，在后端设计中，我们继续使用 `/work/home/ztzhu/tapeout_templates/submodule_tapeout/` 文件夹。
 
 物理设计的输入主要用到模板文件中的以下内容：
 
@@ -18,9 +21,9 @@
 * `./sram/`（_可选_）：数字子系统中例化的SRAM高速缓存或寄存器堆的专用 IP 核（`CDL`, `LEF`, `LIB`, `Verilog`等）；
 * `./asic_ip/`（_可选_）：数字子系统中例化的其他 IP 核（例如 CIM Macro），或者更低层级的数字子系统的相关文件（`CDL`, `LEF`, `LIB`, `Verilog`等）。
 
-该模板文件以一个 **CVA6 RISC-V CPU** 的后端设计流程作为一个示例。
-在这个 CPU 中，包括用 SRAM Compiler 生成的 Main Memory，I-Cache和D-Cache，以及定制设计的 CIM 模块。
-我们按照顺序逐一介绍数字子模块物理设计的流程。
+该模板文件以 **CVA6 RISC-V CPU** 的后端设计流程作为示例。
+在这个 CPU 中，包括用 SRAM Compiler 生成的主存储器、I-Cache 和 D-Cache，以及定制设计的 CIM 模块。
+我们将按照顺序逐一介绍数字子模块物理设计的流程。
 
 ### 4.1 修改 `init_invs.tcl`
 
@@ -387,10 +390,36 @@ setPinAssignMode -pinEditInBatch false
 
 ### 4.8 执行 `add_endcap_welltap.tcl`
 
-??? tip "关于 EndCap Cells 与 WellTap Cells"
-    **EndCap Cells**：在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。当最后一个标准单元不能完美地适应行的长度时，EndCap Cells（端帽单元）用于**填充标准单元行末端的剩余空间**。它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。
+??? tip "关于 Endcap Cells， Welltap Cells 和 Decap Cells"
+    **Endcap Cells**（端帽单元）：在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。当最后一个标准单元不能完美地适应行的长度时，Endcap Cells用于**填充标准单元行末端的剩余空间**。它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。
 
-    **WellTap Cells**：为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在CMOS工艺中确保适当的电气连接并防止闩锁效应。WellTap Cells 在整个IC布局中被有规律地摆放，特别是在电源和接地连接附近。它们的放置通常由代工厂指定的设计规则所规定。
+    **Welltap Cells**（接地单元）：为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在 CMOS 工艺中确保适当的电气连接并防止闩锁效应。Welltap Cells 在整个 IC 布局中被有规律地摆放，特别是在电源和接地连接附近。它们的放置通常由代工厂指定的设计规则所规定。
+
+    **Decap Cells**（去耦电容单元）：主要用于减少电源噪声和稳定电源电压。它们通过提供额外的电容来平滑电源电压的波动，防止电源噪声影响电路性能。Decap Cells 常放置在电源网络中，以确保电源电压的稳定性，特别是在高频信号和快速开关电路中。Decap Cells 主要关注电源电压的稳定性，而 Welltap Cells 主要关注衬底电位的稳定性。
+
+``` tcl
+set itx $rm_tap_cell_distance
+set tap_rule [expr $itx / 4]
+
+setPlaceMode -place_detail_legalization_inst_gap 2
+setPlaceMode -place_detail_use_no_diffusion_one_site_filler false
+setEndCapMode -rightEdge $endcap_left -leftEdge $endcap_right
+addEndCap
+
+addWellTap -cell ${rm_tap_cell} -cellInterval $rm_tap_cell_distance -checkerboard
+addWellTap -prefix -DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell} -skipRow 1
+```
+
+在此对上述几条命令做些说明：
+
+* `setPlaceMode`：控制 Innovus 布局工具如何排放标准单元，可以使用 `getPlaceMode` 命令查看目前 `setPlaceMode` 所设置的摆放规则。该命令会影响后续 `place_design` 和 `refinePlace` 的命令；
+* `setPlaceMode -place_detail_legalization_inst_gap <numberOfSites>`：指定两个 Instance 之间所允许的最小横向间距（是 Site 的整数倍）；
+* `setPlaceMode -place_detail_use_no_diffusion_one_site_filler {true|false}`：指定所有的 one-site Fillers 没有 Diffusion OBS。
+* `setEndCapMode`：用于控制 `addEndCap` 命令的行为；
+* `setEndCapMode -leftEdge <cellName> -rightEdge <cellName>`
+* `addEndCap`：用于添加 Endcap Cells 填充标准单元行末端的剩余空间。
+* `addWellTap -cell <cellName> -cellInterval <microns> -checkerBoard`：用于添加 Welltap Cells，`-cell` 指定所使用的 Welltap Cells 的名称，`-cellInterval` 指定每一行之间相邻两个 Welltap Cells 的最大距离，`-checkerBoard` 指定 Welltap Cells 以棋盘格模式放置，即每隔一行偏移半个间距；
+* `addWellTap -prefix DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell} -skipRow 1`：用于放置 Decap Cells。
 
 ### 4.9 执行 `add_power_ring.tcl`
 
@@ -409,6 +438,3 @@ setPinAssignMode -pinEditInBatch false
 ### 4.16 执行 `add_PG_pin.tcl`
 
 ### 4.17 执行 `gen_files.tcl`
-
-!!! Warning
-    Under Development!
