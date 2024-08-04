@@ -397,6 +397,8 @@ setPinAssignMode -pinEditInBatch false
 
     **Decap Cells**（去耦电容单元）：主要用于减少电源噪声和稳定电源电压。它们通过提供额外的电容来平滑电源电压的波动，防止电源噪声影响电路性能。Decap Cells 常放置在电源网络中，以确保电源电压的稳定性，特别是在高频信号和快速开关电路中。Decap Cells 主要关注电源电压的稳定性，而 Welltap Cells 主要关注衬底电位的稳定性。
 
+#### 添加 Endcap Cells
+
 ``` tcl
 set itx $rm_tap_cell_distance
 set tap_rule [expr $itx / 4]
@@ -405,9 +407,6 @@ setPlaceMode -place_detail_legalization_inst_gap 2
 setPlaceMode -place_detail_use_no_diffusion_one_site_filler false
 setEndCapMode -rightEdge $endcap_left -leftEdge $endcap_right
 addEndCap
-
-addWellTap -cell ${rm_tap_cell} -cellInterval $rm_tap_cell_distance -checkerboard
-addWellTap -prefix -DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell} -skipRow 1
 ```
 
 在此对上述几条命令做些说明：
@@ -418,12 +417,92 @@ addWellTap -prefix -DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell}
 * `setEndCapMode`：用于控制 `addEndCap` 命令的行为；
 * `setEndCapMode -leftEdge <cellName> -rightEdge <cellName>`
 * `addEndCap`：用于添加 Endcap Cells 填充标准单元行末端的剩余空间。
-* `addWellTap -cell <cellName> -cellInterval <microns> -checkerBoard`：用于添加 Welltap Cells，`-cell` 指定所使用的 Welltap Cells 的名称，`-cellInterval` 指定每一行之间相邻两个 Welltap Cells 的最大距离，`-checkerBoard` 指定 Welltap Cells 以棋盘格模式放置，即每隔一行偏移半个间距；
+
+添加 Endcap Cells 之后的部分版图如下所示，可以看见在 Macro 的左侧和右侧，以及 Core box 的左侧和右侧（也就是标准单元行末端的剩余空间添加了 Endcap Cells。
+
+<figure>
+  <img src="../figs/add_endcap_cells.png" width=80%>
+  <figcaption>Partial layout after adding endcap cells</figcaption>
+</figure>
+
+#### 添加 Welltap Cells
+
+``` tcl
+addWellTap -cell ${rm_tap_cell} -cellInterval $rm_tap_cell_distance -checkerboard
+```
+
+* `-cell <cellName>` 指定所使用的 Welltap Cells 的名称；
+* `-cellInterval <microns>`：指定每一行之间相邻两个 Welltap Cells 的最大距离；
+* `-checkerBoard`：指定 Welltap Cells 以棋盘格模式放置，即每隔一行偏移半个间距。
+
+添加 Welltap Cells 之后的部分版图如下所示。可以看到在每个标准单元行，以棋盘形式交替摆放着 Welltap Cells。
+
+<figure>
+  <img src="../figs/add_welltap_cells.png" width=80%>
+  <figcaption>Partial layout after adding welltap cells</figcaption>
+</figure>
+
+#### 添加 Decap Cells
+
+``` tcl
+addWellTap -prefix -DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell} -skipRow 1
+```
+
 * `addWellTap -prefix DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell} -skipRow 1`：用于放置 Decap Cells。
+
+放置 Decap Cells 之后的部分版图如下所示，可以看见每隔一行（因为指定了 `-skipRow 1`）在 Welltap Cells 旁边添加了 Decap Cells。
+
+<figure>
+  <img src="../figs/add_decap_cells.png" width=80%>
+  <figcaption>Partial layout after adding decap cells</figcaption>
+</figure>
 
 ### 4.9 执行 `add_power_ring.tcl`
 
+#### 添加 Core Ring
+
+``` tcl
+setAddRingMode -avoid_short true
+addRing -nets [list VDD VDD_CIM VSS] -type core_rings -follow_core -layer {top M5 bottom M5 left M6 right M6} -width 0.35 -spacing 0.35 -center 0
+```
+
+#### 添加 Block Ring
+
+``` tcl
+# add power ring around SRAM IP
+selectInst $mainmem
+addRing -nets {VDD VSS} -type block_rings -around selected -layer {top M5 bottom M5 left M6 right M6} -width {top 0.14 bottom 0.14 left 0.7 right 0.7} -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} -center 0 -threshold 0 -jog_distance 0 -snap_wire None
+
+selectInst $dcache_tag0
+addRing -nets {VDD VSS} -type block_rings -around selected -layer {top M5 bottom M5 left M6 right M6} -width {top 0.14 bottom 0.14 left 0.7 right 0.7} -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} -center 0 -threshold 0 -jog_distance 0 -snap_wire None
+
+selectInst $dcache_tag1
+addRing -nets {VDD VSS} -type block_rings -around selected -layer {top M5 bottom M5 left M6 right M6} -width {top 0.14 bottom 0.14 left 0.7 right 0.7} -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} -center 0 -threshold 0 -jog_distance 0 -snap_wire None
+
+# $dcache_data0, $dcache_data1, $icache_tag0, $icache_tag1, $icache_data0, $icache_data1 not shown for simplicity
+```
+
 ### 4.10 执行 `add_power_stripe.tcl`
+
+#### 添加 P/G 网格
+
+``` tcl
+# add M6 power stripes
+addStripe -start_offset 5 -direction vertical -block_ring_top_layer_limit M6 -padcore_ring_bottom_layer_limit M1 -set_to_set_distance 34 -stacked_via_top_layer M6 -padcore_ring_top_layer_limit M6 -spacing 15 -layer M6 -block_ring_bottom_layer_limit M1 -width 2 -nets { VSS VDD } -stacked_via_bottom_layer M1 
+
+# add M7 power stripes
+addStripe -start_offset 0.7 -direction horizontal -block_ring_top_layer_limit M7 -padcore_ring_bottom_layer_limit M6 -set_to_set_distance 24 -stacked_via_top_layer M7 -padcore_ring_top_layer_limit M7 -spacing 10 -layer M7 -block_ring_bottom_layer_limit M6 -width 2 -nets { VSS VDD } -stacked_via_bottom_layer M6 
+
+# add M8 power stripes, serve as P/G pins
+addStripe -start_offset 10 -direction vertical -block_ring_top_layer_limit M8 -padcore_ring_bottom_layer_limit M5 -set_to_set_distance 36 -stacked_via_top_layer M8 -padcore_ring_top_layer_limit M8 -spacing 10 -layer M8 -block_ring_bottom_layer_limit M5 -width 2 -nets { VSS VDD VDD_CIM } -stacked_via_bottom_layer M5 
+```
+
+#### 进行 Special Route
+
+``` tcl
+sroute -connect {corePin } -layerChangeRange { M1 M6 } -blockPinTarget {nearestRingStripe nearestTarget } -padPinPortConnect {allPort oneGeom } -checkAlignedSecondaryPin 1 -blockPin useLef -allowJogging 0 -crossoverViaBottomLayer M1 -allowLayerChange 1 -targetViaTopLayer M6 -crossoverViaTopLayer M6 -targetViaBottomLayer M1 -nets { VSS VDD }
+editPowerVia -skip_via_on_pin Standardcell -bottom_layer M1 -add_vias 1 -top_layer M6
+```
 
 ### 4.11 执行 `place.tcl`
 
