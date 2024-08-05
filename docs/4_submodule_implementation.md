@@ -506,14 +506,196 @@ editPowerVia -skip_via_on_pin Standardcell -bottom_layer M1 -add_vias 1 -top_lay
 
 ### 4.11 执行 `place.tcl`
 
+``` tcl
+createPlaceBlockage -name setdensity_blk1 -box 300 50 1000 500 -type Partial -density 75
+
+setTieHiLoMode -cell $rm_tie_hi_lo_list -maxFanout 8
+deleteTieHiLo
+
+setPlaceMode -reset
+setPlaceMode -place_detail_legalization_inst_gap 2
+setPlaceMode -place_detail_use_no_diffusion_one_site_filler false
+setPlaceMode -place_detail_preroute_as_obs {6}
+setPlaceMode -fp false
+setAnalysisMmode -aocv false
+
+placeDesign
+addTieHiLo
+
+place_opt_design -incremental -out_dir ../reports/layout/INNOVUS_RPT -prefix place
+timeDesign -preCTS -outDir ../reports/layout/INNOVUS_RPT
+
+optDesign -preCTS -drv
+optDesign -preCTS -incr
+optDesign -preCTS -hold
+
+set myOption "preCTS"
+source ../my_scripts/intermediate_reporting.tcl
+
+saveDesign ${rm_core_top}.place_opt.enc
+```
+
 ### 4.12 执行 `cts.tcl`
+
+``` tcl
+set_ccopt_property -update_io_latency true
+set_ccopt_property -force_update_io_latency true
+set_ccopt_property -enable_all_views_for_io_letency_update true
+set_ccopt_property -max_fanout ${rm_cts_max_fanout}
+set_ccopt_property -effort high
+set_ccopt_property buffer_cells ${rm_clock_buf_cap_cell}
+set_ccopt_property inverter_cells ${rm_clock_inv_cap_cell}
+set_ccopt_property clock_gating_cells ${rm_clock_icg_cell}
+set_ccopt_mode -cts_use_min_max_gate_delay false \
+               -cts_target_slew ${rm_max_clock_transition} \
+               -cts_target_skew 0.15 \
+               -modify_clock_latency false
+
+create_ccopt_clock_tree_spec -file ../data/${rm_core_top}-ccopt_cts.spec
+create_ccopt_clock_tree_spec
+
+ccopt_design -check_prerequisites
+ccopt_design -outDir ../reports/layout/INNOVUS_RPT -prefix ccopt
+
+optDesign -postCTS -setup -hold -prefix POSTCTS_HOLD
+
+saveDesign ${rm_core_top}.clock_opt.enc
+
+set myOption "clocks"
+source ../my_scripts/intermediate_reporting.tcl
+```
 
 ### 4.13 执行 `route.tcl`
 
+``` tcl
+setNanoRouteMode -routeTopRoutingLayer 7 \
+                 -routeBottomRoutingLayer 2
+setNanoRouteMode -routeWithTimingDriven true \
+                 -routeWithSiDriven true \
+                 -routeWithLithoDriven false \
+                 -routeDesignRouteClockNetsFirst true \
+                 -routeReserveSpaceForMultiCut false \
+                 -drouteUseMultiCutViaEffort low \
+                 -drouteFixAntenna true
+
+routeDesign
+
+setExtractRCMode -engine postRoute \
+                 -effortLevel medium \
+                 -tQuantusForPostRoute true
+setOptMode -verbose true
+setOptMode -highEffortOptCells $hold_fixing_cells
+setOptMode -holdFixingCells $hold_fixing_cells
+
+optDesign -postRoute -drv
+optDesign -postRoute -incr
+optDesign -postRoute -hold
+
+timeDesign -postRoute -outDir ../reports/layout/INNOVUS_RPT
+timeDesign -postRoute -hold -outDir ../reports/layout/INNOVUS_RPT
+
+set myOption "postRoute"
+source ../my_scripts/intermediate_reporting.tcl
+
+addTieHiLo
+
+setNanoRouteMode -routeWithEco true \
+                 -drouteFixAntenna true \
+                 -routeInsertAntennaDiode true
+globalDetailRoute
+
+ecoRoute -fix_drc
+
+saveDesign ${rm_core_top}.route_opt.enc
+```
+
 ### 4.14 修 DRC 报错
+
+``` tcl
+deleteRouteBlk -all
+verify_drc
+ecoRoute -fix_drc
+
+globalDetailRoute
+verify_drc
+ecoRoute -fix_drc
+
+verify_drc
+```
 
 ### 4.15 执行 `add_core_filler.tcl`
 
+``` tcl
+setFillerMode -scheme locationFirst \
+              -minHole true \
+              -fitGap true \
+              -diffCellViol true
+
+addFiller -cell $rm_fill_cells
+
+ecoRoute -fix_drc
+
+setFillerMode -ecoMode true
+addFiller -fixDRC -fitGap -cell $rm_fill_cells
+
+verify_drc
+```
+
 ### 4.16 执行 `add_PG_pin.tcl`
 
+``` tcl
+for { set i 0 } { $i <= 32 } { incr i } {
+    set initX [expr 13.5 + $i *36]
+    set initY 0.75
+    set stripeHeight 1198.3
+    set stripeWidth 2
+    createPGPin VSS -geom M8 $initX $initY [expr $initX + $stripeWidth] [expr $initY + $stripeHeight]
+}
+
+for { set i 0 } { $i <= 32 } { incr i } {
+    set initX [expr 25.5 + $i *36]
+    set initY 2.15
+    set stripeHeight 1195.5
+    set stripeWidth 2
+    createPGPin VDD -geom M8 $initX $initY [expr $initX + $stripeWidth] [expr $initY + $stripeHeight]
+}
+
+for { set i 0 } { $i <= 32 } { incr i } {
+    set initX [expr 37.5 + $i *36]
+    set initY 1.45
+    set stripeHeight 1196.9
+    set stripeWidth 2
+    createPGPin VDD_CIM -geom M8 $initX $initY [expr $initX + $stripeWidth] [expr $initY + $stripeHeight]
+}
+
+saveDesign ${rm_core_top}.signoff.enc
+```
+
 ### 4.17 执行 `gen_files.tcl`
+
+``` tcl
+write_lef_abstract -5.8 \
+                   -specifyTopLayer M8 \
+                   -PGpinLayers {M8} \
+                   -stripePin \
+                   -cutObsMinSpacing \
+                   ../models/lef/${rm_core_top}.lef
+
+write_sdf -min_view ff_0p88v_125c_view \
+          -typ_view tt_0p80v_25c_view \
+          -max_view ss_0p72v_m40c_view \
+          -recompute_parallel_arcs \
+          ../models/sdf/${rm_core_top}.sdf
+
+write_sdc ../models/sdc/${rm_core_top}.sdc
+
+do_extract_model -view tt_0p80v_25c_view ../models/lib/${rm_core_top}_tt_0p80v_25c.lib
+
+streamOut -mapFile ${rm_lef_layer_map} ../data/${rm_core_top}.gds2 -mode ALL \
+          -merge " " \
+                 " " \ 
+                 " " \
+                 " " 
+
+saveNetlist ../data/${rm_core_top}.pg.flat.v -flat -phys -excludeLeafCell -exclueCellInst $lvs_exclude_cells
+```
