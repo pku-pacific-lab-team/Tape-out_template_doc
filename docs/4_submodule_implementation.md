@@ -459,28 +459,95 @@ addWellTap -prefix -DECAP -cellInterval $rm_tap_cell_distance -cell ${dcap_cell}
 
 ### 4.9 执行 `add_power_ring.tcl`
 
-#### 添加 Core Ring
+#### 添加 Core Rings
 
 ``` tcl
 setAddRingMode -avoid_short true
-addRing -nets [list VDD VDD_CIM VSS] -type core_rings -follow_core -layer {top M5 bottom M5 left M6 right M6} -width 0.35 -spacing 0.35 -center 0
+addRing -nets [list VDD VDD_CIM VSS] \
+        -type core_rings \
+        -follow core \
+        -layer {top M5 bottom M5 left M6 right M6} \
+        -width 0.35 \
+        -spacing 0.35 \
+        -center 0
 ```
 
-#### 添加 Block Ring
+* `-type core_rings`：指定生成的 Power rings 为 Core rings，即在 Core box 和 I/O boundary 之间的空隙生成我们指定的 Power rings（回忆在[设置版图大小](./4_submodule_implementation.md#43-执行-invs_init_settingtcl)的时候，我们指定了在 Core box 与 I/O boundary 之间设置 3.5um 的空隙）；
+* `-nets [list VDD VDD_CIM VSS]`：指定生成的 Power rings 的信号名称。对于 Core rings，该数字子模块中所有的 P/G 信号至少需要生成一条 Core ring；
+* `-follow core`：指定生成的 Core rings 以 Core boundary 为基准，如果设置 `-follow io`，则以 I/O boundary 为基准；
+* `-layer {top M5 bottom M5 left M6 right M6}`：字面意思，设置 Core rings 在每个方向所在的金属层；
+* `-width 0.35`：设置每一条 Core ring 的宽度；
+* `-spacing 0.35`：设置两条相邻 Core rings 之间的间距；
+* `-center 0`：设置 Core rings 是否在 I/O boundary 和 Core boundary 之间的中央，在此我们不指定 Core rings 位于间隙中央，因此需要通过 `-offset` 手动设置偏移量，在没有指定 `offset <value>` 的情况下，Innovus 工具会自动设置偏移量。
+
+添加 Core rings 之后的部分版图如下所示.
+
+<figure>
+  <img src="../figs/add_core_rings.png" width=80%>
+  <figcaption>Partial layout after adding core rings</figcaption>
+</figure>
+
+#### 添加 Block Rings
 
 ``` tcl
 # add power ring around SRAM IP
 selectInst $mainmem
-addRing -nets {VDD VSS} -type block_rings -around selected -layer {top M5 bottom M5 left M6 right M6} -width {top 0.14 bottom 0.14 left 0.7 right 0.7} -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} -center 0 -threshold 0 -jog_distance 0 -snap_wire None
+addRing -nets {VDD VSS} \
+        -type block_rings \
+        -around selected \
+        -layer {top M5 bottom M5 left M6 right M6} \
+        -width {top 0.14 bottom 0.14 left 0.7 right 0.7} \
+        -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} \
+        -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} \
+        -center 0 \
+        -threshold 0 \
+        -jog_distance 0 \
+        -snap_wire_center_to_grid None
 
 selectInst $dcache_tag0
-addRing -nets {VDD VSS} -type block_rings -around selected -layer {top M5 bottom M5 left M6 right M6} -width {top 0.14 bottom 0.14 left 0.7 right 0.7} -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} -center 0 -threshold 0 -jog_distance 0 -snap_wire None
+addRing -nets {VDD VSS} \
+        -type block_rings \
+        -around selected \
+        -layer {top M5 bottom M5 left M6 right M6} \
+        -width {top 0.14 bottom 0.14 left 0.7 right 0.7} \
+        -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} \
+        -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} \
+        -center 0 \
+        -threshold 0 \
+        -jog_distance 0 \
+        -snap_wire_center_to_grid None
 
 selectInst $dcache_tag1
-addRing -nets {VDD VSS} -type block_rings -around selected -layer {top M5 bottom M5 left M6 right M6} -width {top 0.14 bottom 0.14 left 0.7 right 0.7} -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} -center 0 -threshold 0 -jog_distance 0 -snap_wire None
+addRing -nets {VDD VSS} \
+        -type block_rings \
+        -around selected \
+        -layer {top M5 bottom M5 left M6 right M6} \
+        -width {top 0.14 bottom 0.14 left 0.7 right 0.7} \
+        -spacing {top 0.14 bottom 0.14 left 0.35 right 0.35} \
+        -offset {top 0.04 bottom 0.04 left 0.7 right 0.7} \
+        -center 0 \
+        -threshold 0 \
+        -jog_distance 0 \
+        -snap_wire_center_to_grid None
 
-# $dcache_data0, $dcache_data1, $icache_tag0, $icache_tag1, $icache_data0, $icache_data1 not shown for simplicity
+# add block rings around $dcache_data0, $dcache_data1, $icache_tag0, $icache_tag1, $icache_data0 and $icache_data1
+# not shown for simplicity
 ```
+
+* `-type block_rings`：指定我们在指定的 Macro 周围生成 Block rings，而非 Core rings；
+* `-nets {VDD VSS}`：指定生成的 Block rings 包括 VDD 和 VSS，而不包括 VDD_CIM，因为 **Block rings 用于给 Macro 周围的标准单元供电**，而不用于给 Macro（例如 CIM 或 SRAM IP）供电；
+* `-around selected`：指定生成的 Block rings 在选中的 Macro 周围，使用 `selectInst <instName>` 指定选中的 Macro；
+* `-threshold 0`：指定相邻 Macros 周围相同 P/G 信号的 Block rings 之间所允许的最小距离，如果 Block rings 之间的距离小于这个值，两条 Block rings 会融合为一条 Block ring。在此该阈值设置为 0um，也就是 Block rings 不会自动融合。
+* `-jog_distance 0`
+* `-snap_wire_center_to_grid None`
+* `-layer`, `-spacing`, `-width`, `-offset`, `-center` 选项的意义和作用与 Core rings 相同，不再赘述。
+
+一个 SRAM IP 周围的 Block rings 如下所示。
+
+<figure>
+  <img src="../figs/add_block_rings.png" width=80%>
+  <figcaption>Partial layout after adding block rings</figcaption>
+</figure>
 
 ### 4.10 执行 `add_power_stripe.tcl`
 
