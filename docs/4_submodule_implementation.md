@@ -555,21 +555,112 @@ addRing -nets {VDD VSS} \
 
 ``` tcl
 # add M6 power stripes
-addStripe -start_offset 5 -direction vertical -block_ring_top_layer_limit M6 -padcore_ring_bottom_layer_limit M1 -set_to_set_distance 34 -stacked_via_top_layer M6 -padcore_ring_top_layer_limit M6 -spacing 15 -layer M6 -block_ring_bottom_layer_limit M1 -width 2 -nets { VSS VDD } -stacked_via_bottom_layer M1 
+addStripe -nets { VSS VDD } \
+          -layer M6 \
+          -direction vertical \
+          -width 2 \
+          -spacing 15 \
+          -start_offset 5 \
+          -set_to_set_distance 34 \
+          -block_ring_bottom_layer_limit M1 \
+          -block_ring_top_layer_limit M6 \
+          -padcore_ring_bottom_layer_limit M1 \
+          -padcore_ring_top_layer_limit M6 \
+          -stacked_via_bottom_layer M1 \
+          -stacked_via_top_layer M6 
 
 # add M7 power stripes
-addStripe -start_offset 0.7 -direction horizontal -block_ring_top_layer_limit M7 -padcore_ring_bottom_layer_limit M6 -set_to_set_distance 24 -stacked_via_top_layer M7 -padcore_ring_top_layer_limit M7 -spacing 10 -layer M7 -block_ring_bottom_layer_limit M6 -width 2 -nets { VSS VDD } -stacked_via_bottom_layer M6 
+addStripe -nets { VSS VDD } \
+          -layer M7 \
+          -direction horizontal \
+          -width 2 \
+          -spacing 10 \
+          -start_offset 0.7 \
+          -set_to_set_distance 24 \
+          -block_ring_bottom_layer_limit M6 \
+          -block_ring_top_layer_limit M7 \
+          -padcore_ring_bottom_layer_limit M6 \
+          -padcore_ring_top_layer_limit M7 \
+          -stacked_via_bottom_layer M6 \
+          -stacked_via_top_layer M7 
 
 # add M8 power stripes, serve as P/G pins
-addStripe -start_offset 10 -direction vertical -block_ring_top_layer_limit M8 -padcore_ring_bottom_layer_limit M5 -set_to_set_distance 36 -stacked_via_top_layer M8 -padcore_ring_top_layer_limit M8 -spacing 10 -layer M8 -block_ring_bottom_layer_limit M5 -width 2 -nets { VSS VDD VDD_CIM } -stacked_via_bottom_layer M5 
+addStripe -nets { VSS VDD VDD_CIM } \
+          -layer M8 \
+          -direction vertical \
+          -width 2 \
+          -spacing 10 \
+          -start_offset 10 \
+          -set_to_set_distance 36 \
+          -block_ring_bottom_layer_limit M6 \
+          -block_ring_top_layer_limit M8 \
+          -padcore_ring_bottom_layer_limit M6 \
+          -padcore_ring_top_layer_limit M8 \
+          -stacked_via_bottom_layer M6 \
+          -stacked_via_top_layer M8 
 ```
+
+如此前[全局 P/G 网络设置](./4_submodule_implementation.md#46-执行-global_net_connecttcl)，CIM macro 由 `VDD_CIM` 供电，其余 SRAM IP 和标准单元用 `VDD` 供电。因此，最顶层的 P/G 网络中（M8层），包含所有的 P/G 网络，通过 Vias 和低层的 Power stripes 给各个 Macro 和标准单元供电。
+
+**为 CIM macros 供电**：在该数字子系统中，CIM macro 最顶层的 P/G 网络是 **M6 横向排布**的 `VDDC` 和 `VSSC` Power stripes。
+因此，M8 的 `VDD_CIM` 通过 VIA6 和 VIA7 连接到 CIM macro 内部的 P/G Pin，如下图所示。
+
+<figure>
+  <img src="../figs/cim_macro_pg_connection.png" width=90%>
+  <figcaption>P/G connections for CIM macros</figcaption>
+</figure>
+
+**为 SRAM IP 供电**：SRAM IP 内部最顶层的 P/G 网络是 **M5 横向排布**的 `VDDPE`, `VDDCE` 和 `VSSE`。
+因此，M6 的 `VDD` 通过 VIA5 连接到 SRAM macro 内部的 P/G Pin，如下图所示。
+
+<figure>
+  <img src="../figs/sram_pg_connection.png" width=90%>
+  <figcaption>P/G connections for SRAM macros</figcaption>
+</figure>
+
+添加全局 P/G 网络之后的版图如下所示。
+
+<figure>
+  <img src="../figs/add_power_stripes.png" width=80%>
+  <figcaption>Layout after adding power stripes</figcaption>
+</figure>
 
 #### 进行 Special Route
 
 ``` tcl
-sroute -connect {corePin } -layerChangeRange { M1 M6 } -blockPinTarget {nearestRingStripe nearestTarget } -padPinPortConnect {allPort oneGeom } -checkAlignedSecondaryPin 1 -blockPin useLef -allowJogging 0 -crossoverViaBottomLayer M1 -allowLayerChange 1 -targetViaTopLayer M6 -crossoverViaTopLayer M6 -targetViaBottomLayer M1 -nets { VSS VDD }
-editPowerVia -skip_via_on_pin Standardcell -bottom_layer M1 -add_vias 1 -top_layer M6
+sroute -connect { corePin } \
+       -nets { VSS VDD }
+       -layerChangeRange { M1 M6 } \
+       -blockPinTarget { nearestRingStripe nearestTarget } \
+       -padPinPortConnect { allPort oneGeom } \
+       -checkAlignedSecondaryPin 1 \
+       -blockPin useLef \
+       -allowJogging 0 \
+       -allowLayerChange 1 \
+       -targetViaBottomLayer M1 \
+       -targetViaTopLayer M6 \
+       -crossoverViaBottomLayer M1 \
+       -crossoverViaTopLayer M6 \
+
+editPowerVia -skip_via_on_pin Standardcell \
+             -bottom_layer M1 \
+             -top_layer M6 \
+             -add_vias 1
 ```
+
+M1 的 Special route 将处于 Core rings 和各个 Block rings 的相同 P/G 网络连接到一起，用于给标准单元行进行供电，相邻行为 `VDD` 和 `VSS` 交替。
+
+添加 Special route 之后的版图如下所示。
+
+<figure>
+  <img src="../figs/sroute.png" width=80%>
+  <figcaption>Partial layout after sroute</figcaption>
+</figure>
+
+!!! tip "检查 Global Net Connection"
+    在添加全局的 P/G 网络后，需要注意检查最顶层 (M8) 的 P/G 有没有通过 VIA 正确连接到最底层 (M1) 以及各个 Macro 内部的 P/G 网络中。
+    
+    如果发现连接有误，需要及时修改 `global_net_connect.tcl` 和 `add_power_stripe.tcl` 中的相关命令，并通过查看 `LEF` 文件或者 Innovus GUI 界面查看 各个 Macro 内部 P/G Pin 所在的金属层。
 
 ### 4.11 执行 `place.tcl`
 
