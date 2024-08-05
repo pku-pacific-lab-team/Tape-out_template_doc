@@ -1825,12 +1825,180 @@
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nv">editPowerVia</span><span class="w"> </span><span class="o">-</span>skip_via_on_pin<span class="w"> </span>Standardcell<span class="w"> </span><span class="o">-</span>bottom_layer<span class="w"> </span>M1<span class="w"> </span><span class="o">-</span>add_vias<span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span>top_layer<span class="w"> </span>M6
 </code></pre></div>
 <h3 id="411-placetcl">4.11 执行 <code>place.tcl</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nv">createPlaceBlockage</span><span class="w"> </span><span class="o">-</span>name<span class="w"> </span>setdensity_blk1<span class="w"> </span><span class="o">-</span>box<span class="w"> </span><span class="mi">300</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="o">-</span>type<span class="w"> </span>Partial<span class="w"> </span><span class="o">-</span>density<span class="w"> </span><span class="mi">75</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nv">setTieHiLoMode</span><span class="w"> </span><span class="o">-</span>cell<span class="w"> </span><span class="nv">$rm_tie_hi_lo_list</span><span class="w"> </span><span class="o">-</span>maxFanout<span class="w"> </span><span class="mi">8</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="nv">deleteTieHiLo</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>reset
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>place_detail_legalization_inst_gap<span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>place_detail_use_no_diffusion_one_site_filler<span class="w"> </span>false
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>place_detail_preroute_as_obs<span class="w"> </span><span class="k">{</span><span class="nv">6</span><span class="k">}</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="nv">setPlaceMode</span><span class="w"> </span><span class="o">-</span>fp<span class="w"> </span>false
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="nv">setAnalysisMmode</span><span class="w"> </span><span class="o">-</span>aocv<span class="w"> </span>false
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="nv">placeDesign</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="nv">addTieHiLo</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="nv">place_opt_design</span><span class="w"> </span><span class="o">-</span>incremental<span class="w"> </span><span class="o">-</span>out_dir<span class="w"> </span>..<span class="o">/</span>reports<span class="o">/</span>layout<span class="o">/</span>INNOVUS_RPT<span class="w"> </span><span class="o">-</span>prefix<span class="w"> </span>place
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="nv">timeDesign</span><span class="w"> </span><span class="o">-</span>preCTS<span class="w"> </span><span class="o">-</span>outDir<span class="w"> </span>..<span class="o">/</span>reports<span class="o">/</span>layout<span class="o">/</span>INNOVUS_RPT
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>preCTS<span class="w"> </span><span class="o">-</span>drv
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>preCTS<span class="w"> </span><span class="o">-</span>incr
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>preCTS<span class="w"> </span><span class="o">-</span>hold
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="k">set</span><span class="w"> </span>myOption<span class="w"> </span><span class="s2">&quot;preCTS&quot;</span>
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="nb">source</span><span class="w"> </span>..<span class="o">/</span>my_scripts<span class="o">/</span>intermediate_reporting.tcl
+<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>
+<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a><span class="nv">saveDesign</span><span class="w"> </span><span class="nv">${rm_core_top}</span>.place_opt.enc
+</code></pre></div>
 <h3 id="412-ctstcl">4.12 执行 <code>cts.tcl</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nv">set_ccopt_property</span><span class="w"> </span><span class="o">-</span>update_io_latency<span class="w"> </span>true
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nv">set_ccopt_property</span><span class="w"> </span><span class="o">-</span>force_update_io_latency<span class="w"> </span>true
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nv">set_ccopt_property</span><span class="w"> </span><span class="o">-</span>enable_all_views_for_io_letency_update<span class="w"> </span>true
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nv">set_ccopt_property</span><span class="w"> </span><span class="o">-</span>max_fanout<span class="w"> </span><span class="nv">${rm_cts_max_fanout}</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nv">set_ccopt_property</span><span class="w"> </span><span class="o">-</span>effort<span class="w"> </span>high
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="nv">set_ccopt_property</span><span class="w"> </span>buffer_cells<span class="w"> </span><span class="nv">${rm_clock_buf_cap_cell}</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="nv">set_ccopt_property</span><span class="w"> </span>inverter_cells<span class="w"> </span><span class="nv">${rm_clock_inv_cap_cell}</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nv">set_ccopt_property</span><span class="w"> </span>clock_gating_cells<span class="w"> </span><span class="nv">${rm_clock_icg_cell}</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="nv">set_ccopt_mode</span><span class="w"> </span><span class="o">-</span>cts_use_min_max_gate_delay<span class="w"> </span>false<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">               </span><span class="nv">-cts_target_slew</span><span class="w"> </span><span class="nv">${rm_max_clock_transition}</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">               </span><span class="nv">-cts_target_skew</span><span class="w"> </span><span class="mf">0.15</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">               </span><span class="nv">-modify_clock_latency</span><span class="w"> </span>false
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="nv">create_ccopt_clock_tree_spec</span><span class="w"> </span><span class="o">-</span>file<span class="w"> </span>..<span class="o">/</span>data<span class="o">/</span><span class="nv">${rm_core_top}</span><span class="o">-</span>ccopt_cts.spec
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="nv">create_ccopt_clock_tree_spec</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="nv">ccopt_design</span><span class="w"> </span><span class="o">-</span>check_prerequisites
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="nv">ccopt_design</span><span class="w"> </span><span class="o">-</span>outDir<span class="w"> </span>..<span class="o">/</span>reports<span class="o">/</span>layout<span class="o">/</span>INNOVUS_RPT<span class="w"> </span><span class="o">-</span>prefix<span class="w"> </span>ccopt
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>postCTS<span class="w"> </span><span class="o">-</span>setup<span class="w"> </span><span class="o">-</span>hold<span class="w"> </span><span class="o">-</span>prefix<span class="w"> </span>POSTCTS_HOLD
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>
+<a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="nv">saveDesign</span><span class="w"> </span><span class="nv">${rm_core_top}</span>.clock_opt.enc
+<a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>
+<a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a><span class="k">set</span><span class="w"> </span>myOption<span class="w"> </span><span class="s2">&quot;clocks&quot;</span>
+<a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a><span class="nb">source</span><span class="w"> </span>..<span class="o">/</span>my_scripts<span class="o">/</span>intermediate_reporting.tcl
+</code></pre></div>
 <h3 id="413-routetcl">4.13 执行 <code>route.tcl</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nv">setNanoRouteMode</span><span class="w"> </span><span class="o">-</span>routeTopRoutingLayer<span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">                 </span><span class="nv">-routeBottomRoutingLayer</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nv">setNanoRouteMode</span><span class="w"> </span><span class="o">-</span>routeWithTimingDriven<span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">                 </span><span class="nv">-routeWithSiDriven</span><span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">                 </span><span class="nv">-routeWithLithoDriven</span><span class="w"> </span>false<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">                 </span><span class="nv">-routeDesignRouteClockNetsFirst</span><span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">                 </span><span class="nv">-routeReserveSpaceForMultiCut</span><span class="w"> </span>false<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">                 </span><span class="nv">-drouteUseMultiCutViaEffort</span><span class="w"> </span>low<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">                 </span><span class="nv">-drouteFixAntenna</span><span class="w"> </span>true
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="nv">routeDesign</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="nv">setExtractRCMode</span><span class="w"> </span><span class="o">-</span>engine<span class="w"> </span>postRoute<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">                 </span><span class="nv">-effortLevel</span><span class="w"> </span>medium<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">                 </span><span class="nv">-tQuantusForPostRoute</span><span class="w"> </span>true
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="nv">setOptMode</span><span class="w"> </span><span class="o">-</span>verbose<span class="w"> </span>true
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="nv">setOptMode</span><span class="w"> </span><span class="o">-</span>highEffortOptCells<span class="w"> </span><span class="nv">$hold_fixing_cells</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="nv">setOptMode</span><span class="w"> </span><span class="o">-</span>holdFixingCells<span class="w"> </span><span class="nv">$hold_fixing_cells</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>postRoute<span class="w"> </span><span class="o">-</span>drv
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>postRoute<span class="w"> </span><span class="o">-</span>incr
+<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="nv">optDesign</span><span class="w"> </span><span class="o">-</span>postRoute<span class="w"> </span><span class="o">-</span>hold
+<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>
+<a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="nv">timeDesign</span><span class="w"> </span><span class="o">-</span>postRoute<span class="w"> </span><span class="o">-</span>outDir<span class="w"> </span>..<span class="o">/</span>reports<span class="o">/</span>layout<span class="o">/</span>INNOVUS_RPT
+<a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="nv">timeDesign</span><span class="w"> </span><span class="o">-</span>postRoute<span class="w"> </span><span class="o">-</span>hold<span class="w"> </span><span class="o">-</span>outDir<span class="w"> </span>..<span class="o">/</span>reports<span class="o">/</span>layout<span class="o">/</span>INNOVUS_RPT
+<a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a>
+<a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a><span class="k">set</span><span class="w"> </span>myOption<span class="w"> </span><span class="s2">&quot;postRoute&quot;</span>
+<a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a><span class="nb">source</span><span class="w"> </span>..<span class="o">/</span>my_scripts<span class="o">/</span>intermediate_reporting.tcl
+<a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a>
+<a id="__codelineno-25-30" name="__codelineno-25-30" href="#__codelineno-25-30"></a><span class="nv">addTieHiLo</span>
+<a id="__codelineno-25-31" name="__codelineno-25-31" href="#__codelineno-25-31"></a>
+<a id="__codelineno-25-32" name="__codelineno-25-32" href="#__codelineno-25-32"></a><span class="nv">setNanoRouteMode</span><span class="w"> </span><span class="o">-</span>routeWithEco<span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-33" name="__codelineno-25-33" href="#__codelineno-25-33"></a><span class="w">                 </span><span class="nv">-drouteFixAntenna</span><span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-25-34" name="__codelineno-25-34" href="#__codelineno-25-34"></a><span class="w">                 </span><span class="nv">-routeInsertAntennaDiode</span><span class="w"> </span>true
+<a id="__codelineno-25-35" name="__codelineno-25-35" href="#__codelineno-25-35"></a><span class="nv">globalDetailRoute</span>
+<a id="__codelineno-25-36" name="__codelineno-25-36" href="#__codelineno-25-36"></a>
+<a id="__codelineno-25-37" name="__codelineno-25-37" href="#__codelineno-25-37"></a><span class="nv">ecoRoute</span><span class="w"> </span><span class="o">-</span>fix_drc
+<a id="__codelineno-25-38" name="__codelineno-25-38" href="#__codelineno-25-38"></a>
+<a id="__codelineno-25-39" name="__codelineno-25-39" href="#__codelineno-25-39"></a><span class="nv">saveDesign</span><span class="w"> </span><span class="nv">${rm_core_top}</span>.route_opt.enc
+</code></pre></div>
 <h3 id="414-drc">4.14 修 DRC 报错</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nv">deleteRouteBlk</span><span class="w"> </span><span class="o">-</span>all
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nv">verify_drc</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nv">ecoRoute</span><span class="w"> </span><span class="o">-</span>fix_drc
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nv">globalDetailRoute</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="nv">verify_drc</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nv">ecoRoute</span><span class="w"> </span><span class="o">-</span>fix_drc
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="nv">verify_drc</span>
+</code></pre></div>
 <h3 id="415-add_core_fillertcl">4.15 执行 <code>add_core_filler.tcl</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">setFillerMode</span><span class="w"> </span><span class="o">-</span>scheme<span class="w"> </span>locationFirst<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">              </span><span class="nv">-minHole</span><span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">              </span><span class="nv">-fitGap</span><span class="w"> </span>true<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">              </span><span class="nv">-diffCellViol</span><span class="w"> </span>true
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nv">addFiller</span><span class="w"> </span><span class="o">-</span>cell<span class="w"> </span><span class="nv">$rm_fill_cells</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="nv">ecoRoute</span><span class="w"> </span><span class="o">-</span>fix_drc
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="nv">setFillerMode</span><span class="w"> </span><span class="o">-</span>ecoMode<span class="w"> </span>true
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="nv">addFiller</span><span class="w"> </span><span class="o">-</span>fixDRC<span class="w"> </span><span class="o">-</span>fitGap<span class="w"> </span><span class="o">-</span>cell<span class="w"> </span><span class="nv">$rm_fill_cells</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="nv">verify_drc</span>
+</code></pre></div>
 <h3 id="416-add_pg_pintcl">4.16 执行 <code>add_PG_pin.tcl</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">for</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">32</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nb">incr</span><span class="w"> </span>i<span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>initX<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="mf">13.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="o">*</span><span class="mi">36</span><span class="k">]</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>initY<span class="w"> </span><span class="mf">0.75</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>stripeHeight<span class="w"> </span><span class="mf">1198.3</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>stripeWidth<span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="nv">createPGPin</span><span class="w"> </span>VSS<span class="w"> </span><span class="o">-</span>geom<span class="w"> </span>M8<span class="w"> </span><span class="nv">$initX</span><span class="w"> </span><span class="nv">$initY</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$initX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$stripeWidth</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$initY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$stripeHeight</span><span class="k">]</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="k">}</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="k">for</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">32</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nb">incr</span><span class="w"> </span>i<span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>initX<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="mf">25.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="o">*</span><span class="mi">36</span><span class="k">]</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>initY<span class="w"> </span><span class="mf">2.15</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>stripeHeight<span class="w"> </span><span class="mf">1195.5</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>stripeWidth<span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">    </span><span class="nv">createPGPin</span><span class="w"> </span>VDD<span class="w"> </span><span class="o">-</span>geom<span class="w"> </span>M8<span class="w"> </span><span class="nv">$initX</span><span class="w"> </span><span class="nv">$initY</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$initX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$stripeWidth</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$initY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$stripeHeight</span><span class="k">]</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="k">}</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="k">for</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">32</span><span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="w"> </span><span class="nb">incr</span><span class="w"> </span>i<span class="w"> </span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>initX<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="mf">37.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="o">*</span><span class="mi">36</span><span class="k">]</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>initY<span class="w"> </span><span class="mf">1.45</span>
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>stripeHeight<span class="w"> </span><span class="mf">1196.9</span>
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span>stripeWidth<span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="w">    </span><span class="nv">createPGPin</span><span class="w"> </span>VDD_CIM<span class="w"> </span><span class="o">-</span>geom<span class="w"> </span>M8<span class="w"> </span><span class="nv">$initX</span><span class="w"> </span><span class="nv">$initY</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$initX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$stripeWidth</span><span class="k">]</span><span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="nv">$initY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$stripeHeight</span><span class="k">]</span>
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a><span class="k">}</span>
+<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>
+<a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a><span class="nv">saveDesign</span><span class="w"> </span><span class="nv">${rm_core_top}</span>.signoff.enc
+</code></pre></div>
 <h3 id="417-gen_filestcl">4.17 执行 <code>gen_files.tcl</code></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nv">write_lef_abstract</span><span class="w"> </span><span class="o">-</span><span class="mf">5.8</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">                   </span><span class="nv">-specifyTopLayer</span><span class="w"> </span>M8<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">                   </span><span class="nv">-PGpinLayers</span><span class="w"> </span><span class="k">{</span><span class="nv">M8</span><span class="k">}</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">                   </span><span class="nv">-stripePin</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">                   </span><span class="nv">-cutObsMinSpacing</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">                   </span><span class="nv">..</span><span class="o">/</span>models<span class="o">/</span>lef<span class="o">/</span><span class="nv">${rm_core_top}</span>.lef
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="nv">write_sdf</span><span class="w"> </span><span class="o">-</span>min_view<span class="w"> </span>ff_0p88v_125c_view<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">          </span><span class="nv">-typ_view</span><span class="w"> </span>tt_0p80v_25c_view<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">          </span><span class="nv">-max_view</span><span class="w"> </span>ss_0p72v_m40c_view<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">          </span><span class="nv">-recompute_parallel_arcs</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">          </span><span class="nv">..</span><span class="o">/</span>models<span class="o">/</span>sdf<span class="o">/</span><span class="nv">${rm_core_top}</span>.sdf
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="nv">write_sdc</span><span class="w"> </span>..<span class="o">/</span>models<span class="o">/</span>sdc<span class="o">/</span><span class="nv">${rm_core_top}</span>.sdc
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>
+<a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="nv">do_extract_model</span><span class="w"> </span><span class="o">-</span>view<span class="w"> </span>tt_0p80v_25c_view<span class="w"> </span>..<span class="o">/</span>models<span class="o">/</span>lib<span class="o">/</span><span class="nv">${rm_core_top}</span>_tt_0p80v_25c.lib
+<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a>
+<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a><span class="nv">streamOut</span><span class="w"> </span><span class="o">-</span>mapFile<span class="w"> </span><span class="nv">${rm_lef_layer_map}</span><span class="w"> </span>..<span class="o">/</span>data<span class="o">/</span><span class="nv">${rm_core_top}</span>.gds2<span class="w"> </span><span class="o">-</span>mode<span class="w"> </span>ALL<span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="w">          </span><span class="nv">-merge</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="w">                 </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="err">\</span><span class="w"> </span>
+<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="w">                 </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="err">\</span>
+<a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a><span class="w">                 </span><span class="s2">&quot; &quot;</span><span class="w"> </span>
+<a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a>
+<a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a><span class="nv">saveNetlist</span><span class="w"> </span>..<span class="o">/</span>data<span class="o">/</span><span class="nv">${rm_core_top}</span>.pg.flat.v<span class="w"> </span><span class="o">-</span>flat<span class="w"> </span><span class="o">-</span>phys<span class="w"> </span><span class="o">-</span>excludeLeafCell<span class="w"> </span><span class="o">-</span>exclueCellInst<span class="w"> </span><span class="nv">$lvs_exclude_cells</span>
+</code></pre></div>
 
 
 
@@ -1853,7 +2021,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 4, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 5, 2024</span>
   </span>
 
     
@@ -1924,7 +2092,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (58.0%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (42.0%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (42.94%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (57.06%)</span>
       </small>
     </div>
   
