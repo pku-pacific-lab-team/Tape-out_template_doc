@@ -7,7 +7,7 @@
 
 在后端设计中，许多脚本参数设置，例如电源网络的 Width，Spacing，以及 Macro 的摆放位置需要根据版图大小和布局布线情况来设定，需要多次的迭代优化。
 
-## 物理设计流程介绍
+## 物理设计模板文件说明
 
 !!! Warning "注意"
     同[数字子系统的逻辑综合](./2_submodule_synthesis.md)一样，在后端设计中，我们继续使用 `/work/home/ztzhu/tapeout_templates/submodule_tapeout/` 文件夹。
@@ -20,6 +20,8 @@
 * `./my_scripts/`：存放用户进行物理设计各个阶段的命令脚本；
 * `./sram/`（_可选_）：数字子系统中例化的SRAM高速缓存或寄存器堆的专用 IP 核（`CDL`, `LEF`, `LIB`, `Verilog`等）；
 * `./asic_ip/`（_可选_）：数字子系统中例化的其他 IP 核（例如 CIM Macro），或者更低层级的数字子系统的相关文件（`CDL`, `LEF`, `LIB`, `Verilog`等）。
+
+## 物理设计流程介绍
 
 该模板文件以 **CVA6 RISC-V CPU** 的后端设计流程作为示例。
 在这个 CPU 中，包括用 SRAM Compiler 生成的主存储器、I-Cache 和 D-Cache，以及定制设计的 CIM 模块。
