@@ -48,6 +48,8 @@
     * [8. PCB绘制](./8_PCB.md)
     * [9. 封装](./9_package.md)
     * [10. 测试](./10_testing.md)
+* 五、附录
+    * [11. RISC-V CPU 调试](./11_cpu_debug.md)
 
 ## 更新日志
 
