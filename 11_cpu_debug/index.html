@@ -16,6 +16,8 @@
         <link rel="prev" href="../10_testing/">
       
       
+        <link rel="next" href="../12_assembly/">
+      
       
       <link rel="icon" href="../figs/pku_logo_red.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
@@ -804,6 +806,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. C Assembly
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1275,9 +1298,18 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <li><code>info registers</code>：列出所有寄存器的值。</li>
 <li><code>p $t0</code>：查看某个（t0）寄存器的值。</li>
 <li><code>set {int}0x54321 = 0xabcdf</code>：将地址 0x54321 处的 4 个字节的内容设置为 16 进制的 abcdf。</li>
-<li><code>stepi</code>：执行 pc 地址对应的指令。</li>
 <li><code>load a.o</code>：指令能将可执行文件 <code>a.o</code> 载入到主存当中，并且将 PC 的值复位。</li>
 </ul>
+<p>有关如何添加断点和执行指令，可以参考下图。</p>
+<figure>
+  <img src="../figs/gdb_breakpoint.png" width=90%>
+  <figcaption>GDB 添加断点与执行指令</figcaption>
+</figure>
+
+<div class="admonition info">
+<p class="admonition-title">测试代码</p>
+<p>有关如何编写测试代码，请参考 <a href="../12_assembly/">12. C 代码编译</a>。</p>
+</div>
 <div class="admonition success">
 <p>特别感谢 Jiaqi Zhou，<a href="https://ieeexplore.ieee.org/author/37089999502">Yiyang Sun</a>，Peiran Yan，Siyuan He 对本页内容的贡献和校对！</p>
 </div>
@@ -1410,6 +1442,22 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
             </div>
           </a>
         
+        
+          
+          <a href="../12_assembly/" class="md-footer__link md-footer__link--next" aria-label="下一页: 12. C Assembly">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                12. C Assembly
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

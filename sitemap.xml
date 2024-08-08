@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/12_assembly/</loc>
+         <lastmod>2024-08-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/1_submodule_behavioral_simulation/</loc>
          <lastmod>2024-08-08</lastmod>
          <changefreq>daily</changefreq>
