@@ -415,10 +415,17 @@ Type "apropos word" to search for commands related to "word".
 - `info registers`：列出所有寄存器的值。
 - `p $t0`：查看某个（t0）寄存器的值。
 - `set {int}0x54321 = 0xabcdf`：将地址 0x54321 处的 4 个字节的内容设置为 16 进制的 abcdf。
-- `stepi`：执行 pc 地址对应的指令。
 - `load a.o`：指令能将可执行文件 `a.o` 载入到主存当中，并且将 PC 的值复位。
 
+有关如何添加断点和执行指令，可以参考下图。
 
+<figure>
+  <img src="../figs/gdb_breakpoint.png" width=90%>
+  <figcaption>GDB 添加断点与执行指令</figcaption>
+</figure>
+
+!!! info "测试代码"
+    有关如何编写测试代码，请参考 [12. C 代码编译](./12_assembly.md)。
 
 !!! success ""
     特别感谢 Jiaqi Zhou，[Yiyang Sun](https://ieeexplore.ieee.org/author/37089999502)，Peiran Yan，Siyuan He 对本页内容的贡献和校对！
