@@ -51,6 +51,7 @@
 * 五、附录
     * [11. RISC-V CPU 调试](./11_cpu_debug.md)
     * [12. C 代码编译](./12_assembly.md)
+    * [13. WSL](./13_wsl.md)
 
 ## 更新日志
 
