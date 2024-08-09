@@ -81,3 +81,7 @@ nav:
     - 8. PCB: 8_PCB.md
     - 9. Packaging: 9_package.md
     - 10. Testing: 10_testing.md
+  - V. Appendix:
+    - 11. RISC-V CPU Debugging: 11_cpu_debug.md
+    - 12. C Assembly: 12_assembly.md
+    - 13. WSL: 13_wsl.md
