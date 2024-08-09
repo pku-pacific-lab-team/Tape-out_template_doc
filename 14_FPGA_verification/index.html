@@ -10,26 +10,24 @@
         <meta name="author" content="Bwoah-Kimi">
       
       
-        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/">
+        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/14_FPGA_verification/">
       
       
       
-        <link rel="next" href="0_eda/">
       
-      
-      <link rel="icon" href="figs/pku_logo_red.png">
+      <link rel="icon" href="../figs/pku_logo_red.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
-        <title>Documentation for Tape-out</title>
+        <title>13. FPGA 验证 - Documentation for Tape-out</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.3cba04c6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="extra.css">
+      <link rel="stylesheet" href="../extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tape-out" class="md-skip">
+        <a href="#13-fpga" class="md-skip">
           跳转至
         </a>
       
@@ -92,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="." title="Documentation for Tape-out" class="md-header__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
+    <a href=".." title="Documentation for Tape-out" class="md-header__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
       
-  <img src="figs/pku_logo.png" alt="logo">
+  <img src="../figs/pku_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome to Tape-out Docs!
+              13. FPGA 验证
             
           </span>
         </div>
@@ -224,9 +222,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Documentation for Tape-out" class="md-nav__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
+    <a href=".." title="Documentation for Tape-out" class="md-nav__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
       
-  <img src="figs/pku_logo.png" alt="logo">
+  <img src="../figs/pku_logo.png" alt="logo">
 
     </a>
     Documentation for Tape-out
@@ -250,30 +248,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Welcome to Tape-out Docs!
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -282,86 +260,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      模板文件结构
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      目录
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      更新日志
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="更新日志">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      当前版本
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      历史版本
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      致谢
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -373,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="0_eda/" class="md-nav__link">
+      <a href="../0_eda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -428,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="1_submodule_behavioral_simulation/" class="md-nav__link">
+      <a href="../1_submodule_behavioral_simulation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -449,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="2_submodule_synthesis/" class="md-nav__link">
+      <a href="../2_submodule_synthesis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -470,7 +368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="3_submodule_gate_level_simulation/" class="md-nav__link">
+      <a href="../3_submodule_gate_level_simulation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -533,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="4_submodule_implementation/" class="md-nav__link">
+      <a href="../4_submodule_implementation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -554,7 +452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="5_io/" class="md-nav__link">
+      <a href="../5_io/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -575,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="6_lvs_drc/" class="md-nav__link">
+      <a href="../6_lvs_drc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -596,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="7_final_layout/" class="md-nav__link">
+      <a href="../7_final_layout/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -659,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="8_PCB/" class="md-nav__link">
+      <a href="../8_PCB/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -680,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="9_package/" class="md-nav__link">
+      <a href="../9_package/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -701,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10_testing/" class="md-nav__link">
+      <a href="../10_testing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -764,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="11_cpu_debug/" class="md-nav__link">
+      <a href="../11_cpu_debug/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -785,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="12_assembly/" class="md-nav__link">
+      <a href="../12_assembly/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -806,7 +704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="13_wsl/" class="md-nav__link">
+      <a href="../13_wsl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -854,46 +752,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#fpga" class="md-nav__link">
     <span class="md-ellipsis">
-      模板文件结构
+      FPGA 验证流程简介
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      目录
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      更新日志
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="更新日志">
+    <nav class="md-nav" aria-label="FPGA 验证流程简介">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      当前版本
+      导入设计
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      历史版本
+      编写仿真程序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavioral-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavioral Simulation 行为仿真
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logic-synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logic Synthesis 逻辑综合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block-ram" class="md-nav__link">
+    <span class="md-ellipsis">
+      替换 Block RAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation 物理实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-bitstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate Bitstream
     </span>
   </a>
   
@@ -901,15 +826,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      致谢
-    </span>
-  </a>
   
 </li>
       
@@ -933,93 +849,91 @@
     
       
     
-    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/index.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/14_FPGA_verification.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="tape-out">Tape-out模板说明文档</h1>
-<p>因为流片流程较为繁杂，涉及到多个 EDA 工具以及相应的脚本文件，本文档中整理了一份<strong>适用于 TSMC 22nm</strong> 的数字芯片后端设计流程文件模板，并对相关命令和脚本文件进行了简要说明和解释。</p>
-<p>我们希望通过模板文件和说明文档，帮助后续接触该模板的朋友们快速熟悉数字后端设计流程。然而，一份说明文档不可能做到面面俱到，要更加深入地了解数字后端设计流程，还需要阅读 EDA 工具的用户手册和其他官方文档，并通过实践和不断试错来积累经验。</p>
+<h1 id="13-fpga">13. FPGA 验证</h1>
+<div class="admonition warning">
+<p class="admonition-title">Under development!</p>
+</div>
+<p>在实际流片之前，我们需要在 FPGA 平台上实现我们<strong>可综合的</strong>数字系统设计，从而验证功能正确性。</p>
+<p>我们使用 Xilinx Vivado 2019.1 进行 FPGA 验证。</p>
+<h2 id="fpga">FPGA 验证流程简介</h2>
+<p>在完成 RTL 代码设计之后，我们就可以进入 FPGA 验证流程（可以与流片流程同步进行），大致分为以下几个阶段。</p>
+<h3 id="_1">导入设计</h3>
+<p>打开 Vivado，选择 <code>Create Project</code>，选择合适的工程名字和路径。</p>
+<div class="admonition warning">
+<p class="admonition-title">关于路径名称</p>
+<p>如果是在本地运行（在Windows 系统或者 WSL 中），尽量避免中文路径，否则 Vivado 后续可能会报错。</p>
+</div>
+<p>选择 <code>RTL Project</code>，连续选择 <code>Next</code>，在 <code>Default Part</code> 选择验证所使用的 FPGA 核心板型号。</p>
 <details class="info">
-<summary>22nm vs. 28nm</summary>
-<p>28nm和22nm属于同一个工艺节点，这意味着二者的区别<strong>仅限于尺寸</strong>，其他的例如 DRC、LVS 规则<strong>完全相同</strong>。EDA 工具中，无论是22nm还是28nm工艺，其坐标或者其他尺寸均为28nm下的尺寸。22nm工艺只会在流片的时候进行尺寸缩放（x0.855）。</p>
+<summary>FPGA 核心板与开发板</summary>
+<p><strong>FPGA 核心板</strong>：通常是一个小型的模块，包括了 FPGA 芯片以及其必要的外围电路，主要用于嵌入到更大的系统中，作为系统的一部分。核心板上一般包括 FPGA 芯片、必要的电源管理电路、时钟电路、基本的 I/O 接口等。它们通常没有太多的扩展接口和调试功能。</p>
+<p><strong>FPGA 开发板</strong>：是一个<strong>完整的开发平台</strong>，包含了核心板以及更多的外围设备和接口，用于 FPGA 的开发、调试和验证。它适合于开发者进行 FPGA 设计的原型验证和测试。开发板除了包含核心板的所有功能外，还包括更多的扩展接口（例如 USB 、以太网、HDMI 等）、调试接口（如 JTAG ）、存储器（如 SD 卡插槽）、显示器（如 LCD 屏幕）等，具体有哪些扩展接口取决于开发板的型号。</p>
 </details>
+<p>完成工程创建向导之后即可进入 Vivado 主界面。在 <code>PROJECT MANAGER</code> -&gt; <code>Sources</code> 添加 RTL 代码。</p>
 <figure>
-  <img src="./figs/digital_design_flow.png" width=80%>
-  <figcaption>数字芯片设计流程</figcaption>
+  <img src="../figs/vivado_sources.png" width=80%>
+  <figcaption>Adding Vivado source files</figcaption>
 </figure>
 
-<div class="admonition question">
-<p class="admonition-title">关于文档</p>
-<p>该文档还在持续开发更新之中，若出现错误或纰漏，还请在 GitHub 仓库中提出 Issue！
-如果有改进意见，欢迎提交 Pull Request！</p>
-</div>
-<h2 id="_1">模板文件结构</h2>
-<p>因为学术流片大多是 <a href="https://en.wikipedia.org/wiki/Multi-project_wafer_service">MPW</a>（多项目晶圆服务），每个流片项目最起码是一个数字子系统，甚至可能由多个层级的数字子系统嵌套而成，而多个流片项目共用一个顶层模块，从而给顶层模块的设计与规划带来了新的挑战。</p>
+<p>在弹出界面中选择 <code>Add or create design sources</code> -&gt; <code>Add Files</code> 即可导入设计。</p>
+<h3 id="_2">编写仿真程序</h3>
+<p>为了验证 RTL 代码是否正确，需要用 Verilog 或 SystemVerilog 编写一个 Testbench，通过观察波形验证设计是否符合需求。</p>
+<p>一个简单的 Testbench 大致如下。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">module</span><span class="w"> </span><span class="n">tb_top</span><span class="p">();</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">reg</span><span class="w"> </span><span class="n">clock</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kt">reg</span><span class="w"> </span><span class="n">reset</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">#</span><span class="mh">100</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">#</span><span class="mh">2000000</span><span class="w"> </span><span class="nb">$finish</span><span class="p">;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">end</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">always</span><span class="w"> </span><span class="k">begin</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p">#</span><span class="mh">1</span><span class="w"> </span><span class="n">clock</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">~</span><span class="n">clock</span><span class="p">;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">end</span><span class="w"> </span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">MySimTop</span><span class="w"> </span><span class="n">dut</span><span class="p">(</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="p">.</span><span class="n">clock</span><span class="p">(</span><span class="n">clock</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">);</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">endmodule</span>
+</code></pre></div></p>
+<h3 id="behavioral-simulation">Behavioral Simulation 行为仿真</h3>
+<p>对 RTL 代码编译之后即可进行的仿真，用于验证逻辑功能的正确性。
+在逻辑综合前需要进行功能仿真，以便尽早发现设计中的缺陷。</p>
+<h3 id="logic-synthesis">Logic Synthesis 逻辑综合</h3>
+<p>在进行逻辑综合之前，需要预先选定目标的 FPGA 平台。综合工具会根据 FPGA 核心所包含的 LUT、BRAM 等资源对硬件设计进行逻辑综合。</p>
+<p>在完成逻辑综合之后，会给出门级网表的各类信息，包括硬件设计所使用的 FPGA 资源。</p>
+<p>以下图为例，该设计所需要的硬件资源超过了 FPGA 核心的限制，无法在单个 FPGA 芯片中实现。</p>
+<figure>
+  <img src="../figs/vivado_synthesis_hardware_resource.png" width=80%>
+  <figcaption>FPGA hardware resource usage after Vivado synthesis</figcaption>
+</figure>
+
+<h3 id="block-ram">替换 Block RAM</h3>
+<p>在出现 LUT 的资源占用过多的情况下，可以考虑将硬件设计中大块的缓存和存储单元用 Vivado 工具提供的 Block RAM IP 核替换，可以避免用 LUT 直接综合，从而减少 LUT 的利用率。</p>
 <details class="info">
-<summary>扩展：全掩膜</summary>
-<p>与 MPW 相对的流片模式为 Full-Mask（全掩膜），即一整块晶圆只有一个项目，通常用于大规模生产。</p>
+<summary>Block RAM IP</summary>
+<p>FPGA 的 Block RAM（BRAM）是一种嵌入在 FPGA 芯片内部的存储资源，通常以块的形式存在，每个块具有固定的大小（如18Kb或36Kb）。
+由于 BRAM 位于 FPGA 内部，访问速度非常快，适合用于需要快速存取的应用场景。
+BRAM 可以配置为不同的存储结构，如单端口 RAM、双端口 RAM、FIFO 等，满足不同的设计需求。
+BRAM 的使用可以显著提高 FPGA 设计的性能和效率，特别是在需要大量数据存储和快速访问的应用中。</p>
 </details>
-<p>因此，在此整理归纳出<strong>两份不同</strong>的流片模板文件，一份用于<strong>数字子系统</strong>的后端设计，一份用于<strong>顶层模块</strong>的后端设计。</p>
-<ul>
-<li><strong>数字子系统</strong>的流片模板位于：<code>/work/home/ztzhu/tapeout_template/submodule_tapeout/</code></li>
-<li><strong>顶层模块</strong>的流片模板位于：<code>/work/home/ztzhu/tapeout_template/top_io_tapeout/</code></li>
-</ul>
-<p>在该文档后续章节中，将会先介绍<strong>数字子系统</strong>的流片模板，这是任何流片项目后端设计的基础，再介绍<strong>顶层模块</strong>的流片模板。
-最后介绍流片之后的<strong>封装测试</strong>。</p>
-<h2 id="_2">目录</h2>
-<ul>
-<li><a href="0_eda/">一、Linux环境下EDA工具介绍</a></li>
-<li>二、前端设计<ul>
-<li><a href="1_submodule_behavioral_simulation/">1. 数字子系统的行为级仿真</a></li>
-<li><a href="2_submodule_synthesis/">2. 数字子系统的逻辑综合</a></li>
-<li><a href="3_submodule_gate_level_simulation/">3. 数字子系统的门级仿真</a></li>
-</ul>
-</li>
-<li>三、后端实现<ul>
-<li><a href="4_submodule_implementation/">4. 数字子系统的后端设计</a></li>
-<li><a href="5_io/">5. 顶层模块的后端设计</a></li>
-<li><a href="6_lvs_drc/">6. DRC/LVS验证</a></li>
-<li><a href="7_final_layout/">7. 拼版</a></li>
-</ul>
-</li>
-<li>四、回片测试<ul>
-<li><a href="8_PCB/">8. PCB绘制</a></li>
-<li><a href="9_package/">9. 封装</a></li>
-<li><a href="10_testing/">10. 测试</a></li>
-</ul>
-</li>
-<li>五、附录<ul>
-<li><a href="11_cpu_debug/">11. RISC-V CPU 调试</a></li>
-<li><a href="12_assembly/">12. C 代码编译</a></li>
-<li><a href="13_wsl/">13. WSL</a></li>
-<li><a href="14_FPGA_verification/">14. FPGA 验证</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="_3">更新日志</h2>
-<h3 id="_4">当前版本</h3>
-<div class="admonition bug">
-<p class="admonition-title">当前版本尚未公测</p>
-<p>开发中，尚未公测，敬请期待！</p>
-</div>
-<h3 id="_5">历史版本</h3>
-<h2 id="_6">致谢</h2>
-<p>感谢所有为该文档提供帮助的朋友们以及 ChatGPT！</p>
-<p>
-<span class='git-authors'>
-    <ul>
-        
-    <li><a href="mailto:mingxuanli_siris@163.com">Siris-Li</a>: 1691 lines (65.39%)</li>
-    
-    <li><a href="mailto:jameszhu.20021122@gmail.com">Bwoah-Kimi</a>: 895 lines (34.61%)</li>
-    
-    </span>
-</ul>
-    </p>
+<h3 id="implementation">Implementation 物理实现</h3>
+<p>在逻辑综合之后，需要基于门级网表进行布局布线，得到硬件设计在 FPGA 芯片上的物理实现。</p>
+<p>布局布线完成之后，FPGA 资源利用率会有所变化，这是因为在布局布线的过程中会改变逻辑单元的位置，导致 LUT 等资源的使用产生变化。</p>
+<h3 id="generate-bitstream">Generate Bitstream</h3>
+<p>在布局布线完成之后，需要生成比特流，连接 FPGA 板，并把相应的代码录入到 FPGA 核心之中，实现硬件逻辑的重构。</p>
 
 
 
@@ -1052,7 +966,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 12, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 9, 2024</span>
   </span>
 
     
@@ -1062,12 +976,11 @@
   <span class="md-source-file__fact">
     <span class="md-icon" title="贡献者">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.536 5.536 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13v-1.75M0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20H0m24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9V20Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/></svg>
       
     </span>
     <nav>
       
-        <a href="mailto:mingxuanli_siris@163.com">Siris-Li</a>, 
         <a href="mailto:jameszhu.20021122@gmail.com">Bwoah-Kimi</a>
     </nav>
   </span>
@@ -1091,11 +1004,6 @@
           <img src="https://avatars.githubusercontent.com/u/96295156?v=4&size=72" alt="Bwoah-Kimi">
         </a>
       
-        <a href="https://github.com/Siris-Li" class="md-author" title="@Siris-Li">
-          
-          <img src="https://avatars.githubusercontent.com/u/73060160?v=4&size=72" alt="Siris-Li">
-        </a>
-      
       
       
     </nav>
@@ -1113,7 +1021,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (60.0%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (40.0%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a></span>
       </small>
     </div>
   
@@ -1135,28 +1043,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
-        
-        
-          
-          <a href="0_eda/" class="md-footer__link md-footer__link--next" aria-label="下一页: I. EDA Tools &amp; Environment">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              <div class="md-ellipsis">
-                I. EDA Tools & Environment
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1185,10 +1071,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
     
   </body>

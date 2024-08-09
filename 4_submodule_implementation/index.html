@@ -485,6 +485,15 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
+      物理设计模板文件说明
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
       物理设计流程介绍
     </span>
   </a>
@@ -530,7 +539,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       设置后端不使用的标准单元
     </span>
@@ -539,7 +548,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       设置版图大小
     </span>
@@ -1148,6 +1157,15 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
+      物理设计模板文件说明
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
       物理设计流程介绍
     </span>
   </a>
@@ -1193,7 +1211,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       设置后端不使用的标准单元
     </span>
@@ -1202,7 +1220,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       设置版图大小
     </span>
@@ -1527,7 +1545,7 @@
 </div>
 <p>在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用 Cadence Innovus 进行数字子系统的物理设计（后端设计）。</p>
 <p>在后端设计中，许多脚本参数设置，例如电源网络的 Width，Spacing，以及 Macro 的摆放位置需要根据版图大小和布局布线情况来设定，需要多次的迭代优化。</p>
-<h2 id="_1">物理设计流程介绍</h2>
+<h2 id="_1">物理设计模板文件说明</h2>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p>同<a href="../2_submodule_synthesis/">数字子系统的逻辑综合</a>一样，在后端设计中，我们继续使用 <code>/work/home/ztzhu/tapeout_templates/submodule_tapeout/</code> 文件夹。</p>
@@ -1541,6 +1559,7 @@
 <li><code>./sram/</code>（<em>可选</em>）：数字子系统中例化的SRAM高速缓存或寄存器堆的专用 IP 核（<code>CDL</code>, <code>LEF</code>, <code>LIB</code>, <code>Verilog</code>等）；</li>
 <li><code>./asic_ip/</code>（<em>可选</em>）：数字子系统中例化的其他 IP 核（例如 CIM Macro），或者更低层级的数字子系统的相关文件（<code>CDL</code>, <code>LEF</code>, <code>LIB</code>, <code>Verilog</code>等）。</li>
 </ul>
+<h2 id="_2">物理设计流程介绍</h2>
 <p>该模板文件以 <strong>CVA6 RISC-V CPU</strong> 的后端设计流程作为示例。
 在这个 CPU 中，包括用 SRAM Compiler 生成的主存储器、I-Cache 和 D-Cache，以及定制设计的 CIM 模块。
 我们将按照顺序逐一介绍数字子模块物理设计的流程。</p>
@@ -1597,13 +1616,13 @@
 <p>在后续的物理设计流程中，若出现错误或者需要回溯到之前的设计进度，可以使用<code>restoreDesign</code>命令载入之前保存的设计。
 例如(bug here)：<code>restoreDesign ${rm_core_top}.design_planning_init.enc</code></p>
 </div>
-<h4 id="_2">设置后端不使用的标准单元</h4>
+<h4 id="_3">设置后端不使用的标准单元</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">set_dont_use</span><span class="w"> </span><span class="k">[</span><span class="nv">get_lib_cellls</span><span class="w"> </span>FA1D0BWP7T30P140HVT<span class="k">]</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nv">set_dont_use</span><span class="w"> </span><span class="k">[</span><span class="nv">get_lib_cellls</span><span class="w"> </span>FA1D1BWP7T30P140HVT<span class="k">]</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nv">set_dont_use</span><span class="w"> </span><span class="k">[</span><span class="nv">get_lib_cellls</span><span class="w"> </span>FA1D2BWP7T30P140HVT<span class="k">]</span>
 </code></pre></div>
 <p>上述三个全加器标准单元在后续 DRC 检查时会报错，因此在布局布线之前设置不使用这些标准单元。</p>
-<h4 id="_3">设置版图大小</h4>
+<h4 id="_4">设置版图大小</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">set</span><span class="w"> </span>cell_height<span class="w"> </span><span class="mf">0.7</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">set</span><span class="w"> </span>macro_halo_spc<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$cell_height</span><span class="k">]</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">set</span><span class="w"> </span>macro_halo_spc_2<span class="w"> </span><span class="k">[expr</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$cell_height</span><span class="k">]</span>
@@ -2349,7 +2368,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (35.04%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (64.96%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (34.84%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (65.16%)</span>
       </small>
     </div>
   
