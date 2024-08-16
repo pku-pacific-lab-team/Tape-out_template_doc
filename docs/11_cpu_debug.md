@@ -1,5 +1,22 @@
 # 11. RISC-V CPU 调试
 
+!!! tip "TLDR"
+
+    1. 安装 [RISC-V 工具链](https://github.com/Siris-Li/RISC-V-GCC-TOOLCHAIN)。
+    2. 安装 OpenOCD（选择在 [WSL](https://github.com/riscv-collab/riscv-openocd) 或 [Windows](https://github.com/openocd-org/openocd/releases/tag/v0.12.0) 安装）。
+    3. 建立 OpenOCD 与 RISC-V CPU 的连接（WSL 需要额外[映射 USB 端口](https://github.com/dorssel/usbipd-win/releases)，Windows 需要额外[安装 USB 驱动](https://visualgdb.com/UsbDriverTool/)）。
+    4. 使用 GDB 连接 OpenOCD。
+    5. 调试程序。
+
+    ```bash
+    ## One shell to run OpenOCD
+    sudo openocd -f <config file>   # step 3
+
+    ## Another shell to run GDB
+    riscv-none-elf-gdb              # step 4
+    (gdb) target remote :3333
+    ```
+
 为了便于 CPU 的调试，ISA 会规定 Debug Module 的设计规范，以便于调试器（Debugger）与 CPU 之间的通信。
 RISC-V 的 Debug Module 也是如此，详情可以查阅[官方设计说明文档](https://riscv.org/wp-content/uploads/2019/03/riscv-debug-release.pdf)。
 
@@ -161,31 +178,27 @@ WSL 自带 FTDI 驱动，无需额外安装。
 
 *USB 设备映射*
 
-我们分别需要在 WSL 端和 Windows 端执行如下操作：
-
-- WSL 端
-
-```bash
-sudo apt install linux-tools-5.4.0-77-generic hwdata
-sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/5.4.0-77-generic/usbip 20
-```
-
-- Windows 端
-
 安装 [USB 映射驱动](https://github.com/dorssel/usbipd-win/releases)。
+请注意安装**4.0.0及以上版本**。
 
-如上配置完成后，我们可以在 Windows 端执行如下指令：
+安装之后，我们需要在管理员权限下的 PowerShell 中向该程序共享需要映射的 USB 设备（即 JTAG USB）：
 
 ```powershell
-$ usbipd wsl list
+$ usbipd list
+Connected:
 BUSID  VID:PID    DEVICE                                                        STATE
-1-2    0cf2:7750  6K7750, USB 输入设备                                          Not attached
-1-9    3434:d030  USB 输入设备                                                  Not attached
-1-14   8087:0033  英特尔(R) 无线 Bluetooth(R)                                   Not attached
-2-1    0403:6014  USB Serial Converter                                         Not attached
+1-4    048d:c101  USB 输入设备                                                  Not shared
+2-4    0bda:4852  Realtek Bluetooth Adapter                                     Not shared
+4-3    0403:6014  USB Serial Converter                                          Not shared
 
-$ usbipd wsl attach --busid 2-1
+Persisted:
+GUID                                  DEVICE
+
+$ usbipd bind --busid 4-3
 ```
+
+!!! note "注意"
+    上述指令只需要在第一次安装时**执行一次**，之后无需再次执行。
 
 ??? tip "如何识别 JTAG Adapter"
     根据 VID:PID 即可识别。
@@ -194,6 +207,14 @@ $ usbipd wsl attach --busid 2-1
     **VID (Vendor ID, 厂商标识符)**：USB 组织分配给设备制造商的一个唯一标识符。
 
     **PID (Product ID, 产品标识符)**：制造商为设备分配的唯一标识符。
+
+在 Powershell 中执行如下指令映射指定设备：
+
+```powershell
+$ usbipd attach --wsl --busid=<BUSID>
+usbipd: info: Using WSL distribution 'Ubuntu' to attach; the device will be available in all WSL 2 distributions.
+usbipd: info: Using IP address 172.26.80.1 to reach the host.
+```
 
 如果成功映射，我们可以在 WSL 端执行如下指令：
 
