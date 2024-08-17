@@ -196,7 +196,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Source Code
+    GitHub Repo
   </div>
 </a>
       </div>
@@ -241,7 +241,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Source Code
+    GitHub Repo
   </div>
 </a>
     </div>
@@ -797,6 +797,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.5 调试程序
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -986,6 +995,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.5 调试程序
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1033,6 +1051,16 @@
 </div>
 <p>为了便于 CPU 的调试，ISA 会规定 Debug Module 的设计规范，以便于调试器（Debugger）与 CPU 之间的通信。
 RISC-V 的 Debug Module 也是如此，详情可以查阅<a href="https://riscv.org/wp-content/uploads/2019/03/riscv-debug-release.pdf">官方设计说明文档</a>。</p>
+<details class="info">
+<summary>调试模块的功能</summary>
+<ol>
+<li>控制 CPU 的执行。</li>
+<li>添加断点与监视点。</li>
+<li>访问和修改寄存器与内存。</li>
+<li>捕捉异常和中断。</li>
+<li>提供调试通信接口。</li>
+</ol>
+</details>
 <figure>
   <img src="../figs/riscv_debug.png" width=70%>
   <figcaption>RISC-V Debug System Overview</figcaption>
@@ -1041,6 +1069,21 @@ RISC-V 的 Debug Module 也是如此，详情可以查阅<a href="https://riscv.
 <p>与我们直接交互的软件为<strong>调试器（Debugger）</strong>（例如 GDB），它运行在调试主机上。
 调试器与<strong>调试转换器（Dubug Translator）</strong>（例如 OpenOCD）通信，调试转换器与<strong>调试传输硬件（Debug Transport Hardware）</strong>（例如 USB-JTAG 适配器）通信。
 调试传输硬件通过 JTAG 信号连接到测试平台（待测试的SoC）的调试传输模块（DTM）。DTM 使用调试模块接口（DMI）提供对调试模块（DM）的访问。</p>
+<details class="info">
+<summary>调试模块的工作流程（以设置断点为例）</summary>
+<ol>
+<li><strong>GDB 发送请求</strong>：用户在 GDB 中设置一个断点，GDB 通过调试接口（如 JTAG）发送命令给调试模块，要求在某个地址设置断点。</li>
+<li><strong>调试模块处理请求</strong>：调试模块接收 GDB 的请求后，在指定的地址处插入一个断点指令或设置一个硬件断点。这通常涉及替换程序中的一条指令，或者设置一个硬件寄存器以监控该地址。</li>
+<li><strong>CPU 触发断点</strong>：当 CPU 执行到这个断点地址时，调试模块检测到断点并暂停 CPU 的执行。</li>
+<li><strong>通知 GDB</strong>：调试模块将 CPU 的当前状态和触发的断点信息通过调试接口发送回 GDB，GDB 随后暂停程序，允许用户查看程序状态或执行其他调试操作。</li>
+<li><strong>用户调试</strong>：用户在 GDB 中进行检查，修改寄存器或内存，或者单步执行程序。</li>
+<li><strong>恢复执行</strong>：当用户在 GDB 中执行继续命令时，GDB 通知调试模块恢复 CPU 的正常执行。调试模块移除断点指令（如果是软件断点），并恢复原始指令或继续执行。</li>
+</ol>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">有关频率</p>
+<p>JTAG 信号的传输频率决定了 GDB 向 Debug Module <strong>发送命令</strong>的速度，但这些<strong>命令的执行</strong>（如设置断点、单步执行）仍然是按 CPU 的主频进行的。</p>
+</div>
 <p>我们调试 RISC-V CPU 所需的工具如下：</p>
 <ul>
 <li><strong>Debugger</strong>：RISC-V GDB</li>
@@ -1354,6 +1397,11 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <p>如果你的 OpenOCD 安装在 <strong>Windows</strong> 中，那么输入如下指令：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>target<span class="w"> </span>remote<span class="w"> </span>&lt;WSL<span class="w"> </span>IP<span class="w"> </span>Address&gt;:3333
 </code></pre></div>
+<h2 id="115">11.5 调试程序</h2>
+<div class="admonition tip">
+<p class="admonition-title">GDB 原理</p>
+<p>有关 GDB 原理，请参考 <a href="../0_eda/">0. Linux 环境下的 EDA 工具使用：0.1 Linux 常用工具 GDB</a>。</p>
+</div>
 <p>接着，你就可以通过 GDB 调试程序和访问内存了。 一些常用的 GDB 指令如下：</p>
 <ul>
 <li><code>x/10w 0x12345</code>：以字（4 字节）为单位，查看地址 0x12345 开始的 10 个字的内容。</li>
@@ -1363,6 +1411,45 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <li><code>set {int}0x54321 = 0xabcdf</code>：将地址 0x54321 处的 4 个字节的内容设置为 16 进制的 abcdf。</li>
 <li><code>load a.o</code>：指令能将可执行文件 <code>a.o</code> 载入到主存当中，并且将 PC 的值复位。</li>
 </ul>
+<p><em>查看内存中的数据</em></p>
+<p>在 GDB 中，您可以使用 x 命令来查看内存中的数据。x 命令后面可以跟一个或多个参数，用于指定要查看的内存地址和格式。</p>
+<p>以下是一些常见的使用方式：</p>
+<ul>
+<li><code>x/10b 0x12345</code>：以字节为单位，查看地址 0x12345 开始的 10 个字节的内容。</li>
+<li><code>x/10h 0x12345</code>：以半字（2 字节）为单位，查看地址 0x12345 开始的 10 个半字的内容。</li>
+<li><code>x/10w 0x12345</code>：以字（4 字节）为单位，查看地址 0x12345 开始的 10 个字的内容。</li>
+<li><code>x/10g 0x12345</code>：以巨字（8 字节）为单位，查看地址 0x12345 开始的 10 个巨字的内容。</li>
+<li><code>x/i</code>：一种特殊的格式，用于将内存中的内容解释为机器指令。i 代表 "instruction"，即指令。例如，<code>x/i $pc</code> 这条命令会显示程序计数器（PC）当前指向的机器指令。</li>
+</ul>
+<p><em>查看寄存器中的数据</em></p>
+<ul>
+<li>
+<p>使用 x 命令来查看寄存器中的内容。
+例如，<code>x/1w $sp</code> 会显示栈指针（SP）当前指向的内存位置的内容。</p>
+</li>
+<li>
+<p>使用 info registers 命令来查看所有寄存器的当前值。这个命令会显示所有通用寄存器和一些特殊寄存器（如程序计数器）的值。</p>
+</li>
+<li>
+<p><code>info all-registers</code> 列出所有寄存器的值，包括通用寄存器（如x0到x31），特权模式寄存器（如mstatus、mcause等），以及其他CSR寄存器。</p>
+</li>
+<li>
+<p>如果您只想查看某个特定寄存器的值，可以使用 print 命令。例如，<code>print $r0</code> 会显示 r0 寄存器的值（在 ARM 架构中）。</p>
+</li>
+</ul>
+<p><em>写入内存或寄存器</em></p>
+<ul>
+<li>使用 set 命令来写入内存。例如，<code>set {int}0x12345 = 0</code> 会将地址 0x12345 处的 4 个字节的内容设置为 0，<code>set {int}0x54321 = 0xabcdf</code> 会将地址 0x54321 处的 4 个字节的内容设置为 16 进制的 abcdf。</li>
+<li>使用 set 命令来写入寄存器。例如，<code>set $r0 = 0</code> 会将 r0 寄存器的值设置为 0。</li>
+<li>使用 set 命令来写入特殊寄存器。例如，<code>set $pc = 0x12345</code> 会将程序计数器（PC）的值设置为 0x12345。/x 用于16进制格式，/d 用于十进制格式等</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">危险</p>
+<p>ROM（只读存储器）是一种只能读取不能写入的存储器。
+如果你试图在 GDB 中使用 set 命令写入 ROM 地址的数据，GDB 可能不会显示错误，但实际上数据并没有被写入 ROM。
+当你使用 x 命令读取该地址时，GDB 可能会显示你之前尝试写入的数据，但这只是 GDB 内部状态的一部分，不代表实际的硬件状态。
+在真实的硬件中，ROM 的内容在写入后就不能更改。</p>
+</div>
 <p>有关如何添加断点和执行指令，可以参考下图。</p>
 <figure>
   <img src="../figs/gdb_breakpoint.png" width=90%>
@@ -1398,7 +1485,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 16, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2024</span>
   </span>
 
     
@@ -1530,7 +1617,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 School of Intergrated Circuits, Peking University
+      Copyright &copy; 2024 School of Integrated Circuits, Peking University
     </div>
   
   
