@@ -157,3 +157,26 @@ export https_proxy="http://$host_ip:7890"
 
 !!! Bug
     配置代理后，`curl ipinfo.io` 会出现无法终止的情况，可以使用 `Ctrl+C` 终止。
+
+## 13.3 Python 环境搭建
+
+由于 Python 各个版本之间**并不兼容**，因此对于每一个 Python 项目，我们都需要创建一个**独立的虚拟环境**。
+这样可以避免不同项目之间的**依赖冲突**。
+我们推荐使用 **anaconda** 来管理 Python 环境。
+
+### 安装 miniconda
+
+根据[官方文档](https://docs.anaconda.com/miniconda/miniconda-install/)安装即可。
+
+### 使用虚拟环境
+
+```bash·
+conda env list # 查看已有环境·
+conda create -n <env_name> python=3.8 # 创建一·个新环境
+conda activate <env_name> # 激活环境
+conda list # 查看环境中已安装的包
+which python # 查看当前环境的 Python 路径
+```
+
+!!! bug "Todo"
+    More Details!!!·
