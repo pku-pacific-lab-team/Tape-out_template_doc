@@ -170,13 +170,13 @@ export https_proxy="http://$host_ip:7890"
 
 ### 使用虚拟环境
 
-```bash·
+```bash
 conda env list # 查看已有环境·
-conda create -n <env_name> python=3.8 # 创建一·个新环境
+conda create -n <env_name> python=3.8 # 创建一个新环境
 conda activate <env_name> # 激活环境
 conda list # 查看环境中已安装的包
 which python # 查看当前环境的 Python 路径
 ```
 
 !!! bug "Todo"
-    More Details!!!·
+    More Details!!!
