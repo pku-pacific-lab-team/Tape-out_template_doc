@@ -89,24 +89,112 @@
 
 不带 `Bit-Write Mask` 功能的 SRAM 例化示例如下：
 ```verilog
+sram_1024x64 sram_inst(
+  .Q(RW0_rdata), // SRAM read port data
+  .CLK(RW0_clk), // SRAM clock
+  .CEN(!RW0_en), // Global enable signal, SRAM enabled when set to low
+  .GWEN(!RW0_wmode), // Write control signal. When gwen set to low, SRAM write enabled, otherwise SRAM read is enabled
+  .A(RW0_addr), // SRAM address
+  .D(RW0_wdata), // SRAM write port
 
+  // Keep the following unchanged. 
+  // For details of these SRAM I/O ports, refer to the user guide.
+  .STOV(1'b0),
+  .EMA(3'b111),
+  .EMAW(2'b11),
+  .EMAS(1'b1),
+  .RET1N(1'b1),
+  .WABL(1'b1),
+  .RAWL(1'b0),
+  .RAWLM(2'b0),
+  .WABLM(3'b1)
+);
 ```
 
 带有 `Bit-Write Mask` 功能的 SRAM 例化示例如下：
 ```Verilog
+// Assuming data width is 128, Bit-write mask needs a 128-bit control signal 
+wire [127:0] wen;
+// For generality, we assume that bit-level mask in RTL design is not needed.
+// Instead, we have a 4-bit control signal specifiying whether to write to [127:96], [95:64], [63:32], or [31:0].
+assign wen = { 32{RW0_wmask[3]}, {32{RW0_wmask[2]}}, {32{RW0_wmask[1]}}, {32{RW0_wmask[0]}}};
 
+sram_1024x128 sram_inst(
+  .Q(RW0_rdata), // SRAM read port data
+  .CLK(RW0_clk), // SRAM clock
+  .CEN(!RW0_en), // Global enable signal, SRAM enabled when set to low
+  .WEN(wen), // Bit-write mask control signal. When set to low, wrtie function is activated.
+  .GWEN(!RW0_wmode), // Write control signal. When gwen set to low, SRAM write enabled, otherwise SRAM read is enabled
+  .A(RW0_addr), // SRAM address
+  .D(RW0_wdata), // SRAM write port
+
+  // Keep the following unchanged. 
+  // For details of these SRAM I/O ports, refer to the user guide.
+  .STOV(1'b0),
+  .EMA(3'b111),
+  .EMAW(2'b11),
+  .EMAS(1'b1),
+  .RET1N(1'b1),
+  .WABL(1'b1),
+  .RAWL(1'b0),
+  .RAWLM(2'b0),
+  .WABLM(3'b1)
+);
 ```
 
 #### Register File IP 的例化
 
 不带 `Bit-Write Mask` 功能的 Register File 例化示例如下：
 ``` Verilog
+rf_128x128 rf_inst(
+  .q(RW0_rdata[127:0]), // RF read port data
+  .clk(RW0_clk), // RF clock
+  .cen(!RW0_en), // Global enable signal, RF enabled when set to low
+  .wen(!RW0_wmode), // Write control signal. When gwen set to low, RF write enabled, otherwise RF read is enabled
+  .a(RW0_addr), // RF address
+  .d(RW0_wdata[127:0]), // RF write port
 
+  // Keep the following unchanged.
+  // For details of these RF I/O ports, refer to the user guide.
+  .ema(3'b111), 
+  .emaw(2'b11),
+  .emas(1'b1),
+  .ret1n(1'b1),
+  .wabl(1'b1),
+  .wablm(2'b1),
+  .rawl(1'b0),
+  .rawlm(2'b0)
+);
 ```
 
 带有 `Bit-Write Mask` 功能的 Register File 例化示例如下：
 ``` Verilog
+// Assuming data width is 128, Bit-write mask needs a 128-bit control signal 
+wire [127:0] wen;
+// For generality, we assume that bit-level mask in RTL design is not needed.
+// Instead, we have a 2-bit control signal specifiying whether to write to [127:64] or [63:0].
+assign wen = { 64{RW0_wmask[1]}, {64{RW0_wmask[0]}}};
 
+rf_128x128 rf_inst(
+  .q(RW0_rdata[127:0]), // RF read port data
+  .clk(RW0_clk), // RF clock
+  .cen(!RW0_en), // Global enable signal, RF enabled when set to low
+  .wen(~wen[127:0]), // Bit-write mask control signal. When set to low, wrtie function is activated.
+  .a(RW0_addr), // RF address
+  .d(RW0_wdata[127:0]), // RF write port
+  .gwen(!RW0_wmode), // Write control signal. When gwen set to low, RF write enabled, otherwise RF read is enabled
+
+  // Keep the following unchanged.
+  // For details of these RF I/O ports, refer to the user guide.
+  .ema(3'b111), 
+  .emaw(2'b11),
+  .emas(1'b1),
+  .ret1n(1'b1),
+  .wabl(1'b1),
+  .wablm(2'b1),
+  .rawl(1'b0),
+  .rawlm(2'b0)
+);
 ```
 
 ### 2.2 添加可综合 RTL 代码
