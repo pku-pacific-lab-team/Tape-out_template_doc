@@ -673,12 +673,12 @@ createPlaceBlockage -name setdensity_blk1 -box 300 50 1000 500 -type partial -de
 ```
 
 在后端设计迭代优化时，我们往往会发现在某个区域内会出现较多 DRC 报错，布局布线密度较高。
-在这种情况下，我们可以考虑人为添加 Cell placement blockage，从而限制该局部区域的布局布线密度，减少 DRC 报错。
+在这种情况下，我们可以考虑手动添加 Cell placement blockage，从而限制该局部区域的布局布线密度，减少 DRC 报错。
 
 * `createPlaceBlockage`：设置 Cell placement blockage，用于阻碍在特定区域内标准单元的摆放。
   * `-type partial`：指定该 Placement blockage 的类型，总共有4种类型，包括 `hard`（默认选项，不能在指定区域摆放任何标准单元），`soft`（不能在布局阶段摆放标准单元，但可以在后续布局优化、时钟树综合等阶段摆放标准单元），`partial`（设定指定区域内标准单元的最大密度），还有`macroOnly`（允许摆放标准单元，但不允许摆放 Macro）。
   * `-density 75`：指定了该 Partial placement blockage 所允许的最大密度，该选项一定需要和 `-type Partial` 一起使用。
-  * `-box 300 50 1000 500`：如下图所示，设置了该 Placement blockage 的具体范围（方格区域），使用左下角和右上角的横纵坐标表示。
+  * `-box 300 50 1000 500`：如下图所示，设置了该 Placement blockage 的具体范围（粉色方格区域），使用左下角和右上角的横纵坐标表示。
 
 <figure>
   <img src="../figs/place_blockage.png" width=80%>
@@ -697,10 +697,28 @@ setPlaceMode -place_detail_use_no_diffusion_one_site_filler false
 setPlaceMode -place_detail_preroute_as_obs {6}
 setPlaceMode -fp false
 setAnalysisMmode -aocv false
+setNanoRouteMode -routeTopRoutingLayer 7 \
+                 -routeBottomRoutingLayer 2
 
 placeDesign
 addTieHiLo
 ```
+
+* `setTieHiLoMode`：控制 Innovus 如何添加 Tie-high 和 Tie-low 标准单元。
+  * 该命令影响后续的 `deleteTieHiLo` 命令，可以通过 `getTieHiLoMode` 来查看目前生效的设置。
+  * Tie-high 和 Tie-low 标准单元用于将输出端固定于逻辑高电平或逻辑低电平，防止浮动状态，从而避免不确定性和噪声问题。
+  * `-cell $rm_tie_hi_lo_list` 选项调用了此前在 Innovus 初始化阶段设定的 Tie-high 和 Tie-low 标准单元列表，每个 Tie-high 和 Tie-low 标准单元成对出现。
+  * `-maxFanout 8` 用于指定一个 Tie-net 最多可以驱动的 Tie-pin 数量，若设置为0，则意味着没有限制。
+* `deleteTieHiLo`：从门级网表中删除目前摆放的 Tie-high 和 Tie-low 标准单元，将相应信号重新连接到逻辑高电平和逻辑低电平。此处可以理解为初始化操作。
+* `setPlaceMode`：控制 Innovus 如何进行标准单元的布局。
+  * `-reset` 将布局相关的设置恢复至默认值，可以理解为初始化操作；
+  * `-place_detail_legalization_inst_gap 2  -place_detail_use_no_diffusion_one_site_filler false`，具体详见[添加 Endcap Cells](#添加-endcap-cells)章节；
+  * `-place_detail_preroute_as_obs` 指定哪些层在详细布局阶段被视为障碍物；
+  * `-fp false` **用途未知**。
+* `setAnalysisMmode`：设置时序分析的相关设置
+  * `-aocv false` 指定不使用 AOCV (Advanced on-chip variation) 分析模式。
+* `placeDesign`：基于标准单元的布局设置和相关时序分析的设置，摆放标准单元。
+* `addTieHiLo`：添加 Tie-high 和 Tie-low 标准单元，**在放置标准单元之后使用该命令**。
 
 #### 优化布局
 
