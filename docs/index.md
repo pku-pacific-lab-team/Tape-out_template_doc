@@ -53,6 +53,7 @@
     * [12. C 代码编译](./12_assembly.md)
     * [13. WSL](./13_wsl.md)
     * [14. FPGA 验证](./14_FPGA_verification.md)
+    * [15. PDK设置](./15_PDK_setup.md)
 
 ## 更新日志
 
