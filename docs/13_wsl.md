@@ -158,6 +158,10 @@ export https_proxy="http://$host_ip:7890"
 !!! Bug
     配置代理后，`curl ipinfo.io` 会出现无法终止的情况，可以使用 `Ctrl+C` 终止。
 
+!!! tip "Tun 模式"
+    如果你觉得上述配置太麻烦，可以尝试在你的代理软件中使用 Tun 模式，这样 WSL 就可以直接访问外网了。
+
+
 ## 13.3 Python 环境搭建
 
 由于 Python 各个版本之间**并不兼容**，因此对于每一个 Python 项目，我们都需要创建一个**独立的虚拟环境**。
