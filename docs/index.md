@@ -54,6 +54,7 @@
     * [13. WSL](./13_wsl.md)
     * [14. FPGA 验证](./14_FPGA_verification.md)
     * [15. PDK设置](./15_PDK_setup.md)
+    * [16. Digital-CIM 使用规范](./DCIM_spec.md)
 * [六、如何贡献](contribute.md)
 
 ## 更新日志
