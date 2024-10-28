@@ -36,7 +36,7 @@
 
 * [一、Linux环境下EDA工具介绍](./0_eda.md)
 * 二、前端设计
-    * [1. 数字子系统的行为级仿真](./1_submodule_behavioral_simulation.md)
+    * [1. 数字系统的集成和行为级仿真](./1_system_integration_behavioral_simulation.md)
     * [2. 数字子系统的逻辑综合](./2_submodule_synthesis.md)
     * [3. 数字子系统的门级仿真](./3_submodule_gate_level_simulation.md)
 * 三、后端实现

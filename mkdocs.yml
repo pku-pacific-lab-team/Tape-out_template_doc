@@ -75,7 +75,7 @@ nav:
   - Welcome to Tape-out Docs!: index.md
   - I. EDA Tools & Environment: 0_eda.md
   - II. Frontend:
-    - 1. Submodule Behavioral Simulation: 1_submodule_behavioral_simulation.md
+    - 1. System Integration & Behavioral Simulation: 1_system_integration_behavioral_simulation.md
     - 2. Submodule Synthesis: 2_submodule_synthesis.md
     - 3. Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - III. Backend:
