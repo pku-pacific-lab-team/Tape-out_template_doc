@@ -3,7 +3,7 @@
 ## 概述
 
 CIM 是 Compute-in-Memory 的缩写，即存内计算。
-Digital-CIM (DCIM) 使用标准 SRAM 单元实现存储，并在 SRAM 阵列中添加异或门和加法器树实现乘累加操作。
+Digital-CIM (DCIM) 使用标准 SRAM 单元实现存储，并在 SRAM 阵列中添加或非门和加法器树实现乘累加操作。
 DCIM 天然实现了 Weight Stationary，并且内存和计算单元是紧密集成在一起的，这种紧密集成的设计可以减少数据传输的时间和功耗，提高计算效率。
 
 CIM 的功能可以大致分为三类：
@@ -23,7 +23,7 @@ CIM 的功能可以大致分为三类：
 DCIM 的规模为 512 行 x 256 列。
 对于一列中的 512 个 SRAM 单元，每 16 个 SRAM 单元构成一个 subarray，一共有 32 个 subarray。
 
-每个 SRAM 单元通过异或门完成权重与输入的 1-bit 乘法，再通过 32 个 subarray 之间的加法器树完成累加。
+每个 SRAM 单元通过或非门完成权重与输入的 1-bit 乘法，再通过 32 个 subarray 之间的加法器树完成累加。
 
 !!! tip "DCIM 计算实例"
     假设 CIM 规模为 1 列 512 个 SRAM 单元，每个 subarray 中 16 个 SRAM 单元（一共 32 个 subarray），需要计算无符号数 $a_0[3:0] \times w_0[3:0] + a_1[3:0] \times w_1[3:0] + ... + a_{127}[3:0] \times w_{127}[3:0]$。
