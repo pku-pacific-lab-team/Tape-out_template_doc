@@ -777,9 +777,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#122" class="md-nav__link">
+  <a href="#122-risc-v-toolchain" class="md-nav__link">
     <span class="md-ellipsis">
-      12.2 编译模板
+      12.2 安装 RISC-V Toolchain
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.3 编译模板
     </span>
   </a>
   
@@ -974,9 +983,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#122" class="md-nav__link">
+  <a href="#122-risc-v-toolchain" class="md-nav__link">
     <span class="md-ellipsis">
-      12.2 编译模板
+      12.2 安装 RISC-V Toolchain
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.3 编译模板
     </span>
   </a>
   
@@ -1012,7 +1030,7 @@
 <h1 id="c">C 代码编译</h1>
 <div class="admonition info">
 <p class="admonition-title">阅读建议</p>
-<p>如果你不想了解编译原理，只想获得一个编译模板以便开发测试代码，可以直接跳到 12.2。
+<p>如果你不想了解编译原理，只想获得工具链和一个编译模板以便开发测试代码，可以直接跳到 12.2。
 但我们建议你阅读整个章节，以便更好地理解编译的过程。</p>
 </div>
 <h2 id="121">12.1 编译流程</h2>
@@ -1117,14 +1135,59 @@ main 函数的原型为 <code>int main(argc, *argv[])</code>。</p>
 <p class="admonition-title">Tip</p>
 <p>你可以查询 <a href="https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md">RISC-V Assembly Programmer's Manual</a> 来了解如何编写 RISC-V 汇编语言。</p>
 </div>
-<h2 id="122">12.2 编译模板</h2>
+<h2 id="122-risc-v-toolchain">12.2 安装 RISC-V Toolchain</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>需要在 WSL 环境中安装！
+WSL 的安装以及网络配置请参考 <a href="../13_wsl/">13. WSL</a>。</p>
+</div>
+<p>从 GitHub 上下载 RISC-V 工具链源码并进入该目录：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Siris-Li/RISC-V-GCC-TOOLCHAIN
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>RISC-V-GCC-TOOLCHAIN
+</code></pre></div>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>autotools-dev<span class="w"> </span>curl<span class="w"> </span>git<span class="w"> </span>libmpc-dev<span class="w"> </span>libmpfr-dev<span class="w"> </span>libgmp-dev<span class="w"> </span>gawk<span class="w"> </span>build-essential<span class="w"> </span>bison<span class="w"> </span>flex<span class="w"> </span>texinfo<span class="w"> </span>gperf<span class="w"> </span>libtool<span class="w"> </span>bc<span class="w"> </span>zlib1g-dev
+</code></pre></div>
+<p>（可选）配置 CPU 核数以便多线程编译：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NUM_JOBS</span><span class="o">=</span>&lt;num<span class="w"> </span>of<span class="w"> </span>processors&gt;
+</code></pre></div>
+<details class="tip">
+<summary>如何查看 CPU 核数</summary>
+<p><strong>WSL：</strong></p>
+<p>在 Terminal 中输入：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nproc
+</code></pre></div>
+<strong>Windows：</strong></p>
+<p>打开任务管理器，左栏中选择“性能”选项卡，右下角即可看到 CPU 核数（逻辑处理器）。</p>
+<p><figure>
+  <img src="../figs/nproc_win.png" width=70%>
+  <figcaption>Windows 查看逻辑处理器个数</figcaption>
+</figure></p>
+<p><em>逻辑处理器与内核的区别</em>：</p>
+<ul>
+<li><strong>内核</strong>：CPU 的物理核心数</li>
+<li><strong>逻辑处理器</strong>：CPU 的线程数，例如单个物理 CPU 内核支持双线程，则 2 个这样内核的逻辑处理器数为 4。</li>
+</ul>
+</details>
+<p>配置工具链安装路径：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV</span><span class="o">=</span>&lt;install<span class="w"> </span>path&gt;
+</code></pre></div>
+<p>执行脚本安装工具链：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Fetch the source code of the toolchain (assumes Internet access.)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sh<span class="w"> </span>get-toolchain.sh
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Build and install the toolchain (requires write+create permissions for $RISCV.)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sh<span class="w"> </span>build-toolchain.sh<span class="w"> </span><span class="nv">$RISCV</span>
+</code></pre></div>
+<p>安装完成后，<code>$RISCV/bin</code> 目录下会有 RISC-V 工具链的可执行文件（例如 <code>riscv-none-elf-gcc</code>、<code>riscv-none-elf-gdb</code>）。</p>
+<h2 id="123">12.3 编译模板</h2>
 <p>从 GitHub 上下载一个简单的 C 代码模板，用于编译 RISC-V 汇编代码。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Siris-Li/C_compile_template
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>C_compile_template
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Siris-Li/C_compile_template
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>C_compile_template
 </code></pre></div>
 <p>设置环境变量，指定 RISC-V 工具链路径。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV_GCC</span><span class="o">=</span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-gcc
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV_OBJDUMP</span><span class="o">=</span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-objdump
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV_GCC</span><span class="o">=</span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-gcc
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV_OBJDUMP</span><span class="o">=</span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-objdump
 </code></pre></div>
 <p>修改 C 文件，按需修改汇编代码。
 然后执行 <code>make</code> 编译。</p>
@@ -1187,7 +1250,7 @@ C 代码中的函数调用会使用栈来保存函数的返回地址、参数和
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年8月23日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年10月28日</span>
   </span>
 
     

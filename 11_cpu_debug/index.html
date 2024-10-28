@@ -714,22 +714,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#111-risc-v-toolchain" class="md-nav__link">
+  <a href="#111-openocd" class="md-nav__link">
     <span class="md-ellipsis">
-      11.1 安装 RISC-V Toolchain
+      11.1 安装 OpenOCD
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#112-openocd" class="md-nav__link">
-    <span class="md-ellipsis">
-      11.2 安装 OpenOCD
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="11.2 安装 OpenOCD">
+    <nav class="md-nav" aria-label="11.1 安装 OpenOCD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -756,13 +747,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#113-openocd-risc-v-cpu" class="md-nav__link">
+  <a href="#112-openocd-risc-v-cpu" class="md-nav__link">
     <span class="md-ellipsis">
-      11.3 建立 OpenOCD 与 RISC-V CPU 的连接
+      11.2 建立 OpenOCD 与 RISC-V CPU 的连接
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="11.3 建立 OpenOCD 与 RISC-V CPU 的连接">
+    <nav class="md-nav" aria-label="11.2 建立 OpenOCD 与 RISC-V CPU 的连接">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -789,18 +780,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#114-gdb-openocd" class="md-nav__link">
+  <a href="#113-gdb-openocd" class="md-nav__link">
     <span class="md-ellipsis">
-      11.4 使用 GDB 连接 OpenOCD
+      11.3 使用 GDB 连接 OpenOCD
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#115" class="md-nav__link">
+  <a href="#114" class="md-nav__link">
     <span class="md-ellipsis">
-      11.5 调试程序
+      11.4 调试程序
     </span>
   </a>
   
@@ -974,22 +965,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#111-risc-v-toolchain" class="md-nav__link">
+  <a href="#111-openocd" class="md-nav__link">
     <span class="md-ellipsis">
-      11.1 安装 RISC-V Toolchain
+      11.1 安装 OpenOCD
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#112-openocd" class="md-nav__link">
-    <span class="md-ellipsis">
-      11.2 安装 OpenOCD
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="11.2 安装 OpenOCD">
+    <nav class="md-nav" aria-label="11.1 安装 OpenOCD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1016,13 +998,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#113-openocd-risc-v-cpu" class="md-nav__link">
+  <a href="#112-openocd-risc-v-cpu" class="md-nav__link">
     <span class="md-ellipsis">
-      11.3 建立 OpenOCD 与 RISC-V CPU 的连接
+      11.2 建立 OpenOCD 与 RISC-V CPU 的连接
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="11.3 建立 OpenOCD 与 RISC-V CPU 的连接">
+    <nav class="md-nav" aria-label="11.2 建立 OpenOCD 与 RISC-V CPU 的连接">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1049,18 +1031,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#114-gdb-openocd" class="md-nav__link">
+  <a href="#113-gdb-openocd" class="md-nav__link">
     <span class="md-ellipsis">
-      11.4 使用 GDB 连接 OpenOCD
+      11.3 使用 GDB 连接 OpenOCD
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#115" class="md-nav__link">
+  <a href="#114" class="md-nav__link">
     <span class="md-ellipsis">
-      11.5 调试程序
+      11.4 调试程序
     </span>
   </a>
   
@@ -1097,7 +1079,6 @@
 <div class="admonition tip">
 <p class="admonition-title">TLDR</p>
 <ol>
-<li>安装 <a href="https://github.com/Siris-Li/RISC-V-GCC-TOOLCHAIN">RISC-V 工具链</a>。</li>
 <li>安装 OpenOCD（选择在 <a href="https://github.com/riscv-collab/riscv-openocd">WSL</a> 或 <a href="https://github.com/openocd-org/openocd/releases/tag/v0.12.0">Windows</a> 安装）。</li>
 <li>建立 OpenOCD 与 RISC-V CPU 的连接（WSL 需要额外<a href="https://github.com/dorssel/usbipd-win/releases">映射 USB 端口</a>，Windows 需要额外<a href="https://visualgdb.com/UsbDriverTool/">安装 USB 驱动</a>）。</li>
 <li>使用 GDB 连接 OpenOCD。</li>
@@ -1152,52 +1133,7 @@ RISC-V 的 Debug Module 也是如此，详情可以查阅<a href="https://riscv.
 <li><strong>Debug Translator</strong>：OpenOCD</li>
 <li><strong>Debug Transport Hardware</strong>：USB-JTAG 适配器</li>
 </ul>
-<h2 id="111-risc-v-toolchain">11.1 安装 RISC-V Toolchain</h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>需要在 WSL 环境中安装！
-WSL 的安装以及网络配置请参考 <a href="../13_wsl/">13. WSL</a>。</p>
-</div>
-<p>从 GitHub 上下载 RISC-V 工具链源码并进入该目录：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Siris-Li/RISC-V-GCC-TOOLCHAIN
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>RISC-V-GCC-TOOLCHAIN
-</code></pre></div>
-<p>安装依赖：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>autotools-dev<span class="w"> </span>curl<span class="w"> </span>git<span class="w"> </span>libmpc-dev<span class="w"> </span>libmpfr-dev<span class="w"> </span>libgmp-dev<span class="w"> </span>gawk<span class="w"> </span>build-essential<span class="w"> </span>bison<span class="w"> </span>flex<span class="w"> </span>texinfo<span class="w"> </span>gperf<span class="w"> </span>libtool<span class="w"> </span>bc<span class="w"> </span>zlib1g-dev
-</code></pre></div>
-<p>（可选）配置 CPU 核数以便多线程编译：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NUM_JOBS</span><span class="o">=</span>&lt;num<span class="w"> </span>of<span class="w"> </span>processors&gt;
-</code></pre></div>
-<details class="tip">
-<summary>如何查看 CPU 核数</summary>
-<p><strong>WSL：</strong></p>
-<p>在 Terminal 中输入：
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nproc
-</code></pre></div>
-<strong>Windows：</strong></p>
-<p>打开任务管理器，左栏中选择“性能”选项卡，右下角即可看到 CPU 核数（逻辑处理器）。</p>
-<p><figure>
-  <img src="../figs/nproc_win.png" width=70%>
-  <figcaption>Windows 查看逻辑处理器个数</figcaption>
-</figure></p>
-<p><em>逻辑处理器与内核的区别</em>：</p>
-<ul>
-<li><strong>内核</strong>：CPU 的物理核心数</li>
-<li><strong>逻辑处理器</strong>：CPU 的线程数，例如单个物理 CPU 内核支持双线程，则 2 个这样内核的逻辑处理器数为 4。</li>
-</ul>
-</details>
-<p>配置工具链安装路径：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV</span><span class="o">=</span>&lt;install<span class="w"> </span>path&gt;
-</code></pre></div>
-<p>执行脚本安装工具链：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Fetch the source code of the toolchain (assumes Internet access.)</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sh<span class="w"> </span>get-toolchain.sh
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Build and install the toolchain (requires write+create permissions for $RISCV.)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sh<span class="w"> </span>build-toolchain.sh<span class="w"> </span><span class="nv">$RISCV</span>
-</code></pre></div>
-<p>安装完成后，<code>$RISCV/bin</code> 目录下会有 RISC-V 工具链的可执行文件（例如 <code>riscv-none-elf-gcc</code>、<code>riscv-none-elf-gdb</code>）。</p>
-<h2 id="112-openocd">11.2 安装 OpenOCD</h2>
+<h2 id="111-openocd">11.1 安装 OpenOCD</h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>WSL 和 Windows 的安装方式有所不同，选择一个安装即可。</p>
@@ -1206,19 +1142,19 @@ WSL 的安装以及网络配置请参考 <a href="../13_wsl/">13. WSL</a>。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>WSL 可能自带 OpenOCD，以防万一，可以先尝试卸载。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>openocd
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>openocd
 </code></pre></div></p>
 </div>
 <p>GitHub 上下载 RISC-V OpenOCD 源码并进入该目录：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/riscv/riscv-openocd
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">cd</span><span class="w"> </span>riscv-openocd
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/riscv/riscv-openocd
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>riscv-openocd
 </code></pre></div>
 <p>安装依赖并执行安装：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libftdi-dev<span class="w"> </span>libusb-1.0-0<span class="w"> </span>libusb-1.0-0-dev<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>texinfo<span class="w"> </span>pkg-config
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>./bootstrap
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>./configure<span class="w"> </span>--enable-ftdi
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>make<span class="w"> </span>-j&lt;number<span class="w"> </span>of<span class="w"> </span>your<span class="w"> </span>cpus&gt;
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libftdi-dev<span class="w"> </span>libusb-1.0-0<span class="w"> </span>libusb-1.0-0-dev<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>texinfo<span class="w"> </span>pkg-config
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>./bootstrap
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>./configure<span class="w"> </span>--enable-ftdi
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>make<span class="w"> </span>-j&lt;number<span class="w"> </span>of<span class="w"> </span>your<span class="w"> </span>cpus&gt;
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
 <details class="tip">
 <summary>安装路径</summary>
@@ -1226,24 +1162,24 @@ WSL 的安装以及网络配置请参考 <a href="../13_wsl/">13. WSL</a>。</p>
 可以使用 <code>--prefix=&lt;path&gt;</code> 参数指定安装路径。</p>
 </details>
 <p>如果你安装成功，执行如下指令，你会看到类似的输出：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>which<span class="w"> </span>openocd
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>/usr/local/bin/openocd
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>$<span class="w"> </span>openocd<span class="w"> </span>-v
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Open<span class="w"> </span>On-Chip<span class="w"> </span>Debugger<span class="w"> </span><span class="m">0</span>.12.0+dev-03598-g78a719fad<span class="w"> </span><span class="o">(</span><span class="m">2024</span>-01-20-05:43<span class="o">)</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Licensed<span class="w"> </span>under<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>v2
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>For<span class="w"> </span>bug<span class="w"> </span>reports,<span class="w"> </span><span class="nb">read</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span>http://openocd.org/doc/doxygen/bugs.html
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>which<span class="w"> </span>openocd
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/usr/local/bin/openocd
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>$<span class="w"> </span>openocd<span class="w"> </span>-v
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Open<span class="w"> </span>On-Chip<span class="w"> </span>Debugger<span class="w"> </span><span class="m">0</span>.12.0+dev-03598-g78a719fad<span class="w"> </span><span class="o">(</span><span class="m">2024</span>-01-20-05:43<span class="o">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Licensed<span class="w"> </span>under<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>v2
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>For<span class="w"> </span>bug<span class="w"> </span>reports,<span class="w"> </span><span class="nb">read</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span>http://openocd.org/doc/doxygen/bugs.html
 </code></pre></div>
 <h3 id="windows">Windows</h3>
 <p>在官方 GitHub 上下载 OpenOCD 的 Windows 版本：<a href="https://github.com/openocd-org/openocd/releases/tag/v0.12.0">OpenOCD Windows</a>。
 解压后，在 <code>bin</code> 目录下找到 <code>openocd.exe</code>，在terminal中执行如下指令，你会看到类似的输出：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">$</span> <span class="p">.\</span><span class="n">openocd</span><span class="p">.</span><span class="n">exe</span> <span class="n">-v</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">Open</span> <span class="n">On-Chip</span> <span class="n">Debugger</span> <span class="n">0</span><span class="p">.</span><span class="n">12</span><span class="p">.</span><span class="n">0</span> <span class="p">(</span><span class="n">2023</span><span class="p">-</span><span class="n">01</span><span class="p">-</span><span class="n">14</span><span class="p">-</span><span class="n">23</span><span class="p">:</span><span class="n">37</span><span class="p">)</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">Licensed</span> <span class="n">under</span> <span class="n">GNU</span> <span class="n">GPL</span> <span class="n">v2</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">For</span> <span class="n">bug</span> <span class="n">reports</span><span class="p">,</span> <span class="n">read</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="n">http</span><span class="p">://</span><span class="n">openocd</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">doc</span><span class="p">/</span><span class="n">doxygen</span><span class="p">/</span><span class="n">bugs</span><span class="p">.</span><span class="n">html</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">$</span> <span class="p">.\</span><span class="n">openocd</span><span class="p">.</span><span class="n">exe</span> <span class="n">-v</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">Open</span> <span class="n">On-Chip</span> <span class="n">Debugger</span> <span class="n">0</span><span class="p">.</span><span class="n">12</span><span class="p">.</span><span class="n">0</span> <span class="p">(</span><span class="n">2023</span><span class="p">-</span><span class="n">01</span><span class="p">-</span><span class="n">14</span><span class="p">-</span><span class="n">23</span><span class="p">:</span><span class="n">37</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">Licensed</span> <span class="n">under</span> <span class="n">GNU</span> <span class="n">GPL</span> <span class="n">v2</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">For</span> <span class="n">bug</span> <span class="n">reports</span><span class="p">,</span> <span class="n">read</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="n">http</span><span class="p">://</span><span class="n">openocd</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">doc</span><span class="p">/</span><span class="n">doxygen</span><span class="p">/</span><span class="n">bugs</span><span class="p">.</span><span class="n">html</span>
 </code></pre></div>
-<h2 id="113-openocd-risc-v-cpu">11.3 建立 OpenOCD 与 RISC-V CPU 的连接</h2>
+<h2 id="112-openocd-risc-v-cpu">11.2 建立 OpenOCD 与 RISC-V CPU 的连接</h2>
 <p>物理上，OpenOCD 通过 <strong>JTAG</strong> 与 RISC-V CPU 连接。
 OpenOCD 通过<strong>配置文件</strong>（<code>.cfg</code>）指定连接的硬件和软件参数。</p>
 <p>我们所使用的 JTAG Adapter 中最关键的芯片称为 <a href="https://ftdichip.com/wp-content/uploads/2020/07/DS_FT232H.pdf">FTDI</a> （Future Technology Devices International），它负责输出 JTAG 信号。</p>
@@ -1258,17 +1194,17 @@ OpenOCD 通过<strong>配置文件</strong>（<code>.cfg</code>）指定连接�
 <p>安装 <a href="https://github.com/dorssel/usbipd-win/releases">USB 映射驱动</a>。
 请注意安装<strong>4.0.0及以上版本</strong>。</p>
 <p>安装之后，我们需要在管理员权限下的 PowerShell 中向该程序共享需要映射的 USB 设备（即 JTAG USB）：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">list</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">Connected</span><span class="p">:</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">BUSID</span>  <span class="n">VID</span><span class="p">:</span><span class="n">PID</span>    <span class="n">DEVICE</span>                                                        <span class="n">STATE</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">1</span><span class="p">-</span><span class="n">4</span>    <span class="n">048d</span><span class="p">:</span><span class="n">c101</span>  <span class="n">USB</span> <span class="n">输入设备</span>                                                  <span class="n">Not</span> <span class="n">shared</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">2</span><span class="p">-</span><span class="n">4</span>    <span class="n">0bda</span><span class="p">:</span><span class="n">4852</span>  <span class="n">Realtek</span> <span class="n">Bluetooth</span> <span class="n">Adapter</span>                                     <span class="n">Not</span> <span class="n">shared</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">4</span><span class="p">-</span><span class="n">3</span>    <span class="n">0403</span><span class="p">:</span><span class="n">6014</span>  <span class="n">USB</span> <span class="n">Serial</span> <span class="n">Converter</span>                                          <span class="n">Not</span> <span class="n">shared</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">Persisted</span><span class="p">:</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="n">GUID</span>                                  <span class="n">DEVICE</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">bind</span> <span class="p">-</span><span class="n">-busid</span> <span class="n">4</span><span class="p">-</span><span class="n">3</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">list</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">Connected</span><span class="p">:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">BUSID</span>  <span class="n">VID</span><span class="p">:</span><span class="n">PID</span>    <span class="n">DEVICE</span>                                                        <span class="n">STATE</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">1</span><span class="p">-</span><span class="n">4</span>    <span class="n">048d</span><span class="p">:</span><span class="n">c101</span>  <span class="n">USB</span> <span class="n">输入设备</span>                                                  <span class="n">Not</span> <span class="n">shared</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">2</span><span class="p">-</span><span class="n">4</span>    <span class="n">0bda</span><span class="p">:</span><span class="n">4852</span>  <span class="n">Realtek</span> <span class="n">Bluetooth</span> <span class="n">Adapter</span>                                     <span class="n">Not</span> <span class="n">shared</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">4</span><span class="p">-</span><span class="n">3</span>    <span class="n">0403</span><span class="p">:</span><span class="n">6014</span>  <span class="n">USB</span> <span class="n">Serial</span> <span class="n">Converter</span>                                          <span class="n">Not</span> <span class="n">shared</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">Persisted</span><span class="p">:</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">GUID</span>                                  <span class="n">DEVICE</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">bind</span> <span class="p">-</span><span class="n">-busid</span> <span class="n">4</span><span class="p">-</span><span class="n">3</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">注意</p>
@@ -1282,44 +1218,44 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <p><strong>PID (Product ID, 产品标识符)</strong>：制造商为设备分配的唯一标识符。</p>
 </details>
 <p>在 Powershell 中执行如下指令映射指定设备：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">attach</span> <span class="p">-</span><span class="n">-wsl</span> <span class="p">-</span><span class="n">-busid</span><span class="p">=&lt;</span><span class="n">BUSID</span><span class="p">&gt;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">WSL</span> <span class="n">distribution</span> <span class="s1">&#39;Ubuntu&#39;</span> <span class="n">to</span> <span class="n">attach</span><span class="p">;</span> <span class="n">the</span> <span class="n">device</span> <span class="n">will</span> <span class="n">be</span> <span class="n">available</span> <span class="k">in</span> <span class="n">all</span> <span class="n">WSL</span> <span class="n">2</span> <span class="n">distributions</span><span class="p">.</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">IP</span> <span class="n">address</span> <span class="n">172</span><span class="p">.</span><span class="n">26</span><span class="p">.</span><span class="n">80</span><span class="p">.</span><span class="n">1</span> <span class="n">to</span> <span class="n">reach</span> <span class="n">the</span> <span class="n">host</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">attach</span> <span class="p">-</span><span class="n">-wsl</span> <span class="p">-</span><span class="n">-busid</span><span class="p">=&lt;</span><span class="n">BUSID</span><span class="p">&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">WSL</span> <span class="n">distribution</span> <span class="s1">&#39;Ubuntu&#39;</span> <span class="n">to</span> <span class="n">attach</span><span class="p">;</span> <span class="n">the</span> <span class="n">device</span> <span class="n">will</span> <span class="n">be</span> <span class="n">available</span> <span class="k">in</span> <span class="n">all</span> <span class="n">WSL</span> <span class="n">2</span> <span class="n">distributions</span><span class="p">.</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">IP</span> <span class="n">address</span> <span class="n">172</span><span class="p">.</span><span class="n">26</span><span class="p">.</span><span class="n">80</span><span class="p">.</span><span class="n">1</span> <span class="n">to</span> <span class="n">reach</span> <span class="n">the</span> <span class="n">host</span><span class="p">.</span>
 </code></pre></div>
 <p>如果成功映射，我们可以在 WSL 端执行如下指令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>lsusb
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Bus<span class="w"> </span>&lt;bus<span class="w"> </span>id&gt;<span class="w"> </span>Device<span class="w"> </span>&lt;device<span class="w"> </span>id&gt;:<span class="w"> </span>ID<span class="w"> </span><span class="m">0403</span>:6014<span class="w"> </span>Future<span class="w"> </span>Technology<span class="w"> </span>Devices<span class="w"> </span>International,<span class="w"> </span>Ltd<span class="w"> </span>FT232H<span class="w"> </span>Single<span class="w"> </span>HS<span class="w"> </span>USB-UART/FIFO<span class="w"> </span>IC
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>lsusb
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Bus<span class="w"> </span>&lt;bus<span class="w"> </span>id&gt;<span class="w"> </span>Device<span class="w"> </span>&lt;device<span class="w"> </span>id&gt;:<span class="w"> </span>ID<span class="w"> </span><span class="m">0403</span>:6014<span class="w"> </span>Future<span class="w"> </span>Technology<span class="w"> </span>Devices<span class="w"> </span>International,<span class="w"> </span>Ltd<span class="w"> </span>FT232H<span class="w"> </span>Single<span class="w"> </span>HS<span class="w"> </span>USB-UART/FIFO<span class="w"> </span>IC
 </code></pre></div>
 <p><em>配置文件编写</em></p>
 <p>配置文件一般是由我们所使用的 RISC-V CPU 的开源贡献者提供的，我们无需自己编写。
 如下是一个示例配置文件：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>adapter speed     1000
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>adapter driver ftdi
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>ftdi vid_pid 0x0403 0x6014
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a># Channel 1 is taken by Xilinx JTAG
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>ftdi channel 0
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>ftdi layout_init 0x0018 0x001b
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>ftdi layout_signal nTRST -ndata 0x0010
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>set _CHIPNAME riscv
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>jtag newtap $_CHIPNAME cpu -irlen 5
-<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
-<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>set _TARGETNAME $_CHIPNAME.cpu
-<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>target create $_TARGETNAME riscv -chain-position $_TARGETNAME -coreid 0
-<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
-<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>gdb_report_data_abort enable
-<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>gdb_report_register_access_error enable
-<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>
-<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>riscv set_reset_timeout_sec 120
-<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>riscv set_command_timeout_sec 120
-<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>riscv set_mem_access progbuf sysbus abstract
-<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>
-<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>init
-<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>halt
-<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>echo &quot;Ready for Remote Connections&quot;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>adapter speed     1000
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>adapter driver ftdi
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ftdi vid_pid 0x0403 0x6014
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a># Channel 1 is taken by Xilinx JTAG
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>ftdi channel 0
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>ftdi layout_init 0x0018 0x001b
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>ftdi layout_signal nTRST -ndata 0x0010
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>set _CHIPNAME riscv
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>jtag newtap $_CHIPNAME cpu -irlen 5
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>set _TARGETNAME $_CHIPNAME.cpu
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>target create $_TARGETNAME riscv -chain-position $_TARGETNAME -coreid 0
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>gdb_report_data_abort enable
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>gdb_report_register_access_error enable
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>riscv set_reset_timeout_sec 120
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>riscv set_command_timeout_sec 120
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>riscv set_mem_access progbuf sysbus abstract
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>init
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>halt
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>echo &quot;Ready for Remote Connections&quot;
 </code></pre></div>
 <div class="admonition bug">
 <p class="admonition-title">FIXME!!!</p>
@@ -1327,26 +1263,26 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 </div>
 <p><em>启动 OpenOCD</em></p>
 <p>在 WSL 端执行如下指令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>openocd<span class="w"> </span>-f<span class="w"> </span>&lt;config<span class="w"> </span>file&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>openocd<span class="w"> </span>-f<span class="w"> </span>&lt;config<span class="w"> </span>file&gt;
 </code></pre></div>
 <p>如果你能成功启动 OpenOCD，终端中会输出如下信息：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Open<span class="w"> </span>On-Chip<span class="w"> </span>Debugger<span class="w"> </span><span class="m">0</span>.12.0+dev-03598-g78a719fad<span class="w"> </span><span class="o">(</span><span class="m">2024</span>-01-20-05:43<span class="o">)</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Licensed<span class="w"> </span>under<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>v2
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>For<span class="w"> </span>bug<span class="w"> </span>reports,<span class="w"> </span><span class="nb">read</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">        </span>http://openocd.org/doc/doxygen/bugs.html
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>Info<span class="w"> </span>:<span class="w"> </span>auto-selecting<span class="w"> </span>first<span class="w"> </span>available<span class="w"> </span>session<span class="w"> </span>transport<span class="w"> </span><span class="s2">&quot;jtag&quot;</span>.<span class="w"> </span>To<span class="w"> </span>override<span class="w"> </span>use<span class="w"> </span><span class="s1">&#39;transport select &lt;transport&gt;&#39;</span>.
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>Info<span class="w"> </span>:<span class="w"> </span>clock<span class="w"> </span>speed<span class="w"> </span><span class="m">100</span><span class="w"> </span>kHz
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>Info<span class="w"> </span>:<span class="w"> </span>JTAG<span class="w"> </span>tap:<span class="w"> </span>riscv.cpu<span class="w"> </span>tap/device<span class="w"> </span>found:<span class="w"> </span>0x00000001<span class="w"> </span><span class="o">(</span>mfg:<span class="w"> </span>0x000<span class="w"> </span><span class="o">(</span>&lt;invalid&gt;<span class="o">)</span>,<span class="w"> </span>part:<span class="w"> </span>0x0000,<span class="w"> </span>ver:<span class="w"> </span>0x0<span class="o">)</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span><span class="nv">datacount</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">progbufsize</span><span class="o">=</span><span class="m">8</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span>Examined<span class="w"> </span>RISC-V<span class="w"> </span>core
-<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w">  </span><span class="nv">XLEN</span><span class="o">=</span><span class="m">64</span>,<span class="w"> </span><span class="nv">misa</span><span class="o">=</span>0x800000000014112d
-<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span>Target<span class="w"> </span>successfully<span class="w"> </span>examined.
-<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span>Examination<span class="w"> </span>succeed
-<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>Info<span class="w"> </span>:<span class="w"> </span>starting<span class="w"> </span>gdb<span class="w"> </span>server<span class="w"> </span><span class="k">for</span><span class="w"> </span>riscv.cpu<span class="w"> </span>on<span class="w"> </span><span class="m">3333</span>
-<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>Info<span class="w"> </span>:<span class="w"> </span>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">3333</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>gdb<span class="w"> </span>connections
-<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>Ready<span class="w"> </span><span class="k">for</span><span class="w"> </span>Remote<span class="w"> </span>Connections
-<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>Info<span class="w"> </span>:<span class="w"> </span>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">6666</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>tcl<span class="w"> </span>connections
-<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>Info<span class="w"> </span>:<span class="w"> </span>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">4444</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>telnet<span class="w"> </span>connections
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Open<span class="w"> </span>On-Chip<span class="w"> </span>Debugger<span class="w"> </span><span class="m">0</span>.12.0+dev-03598-g78a719fad<span class="w"> </span><span class="o">(</span><span class="m">2024</span>-01-20-05:43<span class="o">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Licensed<span class="w"> </span>under<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>v2
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>For<span class="w"> </span>bug<span class="w"> </span>reports,<span class="w"> </span><span class="nb">read</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span>http://openocd.org/doc/doxygen/bugs.html
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Info<span class="w"> </span>:<span class="w"> </span>auto-selecting<span class="w"> </span>first<span class="w"> </span>available<span class="w"> </span>session<span class="w"> </span>transport<span class="w"> </span><span class="s2">&quot;jtag&quot;</span>.<span class="w"> </span>To<span class="w"> </span>override<span class="w"> </span>use<span class="w"> </span><span class="s1">&#39;transport select &lt;transport&gt;&#39;</span>.
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Info<span class="w"> </span>:<span class="w"> </span>clock<span class="w"> </span>speed<span class="w"> </span><span class="m">100</span><span class="w"> </span>kHz
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Info<span class="w"> </span>:<span class="w"> </span>JTAG<span class="w"> </span>tap:<span class="w"> </span>riscv.cpu<span class="w"> </span>tap/device<span class="w"> </span>found:<span class="w"> </span>0x00000001<span class="w"> </span><span class="o">(</span>mfg:<span class="w"> </span>0x000<span class="w"> </span><span class="o">(</span>&lt;invalid&gt;<span class="o">)</span>,<span class="w"> </span>part:<span class="w"> </span>0x0000,<span class="w"> </span>ver:<span class="w"> </span>0x0<span class="o">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span><span class="nv">datacount</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">progbufsize</span><span class="o">=</span><span class="m">8</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span>Examined<span class="w"> </span>RISC-V<span class="w"> </span>core
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w">  </span><span class="nv">XLEN</span><span class="o">=</span><span class="m">64</span>,<span class="w"> </span><span class="nv">misa</span><span class="o">=</span>0x800000000014112d
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span>Target<span class="w"> </span>successfully<span class="w"> </span>examined.
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span>Examination<span class="w"> </span>succeed
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>Info<span class="w"> </span>:<span class="w"> </span>starting<span class="w"> </span>gdb<span class="w"> </span>server<span class="w"> </span><span class="k">for</span><span class="w"> </span>riscv.cpu<span class="w"> </span>on<span class="w"> </span><span class="m">3333</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>Info<span class="w"> </span>:<span class="w"> </span>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">3333</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>gdb<span class="w"> </span>connections
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>Ready<span class="w"> </span><span class="k">for</span><span class="w"> </span>Remote<span class="w"> </span>Connections
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>Info<span class="w"> </span>:<span class="w"> </span>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">6666</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>tcl<span class="w"> </span>connections
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>Info<span class="w"> </span>:<span class="w"> </span>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">4444</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>telnet<span class="w"> </span>connections
 </code></pre></div>
 <h3 id="windows_1">Windows</h3>
 <p><em>JTAG 驱动</em></p>
@@ -1365,101 +1301,101 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 
 <p><em>配置文件编写</em></p>
 <p>Windows 端的配置文件需要额外指定 WSL 的 IP 地址，如下是一个示例配置文件：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>bindto &lt;WSL IP Address&gt;
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>adapter speed     1000
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>adapter driver ftdi
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>ftdi vid_pid 0x0403 0x6014
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a># Channel 1 is taken by Xilinx JTAG
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>ftdi channel 0
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>ftdi layout_init 0x0018 0x001b
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>ftdi layout_signal nTRST -ndata 0x0010
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
-<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>set _CHIPNAME riscv
-<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>jtag newtap $_CHIPNAME cpu -irlen 5
-<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>
-<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>set _TARGETNAME $_CHIPNAME.cpu
-<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>target create $_TARGETNAME riscv -chain-position $_TARGETNAME -coreid 0
-<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>
-<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>gdb_report_data_abort enable
-<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>gdb_report_register_access_error enable
-<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>
-<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>riscv set_reset_timeout_sec 120
-<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>riscv set_command_timeout_sec 120
-<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>riscv set_mem_access progbuf sysbus abstract
-<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>
-<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>init
-<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>halt
-<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>echo &quot;Ready for Remote Connections&quot;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>bindto &lt;WSL IP Address&gt;
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>adapter speed     1000
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>adapter driver ftdi
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>ftdi vid_pid 0x0403 0x6014
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a># Channel 1 is taken by Xilinx JTAG
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>ftdi channel 0
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>ftdi layout_init 0x0018 0x001b
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>ftdi layout_signal nTRST -ndata 0x0010
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>set _CHIPNAME riscv
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>jtag newtap $_CHIPNAME cpu -irlen 5
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>set _TARGETNAME $_CHIPNAME.cpu
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>target create $_TARGETNAME riscv -chain-position $_TARGETNAME -coreid 0
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>gdb_report_data_abort enable
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>gdb_report_register_access_error enable
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>riscv set_reset_timeout_sec 120
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>riscv set_command_timeout_sec 120
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>riscv set_mem_access progbuf sysbus abstract
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>init
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>halt
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>echo &quot;Ready for Remote Connections&quot;
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">获取 WSL IP 地址</p>
 <p>在 Windows 端执行如下指令：
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">$</span> <span class="n">ipconfig</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="p">...</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">以太网适配器</span> <span class="n">vEthernet</span> <span class="p">(</span><span class="n">WSL</span> <span class="p">(</span><span class="n">Hyper-V</span> <span class="n">firewall</span><span class="p">)):</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>  <span class="n">连接特定的</span> <span class="n">DNS</span> <span class="n">后缀</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>  <span class="n">本地链接</span> <span class="n">IPv6</span> <span class="n">地址</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span> <span class="n">fe80</span><span class="p">::</span><span class="n">33eb</span><span class="p">:</span><span class="n">9f74</span><span class="p">:</span><span class="n">8b73</span><span class="p">:</span><span class="n">253f</span><span class="k">%</span><span class="n">49</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>  <span class="n">IPv4</span> <span class="n">地址</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span> <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">1</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  <span class="n">子网掩码</span>  <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span> <span class="n">255</span><span class="p">.</span><span class="n">255</span><span class="p">.</span><span class="n">240</span><span class="p">.</span><span class="n">0</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>  <span class="n">默认网关</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">$</span> <span class="n">ipconfig</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">...</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">以太网适配器</span> <span class="n">vEthernet</span> <span class="p">(</span><span class="n">WSL</span> <span class="p">(</span><span class="n">Hyper-V</span> <span class="n">firewall</span><span class="p">)):</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  <span class="n">连接特定的</span> <span class="n">DNS</span> <span class="n">后缀</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  <span class="n">本地链接</span> <span class="n">IPv6</span> <span class="n">地址</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span> <span class="n">fe80</span><span class="p">::</span><span class="n">33eb</span><span class="p">:</span><span class="n">9f74</span><span class="p">:</span><span class="n">8b73</span><span class="p">:</span><span class="n">253f</span><span class="k">%</span><span class="n">49</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>  <span class="n">IPv4</span> <span class="n">地址</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span> <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">1</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  <span class="n">子网掩码</span>  <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span> <span class="n">255</span><span class="p">.</span><span class="n">255</span><span class="p">.</span><span class="n">240</span><span class="p">.</span><span class="n">0</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  <span class="n">默认网关</span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">:</span>
 </code></pre></div>
 其中 IPv4 地址即为 WSL 的 IP 地址。</p>
 </div>
 <p><em>启动 OpenOCD</em></p>
 <p>在 Windows 端执行如下指令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">$</span> <span class="p">.\</span><span class="n">openocd</span><span class="p">.</span><span class="n">exe</span> <span class="o">-f</span> <span class="p">&lt;</span><span class="n">config</span> <span class="n">file</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">$</span> <span class="p">.\</span><span class="n">openocd</span><span class="p">.</span><span class="n">exe</span> <span class="o">-f</span> <span class="p">&lt;</span><span class="n">config</span> <span class="n">file</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>如果你能成功启动 OpenOCD，终端中会输出如下信息：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Open</span> <span class="n">On-Chip</span> <span class="n">Debugger</span> <span class="n">0</span><span class="p">.</span><span class="n">12</span><span class="p">.</span><span class="n">0</span> <span class="p">(</span><span class="n">2023</span><span class="p">-</span><span class="n">01</span><span class="p">-</span><span class="n">14</span><span class="p">-</span><span class="n">23</span><span class="p">:</span><span class="n">37</span><span class="p">)</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">Licensed</span> <span class="n">under</span> <span class="n">GNU</span> <span class="n">GPL</span> <span class="n">v2</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">For</span> <span class="n">bug</span> <span class="n">reports</span><span class="p">,</span> <span class="n">read</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>        <span class="n">http</span><span class="p">://</span><span class="n">openocd</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">doc</span><span class="p">/</span><span class="n">doxygen</span><span class="p">/</span><span class="n">bugs</span><span class="p">.</span><span class="n">html</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">auto-selecting</span> <span class="n">first</span> <span class="n">available</span> <span class="n">session</span> <span class="n">transport</span> <span class="s2">&quot;jtag&quot;</span><span class="p">.</span> <span class="n">To</span> <span class="n">override</span> <span class="n">use</span> <span class="s1">&#39;transport select &lt;transport&gt;&#39;</span><span class="p">.</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">clock</span> <span class="n">speed</span> <span class="n">100</span> <span class="n">kHz</span>
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">JTAG</span> <span class="n">tap</span><span class="p">:</span> <span class="n">riscv</span><span class="p">.</span><span class="n">cpu</span> <span class="n">tap</span><span class="p">/</span><span class="n">device</span> <span class="n">found</span><span class="p">:</span> <span class="n">0x00000001</span> <span class="p">(</span><span class="n">mfg</span><span class="p">:</span> <span class="n">0x000</span> <span class="p">(&lt;</span><span class="n">invalid</span><span class="p">&gt;),</span> <span class="n">part</span><span class="p">:</span> <span class="n">0x0000</span><span class="p">,</span> <span class="n">ver</span><span class="p">:</span> <span class="n">0x0</span><span class="p">)</span>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">datacount</span><span class="p">=</span><span class="n">2</span> <span class="n">progbufsize</span><span class="p">=</span><span class="n">8</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">Examined</span> <span class="n">RISC-V</span> <span class="n">core</span>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span>  <span class="n">XLEN</span><span class="p">=</span><span class="n">64</span><span class="p">,</span> <span class="n">misa</span><span class="p">=</span><span class="n">0x800000000014112d</span>
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="no">[riscv.cpu]</span> <span class="n">Target</span> <span class="n">successfully</span> <span class="n">examined</span><span class="p">.</span>
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">Examination</span> <span class="n">succeed</span>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">starting</span> <span class="n">gdb</span> <span class="n">server</span> <span class="k">for</span> <span class="n">riscv</span><span class="p">.</span><span class="n">cpu</span> <span class="n">on</span> <span class="n">3333</span>
-<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="n">3333</span> <span class="k">for</span> <span class="n">gdb</span> <span class="n">connections</span>
-<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="n">Ready</span> <span class="k">for</span> <span class="n">Remote</span> <span class="n">Connections</span>
-<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="n">6666</span> <span class="k">for</span> <span class="n">tcl</span> <span class="n">connections</span>
-<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="n">4444</span> <span class="k">for</span> <span class="n">telnet</span> <span class="n">connections</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Open</span> <span class="n">On-Chip</span> <span class="n">Debugger</span> <span class="n">0</span><span class="p">.</span><span class="n">12</span><span class="p">.</span><span class="n">0</span> <span class="p">(</span><span class="n">2023</span><span class="p">-</span><span class="n">01</span><span class="p">-</span><span class="n">14</span><span class="p">-</span><span class="n">23</span><span class="p">:</span><span class="n">37</span><span class="p">)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">Licensed</span> <span class="n">under</span> <span class="n">GNU</span> <span class="n">GPL</span> <span class="n">v2</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">For</span> <span class="n">bug</span> <span class="n">reports</span><span class="p">,</span> <span class="n">read</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="n">http</span><span class="p">://</span><span class="n">openocd</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">doc</span><span class="p">/</span><span class="n">doxygen</span><span class="p">/</span><span class="n">bugs</span><span class="p">.</span><span class="n">html</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">auto-selecting</span> <span class="n">first</span> <span class="n">available</span> <span class="n">session</span> <span class="n">transport</span> <span class="s2">&quot;jtag&quot;</span><span class="p">.</span> <span class="n">To</span> <span class="n">override</span> <span class="n">use</span> <span class="s1">&#39;transport select &lt;transport&gt;&#39;</span><span class="p">.</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">clock</span> <span class="n">speed</span> <span class="n">100</span> <span class="n">kHz</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">JTAG</span> <span class="n">tap</span><span class="p">:</span> <span class="n">riscv</span><span class="p">.</span><span class="n">cpu</span> <span class="n">tap</span><span class="p">/</span><span class="n">device</span> <span class="n">found</span><span class="p">:</span> <span class="n">0x00000001</span> <span class="p">(</span><span class="n">mfg</span><span class="p">:</span> <span class="n">0x000</span> <span class="p">(&lt;</span><span class="n">invalid</span><span class="p">&gt;),</span> <span class="n">part</span><span class="p">:</span> <span class="n">0x0000</span><span class="p">,</span> <span class="n">ver</span><span class="p">:</span> <span class="n">0x0</span><span class="p">)</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">datacount</span><span class="p">=</span><span class="n">2</span> <span class="n">progbufsize</span><span class="p">=</span><span class="n">8</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">Examined</span> <span class="n">RISC-V</span> <span class="n">core</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span>  <span class="n">XLEN</span><span class="p">=</span><span class="n">64</span><span class="p">,</span> <span class="n">misa</span><span class="p">=</span><span class="n">0x800000000014112d</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="no">[riscv.cpu]</span> <span class="n">Target</span> <span class="n">successfully</span> <span class="n">examined</span><span class="p">.</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">Examination</span> <span class="n">succeed</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">starting</span> <span class="n">gdb</span> <span class="n">server</span> <span class="k">for</span> <span class="n">riscv</span><span class="p">.</span><span class="n">cpu</span> <span class="n">on</span> <span class="n">3333</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="n">3333</span> <span class="k">for</span> <span class="n">gdb</span> <span class="n">connections</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="n">Ready</span> <span class="k">for</span> <span class="n">Remote</span> <span class="n">Connections</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="n">6666</span> <span class="k">for</span> <span class="n">tcl</span> <span class="n">connections</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="n">4444</span> <span class="k">for</span> <span class="n">telnet</span> <span class="n">connections</span>
 </code></pre></div>
-<h2 id="114-gdb-openocd">11.4 使用 GDB 连接 OpenOCD</h2>
+<h2 id="113-gdb-openocd">11.3 使用 GDB 连接 OpenOCD</h2>
 <p>在 WSL 中执行如下指令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$<span class="w"> </span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-gdb
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>GDB<span class="o">)</span><span class="w"> </span><span class="m">14</span>.0.50.20230114-git
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;--host=x86_64-pc-linux-gnu --target=riscv-none-elf&quot;</span>.
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>.
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="o">(</span>gdb<span class="o">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$<span class="w"> </span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-gdb
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>GDB<span class="o">)</span><span class="w"> </span><span class="m">14</span>.0.50.20230114-git
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;--host=x86_64-pc-linux-gnu --target=riscv-none-elf&quot;</span>.
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>.
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="o">(</span>gdb<span class="o">)</span>
 </code></pre></div>
 <p>如果你的 OpenOCD 安装在 <strong>WSL</strong> 中，那么输入如下指令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>target<span class="w"> </span>remote<span class="w"> </span>:3333
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>target<span class="w"> </span>remote<span class="w"> </span>:3333
 </code></pre></div>
 <p>如果你的 OpenOCD 安装在 <strong>Windows</strong> 中，那么输入如下指令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>target<span class="w"> </span>remote<span class="w"> </span>&lt;WSL<span class="w"> </span>IP<span class="w"> </span>Address&gt;:3333
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>target<span class="w"> </span>remote<span class="w"> </span>&lt;WSL<span class="w"> </span>IP<span class="w"> </span>Address&gt;:3333
 </code></pre></div>
-<h2 id="115">11.5 调试程序</h2>
+<h2 id="114">11.4 调试程序</h2>
 <div class="admonition tip">
 <p class="admonition-title">GDB 原理</p>
 <p>有关 GDB 原理，请参考 <a href="../0_eda/">0. Linux 环境下的 EDA 工具使用：0.1 Linux 常用工具 GDB</a>。</p>
@@ -1547,7 +1483,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年8月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年10月28日</span>
   </span>
 
     
