@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
     
     
       
@@ -1101,7 +1101,7 @@
 <p class="admonition-title">TLDR</p>
 <ol>
 <li>模板文件路径：<code>/work/home/limingxuan/common/SOC_CVA6/</code></li>
-<li>仿真脚本：<code>/work/home/limingxuan/common/SOC_CVA6/Makefile</code></li>
+<li>仿真脚本：<code>/work/home/limingxuan/common/SOC_CVA6/sim/Makefile</code></li>
 <li>仿真命令：<code>b make verdi</code></li>
 </ol>
 </div>
@@ -1111,31 +1111,35 @@
 </code></pre></div>
 <p>该文件夹的结构为：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SOC_CVA6
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── cpu_cva6
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── ...
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   └── cva6.sv                 # CVA6 Top Module
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── soc_axi
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── ...
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── axi_bus
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   │   ├── ...
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │   └── axi_dw_converter.sv # AXI Data Width Converter
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── reg_bus
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   │   ├── ...
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   │   └── reg_intf.sv         # Reg Bus Interface
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── bus_converter
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   │   ├── ...
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   │   ├── axi_to_reg.sv       # AXI to Reg Bus Converter
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   │   └── axi2mem.sv          # AXI to Memory Interface
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   └── bootrom.sv              # Boot ROM
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>├── misc
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── ...
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   └── tc_sram.sv              # Behavioral SRAM
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── soc_pkg.sv                  # Address Mapping Definition
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── soc.sv                      # SoC Top Module
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>├── soc_tb.sv                   # SoC Testbench
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>├── init_mem.hex                # Memory Initialization File
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>├── filelist.f                  # Filelist for RTL
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>└── Makefile                    # Simulation Script
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── cpu_cva6
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   │   ├── ...
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   │   └── cva6.sv                 # CVA6 Top Module
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── soc_axi
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   │   ├── ...
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   │   ├── axi_bus
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │   │   ├── ...
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   │   │   └── axi_dw_converter.sv # AXI Data Width Converter
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   │   ├── reg_bus
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   │   │   ├── ...
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   │   │   └── reg_intf.sv         # Reg Bus Interface
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   │   ├── bus_converter
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   │   │   ├── ...
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   │   │   ├── axi_to_reg.sv       # AXI to Reg Bus Converter
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   │   │   └── axi2mem.sv          # AXI to Memory Interface
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   │   └── bootrom.sv              # Boot ROM
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── misc
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   │   ├── ...
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   │   └── tc_sram.sv              # Behavioral SRAM
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── soc_pkg.sv                  # Address Mapping Definition
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   └── soc.sv                      # SoC Top Module
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>├── sim
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── soc_tb.sv                   # SoC Testbench
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── init_mem.hex                # Memory Initialization File
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── filelist.f                  # Filelist for RTL
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   └── Makefile                    # Simulation Script
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>├── ...
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>...
 </code></pre></div>
 <h2 id="12">1.2 子模块集成</h2>
 <h3 id="_1">总线接口</h3>
@@ -1149,15 +1153,15 @@
 <p>该适配器适用于需要将<strong>少量寄存器</strong>映射到 AXI 总线的场景，例如控制寄存器、状态寄存器等。</p>
 <p>你需要调用的模块为：</p>
 <ul>
-<li><code>soc_axi/reg_bus/reg_intf.sv</code>：寄存器总线接口定义。</li>
-<li><code>soc_axi/axi_bus/include/axi_intf.sv</code>：AXI 总线接口定义。</li>
-<li><code>soc_axi/bus_converter/axi_to_reg.sv</code>：AXI 到寄存器总线转换器。</li>
+<li><code>src/soc_axi/reg_bus/reg_intf.sv</code>：寄存器总线接口定义。</li>
+<li><code>src/soc_axi/axi_bus/include/axi_intf.sv</code>：AXI 总线接口定义。</li>
+<li><code>src/soc_axi/bus_converter/axi_to_reg.sv</code>：AXI 到寄存器总线转换器。</li>
 </ul>
 <p>如果 AXI 总线的数据位宽和寄存器总线的数据位宽不一致，你还需要调用：</p>
 <ul>
-<li><code>soc_axi/bus_converter/axi_dw_converter.sv</code>：AXI 数据位宽转换器。</li>
+<li><code>src/soc_axi/bus_converter/axi_dw_converter.sv</code>：AXI 数据位宽转换器。</li>
 </ul>
-<p>接下来，你需要理解<strong>寄存器总线接口</strong>、阅读 <code>soc_axi/include/reg_*.svh</code> 并<strong>自行编写</strong>寄存器与寄存器总线之间的逻辑，如下是一个简单的例子。</p>
+<p>接下来，你需要理解<strong>寄存器总线接口</strong>、阅读 <code>src/soc_axi/include/reg_*.svh</code> 并<strong>自行编写</strong>寄存器与寄存器总线之间的逻辑，如下是一个简单的例子。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// soc.sv</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">module</span><span class="w"> </span><span class="n">soc</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">...</span>
@@ -1256,8 +1260,8 @@
 <p>该适配器适用于需要将<strong>大量数据</strong>映射到 AXI 总线的场景，例如缓存、存储器等。</p>
 <p>你需要调用的模块为：</p>
 <ul>
-<li><code>soc_axi/axi_bus/include/axi_intf.sv</code>：AXI 总线接口定义。</li>
-<li><code>soc_axi/bus_converter/axi2mem.sv</code>：AXI 到 memory 接口转换器。</li>
+<li><code>src/soc_axi/axi_bus/include/axi_intf.sv</code>：AXI 总线接口定义。</li>
+<li><code>src/soc_axi/bus_converter/axi2mem.sv</code>：AXI 到 memory 接口转换器。</li>
 </ul>
 <p><code>axi2mem</code> 模块 memory 接口的定义如下所示：</p>
 <div style="display: flex; justify-content: center;">
@@ -1379,8 +1383,8 @@
 <p>CPU 通过地址访问外围设备，因此需要给每个设备<strong>分配地址空间</strong>，这个过程称为<strong>地址映射（memory mapping）</strong>。</p>
 <p>你需要修改的文件为：</p>
 <ul>
-<li><code>soc_axi/soc_pkg.sv</code>：地址映射定义。</li>
-<li><code>soc_axi/soc.sv</code>：SoC 顶层模块。</li>
+<li><code>src/soc_axi/soc_pkg.sv</code>：地址映射定义。</li>
+<li><code>src/soc_axi/soc.sv</code>：SoC 顶层模块。</li>
 </ul>
 <p>在 <code>soc_pkg.sv</code> 中，<strong>仿照</strong>其他模块的地址分配，你需要定义每个子模块的<strong>名称、起始地址、空间大小</strong>。</p>
 <div class="admonition warning">
@@ -1492,7 +1496,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年10月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月1日</span>
   </span>
 
     
