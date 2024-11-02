@@ -420,5 +420,10 @@ b make compile
 
 运行仿真时，脚本会创建 `build/` 文件夹，所有运行仿真生成的文件都会放在这个文件夹中。
 
+在 Verdi 中，点击波形区域，使用快捷键 `r` 可以**恢复波形**，加载 `sim/soc_signal.rc` 文件可以查看 CPU 指令波形。
+
+!!! tip "Top Module 选择"
+    该模板也可用于其他模块仿真，只需要将你的模块和 testbench 都加入 `filelist.f`，执行 `make TOP=<your testbench top module name>` 即可。
+
 !!! tip "Makefile 内容"
     非常建议你**阅读** Makefile 脚本，以便更好地理解仿真的过程。
