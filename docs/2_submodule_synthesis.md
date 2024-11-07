@@ -58,6 +58,11 @@
 
 在 `Corners` 菜单中 DOMAINS（电压域）一般选择 `0p80v`，PROCESSES（工艺角）全选，可选 tt (typical)，ffg (best)，ssg (worst)。在选择了电压域之后，点击 `All` 全选所有的温度值（包括负40摄氏度，80摄氏度等）。
 
+!!! tip "延迟"
+
+  相同的 Word，Bit，不同的 bank 和 mux 数会影响 SRAM 的延迟。
+  增加 bank 和 mux 的数量均会导致延迟的**减小**。
+
 <figure>
   <img src="../figs/corners.png">
   <figcaption>SRAM Compiler Available Corners </figcaption>
