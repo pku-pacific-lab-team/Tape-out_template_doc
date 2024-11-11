@@ -96,4 +96,5 @@ nav:
     - 15. PDK Setup: 15_PDK_setup.md
     - 16. Digital-CIM Specification: DCIM_spec.md
     - 17. SRAM IP Specification: sram_ip.md
+    - 18. Innovus Guide: innovus_guide.md
   - VI. Join Us! How to Contribute?: contribute.md

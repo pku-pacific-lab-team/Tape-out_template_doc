@@ -23,11 +23,10 @@ SOC_CVA6
 │   ├── scripts
 │   │   ├── genus_synthesis.tcl     # main synthesis script
 │   │   ├── init_syn.tcl            # init synthesis script
-│   │   ├── syn_define.tcl          # define synthesis parameters
 │   │   ├── syn_mmmc.tcl            # define MMMC constraints
-│   │   └── syn_constraints_soc.sdc # define timing constraints
 │   └── Makefile
 ├── utils
+│   ├── constraints_soc.sdc         # define timing constraints
 │   ├── global_define.tcl           # define global parameters
 │   └── user_define.tcl             # user-specific parameters
 ├── Makefile                        # Top-level Makefile
@@ -49,8 +48,7 @@ SOC_CVA6
 - `rm_core_top`：顶层模块的名称。
 - `rm_clock_pin`：顶层模块的时钟端口名称。
 - `rm_clock_period`：时钟周期，单位 ns。
-- `sram_insts`：SRAM 实例的名称，请在 `src/sram` 文件夹中使用。
-- `sram_compiler` 生成对应名称的 sram 实例。
+- `sram_insts`：SRAM 实例的名称，请在 `src/sram` 文件夹中使用 `sram_compiler` 生成对应名称的 sram 实例。
 - `macro_libs, macro_lefs`：宏单元 LIB 文件和宏单元 LEF 文件的路径。
 - `std_lib, cell_ext`：选择标准单元库的阈值电压。
 
@@ -60,7 +58,7 @@ SOC_CVA6
 
 ### 修改时序约束
 
-每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `syn/scripts/syn_constraints_soc.sdc`。
+每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `utils/constraints_soc.sdc`。
 
 你需要定义的内容如下：
 
@@ -80,7 +78,7 @@ SOC_CVA6
     大部分情况下，虚拟时钟和实际时钟是**同步**的。
     实际上，这和直接将输入输出约束到实际时钟上是**等效**的，但是这样做会使得时序约束文件变得复杂。
 
-请将你编写的 `sdc` 文件命名为 `syn_constraints_<top_module_name>.sdc`，并放在 `syn/scripts/` 文件夹中。
+请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `syn/scripts/` 文件夹中。
 
 ### 运行逻辑综合
 
@@ -90,15 +88,14 @@ SOC_CVA6
 b make genus
 ```
 
-逻辑综合会在 `syn` 文件夹下生成 3 个文件夹 `build, *_data, *_reports`，文件结构如下所示。
+综合 SOC_CVA6 的时间大致需要 2.5h 左右。
+逻辑综合会在 `syn` 文件夹下生成 3 个文件夹 `logs, *_data, *_reports`，文件结构如下所示。
 
 ```
 syn
-├── build
-│   ├── fv_map                      # functional verification map
-│   │   └── ...
-│   ├── genus.cmd                   # genus command file
-│   └── genus.log                   # genus log file
+├── logs
+│   ├── <top_module_name>.cmd       # genus command file
+│   └── <top_module_name>.log       # genus log file
 ├── <top_module_name>_data
 │   ├── *.sdf
 │   ├── *.sdc
@@ -123,11 +120,6 @@ syn
 ├── ...
 ...
 ```
-
-!!! danger "build 文件夹"
-
-    请不要在 `build` 文件夹中保存任何文件！
-    每一次逻辑综合都会**清空**该文件夹。
 
 ### 恢复设计
 

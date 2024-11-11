@@ -57,6 +57,7 @@
     * [15. PDK设置](./15_PDK_setup.md)
     * [16. Digital-CIM 使用规范](./DCIM_spec.md)
     * [17. SRAM IP 使用规范](./sram_ip.md)
+    * [18. Innovus 入门](./innovus_guide.md)
 * [六、如何贡献](contribute.md)
 
 ## 更新日志
