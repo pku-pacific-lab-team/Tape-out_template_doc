@@ -1,7 +1,7 @@
 # 4. 数字子系统的物理设计（弃用）
 
 !!! Warning "注意"
-  本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，基于[新版逻辑综合文档](./2_submodule_synthesis_new.md)的物理设计部分正在开发中！
+    本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，基于[新版逻辑综合文档](./2_submodule_synthesis_new.md)的物理设计部分正在开发中！
 
 在完成数字模块的逻辑综合之后得到门级网表。以此为基础使用 Cadence Innovus 进行数字子系统的物理设计（后端设计）。
 
