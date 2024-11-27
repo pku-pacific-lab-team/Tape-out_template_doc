@@ -76,11 +76,14 @@ nav:
   - I. EDA Tools & Environment: 0_eda.md
   - II. Frontend:
     - 1. System Integration & Behavioral Simulation: 1_system_integration_behavioral_simulation.md
-    - 2. Submodule Synthesis: 2_submodule_synthesis.md
-    - 2(a). Submodule Synthesis (Refresh!): submodule_synthesis_new.md
+    - 2. Submodule Synthesis: 
+      - Current Version: 2_submodule_synthesis_new.md
+      - Deprecated Version: 2_submodule_synthesis_deprecated.md
     - 3. Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - III. Backend:
-    - 4. Submodule Implementation: 4_submodule_implementation.md
+    - 4. Submodule Implementation:
+      - Current Version: 4_submodule_implementation_new.md
+      - Deprecated Version: 4_submodule_implementation_deprecated.md
     - 5. TOP IO Implementation: 5_io.md
     - 6. DRC/LVS: 6_lvs_drc.md
     - 7. Tape-out: 7_final_layout.md

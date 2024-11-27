@@ -1,4 +1,4 @@
-# 2(a). 数字子系统的逻辑综合（重构版）
+# 2. 数字子系统的逻辑综合（重构版）
 
 !!! tip "TLDR"
     1. 模板文件路径：`/work/home/limingxuan/common/SOC_CVA6/`
@@ -121,6 +121,13 @@ syn
 ...
 ```
 
+### 查看主要输出报告
+
+* `..syn/logs/<top_module_name>.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查逻辑综合流程是否有误。
+* `./syn/<top_module_name>_data/*_postsyn.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
+* `./syn/<top_module_name>_reports/timing/*_timing.rpt`：各个 PVT 的时序报告，可以查找 `VIOLATED` 关键词检查时序是否满足。
+* `./syn/<top_module_name>_reports/area/area.rpt`：该模块的面积报告，可以作为后续后端设计版图大小的参考。
+
 ### 恢复设计
 
 在进行一次逻辑综合后，可以在 `SOC_CVA6` 路径下通过如下指令快速恢复设计：
@@ -128,6 +135,7 @@ syn
 ```
 b make restore_genus
 ```
+
 
 !!! bug "待添加"
 

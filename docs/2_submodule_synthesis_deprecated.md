@@ -1,12 +1,17 @@
-# 2. 数字子系统的逻辑综合
+# 2. 数字子系统的逻辑综合（弃用）
+
+!!! Warning "注意"
+  本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，强烈推荐阅读[新版文档](./2_submodule_synthesis_new.md)。
+
+## 2.1 逻辑综合基本原理
 
 在数字芯片的设计流程中，后端设计是在逻辑综合的基础上进行的。在我们的模板文件中，逻辑综合和后端设计均会调用部分相同的脚本文件，因此先对数字子系统的逻辑综合流程做简要说明。
 
-[逻辑综合](https://en.wikipedia.org/wiki/Logic_synthesis) (Logic Synthesis) 主要目的是将RTL级的设计进行优化，并映射到特定的工艺库中。此外，逻辑综合器也可以进行静态时序分析。
+[逻辑综合](https://en.wikipedia.org/wiki/Logic_synthesis) (Logic Synthesis) 主要目的是将 RTL 级的设计进行优化，并映射到特定的工艺库中。此外，逻辑综合器也可以进行静态时序分析。
 
 电路的逻辑综合一般由三个步骤组成：**转化、逻辑优化、映射**。在综合过程中，优化进程尝试完成标准单元的组合，使得组合能够最好满足设计的功能、时序和面积的要求。综合为约束驱动，给定的约束是优化目标。
 
-## 逻辑综合流程介绍
+## 2.2 逻辑综合流程介绍
 
 !!! Warning "注意"
     数字子系统的逻辑综合使用`/work/home/ztzhu/tapeout_templates/submodule_tapeout/`文件夹。
@@ -24,9 +29,9 @@
 
 查看 `./scripts/genus_synthesis.tcl` 可以观察逻辑综合的大致流程。首先读入 `./scripts/core_config.tcl`, `./scripts/tech.tcl`, `./scripts/init_syn.tcl` 等工艺库、工程定义等相关文件，之后读入 MMMC 配置文件，进行逻辑综合，迭代优化时序，最终将逻辑综合的报告写入 `./reports/genus/` 文件夹下。
 
-以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要4-5小时）
+以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要 4-5 小时）
 
-### 2.1 SRAM/Register File 替换 _（可选）_
+### SRAM/Register File 替换 _（可选）_
 
 !!! question "提示"
     该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
@@ -70,11 +75,11 @@
 
 在 `views` 部分依次选择 `LEF Footprint`, `LVS Netlist`, `Liberty Model`, `Verilog Model`, `GDSII Layout`，点击 `Generate` 生成相应的文件，这些文件的用途大致如下：
 
-* `Liberty Model`：用于逻辑综合与后端设计的时序分析与优化，包含SRAM的时序信息；
-* `Verilog Model`：SRAM的Verilog代码，用于功能仿真；
-* `LEF Footprint`：包含SRAM的版图信息（使用的金属层、IO位置等），为逻辑综合和后端设计提供SRAM的面积信息；
-* `LVS Netlist`：用于后端设计的LVS检查，在逻辑综合阶段暂不需要；
-* `GDSII Layout`：用于后端设计的DRC检查和最终版图导出。
+* `Liberty Model`：用于逻辑综合与后端设计的时序分析与优化，包含 SRAM 的时序信息；
+* `Verilog Model`：SRAM 的 Verilog 代码，用于功能仿真；
+* `LEF Footprint`：包含 SRAM 的版图信息（使用的金属层、IO 位置等），为逻辑综合和后端设计提供 SRAM 的面积信息；
+* `LVS Netlist`：用于后端设计的 LVS 检查，在逻辑综合阶段暂不需要；
+* `GDSII Layout`：用于后端设计的 DRC 检查和最终版图导出。
 
 <figure>
   <img src="../figs/views.png">
@@ -202,7 +207,7 @@ rf_128x128 rf_inst(
 );
 ```
 
-### 2.2 添加可综合 RTL 代码
+### 添加可综合 RTL 代码
 
 将数字子系统的可综合 RTL 代码放在 `./rtl/` 目录下，并在 `./rtl/srcs.tcl` 中添加所有 RTL 代码的文件名称。`srcs.tcl` 的示例如下。
 
@@ -219,7 +224,7 @@ read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/S
 read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/SystemVerilog_MODULE_2.sv
 ```
 
-### 2.3 修改 `core_config.tcl`
+### 修改 `core_config.tcl`
 
 在 `./scripts/core_config.tcl` 中定义了数字系统的**顶层模块名称**、**时钟信号名称**等信息，需要根据情况进行调整。
 
@@ -229,7 +234,7 @@ set rm_core_top MY_TOP_MODULE
 set rm_clock_pin clk
 ```
 
-### 2.4 修改 `design_inputs_macro.tcl`
+### 修改 `design_inputs_macro.tcl`
 
 #### 选择逻辑综合和后端设计使用的**标准单元库**
 
@@ -286,11 +291,11 @@ set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/le
 set rm_clock_period 5
 ```
 
-### 2.5 修改 `tech.tcl`
+### 修改 `tech.tcl`
 
 #### 添加子模块所需的 `LIB` 文件
 
-`LIB` 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的PVT都会有相应的 `LIB` 文件。
+`LIB` 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的 PVT 都会有相应的 `LIB` 文件。
 对于 `ff_0p88v_m40c`，添加 `LIB` 文件的示例如下：
 
 ``` tcl
@@ -305,7 +310,7 @@ foreach sram ${sram_insts} { \
 }
 ```
 
-可以看到，除了标准单元和子模块的 `LIB` 文件，此处也自动添加了 Compiler 生成的SRAM IP的 `LIB` 文件。
+可以看到，除了标准单元和子模块的 `LIB` 文件，此处也自动添加了 Compiler 生成的 SRAM IP 的 `LIB` 文件。
 
 一个较完整的例子如下：
 
@@ -315,13 +320,13 @@ foreach sram ${sram_insts} { \
 </figure>
 
 
-### 2.6 启动 Genus 综合
+### 启动 Genus 综合
 
 ``` shell
 b make genus_syn
 ```
 
-### 2.7 查看综合报告
+### 查看综合报告
 
 * `./data/MY_TOP_MODULE-genus.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
 * `./logs/genus_synthesis.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查流程是否有误。
