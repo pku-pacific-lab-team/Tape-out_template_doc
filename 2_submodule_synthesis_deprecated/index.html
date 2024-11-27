@@ -10,13 +10,13 @@
         <meta name="author" content="Bwoah-Kimi">
       
       
-        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis/">
+        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis_deprecated/">
       
       
-        <link rel="prev" href="../1_system_integration_behavioral_simulation/">
+        <link rel="prev" href="../2_submodule_synthesis_new/">
       
       
-        <link rel="next" href="../submodule_synthesis_new/">
+        <link rel="next" href="../3_submodule_gate_level_simulation/">
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>2. Submodule Synthesis - Documentation for Tape-out</title>
+        <title>Deprecated Version - Documentation for Tape-out</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2. Submodule Synthesis
+              Deprecated Version
             
           </span>
         </div>
@@ -354,6 +354,64 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2. Submodule Synthesis
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            2. Submodule Synthesis
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_submodule_synthesis_new/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Current Version
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -366,7 +424,7 @@
           
   
   <span class="md-ellipsis">
-    2. Submodule Synthesis
+    Deprecated Version
   </span>
   
 
@@ -377,7 +435,7 @@
         
   
   <span class="md-ellipsis">
-    2. Submodule Synthesis
+    Deprecated Version
   </span>
   
 
@@ -399,23 +457,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
-      逻辑综合流程介绍
+      2.1 逻辑综合基本原理
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="逻辑综合流程介绍">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 逻辑综合流程介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 逻辑综合流程介绍">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-sramregister-file" class="md-nav__link">
+  <a href="#sramregister-file" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 SRAM/Register File 替换 （可选）
+      SRAM/Register File 替换 （可选）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.1 SRAM/Register File 替换 （可选）">
+    <nav class="md-nav" aria-label="SRAM/Register File 替换 （可选）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -460,35 +527,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-rtl" class="md-nav__link">
+  <a href="#rtl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2 添加可综合 RTL 代码
+      添加可综合 RTL 代码
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-core_configtcl" class="md-nav__link">
+  <a href="#core_configtcl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.3 修改 core_config.tcl
+      修改 core_config.tcl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-design_inputs_macrotcl" class="md-nav__link">
+  <a href="#design_inputs_macrotcl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.4 修改 design_inputs_macro.tcl
+      修改 design_inputs_macro.tcl
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.4 修改 design_inputs_macro.tcl">
+    <nav class="md-nav" aria-label="修改 design_inputs_macro.tcl">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       选择逻辑综合和后端设计使用的标准单元库
     </span>
@@ -515,7 +582,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       设置时钟周期
     </span>
@@ -529,13 +596,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-techtcl" class="md-nav__link">
+  <a href="#techtcl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.5 修改 tech.tcl
+      修改 tech.tcl
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.5 修改 tech.tcl">
+    <nav class="md-nav" aria-label="修改 tech.tcl">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -553,18 +620,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#26-genus" class="md-nav__link">
+  <a href="#genus" class="md-nav__link">
     <span class="md-ellipsis">
-      2.6 启动 Genus 综合
+      启动 Genus 综合
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#27" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      2.7 查看综合报告
+      查看综合报告
     </span>
   </a>
   
@@ -584,22 +651,9 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../submodule_synthesis_new/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2(a). Submodule Synthesis (Refresh!)
-  </span>
-  
-
-      </a>
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -674,16 +728,80 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../4_submodule_implementation/" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     4. Submodule Implementation
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            4. Submodule Implementation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_submodule_implementation_new/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Current Version
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_submodule_implementation_deprecated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deprecated Version
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1121,23 +1239,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
-      逻辑综合流程介绍
+      2.1 逻辑综合基本原理
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="逻辑综合流程介绍">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 逻辑综合流程介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 逻辑综合流程介绍">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-sramregister-file" class="md-nav__link">
+  <a href="#sramregister-file" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 SRAM/Register File 替换 （可选）
+      SRAM/Register File 替换 （可选）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.1 SRAM/Register File 替换 （可选）">
+    <nav class="md-nav" aria-label="SRAM/Register File 替换 （可选）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1182,35 +1309,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-rtl" class="md-nav__link">
+  <a href="#rtl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2 添加可综合 RTL 代码
+      添加可综合 RTL 代码
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-core_configtcl" class="md-nav__link">
+  <a href="#core_configtcl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.3 修改 core_config.tcl
+      修改 core_config.tcl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-design_inputs_macrotcl" class="md-nav__link">
+  <a href="#design_inputs_macrotcl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.4 修改 design_inputs_macro.tcl
+      修改 design_inputs_macro.tcl
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.4 修改 design_inputs_macro.tcl">
+    <nav class="md-nav" aria-label="修改 design_inputs_macro.tcl">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       选择逻辑综合和后端设计使用的标准单元库
     </span>
@@ -1237,7 +1364,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       设置时钟周期
     </span>
@@ -1251,13 +1378,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-techtcl" class="md-nav__link">
+  <a href="#techtcl" class="md-nav__link">
     <span class="md-ellipsis">
-      2.5 修改 tech.tcl
+      修改 tech.tcl
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.5 修改 tech.tcl">
+    <nav class="md-nav" aria-label="修改 tech.tcl">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1275,18 +1402,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#26-genus" class="md-nav__link">
+  <a href="#genus" class="md-nav__link">
     <span class="md-ellipsis">
-      2.6 启动 Genus 综合
+      启动 Genus 综合
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#27" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      2.7 查看综合报告
+      查看综合报告
     </span>
   </a>
   
@@ -1317,18 +1444,23 @@
     
       
     
-    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/2_submodule_synthesis.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/2_submodule_synthesis_deprecated.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="2">2. 数字子系统的逻辑综合</h1>
+<h1 id="2">2. 数字子系统的逻辑综合（弃用）</h1>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+</div>
+<p>本部分内容已经过时。<a href="https://github.com/Siris-Li">轩导</a>重构了此前的模板文件，强烈推荐阅读<a href="../2_submodule_synthesis_new/">新版文档</a>。</p>
+<h2 id="21">2.1 逻辑综合基本原理</h2>
 <p>在数字芯片的设计流程中，后端设计是在逻辑综合的基础上进行的。在我们的模板文件中，逻辑综合和后端设计均会调用部分相同的脚本文件，因此先对数字子系统的逻辑综合流程做简要说明。</p>
-<p><a href="https://en.wikipedia.org/wiki/Logic_synthesis">逻辑综合</a> (Logic Synthesis) 主要目的是将RTL级的设计进行优化，并映射到特定的工艺库中。此外，逻辑综合器也可以进行静态时序分析。</p>
+<p><a href="https://en.wikipedia.org/wiki/Logic_synthesis">逻辑综合</a> (Logic Synthesis) 主要目的是将 RTL 级的设计进行优化，并映射到特定的工艺库中。此外，逻辑综合器也可以进行静态时序分析。</p>
 <p>电路的逻辑综合一般由三个步骤组成：<strong>转化、逻辑优化、映射</strong>。在综合过程中，优化进程尝试完成标准单元的组合，使得组合能够最好满足设计的功能、时序和面积的要求。综合为约束驱动，给定的约束是优化目标。</p>
-<h2 id="_1">逻辑综合流程介绍</h2>
+<h2 id="22">2.2 逻辑综合流程介绍</h2>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p>数字子系统的逻辑综合使用<code>/work/home/ztzhu/tapeout_templates/submodule_tapeout/</code>文件夹。
@@ -1344,8 +1476,8 @@
 </ul>
 <p>该工程模板目录下使用 <code>b make genus_syn</code> 即可进行自动化的逻辑综合，观察 <code>Makefile</code> 文件的结构，首先执行 Cadence Genus 工具初始化并启动，读入 <code>./scripts/genus_synthesis.tcl</code> 脚本文件，并将逻辑综合的日志输出到 <code>./logs/genus_synthesis.log</code> 中。</p>
 <p>查看 <code>./scripts/genus_synthesis.tcl</code> 可以观察逻辑综合的大致流程。首先读入 <code>./scripts/core_config.tcl</code>, <code>./scripts/tech.tcl</code>, <code>./scripts/init_syn.tcl</code> 等工艺库、工程定义等相关文件，之后读入 MMMC 配置文件，进行逻辑综合，迭代优化时序，最终将逻辑综合的报告写入 <code>./reports/genus/</code> 文件夹下。</p>
-<p>以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要4-5小时）</p>
-<h3 id="21-sramregister-file">2.1 SRAM/Register File 替换 <em>（可选）</em></h3>
+<p>以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要 4-5 小时）</p>
+<h3 id="sramregister-file">SRAM/Register File 替换 <em>（可选）</em></h3>
 <div class="admonition question">
 <p class="admonition-title">提示</p>
 <p>该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。</p>
@@ -1385,11 +1517,11 @@
 
 <p>在 <code>views</code> 部分依次选择 <code>LEF Footprint</code>, <code>LVS Netlist</code>, <code>Liberty Model</code>, <code>Verilog Model</code>, <code>GDSII Layout</code>，点击 <code>Generate</code> 生成相应的文件，这些文件的用途大致如下：</p>
 <ul>
-<li><code>Liberty Model</code>：用于逻辑综合与后端设计的时序分析与优化，包含SRAM的时序信息；</li>
-<li><code>Verilog Model</code>：SRAM的Verilog代码，用于功能仿真；</li>
-<li><code>LEF Footprint</code>：包含SRAM的版图信息（使用的金属层、IO位置等），为逻辑综合和后端设计提供SRAM的面积信息；</li>
-<li><code>LVS Netlist</code>：用于后端设计的LVS检查，在逻辑综合阶段暂不需要；</li>
-<li><code>GDSII Layout</code>：用于后端设计的DRC检查和最终版图导出。</li>
+<li><code>Liberty Model</code>：用于逻辑综合与后端设计的时序分析与优化，包含 SRAM 的时序信息；</li>
+<li><code>Verilog Model</code>：SRAM 的 Verilog 代码，用于功能仿真；</li>
+<li><code>LEF Footprint</code>：包含 SRAM 的版图信息（使用的金属层、IO 位置等），为逻辑综合和后端设计提供 SRAM 的面积信息；</li>
+<li><code>LVS Netlist</code>：用于后端设计的 LVS 检查，在逻辑综合阶段暂不需要；</li>
+<li><code>GDSII Layout</code>：用于后端设计的 DRC 检查和最终版图导出。</li>
 </ul>
 <figure>
   <img src="../figs/views.png">
@@ -1505,7 +1637,7 @@
 <a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">  </span><span class="p">.</span><span class="n">rawlm</span><span class="p">(</span><span class="mh">2</span><span class="mb">&#39;b0</span><span class="p">)</span>
 <a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="p">);</span>
 </code></pre></div></p>
-<h3 id="22-rtl">2.2 添加可综合 RTL 代码</h3>
+<h3 id="rtl">添加可综合 RTL 代码</h3>
 <p>将数字子系统的可综合 RTL 代码放在 <code>./rtl/</code> 目录下，并在 <code>./rtl/srcs.tcl</code> 中添加所有 RTL 代码的文件名称。<code>srcs.tcl</code> 的示例如下。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">set_db</span><span class="w"> </span>hdl_unconnected_value<span class="w"> </span><span class="mi">0</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">set_db</span><span class="w"> </span>hdl_max_loop_limit<span class="w"> </span><span class="mi">8192</span>
@@ -1518,14 +1650,14 @@
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nv">read_hdl</span><span class="w"> </span><span class="o">-</span>language<span class="w"> </span>sv<span class="w"> </span><span class="o">/</span>work<span class="o">/</span>home<span class="o">/</span>ztzhu<span class="o">/</span>tapeout_templates<span class="o">/</span>submodule_tapeout<span class="o">/</span>rtl<span class="o">/</span>SystemVerilog_MODULE_1.sv
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="nv">read_hdl</span><span class="w"> </span><span class="o">-</span>language<span class="w"> </span>sv<span class="w"> </span><span class="o">/</span>work<span class="o">/</span>home<span class="o">/</span>ztzhu<span class="o">/</span>tapeout_templates<span class="o">/</span>submodule_tapeout<span class="o">/</span>rtl<span class="o">/</span>SystemVerilog_MODULE_2.sv
 </code></pre></div>
-<h3 id="23-core_configtcl">2.3 修改 <code>core_config.tcl</code></h3>
+<h3 id="core_configtcl">修改 <code>core_config.tcl</code></h3>
 <p>在 <code>./scripts/core_config.tcl</code> 中定义了数字系统的<strong>顶层模块名称</strong>、<strong>时钟信号名称</strong>等信息，需要根据情况进行调整。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">set</span><span class="w"> </span>rm_core_top<span class="w"> </span>MY_TOP_MODULE
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">set</span><span class="w"> </span>rm_clock_pin<span class="w"> </span>clk
 </code></pre></div>
-<h3 id="24-design_inputs_macrotcl">2.4 修改 <code>design_inputs_macro.tcl</code></h3>
-<h4 id="_2">选择逻辑综合和后端设计使用的<strong>标准单元库</strong></h4>
+<h3 id="design_inputs_macrotcl">修改 <code>design_inputs_macro.tcl</code></h3>
+<h4 id="_1">选择逻辑综合和后端设计使用的<strong>标准单元库</strong></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">set</span><span class="w"> </span>std_lib<span class="w"> </span>MY_STD_LIB
 </code></pre></div>
 <p>标准单元库有以下选择（通常选择 <code>tcbn22ullbwp7t30p140hvt</code> 或者 <code>tcbn22ullbwp7t30p140lvt</code>）：</p>
@@ -1557,13 +1689,13 @@
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="o">/</span><span class="nv">work</span><span class="o">/</span>home<span class="o">/</span>ztzhu<span class="o">/</span>tapeout_templates<span class="o">/</span>submodule_tapeout<span class="o">/</span>asic_ip<span class="o">/</span>DCIM_32_4_64.lef<span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>add<span class="w"> </span>LEF<span class="w"> </span>file<span class="w"> </span>here
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">]</span>
 </code></pre></div>
-<h4 id="_3">设置时钟周期</h4>
+<h4 id="_2">设置时钟周期</h4>
 <p>设置逻辑综合、布局布线的时钟周期，时钟周期越小，则对时序要求越高，所需要的优化迭代时间越长。时钟周期单位为纳秒。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">set</span><span class="w"> </span>rm_clock_period<span class="w"> </span><span class="mi">5</span>
 </code></pre></div>
-<h3 id="25-techtcl">2.5 修改 <code>tech.tcl</code></h3>
+<h3 id="techtcl">修改 <code>tech.tcl</code></h3>
 <h4 id="lib">添加子模块所需的 <code>LIB</code> 文件</h4>
-<p><code>LIB</code> 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的PVT都会有相应的 <code>LIB</code> 文件。
+<p><code>LIB</code> 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的 PVT 都会有相应的 <code>LIB</code> 文件。
 对于 <code>ff_0p88v_m40c</code>，添加 <code>LIB</code> 文件的示例如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c"># FFGNP 0p88V m40C Libs</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">set</span><span class="w"> </span>ff_0p88v_m40c_libs<span class="w"> </span><span class="k">[</span><span class="nb">list</span><span class="w"> </span><span class="nv">${base_lib_dir}</span><span class="o">/</span><span class="nv">${base_ff_0p88v_m40c_lib}</span>.lib<span class="w"> </span><span class="nv">${io_lib}</span>ffg08ppv2p75vm40c.lib<span class="w"> </span><span class="err">\</span><span class="w"> </span>
@@ -1575,17 +1707,17 @@
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="nv">${rm_sram_lib_dirs}</span><span class="o">/</span><span class="nv">${sram}</span><span class="o">/</span><span class="nv">${ram_ff_0p88v_m40c_opcond}.lib</span><span class="w"> </span><span class="k">]</span><span class="w"> </span><span class="err">\</span><span class="w"> </span>
 <a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="k">}</span>
 </code></pre></div>
-<p>可以看到，除了标准单元和子模块的 <code>LIB</code> 文件，此处也自动添加了 Compiler 生成的SRAM IP的 <code>LIB</code> 文件。</p>
+<p>可以看到，除了标准单元和子模块的 <code>LIB</code> 文件，此处也自动添加了 Compiler 生成的 SRAM IP 的 <code>LIB</code> 文件。</p>
 <p>一个较完整的例子如下：</p>
 <figure>
   <img src="../figs/add_lib_files.png" width=80%>
   <figcaption>添加 LIB 文件</figcaption>
 </figure>
 
-<h3 id="26-genus">2.6 启动 Genus 综合</h3>
+<h3 id="genus">启动 Genus 综合</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>b<span class="w"> </span>make<span class="w"> </span>genus_syn
 </code></pre></div>
-<h3 id="27">2.7 查看综合报告</h3>
+<h3 id="_3">查看综合报告</h3>
 <ul>
 <li><code>./data/MY_TOP_MODULE-genus.v</code>：生成的门级网表，用于后续 Cadence Innovus 的后端设计</li>
 <li><code>./logs/genus_synthesis.log</code>：逻辑综合的日志文件，可以查找 <code>Error</code>, <code>Warning</code> 等关键词检查流程是否有误。</li>
@@ -1658,11 +1790,6 @@
     
     <nav>
       
-        <a href="https://github.com/Siris-Li" class="md-author" title="@Siris-Li">
-          
-          <img src="https://avatars.githubusercontent.com/u/73060160?v=4&size=72" alt="Siris-Li">
-        </a>
-      
         <a href="https://github.com/Bwoah-Kimi" class="md-author" title="@Bwoah-Kimi">
           
           <img src="https://avatars.githubusercontent.com/u/96295156?v=4&size=72" alt="Bwoah-Kimi">
@@ -1685,7 +1812,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (20.97%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (79.03%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (19.46%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (80.54%)</span>
       </small>
     </div>
   
@@ -1712,7 +1839,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../1_system_integration_behavioral_simulation/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 1. System Integration &amp; Behavioral Simulation">
+          <a href="../2_submodule_synthesis_new/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Current Version">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1722,20 +1849,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                1. System Integration & Behavioral Simulation
+                Current Version
               </div>
             </div>
           </a>
         
         
           
-          <a href="../submodule_synthesis_new/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2(a). Submodule Synthesis (Refresh!)">
+          <a href="../3_submodule_gate_level_simulation/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3. Submodule Gate Level Simulation">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                2(a). Submodule Synthesis (Refresh!)
+                3. Submodule Gate Level Simulation
               </div>
             </div>
             <div class="md-footer__button md-icon">
