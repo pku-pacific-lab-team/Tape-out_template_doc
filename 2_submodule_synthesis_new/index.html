@@ -13,14 +13,14 @@
         <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis_new/">
       
       
-        <link rel="prev" href="../1_system_integration_behavioral_simulation/">
+        <link rel="prev" href="../1_behavioral_simulation/">
       
       
         <link rel="next" href="../2_submodule_synthesis_deprecated/">
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -332,11 +332,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../1_system_integration_behavioral_simulation/" class="md-nav__link">
+      <a href="../1_behavioral_simulation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    1. System Integration & Behavioral Simulation
+    1. Behavioral Simulation
   </span>
   
 
@@ -1077,6 +1077,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system_integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. System Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1239,32 +1260,39 @@
 <div class="admonition tip">
 <p class="admonition-title">TLDR</p>
 <ol>
-<li>模板文件路径：<code>/work/home/limingxuan/common/SOC_CVA6/</code></li>
-<li>仿真脚本：<code>/work/home/limingxuan/common/SOC_CVA6/Makefile</code></li>
+<li>模板文件路径：<code>/work/home/limingxuan/common/CIM_BIST/</code></li>
+<li>仿真脚本：<code>/work/home/limingxuan/common/CIM_BIST/Makefile</code></li>
 <li>仿真命令：<code>b make genus</code></li>
 </ol>
 </div>
 <h2 id="21">2.1 模板文件</h2>
-<p>我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为逻辑综合模板示例，其文件夹路径为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/limingxuan/common/SOC_CVA6/
+<p>我们使用 DCIM 自检电路作为逻辑综合模板示例，其文件夹路径为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/limingxuan/common/CIM_BIST/
 </code></pre></div>
 <p>该文件夹的结构为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SOC_CVA6
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CIM_BIST
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src                             # RTL Source Files
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   └── ...
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── syn
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   ├── scripts
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   │   ├── genus_synthesis.tcl     # main synthesis script
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   │   ├── init_syn.tcl            # init synthesis script
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   │   ├── syn_mmmc.tcl            # define MMMC constraints
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── Makefile
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── utils
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── constraints_soc.sdc         # define timing constraints
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── global_define.tcl           # define global parameters
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   └── user_define.tcl             # user-specific parameters
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>├── Makefile                        # Top-level Makefile
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>├── ...
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>...                                 # Other Folders/Files
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── dcim
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   │   ├── dcim_ip_bm.lef          # DCIM physical library
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   │   └── dcim_ip_bm.lib          # DCIM timing library
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── sram                        # Compiler Generated SRAM
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   │   └── sram_sp_hde
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   │       ├── sram_sp_hde.v       # SRAM Module
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │       └── ...
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └── ...
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── syn
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── scripts
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   │   ├── genus_synthesis.tcl     # main synthesis script
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   │   ├── init_syn.tcl            # init synthesis script
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   │   └── syn_mmmc.tcl            # define MMMC constraints
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   └── Makefile
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>├── utils
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   ├── constraints_soc.sdc         # define timing constraints
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── global_define.tcl           # define global parameters
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   └── user_define.tcl             # user-specific parameters
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── Makefile                        # Top-level Makefile
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── ...
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>...                                 # Other Folders/Files
 </code></pre></div>
 <h2 id="22">2.2 逻辑综合流程</h2>
 <h3 id="_1">添加源文件</h3>
@@ -1295,27 +1323,27 @@
 <li><code>set_output_delay</code>：设置输出延迟，告诉工具输出信号的延迟。</li>
 <li><code>set_false_path</code>：设置假路径，告诉工具哪些路径不需要做时序分析。</li>
 </ul>
-<p>其中，<code>set_input_delay</code> 和 <code>set_output_delay</code> 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以不考虑，但是在后续迭代综合时<strong>务必添加</strong>。</p>
+<p>其中，<code>set_input_delay</code> 和 <code>set_output_delay</code> 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值<code>60% clock_period</code>，但是在后续迭代综合时<strong>务必添加</strong>。</p>
 <div class="admonition question">
 <p class="admonition-title">虚拟时钟</p>
 <p>时序约束中，虚拟时钟是一个很常见的概念。
 虚拟时钟是为了描述<strong>输入输出的时序信息</strong>而引入的，对于综合工具来说，它<strong>不了解</strong>所综合的<strong>子模块之外</strong>的任何信息，因此需要一个虚拟时钟来告诉工具输入输出的时序信息。</p>
 <p>大部分情况下，虚拟时钟和实际时钟是<strong>同步</strong>的。
-实际上，这和直接将输入输出约束到实际时钟上是<strong>等效</strong>的，但是这样做会使得时序约束文件变得复杂。</p>
+实际上，这和直接将输入输出约束到实际时钟上是<strong>等效</strong>的，但是这样做会使得时钟树综合后的时序与预期不符，因此通常使用虚拟时钟约束 IO。</p>
 </div>
-<p>请将你编写的 <code>sdc</code> 文件命名为 <code>constraints_&lt;top_module_name&gt;.sdc</code>，并放在 <code>syn/scripts/</code> 文件夹中。</p>
+<p>请将你编写的 <code>sdc</code> 文件命名为 <code>constraints_&lt;top_module_name&gt;.sdc</code>，并放在 <code>utils/</code> 文件夹中。</p>
 <h3 id="_4">运行逻辑综合</h3>
-<p>在 <code>SOC_CVA6</code> 文件夹下运行以下命令：</p>
+<p>在 <code>CIM_BIST</code> 文件夹下运行以下命令：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b make genus
 </code></pre></div>
-<p>综合 SOC_CVA6 的时间大致需要 2.5h 左右。
+<p>综合 CIM_BIST 的时间大致需要 5-7min 左右。
 逻辑综合会在 <code>syn</code> 文件夹下生成 3 个文件夹 <code>logs, *_data, *_reports</code>，文件结构如下所示。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>syn
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── logs
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   ├── &lt;top_module_name&gt;.cmd       # genus command file
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   └── &lt;top_module_name&gt;.log       # genus log file
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── &lt;top_module_name&gt;_data
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   ├── *.sdf
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   ├── *.sdf                       # strandard delay format for post-synthesis simulation
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│   ├── *.sdc
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│   ├── *.mmmc.tcl
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   ├── *_postsyn.v                 # generated netlist
@@ -1346,7 +1374,7 @@
 <li><code>./syn/&lt;top_module_name&gt;_reports/area/area.rpt</code>：该模块的面积报告，可以作为后续后端设计版图大小的参考。</li>
 </ul>
 <h3 id="_6">恢复设计</h3>
-<p>在进行一次逻辑综合后，可以在 <code>SOC_CVA6</code> 路径下通过如下指令快速恢复设计：</p>
+<p>在进行一次逻辑综合后，可以在 <code>CIM_BIST</code> 路径下通过如下指令快速恢复设计：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>b make restore_genus
 </code></pre></div>
 <div class="admonition bug">
@@ -1375,7 +1403,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月11日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月1日</span>
   </span>
 
     
@@ -1419,6 +1447,11 @@
     
     <nav>
       
+        <a href="https://github.com/Siris-Li" class="md-author" title="@Siris-Li">
+          
+          <img src="https://avatars.githubusercontent.com/u/73060160?v=4&size=72" alt="Siris-Li">
+        </a>
+      
         <a href="https://github.com/Bwoah-Kimi" class="md-author" title="@Bwoah-Kimi">
           
           <img src="https://avatars.githubusercontent.com/u/96295156?v=4&size=72" alt="Bwoah-Kimi">
@@ -1441,7 +1474,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (93.66%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (6.34%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (93.96%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (6.04%)</span>
       </small>
     </div>
   
@@ -1468,7 +1501,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../1_system_integration_behavioral_simulation/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 1. System Integration &amp; Behavioral Simulation">
+          <a href="../1_behavioral_simulation/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 1. Behavioral Simulation">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1478,7 +1511,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                1. System Integration & Behavioral Simulation
+                1. Behavioral Simulation
               </div>
             </div>
           </a>
