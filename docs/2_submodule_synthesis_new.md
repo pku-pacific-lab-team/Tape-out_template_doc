@@ -1,29 +1,36 @@
 # 2. 数字子系统的逻辑综合（重构版）
 
 !!! tip "TLDR"
-    1. 模板文件路径：`/work/home/limingxuan/common/SOC_CVA6/`
-    2. 仿真脚本：`/work/home/limingxuan/common/SOC_CVA6/Makefile`
+    1. 模板文件路径：`/work/home/limingxuan/common/CIM_BIST/`
+    2. 仿真脚本：`/work/home/limingxuan/common/CIM_BIST/Makefile`
     3. 仿真命令：`b make genus`
 
 ## 2.1 模板文件
 
-我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为逻辑综合模板示例，其文件夹路径为：
+我们使用 DCIM 自检电路作为逻辑综合模板示例，其文件夹路径为：
 
 ```
-/work/home/limingxuan/common/SOC_CVA6/
+/work/home/limingxuan/common/CIM_BIST/
 ```
 
 该文件夹的结构为：
 
 ```
-SOC_CVA6
+CIM_BIST
 ├── src                             # RTL Source Files
+│   ├── dcim
+│   │   ├── dcim_ip_bm.lef          # DCIM physical library
+│   │   └── dcim_ip_bm.lib          # DCIM timing library
+│   ├── sram                        # Compiler Generated SRAM
+│   │   └── sram_sp_hde
+│   │       ├── sram_sp_hde.v       # SRAM Module
+│   │       └── ...
 │   └── ...
 ├── syn
 │   ├── scripts
 │   │   ├── genus_synthesis.tcl     # main synthesis script
 │   │   ├── init_syn.tcl            # init synthesis script
-│   │   ├── syn_mmmc.tcl            # define MMMC constraints
+│   │   └── syn_mmmc.tcl            # define MMMC constraints
 │   └── Makefile
 ├── utils
 │   ├── constraints_soc.sdc         # define timing constraints
@@ -69,26 +76,26 @@ SOC_CVA6
 - `set_output_delay`：设置输出延迟，告诉工具输出信号的延迟。
 - `set_false_path`：设置假路径，告诉工具哪些路径不需要做时序分析。
 
-其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以不考虑，但是在后续迭代综合时**务必添加**。
+其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值`60% clock_period`，但是在后续迭代综合时**务必添加**。
 
 !!! question "虚拟时钟"
     时序约束中，虚拟时钟是一个很常见的概念。
     虚拟时钟是为了描述**输入输出的时序信息**而引入的，对于综合工具来说，它**不了解**所综合的**子模块之外**的任何信息，因此需要一个虚拟时钟来告诉工具输入输出的时序信息。
 
     大部分情况下，虚拟时钟和实际时钟是**同步**的。
-    实际上，这和直接将输入输出约束到实际时钟上是**等效**的，但是这样做会使得时序约束文件变得复杂。
+    实际上，这和直接将输入输出约束到实际时钟上是**等效**的，但是这样做会使得时钟树综合后的时序与预期不符，因此通常使用虚拟时钟约束 IO。
 
-请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `syn/scripts/` 文件夹中。
+请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `utils/` 文件夹中。
 
 ### 运行逻辑综合
 
-在 `SOC_CVA6` 文件夹下运行以下命令：
+在 `CIM_BIST` 文件夹下运行以下命令：
 
 ```
 b make genus
 ```
 
-综合 SOC_CVA6 的时间大致需要 2.5h 左右。
+综合 CIM_BIST 的时间大致需要 5-7min 左右。
 逻辑综合会在 `syn` 文件夹下生成 3 个文件夹 `logs, *_data, *_reports`，文件结构如下所示。
 
 ```
@@ -97,7 +104,7 @@ syn
 │   ├── <top_module_name>.cmd       # genus command file
 │   └── <top_module_name>.log       # genus log file
 ├── <top_module_name>_data
-│   ├── *.sdf
+│   ├── *.sdf                       # strandard delay format for post-synthesis simulation
 │   ├── *.sdc
 │   ├── *.mmmc.tcl
 │   ├── *_postsyn.v                 # generated netlist
@@ -130,7 +137,7 @@ syn
 
 ### 恢复设计
 
-在进行一次逻辑综合后，可以在 `SOC_CVA6` 路径下通过如下指令快速恢复设计：
+在进行一次逻辑综合后，可以在 `CIM_BIST` 路径下通过如下指令快速恢复设计：
 
 ```
 b make restore_genus

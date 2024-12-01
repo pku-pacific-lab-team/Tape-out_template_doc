@@ -75,8 +75,8 @@ nav:
   - Welcome to Tape-out Docs!: index.md
   - I. EDA Tools & Environment: 0_eda.md
   - II. Frontend:
-    - 1. System Integration & Behavioral Simulation: 1_system_integration_behavioral_simulation.md
-    - 2. Submodule Synthesis: 
+    - 1. Behavioral Simulation: 1_behavioral_simulation.md
+    - 2. Submodule Synthesis:
       - Current Version: 2_submodule_synthesis_new.md
       - Deprecated Version: 2_submodule_synthesis_deprecated.md
     - 3. Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
@@ -100,4 +100,5 @@ nav:
     - 16. Digital-CIM Specification: DCIM_spec.md
     - 17. SRAM IP Specification: sram_ip.md
     - 18. Innovus Guide: innovus_guide.md
+    - 19. System Integration: system_integration.md
   - VI. Join Us! How to Contribute?: contribute.md

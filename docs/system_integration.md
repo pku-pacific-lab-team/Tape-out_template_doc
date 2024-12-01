@@ -1,17 +1,8 @@
-# 1. 数字系统 SoC 的集成和行为级仿真
+# 基于总线的系统集成
 
-完成 RTL 设计后需要进行**行为级仿真**，以验证设计的功能是否符合预期。
-在将设计的模块集成到 SoC 之后，也需要对整个 SoC 进行仿真，通过 **CPU 指令**的方式验证整个 SoC 的功能。
-我们使用 synopsys 的 **VCS** 工具进行仿真、**Verdi** 工具查看波形文件。
+## 1. 模板文件
 
-!!! tip "TLDR"
-    1. 模板文件路径：`/work/home/limingxuan/common/SOC_CVA6/`
-    2. 仿真脚本：`/work/home/limingxuan/common/SOC_CVA6/Makefile`
-    3. 仿真命令：`b make verdi`
-
-## 1.1 模板文件
-
-我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为行为级仿真模板示例，其文件夹路径为：
+我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为系统集成模板示例，其文件夹路径为：
 
 ```
 /work/home/limingxuan/common/SOC_CVA6/
@@ -52,19 +43,14 @@ SOC_CVA6
 │   ├── soc_pkg.sv                  # Address Mapping Definition
 │   ├── soc.sv                      # SoC Top Module
 │   └── filelist.f                  # Filelist for RTL
-├── sim
-│   ├── soc_tb.sv                   # SoC Testbench
-│   ├── init_mem.hex                # Memory Initialization File
-│   ├── soc_signal.rc               # Verdi Signal Configuration
-│   └── Makefile                    # Simulation Script
 ├── Makefile                        # Top-level Makefile
 ├── ...
 ...                                 # Other Folders/Files
 ```
 
-## 1.2 子模块集成
+## 2. 子模块集成
 
-### 总线接口
+### 2.1 总线接口
 
 服务器上的 SoC 使用 AXI 总线，因此我们需要在子模块和 AXI 总线之间添加适配器（adapter），以实现子模块与 AXI 总线的通信。
 有两种常见的适配方式：
@@ -72,7 +58,7 @@ SOC_CVA6
 - **AXI to Reg Bus Converter**：将 AXI 总线转换为寄存器总线，适用于控制、指令寄存器。
 - **AXI to Memory Converter**：将 AXI 总线转换为内存接口，适用于子模块缓存（local buffer）。
 
-*AXI to Reg Bus Converter*
+*(I) AXI to Reg Bus Converter*
 
 该适配器适用于需要将**少量寄存器**映射到 AXI 总线的场景，例如控制寄存器、状态寄存器等。
 
@@ -186,7 +172,7 @@ module my_reg #(
 endmodule
 ```
 
-*AXI to Memory Converter*
+*(II) AXI to Memory Converter*
 
 该适配器适用于需要将**大量数据**映射到 AXI 总线的场景，例如缓存、存储器等。
 
@@ -317,7 +303,7 @@ module soc (
 endmodule
 ```
 
-### 地址映射
+### 2.2 地址映射
 
 CPU 通过地址访问外围设备，因此需要给每个设备**分配地址空间**，这个过程称为**地址映射（memory mapping）**。
 
@@ -346,13 +332,7 @@ assign addr_map = '{
 };
 ```
 
-## 1.3 系统行为级仿真
-
-### 添加源文件
-
-在 `src/filelist.f` 中添加你的子模块源文件。
-
-### 初始化内存
+## 3. 初始化内存
 
 CPU 的程序存储在主存中，因此需要在仿真开始前**初始化内存**。
 我们提供如下的 Python 脚本，用于将反汇编文件 `*.d` 转化为内存初始化文件 `init_mem.hex`。
@@ -407,39 +387,6 @@ os.remove("temp.hex")
     由于服务器上没有 RISC-V 编译链，因此你需要在**本地**编译代码。
     如果你不会编译，可以参考 [12. C 代码编译](./12_assembly.md)。
 
-### 编写 testbench
+## 4. 系统级行为级仿真
 
-在 `sim/soc_tb.sv` 中编写 testbench。
-对于系统仿真来说，testbench 只需要提供时钟、复位信号以及**仿真时长**。
-如果你只想仿真子模块，在 testbench 中实例化需要仿真的子模块即可。
-
-
-### 运行仿真
-
-在 `SOC_CVA6` 主目录下运行如下指令即可完成 RTL 编译以及查看生成波形文件。
-
-```bash
-b make verdi
-```
-
-如果你不想使用 Verdi 查看波形文件，可以使用如下指令。
-
-```bash
-b make vcs
-```
-
-运行仿真时，脚本会创建 `sim/build/` 文件夹，所有运行仿真生成的文件都会放在这个文件夹中。
-
-!!! danger "build 文件夹"
-
-    请不要在 `build` 文件夹中保存任何文件！
-    每一次逻辑综合都会**清空**该文件夹。
-
-
-在 Verdi 中，点击波形区域，使用快捷键 `r` 可以**恢复波形**，加载 `sim/soc_signal.rc` 文件可以查看 CPU 指令波形。
-
-!!! tip "Top Module 选择"
-    该模板也可用于其他模块仿真，只需要将你的模块和 testbench 都加入 `filelist.f`，执行 `b make TOP=<your testbench top module name>` 即可。
-
-!!! question "Makefile 内容"
-    非常建议你**阅读** Makefile 脚本，以便更好地理解仿真的过程。
+参考 [数字子系统的行为级仿真](./1_behavioral_simulation.md)。

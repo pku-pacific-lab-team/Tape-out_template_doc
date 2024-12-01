@@ -381,7 +381,7 @@ setPinAssignMode -pinEditInBatch false
     在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为**奇横偶纵**），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。在上面 2-bit 加法器的例子中，每一边（Left/Top/Bottom）仅仅用到了一层金属，在管脚较多的情况下，可以将不同的管脚分配到同一条边的不同金属层。
 
 !!! tip "关于数字子系统的 Power/Ground 的 I/O 管脚"
-    数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在[后续步骤](./4_submodule_implementation.md#416-执行-add_pg_pintcl)做进一步介绍。
+    数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在[后续步骤](./4_submodule_implementation_deprecated.md#416-执行-add_pg_pintcl)做进一步介绍。
 
 在执行 `add_pin.tcl` 之后，版图如下图所示，每一个黄色的三角形代表一个 I/O 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。
 
@@ -474,7 +474,7 @@ addRing -nets [list VDD VDD_CIM VSS] \
         -center 0
 ```
 
-* `-type core_rings`：指定生成的 Power rings 为 Core rings，即在 Core box 和 I/O boundary 之间的空隙生成我们指定的 Power rings（回忆在[设置版图大小](./4_submodule_implementation.md#43-执行-invs_init_settingtcl)的时候，我们指定了在 Core box 与 I/O boundary 之间设置 3.5um 的空隙）；
+* `-type core_rings`：指定生成的 Power rings 为 Core rings，即在 Core box 和 I/O boundary 之间的空隙生成我们指定的 Power rings（回忆在[设置版图大小](./4_submodule_implementation_deprecated.md#43-执行-invs_init_settingtcl)的时候，我们指定了在 Core box 与 I/O boundary 之间设置 3.5um 的空隙）；
 * `-nets [list VDD VDD_CIM VSS]`：指定生成的 Power rings 的信号名称。对于 Core rings，该数字子模块中所有的 P/G 信号至少需要生成一条 Core ring；
 * `-follow core`：指定生成的 Core rings 以 Core boundary 为基准，如果设置 `-follow io`，则以 I/O boundary 为基准；
 * `-layer {top M5 bottom M5 left M6 right M6}`：字面意思，设置 Core rings 在每个方向所在的金属层；
@@ -602,7 +602,7 @@ addStripe -nets { VSS VDD VDD_CIM } \
           -stacked_via_top_layer M8 
 ```
 
-如此前[全局 P/G 网络设置](./4_submodule_implementation.md#46-执行-global_net_connecttcl)，CIM macro 由 `VDD_CIM` 供电，其余 SRAM IP 和标准单元用 `VDD` 供电。因此，最顶层的 P/G 网络中（M8层），包含所有的 P/G 网络，通过 Vias 和低层的 Power stripes 给各个 Macro 和标准单元供电。
+如此前[全局 P/G 网络设置](./4_submodule_implementation_deprecated.md#46-执行-global_net_connecttcl)，CIM macro 由 `VDD_CIM` 供电，其余 SRAM IP 和标准单元用 `VDD` 供电。因此，最顶层的 P/G 网络中（M8层），包含所有的 P/G 网络，通过 Vias 和低层的 Power stripes 给各个 Macro 和标准单元供电。
 
 **为 CIM macros 供电**：在该数字子系统中，CIM macro 最顶层的 P/G 网络是 **M6 横向排布**的 `VDDC` 和 `VSSC` Power stripes。
 因此，M8 的 `VDD_CIM` 通过 VIA6 和 VIA7 连接到 CIM macro 内部的 P/G Pin，如下图所示。

@@ -1,7 +1,7 @@
 # 2. 数字子系统的逻辑综合（弃用）
 
 !!! Warning "注意"
-  本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，强烈推荐阅读[新版文档](./2_submodule_synthesis_new.md)。
+    本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，强烈推荐阅读[新版文档](./2_submodule_synthesis_new.md)。
 
 ## 2.1 逻辑综合基本原理
 
