@@ -17,28 +17,30 @@
 
 ```
 CIM_BIST
-├── src                             # RTL Source Files
-│   ├── dcim
-│   │   ├── dcim_ip_bm.lef          # DCIM physical library
-│   │   └── dcim_ip_bm.lib          # DCIM timing library
-│   ├── sram                        # Compiler Generated SRAM
+├── src                                         # RTL Source Files
+│   ├── macro
+│   │   └── dcim_ip_bm
+│   │       ├── dcim_ip_bm.lef                  # DCIM physical library
+│   │       ├── dcim_ip_bm_tt_0p80v_25c.lib     # DCIM timing library
+│   │       └── dcim_ip_bm_tt_0p80v_85c.lib     # DCIM timing library
+│   ├── sram                                    # Compiler Generated SRAM
 │   │   └── sram_sp_hde
-│   │       ├── sram_sp_hde.v       # SRAM Module
+│   │       ├── sram_sp_hde.v                   # SRAM Behavior Module
 │   │       └── ...
 │   └── ...
 ├── syn
 │   ├── scripts
-│   │   ├── genus_synthesis.tcl     # main synthesis script
-│   │   ├── init_syn.tcl            # init synthesis script
-│   │   └── syn_mmmc.tcl            # define MMMC constraints
+│   │   ├── genus_synthesis.tcl                 # main synthesis script
+│   │   ├── init_syn.tcl                        # init synthesis script
+│   │   └── syn_mmmc.tcl                        # define MMMC constraints
 │   └── Makefile
 ├── utils
-│   ├── constraints_soc.sdc         # define timing constraints
-│   ├── global_define.tcl           # define global parameters
-│   └── user_define.tcl             # user-specific parameters
-├── Makefile                        # Top-level Makefile
+│   ├── constraints_soc.sdc                     # define timing constraints
+│   ├── global_define.tcl                       # define global parameters
+│   └── user_define.tcl                         # user-specific parameters
+├── Makefile                                    # Top-level Makefile
 ├── ...
-...                                 # Other Folders/Files
+...                                             # Other Folders/Files
 ```
 
 ## 2.2 逻辑综合流程
@@ -56,8 +58,15 @@ CIM_BIST
 - `rm_clock_pin`：顶层模块的时钟端口名称。
 - `rm_clock_period`：时钟周期，单位 ns。
 - `sram_insts`：SRAM 实例的名称，请在 `src/sram` 文件夹中使用 `sram_compiler` 生成对应名称的 sram 实例。
-- `macro_libs, macro_lefs`：宏单元 LIB 文件和宏单元 LEF 文件的路径。
+- `macro_insts`：宏单元的名称，请将对应文件（`.v`，`.lib`，`.lef`）放在 `src/macro/<name>` 文件夹中，分别命名为 `<name>.v` `<name>_[ss|tt|ff]_*v_*c.lib` `<name>.lef`。
 - `std_lib, cell_ext`：选择标准单元库的阈值电压。
+- `proj(analysis_view,[setup|hold])`：选择时序分析的 PVT，学术片考虑 `tt` 的两个选项即可。
+
+!!! tip "lib 文件命名"
+    lib 文件命名规则为 `<name>_<process>_<voltage>_<tempurature>`，可以参考 sram 的 lib 文件。
+
+!!! warning "sram 与 macro 文件"
+    请注意，sram 与 macro 文件夹下的文件名**务必**与 `sram_insts` 与 `macro_insts` 中的名称**一致**！参考模板文件夹的命名规则。
 
 !!! question "综合参数进阶"
 
@@ -76,7 +85,7 @@ CIM_BIST
 - `set_output_delay`：设置输出延迟，告诉工具输出信号的延迟。
 - `set_false_path`：设置假路径，告诉工具哪些路径不需要做时序分析。
 
-其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值`60% clock_period`，但是在后续迭代综合时**务必添加**。
+其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值`60% clock_period`。
 
 !!! question "虚拟时钟"
     时序约束中，虚拟时钟是一个很常见的概念。
