@@ -1271,28 +1271,30 @@
 </code></pre></div>
 <p>该文件夹的结构为：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CIM_BIST
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src                             # RTL Source Files
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── dcim
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   │   ├── dcim_ip_bm.lef          # DCIM physical library
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   │   └── dcim_ip_bm.lib          # DCIM timing library
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── sram                        # Compiler Generated SRAM
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   │   └── sram_sp_hde
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   │       ├── sram_sp_hde.v       # SRAM Module
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │       └── ...
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └── ...
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── syn
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── scripts
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   │   ├── genus_synthesis.tcl     # main synthesis script
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   │   ├── init_syn.tcl            # init synthesis script
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   │   └── syn_mmmc.tcl            # define MMMC constraints
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   └── Makefile
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>├── utils
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   ├── constraints_soc.sdc         # define timing constraints
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── global_define.tcl           # define global parameters
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   └── user_define.tcl             # user-specific parameters
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── Makefile                        # Top-level Makefile
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── ...
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>...                                 # Other Folders/Files
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src                                         # RTL Source Files
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── macro
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   │   └── dcim_ip_bm
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   │       ├── dcim_ip_bm.lef                  # DCIM physical library
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   │       ├── dcim_ip_bm_tt_0p80v_25c.lib     # DCIM timing library
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   │       └── dcim_ip_bm_tt_0p80v_85c.lib     # DCIM timing library
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── sram                                    # Compiler Generated SRAM
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │   └── sram_sp_hde
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   │       ├── sram_sp_hde.v                   # SRAM Behavior Module
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   │       └── ...
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   └── ...
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>├── syn
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── scripts
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   │   ├── genus_synthesis.tcl                 # main synthesis script
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   │   ├── init_syn.tcl                        # init synthesis script
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   │   └── syn_mmmc.tcl                        # define MMMC constraints
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   └── Makefile
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>├── utils
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── constraints_soc.sdc                     # define timing constraints
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   ├── global_define.tcl                       # define global parameters
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   └── user_define.tcl                         # user-specific parameters
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>├── Makefile                                    # Top-level Makefile
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>├── ...
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>...                                             # Other Folders/Files
 </code></pre></div>
 <h2 id="22">2.2 逻辑综合流程</h2>
 <h3 id="_1">添加源文件</h3>
@@ -1305,9 +1307,18 @@
 <li><code>rm_clock_pin</code>：顶层模块的时钟端口名称。</li>
 <li><code>rm_clock_period</code>：时钟周期，单位 ns。</li>
 <li><code>sram_insts</code>：SRAM 实例的名称，请在 <code>src/sram</code> 文件夹中使用 <code>sram_compiler</code> 生成对应名称的 sram 实例。</li>
-<li><code>macro_libs, macro_lefs</code>：宏单元 LIB 文件和宏单元 LEF 文件的路径。</li>
+<li><code>macro_insts</code>：宏单元的名称，请将对应文件（<code>.v</code>，<code>.lib</code>，<code>.lef</code>）放在 <code>src/macro/&lt;name&gt;</code> 文件夹中，分别命名为 <code>&lt;name&gt;.v</code> <code>&lt;name&gt;_[ss|tt|ff]_*v_*c.lib</code> <code>&lt;name&gt;.lef</code>。</li>
 <li><code>std_lib, cell_ext</code>：选择标准单元库的阈值电压。</li>
+<li><code>proj(analysis_view,[setup|hold])</code>：选择时序分析的 PVT，学术片考虑 <code>tt</code> 的两个选项即可。</li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">lib 文件命名</p>
+<p>lib 文件命名规则为 <code>&lt;name&gt;_&lt;process&gt;_&lt;voltage&gt;_&lt;tempurature&gt;</code>，可以参考 sram 的 lib 文件。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">sram 与 macro 文件</p>
+<p>请注意，sram 与 macro 文件夹下的文件名<strong>务必</strong>与 <code>sram_insts</code> 与 <code>macro_insts</code> 中的名称<strong>一致</strong>！参考模板文件夹的命名规则。</p>
+</div>
 <div class="admonition question">
 <p class="admonition-title">综合参数进阶</p>
 <p>如果你想要进一步修改综合参数，可以参考 <code>syn/scripts/init_syn.tcl</code>。</p>
@@ -1323,7 +1334,7 @@
 <li><code>set_output_delay</code>：设置输出延迟，告诉工具输出信号的延迟。</li>
 <li><code>set_false_path</code>：设置假路径，告诉工具哪些路径不需要做时序分析。</li>
 </ul>
-<p>其中，<code>set_input_delay</code> 和 <code>set_output_delay</code> 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值<code>60% clock_period</code>，但是在后续迭代综合时<strong>务必添加</strong>。</p>
+<p>其中，<code>set_input_delay</code> 和 <code>set_output_delay</code> 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值<code>60% clock_period</code>。</p>
 <div class="admonition question">
 <p class="admonition-title">虚拟时钟</p>
 <p>时序约束中，虚拟时钟是一个很常见的概念。
@@ -1403,7 +1414,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月4日</span>
   </span>
 
     
@@ -1474,7 +1485,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (93.96%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (6.04%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (94.3%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (5.7%)</span>
       </small>
     </div>
   
