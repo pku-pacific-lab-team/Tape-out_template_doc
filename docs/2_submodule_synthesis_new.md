@@ -31,7 +31,9 @@ CIM_BIST
 ├── syn
 │   ├── scripts
 │   │   ├── genus_synthesis.tcl                 # main synthesis script
-│   │   ├── init_syn.tcl                        # init synthesis script
+│   │   ├── init_syn_none_opt.tcl               # init synthesis script
+│   │   ├── init_syn_standard_opt.tcl           # init synthesis script
+│   │   ├── init_syn_extreme_opt.tcl            # init synthesis script
 │   │   └── syn_mmmc.tcl                        # define MMMC constraints
 │   └── Makefile
 ├── utils
@@ -61,6 +63,7 @@ CIM_BIST
 - `macro_insts`：宏单元的名称，请将对应文件（`.v`，`.lib`，`.lef`）放在 `src/macro/<name>` 文件夹中，分别命名为 `<name>.v` `<name>_[ss|tt|ff]_*v_*c.lib` `<name>.lef`。
 - `std_lib, cell_ext`：选择标准单元库的阈值电压。
 - `proj(analysis_view,[setup|hold])`：选择时序分析的 PVT，学术片考虑 `tt` 的两个选项即可。
+- `syn_opt_level`：综合优化等级，可以选择 `none, standard, extreme`，优化程度依次递增。
 
 !!! tip "lib 文件命名"
     lib 文件命名规则为 `<name>_<process>_<voltage>_<tempurature>`，可以参考 sram 的 lib 文件。
@@ -101,55 +104,54 @@ CIM_BIST
 在 `CIM_BIST` 文件夹下运行以下命令：
 
 ```
-b make genus
+b make genus TOP=<top_module_name>
 ```
 
 综合 CIM_BIST 的时间大致需要 5-7min 左右。
-逻辑综合会在 `syn` 文件夹下生成 3 个文件夹 `logs, *_data, *_reports`，文件结构如下所示。
+逻辑综合会在 `syn` 文件夹下生成 2 个文件夹 `logs, <top_module_name>`，文件结构如下所示。
 
 ```
 syn
 ├── logs
-│   ├── <top_module_name>.cmd       # genus command file
-│   └── <top_module_name>.log       # genus log file
-├── <top_module_name>_data
-│   ├── *.sdf                       # strandard delay format for post-synthesis simulation
-│   ├── *.sdc
-│   ├── *.mmmc.tcl
-│   ├── *_postsyn.v                 # generated netlist
-│   └── design_backup               # files for restoring design
+│   ├── fv                              # empty functional verification folder
+│   ├── <top_module_name>.cmd           # genus command file
+│   └── <top_module_name>.log           # genus log file
+├── <top_module_name>
+│   ├── reports
+│   │   ├── area
+│   │   │   └── area.rpt                # area report
+│   │   ├── timing
+│   │   │   └── *_timing.rpt            # timing report
+│   │   ├── power
+│   │   │   ├── *_power_hier.rpt        # power hierarchy report
+│   │   │   └── *_power.rpt             # power report
+│   │   ├── time_intent
+│   │   │   └── *_timing_intent_*.rpt   # timing constraint check
+│   │   ├── runtime
+│   │   │   └── check_*.rpt             # design check
+│   │   └── others
+│   │       └── *.rpt
+│   ├── *.sdf                           # strandard delay format for post-synthesis simulation
+│   ├── *_postsyn.v                     # generated netlist
+│   └── design_backup                   # files for restoring design
 │       └── ...
-├── <top_module_name>_reports
-│   ├── area
-│   │   └── area.rpt                # area report
-│   ├── timing
-│   │   └── *_timing.rpt            # timing report
-│   ├── power
-│   │   ├── *_power_hier.rpt        # power hierarchy report
-│   │   └── *_power.rpt             # power report
-│   ├── time_intent
-│   │   └── *_timing_intent_*.rpt   # timing constraint check
-│   ├── runtime
-│   │   └── check_*.rpt             # design check
-│   └── others
-│       └── *.rpt
 ├── ...
 ...
 ```
 
 ### 查看主要输出报告
 
-* `..syn/logs/<top_module_name>.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查逻辑综合流程是否有误。
-* `./syn/<top_module_name>_data/*_postsyn.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
-* `./syn/<top_module_name>_reports/timing/*_timing.rpt`：各个 PVT 的时序报告，可以查找 `VIOLATED` 关键词检查时序是否满足。
-* `./syn/<top_module_name>_reports/area/area.rpt`：该模块的面积报告，可以作为后续后端设计版图大小的参考。
+* `./syn/logs/<top_module_name>.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查逻辑综合流程是否有误。
+* `./syn/<top_module_name>/*_postsyn.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
+* `./syn/<top_module_name>/reports/timing/*_timing.rpt`：各个 PVT 的时序报告，可以查找 `VIOLATED` 关键词检查时序是否满足。
+* `./syn/<top_module_name>/reports/area/area.rpt`：该模块的面积报告，可以作为后续后端设计版图大小的参考。
 
 ### 恢复设计
 
 在进行一次逻辑综合后，可以在 `CIM_BIST` 路径下通过如下指令快速恢复设计：
 
 ```
-b make restore_genus
+b make restore_genus TOP=<top_module_name>
 ```
 
 
