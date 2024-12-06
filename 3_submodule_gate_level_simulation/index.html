@@ -447,6 +447,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3. Submodule Gate Level Simulation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -456,6 +467,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 模板文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 运行仿真
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 查看波形
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1035,6 +1092,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 模板文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 运行仿真
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 查看波形
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1061,9 +1153,31 @@
 
 
 <h1 id="3">3. 数字子系统的门级仿真</h1>
+<p>逻辑综合后会生成门级网表，我们需要对其进行仿真以验证综合后的网表功能正确，仿真的具体流程和综合前的<a href="../1_behavioral_simulation/">行为级仿真</a>类似。</p>
+<h2 id="31">3.1 模板文件</h2>
+<p>我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为门级仿真模板示例，其文件夹路径为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/limingxuan/common/SOC_CVA6/
+</code></pre></div>
+<h2 id="32">3.2 运行仿真</h2>
+<p>在 <code>SOC_CVA6</code> 主目录下运行如下指令即可完成门级仿真。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>b make gate_verdi TOP=&lt;top_module_name&gt;_tb
+</code></pre></div>
+<p>如果你不想使用 Verdi 查看波形文件，可以使用如下指令。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b make gate_vcs TOP=&lt;top_module_name&gt;_tb
+</code></pre></div>
+<p>运行仿真时，脚本会根据 <code>utils/user_define.tcl</code> 中的配置以及网表文件 <code>syn/&lt;top_module_name&gt;/&lt;top_module_name&gt;_postsyn.v</code> 自动生成源文件列表 <code>sim/build/gate_filelist.f</code>，然后进行编译和仿真。</p>
 <div class="admonition warning">
-<p class="admonition-title">Under development!</p>
+<p class="admonition-title">网表文件路径</p>
+<p>脚本只会搜索网表文件的默认位置，如果你改变了网表文件的位置，请手动修改 <code>sim/Makefile</code> 文件。</p>
 </div>
+<div class="admonition bug">
+<p class="admonition-title">sdf 反标的时序仿真</p>
+<p>目前脚本不支持 sdf 反标的时序仿真，大概率会出现<strong>大量不定态</strong>！</p>
+</div>
+<h2 id="33">3.3 查看波形</h2>
+<p>在 Verdi 中，点击波形区域，使用快捷键 <code>r</code> 可以恢复波形，加载 <code>sim/gate_soc_signal.rc</code> 文件可以查看 CPU 指令波形。</p>
+<p>考虑到实际流片时 SRAM 主存上电后是随机数，因此在 bootrom 中会将主存基地址处的 256-bit 数置 0。
+因此加载 <code>sim/gate_soc_signal.rc</code> 文件后，可以看到 CPU 在执行主存基地址处的指令后会触发异常，进而在终端异常处理程序处循环。</p>
 
 
 
@@ -1086,7 +1200,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年7月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月6日</span>
   </span>
 
     
@@ -1157,7 +1271,7 @@
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (66.67%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (33.33%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (97.5%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (2.5%)</span>
       </small>
     </div>
   

@@ -402,20 +402,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.3 编写 testbench">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#14" class="md-nav__link">
     <span class="md-ellipsis">
       1.4 运行仿真
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1138,20 +1132,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.3 编写 testbench">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#14" class="md-nav__link">
     <span class="md-ellipsis">
       1.4 运行仿真
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1222,12 +1210,12 @@
 <p>在 <code>sim/soc_tb.sv</code> 中编写 testbench。
 对于系统仿真来说，testbench 只需要提供时钟、复位信号以及<strong>仿真时长</strong>。
 如果你只想仿真子模块，在 testbench 中实例化需要仿真的子模块即可。</p>
-<h3 id="14">1.4 运行仿真</h3>
+<h2 id="14">1.4 运行仿真</h2>
 <p>在 <code>SOC_CVA6</code> 主目录下运行如下指令即可完成 RTL 编译以及查看生成波形文件。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b<span class="w"> </span>make<span class="w"> </span>verdi
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b<span class="w"> </span>make<span class="w"> </span>verdi<span class="w"> </span><span class="nv">TOP</span><span class="o">=</span>&lt;top_module_name&gt;_tb
 </code></pre></div>
 <p>如果你不想使用 Verdi 查看波形文件，可以使用如下指令。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b<span class="w"> </span>make<span class="w"> </span>vcs
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b<span class="w"> </span>make<span class="w"> </span>vcs<span class="w"> </span><span class="nv">TOP</span><span class="o">=</span>&lt;top_module_name&gt;_tb
 </code></pre></div>
 <p>运行仿真时，脚本会创建 <code>sim/build/</code> 文件夹，所有运行仿真生成的文件都会放在这个文件夹中。</p>
 <div class="admonition danger">
@@ -1270,7 +1258,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月6日</span>
   </span>
 
     
