@@ -48,18 +48,18 @@ SOC_CVA6
 如果你只想仿真子模块，在 testbench 中实例化需要仿真的子模块即可。
 
 
-### 1.4 运行仿真
+## 1.4 运行仿真
 
 在 `SOC_CVA6` 主目录下运行如下指令即可完成 RTL 编译以及查看生成波形文件。
 
 ```bash
-b make verdi
+b make verdi TOP=<top_module_name>_tb
 ```
 
 如果你不想使用 Verdi 查看波形文件，可以使用如下指令。
 
 ```bash
-b make vcs
+b make vcs TOP=<top_module_name>_tb
 ```
 
 运行仿真时，脚本会创建 `sim/build/` 文件夹，所有运行仿真生成的文件都会放在这个文件夹中。
