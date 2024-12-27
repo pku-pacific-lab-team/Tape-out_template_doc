@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -1290,7 +1290,7 @@
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   │   ├── init_syn_extreme_opt.tcl            # init synthesis script
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   │   └── syn_mmmc.tcl                        # define MMMC constraints
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   └── Makefile
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── utils
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── config
 <a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── constraints_soc.sdc                     # define timing constraints
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── global_define.tcl                       # define global parameters
 <a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   └── user_define.tcl                         # user-specific parameters
@@ -1302,7 +1302,7 @@
 <h3 id="_1">添加源文件</h3>
 <p>在 <code>src/filelist.f</code> 中添加你的子模块源文件。</p>
 <h3 id="_2">修改综合参数</h3>
-<p>根据注释修改 <code>utils/user_define.tcl</code> 中的综合参数。
+<p>根据注释修改 <code>config/user_define.tcl</code> 中的综合参数。
 你需要定义的参数如下：</p>
 <ul>
 <li><code>rm_core_top</code>：顶层模块的名称。</li>
@@ -1327,7 +1327,7 @@
 <p>如果你想要进一步修改综合参数，可以参考 <code>syn/scripts/init_syn.tcl</code>。</p>
 </div>
 <h3 id="_3">修改时序约束</h3>
-<p>每个子模块的时序约束都需要<strong>自行编写</strong> <code>sdc</code> 文件，可以参考 <code>utils/constraints_soc.sdc</code>。</p>
+<p>每个子模块的时序约束都需要<strong>自行编写</strong> <code>sdc</code> 文件，可以参考 <code>config/constraints_soc.sdc</code>。</p>
 <p>你需要定义的内容如下：</p>
 <ul>
 <li><code>create_clock</code>：设置时钟信号，告诉工具哪些信号是时钟。</li>
@@ -1345,7 +1345,7 @@
 <p>大部分情况下，虚拟时钟和实际时钟是<strong>同步</strong>的。
 实际上，这和直接将输入输出约束到实际时钟上是<strong>等效</strong>的，但是这样做会使得时钟树综合后的时序与预期不符，因此通常使用虚拟时钟约束 IO。</p>
 </div>
-<p>请将你编写的 <code>sdc</code> 文件命名为 <code>constraints_&lt;top_module_name&gt;.sdc</code>，并放在 <code>utils/</code> 文件夹中。</p>
+<p>请将你编写的 <code>sdc</code> 文件命名为 <code>constraints_&lt;top_module_name&gt;.sdc</code>，并放在 <code>config/</code> 文件夹中。</p>
 <h3 id="_4">运行逻辑综合</h3>
 <p>在 <code>CIM_BIST</code> 文件夹下运行以下命令：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b make genus TOP=&lt;top_module_name&gt;
@@ -1416,7 +1416,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月5日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月27日</span>
   </span>
 
     
@@ -1578,7 +1578,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../js/extra.js"></script>
       
