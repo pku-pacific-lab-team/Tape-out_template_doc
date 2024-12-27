@@ -154,7 +154,10 @@ syn
 b make restore_genus TOP=<top_module_name>
 ```
 
-
 !!! bug "待添加"
 
     关于脚本内容的解释。
+
+
+!!! success ""
+    特别感谢 [Wenjie Ren](https://ieeexplore.ieee.org/author/37089774513) 对本页内容的贡献和校对！
