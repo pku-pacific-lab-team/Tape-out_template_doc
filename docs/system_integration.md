@@ -145,20 +145,22 @@ module my_reg #(
         reg1_d      = reg1_q;
 
         if (req_i.valid) begin
-            unique case (req_i.addr)
-                0:          reg0_d       = req_i.wdata;
-                1:          reg1_d       = req_i.wdata;
-                default:    rsp_o.error  = 1'b1;
-            endcase
-        end
-        else begin
-            unique case (req_i.addr)
-                0:          rsp_o.rdata  = reg0_q;
-                1:          rsp_o.rdata  = reg1_q;
-                default:    rsp_o.error  = 1'b1;
-            endcase
-        end
-    end
+            if (req_i.write) begin
+                unique case (req_i.addr)
+                    0:          reg0_d       = req_i.wdata;
+                    1:          reg1_d       = req_i.wdata;
+                    default:    rsp_o.error  = 1'b1;
+                endcase
+            end // if req_i.write
+            else begin
+                unique case (req_i.addr)
+                    0:          rsp_o.rdata  = reg0_q;
+                    1:          rsp_o.rdata  = reg1_q;
+                    default:    rsp_o.error  = 1'b1;
+                endcase
+            end // else
+        end // if req_i.valid
+    end // always_comb
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
         if (!rst_ni) begin
@@ -337,53 +339,7 @@ assign addr_map = '{
 ## 3. 初始化内存
 
 CPU 的程序存储在主存中，因此需要在仿真开始前**初始化内存**。
-我们提供如下的 Python 脚本，用于将反汇编文件 `*.d` 转化为内存初始化文件 `init_mem.hex`。
-
-```python
-import re
-import os
-
-class Dis2Hex:
-    def __init__(self, input_file, output_file):
-        self.input_file = input_file
-        self.output_file = output_file
-
-    def dis2hex(self):
-        input_file = self.input_file
-        output_file = "temp.hex"
-        pattern = re.compile(r"\s+([0-9a-fA-F]+):\s+([0-9a-fA-F]+)\s+.*$")
-        with open(input_file, "r") as fin, open(output_file, "w") as fout:
-            for line in fin:
-                match = pattern.match(line)
-                if match:
-                    address = match.group(1)
-                    data = match.group(2)
-                    fout.write(data + "\n")
-
-    def reshape(self):
-        input_file = "temp.hex"
-        output_file = "init_mem.hex"
-        with open(input_file, "r") as fin, open(output_file, "w") as fout:
-            lines = fin.readlines()
-            for i in range(0, len(lines), 2):
-                hex_num1 = lines[i].strip()
-                hex_num2 = lines[i+1].strip() if i+1 < len(lines) else "00000000"
-                merged_line = hex_num2 + hex_num1
-                fout.write(merged_line + "\n")
-
-
-input_file  = "test_code.d"
-output_file = "init_mem.hex"
-
-print("Reading disassembly file:", input_file)
-print("Output hex file         :", output_file)
-
-dis2hex = Dis2Hex(input_file, output_file)
-dis2hex.dis2hex()
-dis2hex.reshape()
-
-os.remove("temp.hex")
-```
+[C 代码编译的 GitHub 仓库](https://github.com/Siris-Li/C_compile_template)中有我们提供的 Python 脚本，用于将反汇编文件 `*.asm` 转化为内存初始化文件 `init_mem.hex`。
 
 !!! question "编译"
     由于服务器上没有 RISC-V 编译链，因此你需要在**本地**编译代码。

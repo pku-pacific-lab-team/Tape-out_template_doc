@@ -208,7 +208,8 @@ export RISCV_OBJDUMP=<riscv-gcc-toolchain>/bin/riscv-none-elf-objdump
 Makefile 会生成如下两个文件：
 
 - ``*.o``：编译后的目标文件，用于 GDB 的 `load` 指令。
-- ``*.d``：反汇编后的文件，用于查看编译结果。
+- ``*.asmm``：反汇编后的文件，用于查看编译结果。
+- ``*.hex``：使用 `asm2hex.py` 脚本生成的十六进制内存初始化文件，用于仿真。
 
 ??? tip "关于反汇编结果"
     如果你查看过反汇编结果，你会发现反汇编后的代码和源代码有些不同。
