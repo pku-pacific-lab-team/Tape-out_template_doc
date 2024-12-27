@@ -24,7 +24,7 @@ b make gate_verdi TOP=<top_module_name>_tb
 b make gate_vcs TOP=<top_module_name>_tb
 ```
 
-运行仿真时，脚本会根据 `utils/user_define.tcl` 中的配置以及网表文件 `syn/<top_module_name>/<top_module_name>_postsyn.v` 自动生成源文件列表 `sim/build/gate_filelist.f`，然后进行编译和仿真。
+运行仿真时，脚本会根据 `config/user_define.tcl` 中的配置以及网表文件 `syn/<top_module_name>/<top_module_name>_postsyn.v` 自动生成源文件列表 `sim/build/gate_filelist.f`，然后进行编译和仿真。
 
 !!! warning "网表文件路径"
     脚本只会搜索网表文件的默认位置，如果你改变了网表文件的位置，请手动修改 `sim/Makefile` 文件。

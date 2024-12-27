@@ -36,7 +36,7 @@ CIM_BIST
 │   │   ├── init_syn_extreme_opt.tcl            # init synthesis script
 │   │   └── syn_mmmc.tcl                        # define MMMC constraints
 │   └── Makefile
-├── utils
+├── config
 │   ├── constraints_soc.sdc                     # define timing constraints
 │   ├── global_define.tcl                       # define global parameters
 │   └── user_define.tcl                         # user-specific parameters
@@ -53,7 +53,7 @@ CIM_BIST
 
 ### 修改综合参数
 
-根据注释修改 `utils/user_define.tcl` 中的综合参数。
+根据注释修改 `config/user_define.tcl` 中的综合参数。
 你需要定义的参数如下：
 
 - `rm_core_top`：顶层模块的名称。
@@ -77,7 +77,7 @@ CIM_BIST
 
 ### 修改时序约束
 
-每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `utils/constraints_soc.sdc`。
+每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `config/constraints_soc.sdc`。
 
 你需要定义的内容如下：
 
@@ -97,7 +97,7 @@ CIM_BIST
     大部分情况下，虚拟时钟和实际时钟是**同步**的。
     实际上，这和直接将输入输出约束到实际时钟上是**等效**的，但是这样做会使得时钟树综合后的时序与预期不符，因此通常使用虚拟时钟约束 IO。
 
-请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `utils/` 文件夹中。
+请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
 ### 运行逻辑综合
 

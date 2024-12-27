@@ -84,17 +84,19 @@ module soc (
     REG_BUS #(
         .ADDR_WIDTH(64),
         .DATA_WIDTH(64)
-    ) my_reg_bus;
+    ) my_reg_bus();
 
     axi_to_reg_intf #(
-        .ADDR_WIDTH(64),
-        .DATA_WIDTH(64)
+        .ADDR_WIDTH  (64),
+        .DATA_WIDTH  (64),
+        .ID_WDITH    (4),
+        .USER_WIDTH  (64)
     ) my_axi_to_reg_intf (
         .clk_i,
         .rst_ni,
         .testmode_i,
         .in         (master[soc_pkg::REG]),
-        .reg_out    (my_reg_bus)
+        .reg_o      (my_reg_bus)
     );
 
     // define reg type
