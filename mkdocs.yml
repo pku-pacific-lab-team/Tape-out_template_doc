@@ -64,7 +64,7 @@ plugins:
       show_line_count: true
       count_empty_lines: true
   - encryptcontent:
-      global_password: 'jialab'
+      global_password: 'coICRGGm5sY9OyztWam0Q2n+tjwb++kv3J9qXAEx5vc=' # jialab-tapeout Base64 encoded
       password_button: True
       password_button_text: 'ENTER'
       encryption_info_message: 'Contact your administrator for access to this page.'
