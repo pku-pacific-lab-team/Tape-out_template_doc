@@ -1170,72 +1170,33 @@
   
 
 
-<h1 id="1">1. 数字子系统的行为级仿真</h1>
-<p>完成 RTL 设计后需要进行<strong>行为级仿真</strong>，以验证设计的功能是否符合预期。
-在将设计的模块集成到 SoC 之后，也需要对整个 SoC 进行仿真，通过 <strong>CPU 指令</strong>的方式验证整个 SoC 的功能。
-我们使用 synopsys 的 <strong>VCS</strong> 工具进行仿真、<strong>Verdi</strong> 工具查看波形文件。</p>
-<div class="admonition tip">
-<p class="admonition-title">TLDR</p>
-<ol>
-<li>模板文件路径：<code>/work/home/limingxuan/common/SOC_CVA6/</code></li>
-<li>仿真脚本：<code>/work/home/limingxuan/common/SOC_CVA6/Makefile</code></li>
-<li>仿真命令：<code>b make verdi</code></li>
-</ol>
+<div id="mkdocs-encrypted-content" style="display:none">1WfgEFlFv/tQUW719oqjFg==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
-<h2 id="11">1.1 模板文件</h2>
-<p>我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为系统集成模板示例，其文件夹路径为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/limingxuan/common/SOC_CVA6/
-</code></pre></div>
-<p>该文件夹的结构为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SOC_CVA6
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── filelist.f                  # Filelist for RTL
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   └── ...
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── sim
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── soc_tb.sv                   # SoC Testbench
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── init_mem.hex                # Memory Initialization File
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── soc_signal.rc               # Verdi Signal Configuration
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── Makefile                    # Simulation Script
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── Makefile                        # Top-level Makefile
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── ...
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>...                                 # Other Folders/Files
-</code></pre></div>
-<div class="admonition question">
-<p class="admonition-title">集成到 SoC</p>
-<p>参考<a href="../system_integration/">系统集成</a>章节，将你的模块集成到 SoC 中，进行 SoC 级别的行为级仿真。</p>
-</div>
-<h2 id="12">1.2 添加源文件</h2>
-<p>在 <code>src/filelist.f</code> 中添加你的子模块源文件。</p>
-<h2 id="13-testbench">1.3 编写 testbench</h2>
-<p>在 <code>sim/soc_tb.sv</code> 中编写 testbench。
-对于系统仿真来说，testbench 只需要提供时钟、复位信号以及<strong>仿真时长</strong>。
-如果你只想仿真子模块，在 testbench 中实例化需要仿真的子模块即可。</p>
-<h2 id="14">1.4 运行仿真</h2>
-<p>在 <code>SOC_CVA6</code> 主目录下运行如下指令即可完成 RTL 编译以及查看生成波形文件。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b<span class="w"> </span>make<span class="w"> </span>verdi<span class="w"> </span><span class="nv">TOP</span><span class="o">=</span>&lt;top_module_name&gt;_tb
-</code></pre></div>
-<p>如果你不想使用 Verdi 查看波形文件，可以使用如下指令。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b<span class="w"> </span>make<span class="w"> </span>vcs<span class="w"> </span><span class="nv">TOP</span><span class="o">=</span>&lt;top_module_name&gt;_tb
-</code></pre></div>
-<p>运行仿真时，脚本会创建 <code>sim/build/</code> 文件夹，所有运行仿真生成的文件都会放在这个文件夹中。</p>
-<div class="admonition danger">
-<p class="admonition-title">build 文件夹</p>
-<p>请不要在 <code>build</code> 文件夹中保存任何文件！
-每一次逻辑综合都会<strong>清空</strong>该文件夹。</p>
-</div>
-<p>在 Verdi 中，点击波形区域，使用快捷键 <code>r</code> 可以<strong>恢复波形</strong>，加载 <code>sim/soc_signal.rc</code> 文件可以查看 CPU 指令波形。</p>
-<div class="admonition tip">
-<p class="admonition-title">Top Module 选择</p>
-<p>该模板也可用于其他模块仿真，只需要将你的模块和 testbench 都加入 <code>filelist.f</code>，执行 <code>b make TOP=&lt;your testbench top module name&gt;</code> 即可。</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Makefile 内容</p>
-<p>非常建议你<strong>阅读</strong> Makefile 脚本，以便更好地理解仿真的过程。</p>
-</div>
-<div class="admonition bug">
-<p class="admonition-title">FIXME!!!</p>
-<p>更详细地介绍 vcs、verdi 脚本以及如何使用。</p>
-</div>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/1_behavioral_simulation/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

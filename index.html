@@ -1232,121 +1232,33 @@
   
 
 
-<h1 id="tape-out">Tape-out模板说明文档</h1>
-<p>因为流片流程较为繁杂，涉及到多个 EDA 工具以及相应的脚本文件，本文档中整理了一份<strong>适用于 TSMC 22nm</strong> 的数字芯片前端和后端设计流程文件模板，并对相关命令和脚本文件进行了简要说明和解释。</p>
-<p>我们希望通过模板文件和说明文档，帮助后续接触该模板的朋友们快速熟悉数字前端和后端设计流程。然而，一份说明文档不可能做到面面俱到，要更加深入地了解数字前端和后端设计流程，还需要阅读 EDA 工具的用户手册和其他官方文档，并通过实践和不断试错来积累经验。</p>
-<div class="admonition info">
-<p class="admonition-title">22nm vs. 28nm vs. 32nm</p>
-<p>22nm、28nm 和 32nm 属于同一个工艺节点，这意味着三者的区别<strong>仅限于尺寸</strong>，其他的例如 DRC、LVS 规则<strong>完全相同</strong>。EDA 工具中，无论是22nm、28nm 还是 32nm 工艺，其坐标或者其他尺寸均为 32nm 下的尺寸。22nm 工艺只会在流片的时候进行尺寸缩放（长宽均 <span class="arithmatex"><span class="MathJax_Preview">\times0.855</span><script type="math/tex">\times0.855</script></span>）。</p>
+<div id="mkdocs-encrypted-content" style="display:none">qOjPSw4/f9iNK6h346YjlQ==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
-<!-- <figure>
-  <img src="./figs/digital_design_flow.png" width=80%>
-  <figcaption>数字芯片设计流程</figcaption>
-</figure> -->
 
-<div class="admonition question">
-<p class="admonition-title">关于文档</p>
-<p>该文档还在持续开发更新之中，若出现错误或纰漏，还请在 GitHub 仓库中提出 Issue！
-如果有改进意见，欢迎提交 Pull Request！</p>
-</div>
-<h2 id="_1">设计流程</h2>
-<p>EDA 的设计流程主要包含了<strong>逻辑综合</strong>和<strong>后端实现</strong>两个部分。
-逻辑综合把 Verilog/SystemVerilog 设计文件中的电路结构映射到工艺库的<strong>标准单元</strong>，形成一个和原电路逻辑等价的<strong>网表（Netlist）</strong>。
-后端实现部分更加复杂，包括了<strong>布局规划（Floorplan）</strong>、<strong>电源规划（Powerplan）</strong>、
-<strong>布局（Placement）</strong>、<strong>时钟树综合（Clock Tree Synthesis, CTS）</strong>和<strong>布线（Signal Routing）</strong>这些主要
-部分。
-后端实现工具读入综合阶段生成的网表，运行后获得芯片的<strong>几何信息文件（GDSII）</strong>，该文件可以交付代工厂进行实际的生产。</p>
-<figure>
-  <img src="./figs/design_flow.png" width=80%>
-  <figcaption>EDA 设计流程</figcaption>
-</figure>
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
 
-<p>图（a）∼（h）展示了EDA工具的流程和中间结果的简单描述（注：为了便与显示，e∼g 中Powerplan 的结果被暂时隐藏）。
-在该流程当中，综合阶段的步骤（a∼b）较少且<strong>自动化程度较高</strong>，用户只需要设置好输入的文件和参数即可运行工具得到综合结果。
-后端实现部分（b∼h）的步骤较多，为追求芯片极致的性能，工程师们往往需要分析各个阶段的结果
-并且必要时进行<strong>手动设计</strong>，例如手动实现布局规划和手动解决设计规则约束（Design Rule Constraint）违例的问题。</p>
-<h2 id="_2">模板文件结构</h2>
-<p>因为学术流片大多是 <a href="https://en.wikipedia.org/wiki/Multi-project_wafer_service">MPW</a>（多项目晶圆服务），每个流片项目最起码是一个数字子系统，甚至可能由多个层级的数字子系统嵌套而成，而多个流片项目共用一个顶层模块，从而给顶层模块的设计与规划带来了新的挑战。</p>
-<details class="info">
-<summary>扩展：全掩膜</summary>
-<p>与 MPW 相对的流片模式为 Full-Mask（全掩膜），即一整块晶圆只有一个项目，通常用于大规模生产。</p>
-</details>
-<p>因此，在此整理归纳出<strong>两份不同</strong>的流片模板文件，一份用于<strong>数字子系统</strong>的后端设计，一份用于<strong>顶层模块</strong>的后端设计。</p>
-<ul>
-<li><strong>经典的数字子系统</strong>的流片模板位于：<code>/work/home/ztzhu/tapeout_template/submodule_tapeout/</code></li>
-<li><strong>重构的数字子系统</strong>的流片模板位于：<code>work/home/limingxuan/common/CIM_BIST/</code></li>
-<li><strong>顶层模块</strong>的流片模板位于：<code>/work/home/ztzhu/tapeout_template/top_io_tapeout/</code></li>
-</ul>
-<div class="admonition question">
-<p class="admonition-title">关于模板</p>
-<p>目前正在进行脚本和文件夹结构的重构，因此有两个版本的流片模板。
-重构版的流片模板将会更加简洁，路径更加清晰，但是处于开发之中，文件夹结构可能会持续发生改动！
-经典版的流片模板文件夹结构已经稳定，不会再更新。</p>
-</div>
-<p>在该文档后续章节中，将会先介绍<strong>数字子系统</strong>的流片模板，这是任何流片项目后端设计的基础，再介绍<strong>顶层模块</strong>的流片模板。
-最后介绍流片之后的<strong>封装测试</strong>。</p>
-<h2 id="_3">目录</h2>
-<ul>
-<li><a href="0_eda/">一、Linux环境下EDA工具介绍</a></li>
-<li>二、前端设计<ul>
-<li><a href="1_behavioral_simulation/">1. 数字子系统的行为级仿真</a></li>
-<li><a href="2_submodule_synthesis_new/">2. 数字子系统的逻辑综合（重构版）</a></li>
-<li><a href="2_submodule_synthesis_deprecated/">2. 数字子系统的逻辑综合（经典版）</a></li>
-<li><a href="3_submodule_gate_level_simulation/">3. 数字子系统的门级仿真</a></li>
-</ul>
-</li>
-<li>三、后端实现<ul>
-<li><a href="4_submodule_implementation_new/">4. 数字子系统的后端设计（重构版）</a></li>
-<li><a href="4_submodule_implementation_deprecated/">4. 数字子系统的后端设计（经典版）</a></li>
-<li><a href="5_io/">5. 顶层模块的后端设计</a></li>
-<li><a href="6_lvs_drc/">6. DRC/LVS验证</a></li>
-<li><a href="7_final_layout/">7. 拼版</a></li>
-</ul>
-</li>
-<li>四、回片测试<ul>
-<li><a href="8_PCB/">8. PCB绘制</a></li>
-<li><a href="9_package/">9. 封装</a></li>
-<li><a href="10_testing/">10. 测试</a></li>
-</ul>
-</li>
-<li>五、附录<ul>
-<li><a href="11_cpu_debug/">11. RISC-V CPU 调试</a></li>
-<li><a href="12_assembly/">12. C 代码编译</a></li>
-<li><a href="13_wsl/">13. WSL</a></li>
-<li><a href="14_FPGA_verification/">14. FPGA 验证</a></li>
-<li><a href="15_PDK_setup/">15. PDK设置</a></li>
-<li><a href="DCIM_spec/">16. Digital-CIM 使用规范</a></li>
-<li><a href="sram_ip/">17. SRAM IP 使用规范</a></li>
-<li><a href="innovus_guide/">18. Innovus 入门</a></li>
-<li><a href="system_integration/">19. 系统集成</a></li>
-</ul>
-</li>
-<li><a href="contribute/">六、如何贡献</a></li>
-</ul>
-<h2 id="_4">更新日志</h2>
-<h3 id="_5">当前版本</h3>
-<div class="admonition bug">
-<p class="admonition-title">当前版本尚未公测</p>
-<p>开发中，尚未公测，敬请期待！</p>
-</div>
-<h3 id="_6">历史版本</h3>
-<h2 id="_7">致谢</h2>
-<p>感谢所有为该文档提供帮助的朋友们以及 ChatGPT！</p>
-<p>
-<span class='git-authors'>
-    <ul>
-        
-    <li><a href="mailto:mingxuanli_siris@163.com">Siris-Li</a>: 2968 lines (72.46%)</li>
-    
-    <li><a href="mailto:jameszhu.20021122@gmail.com">Bwoah-Kimi</a>: 1039 lines (25.37%)</li>
-    
-    <li><a href="mailto:hyouka0129">Hyouka0129</a>: 87 lines (2.12%)</li>
-    
-    <li><a href="mailto:453990380@qq.com">syhesyh</a>: 2 lines (0.05%)</li>
-    
-    </span>
-</ul>
-    </p>
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="./assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

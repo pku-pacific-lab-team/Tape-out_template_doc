@@ -1256,147 +1256,33 @@
   
 
 
-<h1 id="2">2. 数字子系统的逻辑综合（重构版）</h1>
-<div class="admonition tip">
-<p class="admonition-title">TLDR</p>
-<ol>
-<li>模板文件路径：<code>/work/home/limingxuan/common/CIM_BIST/</code></li>
-<li>仿真脚本：<code>/work/home/limingxuan/common/CIM_BIST/Makefile</code></li>
-<li>仿真命令：<code>b make genus</code></li>
-</ol>
+<div id="mkdocs-encrypted-content" style="display:none">u6cJlN64ttipm4B1vRHglg==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
-<h2 id="21">2.1 模板文件</h2>
-<p>我们使用 DCIM 自检电路作为逻辑综合模板示例，其文件夹路径为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/limingxuan/common/CIM_BIST/
-</code></pre></div>
-<p>该文件夹的结构为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CIM_BIST
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── src                                         # RTL Source Files
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── macro
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   │   └── dcim_ip_bm
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   │       ├── dcim_ip_bm.lef                  # DCIM physical library
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   │       ├── dcim_ip_bm_tt_0p80v_25c.lib     # DCIM timing library
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   │       └── dcim_ip_bm_tt_0p80v_85c.lib     # DCIM timing library
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── sram                                    # Compiler Generated SRAM
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │   └── sram_sp_hde
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   │       ├── sram_sp_hde.v                   # SRAM Behavior Module
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   │       └── ...
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   └── ...
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>├── syn
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── scripts
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   │   ├── genus_synthesis.tcl                 # main synthesis script
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   │   ├── init_syn_none_opt.tcl               # init synthesis script
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   │   ├── init_syn_standard_opt.tcl           # init synthesis script
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   │   ├── init_syn_extreme_opt.tcl            # init synthesis script
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   │   └── syn_mmmc.tcl                        # define MMMC constraints
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   └── Makefile
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── config
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── constraints_soc.sdc                     # define timing constraints
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── global_define.tcl                       # define global parameters
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   └── user_define.tcl                         # user-specific parameters
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>├── Makefile                                    # Top-level Makefile
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>├── ...
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>...                                             # Other Folders/Files
-</code></pre></div>
-<h2 id="22">2.2 逻辑综合流程</h2>
-<h3 id="_1">添加源文件</h3>
-<p>在 <code>src/filelist.f</code> 中添加你的子模块源文件。</p>
-<h3 id="_2">修改综合参数</h3>
-<p>根据注释修改 <code>config/user_define.tcl</code> 中的综合参数。
-你需要定义的参数如下：</p>
-<ul>
-<li><code>rm_core_top</code>：顶层模块的名称。</li>
-<li><code>rm_clock_pin</code>：顶层模块的时钟端口名称。</li>
-<li><code>rm_clock_period</code>：时钟周期，单位 ns。</li>
-<li><code>sram_insts</code>：SRAM 实例的名称，请在 <code>src/sram</code> 文件夹中使用 <code>sram_compiler</code> 生成对应名称的 sram 实例。</li>
-<li><code>macro_insts</code>：宏单元的名称，请将对应文件（<code>.v</code>，<code>.lib</code>，<code>.lef</code>）放在 <code>src/macro/&lt;name&gt;</code> 文件夹中，分别命名为 <code>&lt;name&gt;.v</code> <code>&lt;name&gt;_[ss|tt|ff]_*v_*c.lib</code> <code>&lt;name&gt;.lef</code>。</li>
-<li><code>std_lib, cell_ext</code>：选择标准单元库的阈值电压。</li>
-<li><code>proj(analysis_view,[setup|hold])</code>：选择时序分析的 PVT，学术片考虑 <code>tt</code> 的两个选项即可。</li>
-<li><code>syn_opt_level</code>：综合优化等级，可以选择 <code>none, standard, extreme</code>，优化程度依次递增。</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">lib 文件命名</p>
-<p>lib 文件命名规则为 <code>&lt;name&gt;_&lt;process&gt;_&lt;voltage&gt;_&lt;tempurature&gt;</code>，可以参考 sram 的 lib 文件。</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">sram 与 macro 文件</p>
-<p>请注意，sram 与 macro 文件夹下的文件名<strong>务必</strong>与 <code>sram_insts</code> 与 <code>macro_insts</code> 中的名称<strong>一致</strong>！参考模板文件夹的命名规则。</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">综合参数进阶</p>
-<p>如果你想要进一步修改综合参数，可以参考 <code>syn/scripts/init_syn.tcl</code>。</p>
-</div>
-<h3 id="_3">修改时序约束</h3>
-<p>每个子模块的时序约束都需要<strong>自行编写</strong> <code>sdc</code> 文件，可以参考 <code>config/constraints_soc.sdc</code>。</p>
-<p>你需要定义的内容如下：</p>
-<ul>
-<li><code>create_clock</code>：设置时钟信号，告诉工具哪些信号是时钟。</li>
-<li><code>set_clock_uncertainty</code>：设置时钟不确定性，所有时钟都需要设置 <code>setup, hold</code> 的不确定性。</li>
-<li><code>set_clock_groups</code>：设置时钟组，告诉工具哪些时钟是同步的。</li>
-<li><code>set_input_delay</code>：设置输入延迟，告诉工具输入信号的延迟。</li>
-<li><code>set_output_delay</code>：设置输出延迟，告诉工具输出信号的延迟。</li>
-<li><code>set_false_path</code>：设置假路径，告诉工具哪些路径不需要做时序分析。</li>
-</ul>
-<p>其中，<code>set_input_delay</code> 和 <code>set_output_delay</code> 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值<code>60% clock_period</code>。</p>
-<div class="admonition question">
-<p class="admonition-title">虚拟时钟</p>
-<p>时序约束中，虚拟时钟是一个很常见的概念。
-虚拟时钟是为了描述<strong>输入输出的时序信息</strong>而引入的，对于综合工具来说，它<strong>不了解</strong>所综合的<strong>子模块之外</strong>的任何信息，因此需要一个虚拟时钟来告诉工具输入输出的时序信息。</p>
-<p>大部分情况下，虚拟时钟和实际时钟是<strong>同步</strong>的。
-实际上，这和直接将输入输出约束到实际时钟上是<strong>等效</strong>的，但是这样做会使得时钟树综合后的时序与预期不符，因此通常使用虚拟时钟约束 IO。</p>
-</div>
-<p>请将你编写的 <code>sdc</code> 文件命名为 <code>constraints_&lt;top_module_name&gt;.sdc</code>，并放在 <code>config/</code> 文件夹中。</p>
-<h3 id="_4">运行逻辑综合</h3>
-<p>在 <code>CIM_BIST</code> 文件夹下运行以下命令：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b make genus TOP=&lt;top_module_name&gt;
-</code></pre></div>
-<p>综合 CIM_BIST 的时间大致需要 5-7min 左右。
-逻辑综合会在 <code>syn</code> 文件夹下生成 2 个文件夹 <code>logs, &lt;top_module_name&gt;</code>，文件结构如下所示。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>syn
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── logs
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   ├── fv                              # empty functional verification folder
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   ├── &lt;top_module_name&gt;.cmd           # genus command file
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│   └── &lt;top_module_name&gt;.log           # genus log file
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>├── &lt;top_module_name&gt;
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│   ├── reports
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│   │   ├── area
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   │   │   └── area.rpt                # area report
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│   │   ├── timing
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│   │   │   └── *_timing.rpt            # timing report
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│   │   ├── power
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│   │   │   ├── *_power_hier.rpt        # power hierarchy report
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│   │   │   └── *_power.rpt             # power report
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│   │   ├── time_intent
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│   │   │   └── *_timing_intent_*.rpt   # timing constraint check
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│   │   ├── runtime
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│   │   │   └── check_*.rpt             # design check
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>│   │   └── others
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>│   │       └── *.rpt
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>│   ├── *.sdf                           # strandard delay format for post-synthesis simulation
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>│   ├── *_postsyn.v                     # generated netlist
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>│   └── design_backup                   # files for restoring design
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>│       └── ...
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>├── ...
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>...
-</code></pre></div>
-<h3 id="_5">查看主要输出报告</h3>
-<ul>
-<li><code>./syn/logs/&lt;top_module_name&gt;.log</code>：逻辑综合的日志文件，可以查找 <code>Error</code>, <code>Warning</code> 等关键词检查逻辑综合流程是否有误。</li>
-<li><code>./syn/&lt;top_module_name&gt;/*_postsyn.v</code>：生成的门级网表，用于后续 Cadence Innovus 的后端设计</li>
-<li><code>./syn/&lt;top_module_name&gt;/reports/timing/*_timing.rpt</code>：各个 PVT 的时序报告，可以查找 <code>VIOLATED</code> 关键词检查时序是否满足。</li>
-<li><code>./syn/&lt;top_module_name&gt;/reports/area/area.rpt</code>：该模块的面积报告，可以作为后续后端设计版图大小的参考。</li>
-</ul>
-<h3 id="_6">恢复设计</h3>
-<p>在进行一次逻辑综合后，可以在 <code>CIM_BIST</code> 路径下通过如下指令快速恢复设计：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>b make restore_genus TOP=&lt;top_module_name&gt;
-</code></pre></div>
-<div class="admonition bug">
-<p class="admonition-title">待添加</p>
-<p>关于脚本内容的解释。</p>
-</div>
-<div class="admonition success">
-<p>特别感谢 <a href="https://ieeexplore.ieee.org/author/37089774513">Wenjie Ren</a> 对本页内容的贡献和校对！</p>
-</div>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/2_submodule_synthesis_new/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

@@ -1152,32 +1152,33 @@
   
 
 
-<h1 id="3">3. 数字子系统的门级仿真</h1>
-<p>逻辑综合后会生成门级网表，我们需要对其进行仿真以验证综合后的网表功能正确，仿真的具体流程和综合前的<a href="../1_behavioral_simulation/">行为级仿真</a>类似。</p>
-<h2 id="31">3.1 模板文件</h2>
-<p>我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为门级仿真模板示例，其文件夹路径为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/limingxuan/common/SOC_CVA6/
-</code></pre></div>
-<h2 id="32">3.2 运行仿真</h2>
-<p>在 <code>SOC_CVA6</code> 主目录下运行如下指令即可完成门级仿真。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>b make gate_verdi TOP=&lt;top_module_name&gt;_tb
-</code></pre></div>
-<p>如果你不想使用 Verdi 查看波形文件，可以使用如下指令。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b make gate_vcs TOP=&lt;top_module_name&gt;_tb
-</code></pre></div>
-<p>运行仿真时，脚本会根据 <code>config/user_define.tcl</code> 中的配置以及网表文件 <code>syn/&lt;top_module_name&gt;/&lt;top_module_name&gt;_postsyn.v</code> 自动生成源文件列表 <code>sim/build/gate_filelist.f</code>，然后进行编译和仿真。</p>
-<div class="admonition warning">
-<p class="admonition-title">网表文件路径</p>
-<p>脚本只会搜索网表文件的默认位置，如果你改变了网表文件的位置，请手动修改 <code>sim/Makefile</code> 文件。</p>
+<div id="mkdocs-encrypted-content" style="display:none">bXXb4YaxME9BblUo7JkZ1A==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
-<div class="admonition bug">
-<p class="admonition-title">sdf 反标的时序仿真</p>
-<p>目前脚本不支持 sdf 反标的时序仿真，大概率会出现<strong>大量不定态</strong>！</p>
-</div>
-<h2 id="33">3.3 查看波形</h2>
-<p>在 Verdi 中，点击波形区域，使用快捷键 <code>r</code> 可以恢复波形，加载 <code>sim/gate_soc_signal.rc</code> 文件可以查看 CPU 指令波形。</p>
-<p>考虑到实际流片时 SRAM 主存上电后是随机数，因此在 bootrom 中会将主存基地址处的 256-bit 数置 0。
-因此加载 <code>sim/gate_soc_signal.rc</code> 文件后，可以看到 CPU 在执行主存基地址处的指令后会触发异常，进而在终端异常处理程序处循环。</p>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/3_submodule_gate_level_simulation/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

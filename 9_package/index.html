@@ -1182,193 +1182,33 @@
   
 
 
-<h1 id="9">9. 划片与封装</h1>
-<h2 id="91">9.1 划片</h2>
-<p><a href="https://en.wikipedia.org/wiki/Die_singulation">芯片分割</a>（Die singulation），也称为晶圆切割（wafer dicing）。
-在这个过程中，一个大的硅晶圆被切割成许多小的，独立的半导体芯片或集成电路。
-每个小芯片都包含了一个完整的电路。
-划片过程的主要目的是<strong>将硅晶圆上的多个集成电路分离开来，以便于后续的封装和测试</strong>。</p>
-<details class="info">
-<summary>扩展：划片机</summary>
-<p>划片通常是通过一个高精度的划片机完成的，这个机器可以根据预设的模式和尺寸切割硅晶圆。划片机使用一种高速旋转的刀片（通常是金刚石或其他硬质材料）在硅晶圆上进行切割。这个过程需要非常精确，以确保每个芯片都被正确地切割，而不会损坏芯片上的电路。</p>
-</details>
-<p>划片需要提供的资料如下：</p>
-<ul>
-<li><strong>划片数量</strong></li>
-<li><strong>划片示意图</strong></li>
-</ul>
-<figure>
-  <img src="../figs/wafer_dicing.png" width=70%>
-  <figcaption>划片图示例</figcaption>
-</figure>
-
-<p>划片所需的时间大约为<strong>1-2天</strong>，20颗50颗划片时间基本一样。</p>
-<h2 id="92">9.2 封装</h2>
-<p><a href="https://en.wikipedia.org/wiki/Integrated_circuit_packaging">芯片封装</a>（Integrated circuit packaging，chip packaging）发生在硅晶圆划片之后。封装的主要目的是保护微小、脆弱的半导体芯片，同时提供交互接口，<strong>使芯片可以和电子设备的其他部分进行电气连接</strong>。</p>
-<p>我们使用的封装方式主要有两种：</p>
-<ul>
-<li>插座封装（Socketed Packaging）</li>
-<li>COB（Chip on Board）</li>
-</ul>
-<h3 id="_1">插座封装</h3>
-<p>这种封装方式的主要特点是将芯片封装在一个管壳（package）中，并通过插座（socket）将其连接到电路板上。这种方法的优点是<strong>便于更换、升级和维护芯片</strong>，缺点是<strong>电气性能稍差</strong>。</p>
-<figure>
-  <img src="../figs/socketed_packaging.png" width=50%>
-  <figcaption>插座封装示例</figcaption>
-</figure>
-
-<details class="info">
-<summary>拓展：封装过程</summary>
-<ol>
-<li>
-<p><strong>芯片装载（Die Attachment）</strong>：切割后的芯片（也称为“die”）被安装到封装的载体（通常是金属或塑料）上。这个过程通常使用导热材料（例如银胶或锡膏）来确保良好的热接触，帮助散热。</p>
-</li>
-<li>
-<p><strong>线引封装（Wire Bonding）</strong>：芯片上的电路通过极细的金属线（通常是金或铝）连接到封装的引脚上。这些金属线非常细小，通常需要使用高精度的自动设备来进行操作。</p>
-</li>
-<li>
-<p><strong>封装封闭（Encapsulation）</strong>：芯片和金属线被一个保护层覆盖，通常是塑料或陶瓷。这个保护层可以防止芯片受到物理损伤，同时也防止环境因素（如湿气、灰尘、化学物质等）对芯片造成损害。</p>
-</li>
-</ol>
-<p>完成封装后的芯片可以被焊接到电路板上，与电子设备的其他部分进行电气连接。</p>
-</details>
-<p>芯片封装有很多种类型，我们使用的封装类型为<a href="https://en.wikipedia.org/wiki/Flat_no-leads_package">QFN</a>（Quad Flat No-leads）封装。
-QFN（Quad Flat No-leads）封装是一种四面平无引脚封装。
-它的特点是四个边都是平的，没有传统意义上的引脚，而是采用周边的pad（电接触垫）来实现电路的连接。
-QFN封装体积小、高度低，因此对于需要小型化的电子设备来说，非常适合。</p>
-<figure>
-  <img src="../figs/QFN_sideview.png" width=100%>
-  <figcaption>QFN 封装侧视图</figcaption>
-</figure>
-
-<p>QFN后面的数字（如QFN64、QFN88 10*10）通常指的是封装上的pad的数量。
-例如，QFN64的封装就有64个pad，而QFN88的封装则有88个pad。"10*10"则通常指的是封装的物理尺寸，单位通常是毫米(mm)。</p>
-<p>我们需要将芯片的IO与QFN封装的pad进行对应，以便在封装过程中正确连接芯片的电路。</p>
-<figure>
-  <img src="../figs/qfn_pad_connect.png" width=70%>
-  <figcaption>打线图示例</figcaption>
-</figure>
-
-<p>插座封装需要提供的资料如下：</p>
-<ul>
-<li><strong>打线图</strong>：封装厂商需要根据该图完成引线</li>
-<li><strong>封装类型和尺寸</strong>：即 QFN64 8*8、QFN88 10*10等</li>
-<li><strong>QFN插座</strong>：需要淘宝自行购买与封装类型相匹配的socket，直接邮寄给PCB厂商焊接</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>留意封装厂商提供的封装类型和尺寸信息，以确保购买正确的插座！
-有些封装尺寸不支持快封，支持快封的类型和尺寸如下：</p>
-<div style="display: flex; justify-content: center;">
-<p><table style="border-collapse: collapse;">
-    <thead>
-        <tr style="border: 2px solid black; background-color: #9a0000; color: white;">
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">封装类型</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">芯片长度（mm）</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">芯片宽度（mm）</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">封装尺寸（mm x mm x mm）</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN28</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4 x 4 x 0.4</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN32</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">3.30</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">3.30</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">5 x 5 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.24</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.24</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6 x 6 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6 x 6 x 0.4</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN48</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6 x 6 x 0.4</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN48</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">5.20</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">5.20</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">7 x 7 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN56</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.00</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.00</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8 x 8 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN56</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8 x 8 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN64</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">7.00</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">7.00</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">9 x 9 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN68</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">6.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8 x 8 x 0.4</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN72</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10 x 10 x 0.5</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN88</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8.40</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10 x 10 x 0.4</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">QFN100</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10.00</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">10.00</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">12 x 12 x 0.4</td>
-        </tr>
-    </tbody>
-</table></p>
+<div id="mkdocs-encrypted-content" style="display:none">Y+0uRSMrjJUfyg1WpXJknQ==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
-</div>
-<p>封装厂商一般会提供<strong>快封</strong>和<strong>塑封</strong>两种管壳封装形式。
-快封划片后大概<strong>1-2天</strong>封好；塑封要等芯片划片完成后大概<strong>一周</strong>左右出货。
-二者性能上面没有什么区别，外观和常规量产芯片有些不一样，表面塑封料颜色不一样。</p>
-<h3 id="cob">COB</h3>
-<p>COB，全称Chip On Board，即直接将芯片安装在电路板上的封装技术。
-这种技术中，裸芯片被放置在电路板上，然后通过金线或铜线进行键合，与电路板上的其他组件进行电气连接。
-然后，芯片和键合线会被一种特殊的环氧树脂（通常被称为"<strong>黑胶</strong>"）覆盖，以保护它们免受物理损伤和环境影响。</p>
-<p>相比插座封装，COB技术由于减少了连接点，<strong>电气性能更好</strong>，信号传输更稳定，电阻更低。相应的，一旦芯片安装到PCB上，<strong>维修和更换芯片非常困难</strong>。</p>
-<figure>
-  <img src="../figs/cob.png" width=40%>
-  <figcaption>COB封装示例</figcaption>
-</figure>
 
-<p>COB封装<strong>不需要</strong>提供打线图和插座，只需要将芯片寄给封装厂商即可，划片后大概需要<strong>1-2天</strong>完成。</p>
-<div class="admonition success">
-<p>特别感谢 <a href="https://ieeexplore.ieee.org/author/37089975778">Yanchi Dong</a>，<a href="https://ieeexplore.ieee.org/author/37089999502">Yiyang Sun</a>，<a href="https://ieeexplore.ieee.org/author/37089916688">Yiqi Jing</a> 对本页内容的贡献和校对！</p>
-</div>
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/9_package/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

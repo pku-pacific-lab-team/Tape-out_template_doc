@@ -1170,150 +1170,33 @@
   
 
 
-<h1 id="digital-cim">Digital-CIM 使用规范</h1>
-<h2 id="_1">概述</h2>
-<p>CIM 是 Compute-in-Memory 的缩写，即存内计算。
-Digital-CIM (DCIM) 使用标准 SRAM 单元实现存储，并在 SRAM 阵列中添加或非门和加法器树实现乘累加操作。
-DCIM 天然实现了 Weight Stationary，并且内存和计算单元是紧密集成在一起的，这种紧密集成的设计可以减少数据传输的时间和功耗，提高计算效率。</p>
-<p>CIM 的功能可以大致分为三类：</p>
-<ul>
-<li>存储：将权重存储在 CIM 的存储单元中</li>
-<li>读权重：将存储的数据读出</li>
-<li>计算：将输入特征和权重相乘累加</li>
-</ul>
-<h2 id="_2">规模</h2>
-<figure>
-  <img src="../figs/dcim_scale.png" width=80%>
-  <figcaption>DCIM Scale</figcaption>
-</figure>
-
-<p>DCIM 的规模为 512 行 x 256 列。
-对于一列中的 512 个 SRAM 单元，每 16 个 SRAM 单元构成一个 subarray，一共有 32 个 subarray。</p>
-<p>每个 SRAM 单元通过或非门完成权重与输入的 1-bit 乘法，再通过 32 个 subarray 之间的加法器树完成累加。</p>
-<div class="admonition tip">
-<p class="admonition-title">DCIM 计算实例</p>
-<p>假设 CIM 规模为 1 列 512 个 SRAM 单元，每个 subarray 中 16 个 SRAM 单元（一共 32 个 subarray），需要计算无符号数 <span class="arithmatex"><span class="MathJax_Preview">a_0[3:0] \times w_0[3:0] + a_1[3:0] \times w_1[3:0] + ... + a_{127}[3:0] \times w_{127}[3:0]</span><script type="math/tex">a_0[3:0] \times w_0[3:0] + a_1[3:0] \times w_1[3:0] + ... + a_{127}[3:0] \times w_{127}[3:0]</script></span>。</p>
-<p>首先，CIM 会将 <span class="arithmatex"><span class="MathJax_Preview">w_x</span><script type="math/tex">w_x</script></span> 按照如下顺序依次存储在 32 个 subarray 中：</p>
-<ul>
-<li>subarray 0: <span class="arithmatex"><span class="MathJax_Preview">w_0[3:0],\ w_1[3:0],\ w_2[3:0],\ w_3[3:0]</span><script type="math/tex">w_0[3:0],\ w_1[3:0],\ w_2[3:0],\ w_3[3:0]</script></span></li>
-<li>subarray 1: <span class="arithmatex"><span class="MathJax_Preview">w_4[3:0],\ w_5[3:0],\ w_6[3:0],\ w_7[3:0]</span><script type="math/tex">w_4[3:0],\ w_5[3:0],\ w_6[3:0],\ w_7[3:0]</script></span></li>
-<li>...</li>
-<li>subarray 31: <span class="arithmatex"><span class="MathJax_Preview">w_{124}[3:0],\ w_{125}[3:0],\ w_{126}[3:0],\ w_{127}[3:0]</span><script type="math/tex">w_{124}[3:0],\ w_{125}[3:0],\ w_{126}[3:0],\ w_{127}[3:0]</script></span></li>
-</ul>
-<p>接下来，CIM 会按照 bit-serial 的顺序输入 4-bit 数。</p>
-<ul>
-<li>第一轮输入：<span class="arithmatex"><span class="MathJax_Preview">\{a_0[3], a_4[3], ..., a_{124}[3]\}</span><script type="math/tex">\{a_0[3], a_4[3], ..., a_{124}[3]\}</script></span></li>
-<li>第二轮输入：<span class="arithmatex"><span class="MathJax_Preview">\{a_0[2], a_4[2], ..., a_{124}[2]\}</span><script type="math/tex">\{a_0[2], a_4[2], ..., a_{124}[2]\}</script></span></li>
-<li>第三轮输入：<span class="arithmatex"><span class="MathJax_Preview">\{a_0[1], a_4[1], ..., a_{124}[1]\}</span><script type="math/tex">\{a_0[1], a_4[1], ..., a_{124}[1]\}</script></span></li>
-<li>第四轮输入：<span class="arithmatex"><span class="MathJax_Preview">\{a_0[0], a_4[0], ..., a_{124}[0]\}</span><script type="math/tex">\{a_0[0], a_4[0], ..., a_{124}[0]\}</script></span></li>
-</ul>
-<p>然后，DCIM 需要通过地址的最低 4 位来切换 subarray 中的权重，同时切换对应的输入。</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">数据流</p>
-<p>上述实例只是 DCIM 的一种数据流，可以有多种不同的映射方式。</p>
-</div>
-<h2 id="_3">端口列表</h2>
-<div style="display: flex; justify-content: center;">
-
-<table style="border-collapse: collapse;">
-    <thead>
-        <tr style="border: 2px solid black; background-color: #9a0000; color: white;">
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">端口</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">方向</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">描述</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">CLK</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">时钟</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">WEN</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">写使能，高电平触发</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">REN_GLOBAL</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">读使能，高电平触发，读一整行</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">REN_LOCAL</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">读使能，高电平触发，读 local buffer</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">ADDR[9:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">地址</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">EMA_RSA[1:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">trim，默认全 1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">EMA_RWL[1:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">trim，默认全 1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">MASK[63:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">写入掩码，1 为写入，粒度为 4-bit</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">SIGN[3:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">INT4: 1111, INT8: 1010, INT16: 1000</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">D[255:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">写权重数据</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">Q[255:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">output</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">读权重数据</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">IFN[31:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">计算输入（取反）</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">PSUM[575:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">output</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">计算输出</td>
-        </tr>
-    </tbody>
-</table>
-
+<div id="mkdocs-encrypted-content" style="display:none">S+Qj1D1Ijpsv7Q0XIM48ig==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
 
-<div class="admonition tip">
-<p class="admonition-title">trim 信号</p>
-<p>"Trim"信号通常与工艺补偿和性能优化有关。
-它用于在制造过程中或之后对芯片的电气特性进行微调。
-这可以包括调整电压、电流或其他参数，以确保芯片在各种条件下都能正常工作。
-Trim信号的使用有助于提高芯片的良率和性能一致性。</p>
-</div>
-<h2 id="dcim-ip">DCIM IP 路径</h2>
-<p>服务器上经过流片验证的 DCIM IP 路径为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/work/home/wjren/shared/dcim_v2_bm/dcim_ip_bm.v
-</code></pre></div>
-<figure>
-  <img src="../figs/dcim_path.png" width=100%>
-  <figcaption>DCIM Path</figcaption>
-</figure>
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/DCIM_spec/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
 
-<div class="admonition success">
-<p>特别感谢 <a href="https://ieeexplore.ieee.org/author/37089774513">Wenjie Ren</a>，Yifan Ding 对本页内容的贡献和校对！</p>
-</div>
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

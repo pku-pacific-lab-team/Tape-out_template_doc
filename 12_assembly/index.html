@@ -1218,208 +1218,33 @@
   
 
 
-<h1 id="c">C 代码编译</h1>
-<div class="admonition info">
-<p class="admonition-title">阅读建议</p>
-<p>如果你不想了解编译原理，只想获得工具链和一个编译模板以便开发测试代码，可以直接跳到 12.2。
-但我们建议你阅读整个章节，以便更好地理解编译的过程。</p>
+<div id="mkdocs-encrypted-content" style="display:none">9D/prAxZ48uCgBw4shUY6A==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
-<h2 id="121">12.1 编译流程</h2>
-<p>我们需要知道软件代码如何翻译成 CPU 可运行的指令，这个过程被称为编译（compiling）。
-将 C 程序翻译成计算机可运行的机器语言程序需要四个经典步骤：</p>
-<p><code>foo.c</code> --compiler--&gt; <code>foo.s</code> --assembler--&gt; <code>foo.o</code> --linker--&gt; <code>a.out</code> --loader--&gt; CPU</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>这些步骤是概念上的，实际上会合并某些步骤来加速翻译过程。</p>
-</div>
-<h3 id="compiler-assembler">Compiler &amp; Assembler</h3>
-<p>编译器负责将高级语言转换成汇编，汇编器负责将汇编转换成机器码。
-汇编器的作用不仅是用处理器可理解的指令生成目标代码，还支持一些对汇编语言程序员或编译器开发者有用的操作。
-这类操作是常规指令的巧妙特例，称为伪指令。
-最经典的例子为 <code>nop</code>，它在 RISC-V 中由 <code>addi x0, x0, 0</code> 实现。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在程序员视角下，32个GPR有不同于 x0 ~ x31 的名称，这被称为 ABI （Application Binary Interface）。</p>
-</div>
-<p>下面是一段汇编</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    .text                   # 指示符：进入代码节
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    .align 2                # 指示符：将代码按 2^2 字节对齐
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    .globl main             # 指示符：声明全局符号 main
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    main:                   # main 的开始符号
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    addi sp,sp,-16          # 分配栈帧
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    sw ra,12(sp)            # 保存返回地址
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    lui a0,%hi(string1)     # 计算 string1
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    addi a0,a0,%lo(string1) # 的地址
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    lui a1,%hi(string2)     # 计算 string2
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    addi a1,a1,%lo(string2) # 的地址
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    call printf             # 调用 printf 函数
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    lw ra,12(sp)            # 恢复返回地址
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    addi sp,sp,16           # 释放栈帧
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    li a0,0                 # 装入返回值 0
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    ret                     # 返回
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    .section .rodata        # 指示符：进入只读数据节
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    .balign 4               # 指示符：将数据按 4 字节对齐
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    string1:                # 第一个字符串符号
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    .string &quot;Hello, %s!\n&quot;  # 指示符：以空字符结尾的字符串
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    string2:                # 第二个字符串符号
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    .string &quot;world&quot;         # 指示符：以空字符结尾的字符串
-</code></pre></div>
-<p>以英文句号开头的命令称为汇编器指示符（assembler directives）。
-这些命令作用于汇编器，而非由其翻译的代码，具体用于通知汇编器在何处放置代码和数据、指定程序中使用的代码和数据常量等。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>汇编器生成的文件为 ELF（Executable and Linkable Format，可执行可链接格式）[TIS Committee 1995] 标准格式目标文件。</p>
-</div>
-<h3 id="linker">Linker</h3>
-<p>链接器允许分别编译和汇编各文件，故只改动一个文件时无需重新编译所有源代码。
-链接器把新目标代码和已有机器语言模块（如函数库）“拼接” 起来，即编辑目标文件中所有 “跳转并链接（<code>jal</code>）” 指令的链接目标。
-例如上述汇编有两个数据符号（<code>string1</code> 和 <code>string2</code>）和两个代码符号（<code>main</code> 和 <code>printf</code>）待确定。</p>
-<p>根据链接的形式，可以将链接结果分为<strong>静态</strong>（static linking）和<strong>动态</strong>（dynamic linking）两种。
-前者在程序运行前链接并加载所有库的代码，后者首次调用所需外部函数时才会将其加载并链接到程序中。</p>
-<p>在编译和链接程序的过程中，通常会链接标准库和启动文件。
-标准库（Standard Library）包含了许多常用的函数，例如输入输出函数、字符串处理函数等。
-大多数程序都会使用到标准库中的函数，因此在链接阶段，编译器会将这些函数的代码链接到生成的可执行文件中。</p>
-<p>启动文件（Start Files）是一些特殊的对象文件，它们包含了程序启动时需要执行的一些初始化代码。
-例如，C 程序的入口点实际上是一个名为 start 或 _start 的函数，这个函数在启动文件中定义，它会设置好运行环境后再调用 main 函数。
-具体的启动文件取决于你的编译器和操作系统。
-例如，在使用 GCC 编译器的 Linux 系统中，启动文件通常是 <code>crt1.o</code>、<code>crti.o</code>、<code>crtbegin.o</code>、<code>crtend.o</code> 和 <code>crtn.o</code>。
-这些文件中的代码会设置堆栈，初始化全局变量，调用全局构造函数，等等。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>当编译器选项中包含 <code>-nostdlib</code> 和 <code>-nostartfiles</code> 时，表示在链接阶段不链接标准库和启动文件。
-这通常在编写操作系统或嵌入式系统的代码时使用，因为这些系统可能没有标准库，或者需要自定义启动过程。
-需要注意的是，<code>-nostdlib</code> 选项不仅会禁止链接 C 标准库，还会禁止链接启动文件和 GCC 的运行时库。
-如果你只想禁止链接 C 标准库，但仍然需要链接启动文件和 GCC 的运行时库，你可以使用 <code>-nodefaultlibs</code> 选项。</p>
-</div>
-<p>对象文件（.o 文件）是编译器生成的中间文件，它包含了源代码编译后的机器代码，但还没有被链接成可以执行的程序。
-这些文件通常包含二进制数据，以及一些元数据，如符号表、重定位信息等。符号表中记录了源代码中的函数和变量的名称（符号）以及它们在机器代码中的位置。
-重定位信息用于在链接阶段确定符号的最终地址。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>你可以使用一些工具来查看对象文件的内容。
-例如，你可以使用 <code>objdump</code> 工具来反汇编对象文件，查看它的汇编代码。你也可以使用 nm 工具来查看对象文件中的符号表。
-查看反汇编代码： <code>objdump -d foo.o</code>；
-查看符号表： <code>objdump -t your_file.o</code>；
-查看重定位信息：<code>objdump -r your_file.o</code>。</p>
-</div>
-<h3 id="loader">Loader</h3>
-<p>运行一个程序时，加载器会将其加载到内存中，并跳转到它的起始地址。
-可执行文件可以接收命令行参数。这些参数在程序启动时通过 main 函数的参数传递给程序。
-main 函数的原型为 <code>int main(argc, *argv[])</code>。</p>
-<p>其中，<code>argc</code> 是命令行参数的数量，<code>argv</code> 是一个指向字符指针数组的指针，该数组包含了所有的命令行参数。
-<code>argv[0]</code> 是程序的名称，<code>argv[1]</code> 是第一个命令行参数，以此类推。
-最后一个元素 <code>argv[argc]</code> 是一个空指针。</p>
-<p>例如，如果你的程序名为 <code>prog</code>，并且你通过以下方式启动它：<code>./prog arg1 arg2</code>，那么 <code>argc</code> 将为 3，<code>argv[0]</code> 将为 ./prog，<code>argv[1]</code> 将为 arg1，<code>argv[2]</code> 将为 arg2。</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>如今的 “加载器” 就是操作系统。</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在进行交叉编译时，你的主机上的库（包括 C 标准库）通常不能直接用于目标系统。
-这是因为主机和目标系统可能有不同的架构（例如，主机可能是 x86，而目标系统是 RISC-V），并且它们可能有不同的操作系统接口（例如，主机可能是 Linux，而目标系统是 bare-metal）。</p>
-<p>因此，当你在 bare-metal RISC-V 环境中编译程序时，你需要一个为 RISC-V 架构和 bare-metal 环境定制的 C 库。
-这个库应该包含适合你的目标环境的函数实现，包括 <code>exit</code> 函数。</p>
-<p>如果你的程序使用了 C 库中的 <code>exit</code> 函数，但你没有提供一个适合你的目标环境的 <code>exit</code> 函数实现，那么在链接阶段，链接器会报错，因为它找不到 <code>exit</code> 函数的定义。</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>你可以查询 <a href="https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md">RISC-V Assembly Programmer's Manual</a> 来了解如何编写 RISC-V 汇编语言。</p>
-</div>
-<h2 id="122-risc-v-toolchain">12.2 安装 RISC-V Toolchain</h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>需要在 WSL 环境中安装！
-WSL 的安装以及网络配置请参考 <a href="../13_wsl/">13. WSL</a>。</p>
-</div>
-<p>从 GitHub 上下载 RISC-V 工具链源码并进入该目录：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Siris-Li/RISC-V-GCC-TOOLCHAIN
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>RISC-V-GCC-TOOLCHAIN
-</code></pre></div>
-<p>安装依赖：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>autotools-dev<span class="w"> </span>curl<span class="w"> </span>git<span class="w"> </span>libmpc-dev<span class="w"> </span>libmpfr-dev<span class="w"> </span>libgmp-dev<span class="w"> </span>gawk<span class="w"> </span>build-essential<span class="w"> </span>bison<span class="w"> </span>flex<span class="w"> </span>texinfo<span class="w"> </span>gperf<span class="w"> </span>libtool<span class="w"> </span>bc<span class="w"> </span>zlib1g-dev
-</code></pre></div>
-<p>（可选）配置 CPU 核数以便多线程编译：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NUM_JOBS</span><span class="o">=</span>&lt;num<span class="w"> </span>of<span class="w"> </span>processors&gt;
-</code></pre></div>
-<details class="tip">
-<summary>如何查看 CPU 核数</summary>
-<p><strong>WSL：</strong></p>
-<p>在 Terminal 中输入：
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nproc
-</code></pre></div>
-<strong>Windows：</strong></p>
-<p>打开任务管理器，左栏中选择“性能”选项卡，右下角即可看到 CPU 核数（逻辑处理器）。</p>
-<p><figure>
-  <img src="../figs/nproc_win.png" width=70%>
-  <figcaption>Windows 查看逻辑处理器个数</figcaption>
-</figure></p>
-<p><em>逻辑处理器与内核的区别</em>：</p>
-<ul>
-<li><strong>内核</strong>：CPU 的物理核心数</li>
-<li><strong>逻辑处理器</strong>：CPU 的线程数，例如单个物理 CPU 内核支持双线程，则 2 个这样内核的逻辑处理器数为 4。</li>
-</ul>
-</details>
-<p>配置工具链安装路径：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV</span><span class="o">=</span>&lt;install<span class="w"> </span>path&gt;
-</code></pre></div>
-<p>执行脚本安装工具链：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Fetch the source code of the toolchain (assumes Internet access.)</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sh<span class="w"> </span>get-toolchain.sh
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Build and install the toolchain (requires write+create permissions for $RISCV.)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sh<span class="w"> </span>build-toolchain.sh<span class="w"> </span><span class="nv">$RISCV</span>
-</code></pre></div>
-<p>安装完成后，<code>$RISCV/bin</code> 目录下会有 RISC-V 工具链的可执行文件（例如 <code>riscv-none-elf-gcc</code>、<code>riscv-none-elf-gdb</code>）。</p>
-<h2 id="123">12.3 编译模板</h2>
-<p>从 GitHub 上下载一个简单的 C 代码模板，用于编译 RISC-V 汇编代码。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Siris-Li/C_compile_template
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>C_compile_template
-</code></pre></div>
-<p>设置环境变量，指定 RISC-V 工具链路径。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV_GCC</span><span class="o">=</span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-gcc
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RISCV_OBJDUMP</span><span class="o">=</span>&lt;riscv-gcc-toolchain&gt;/bin/riscv-none-elf-objdump
-</code></pre></div>
-<p>修改 C 文件，按需修改汇编代码。
-然后执行 <code>make</code> 编译。</p>
-<p>Makefile 会生成如下两个文件：</p>
-<ul>
-<li><code>*.o</code>：编译后的目标文件，用于 GDB 的 <code>load</code> 指令。</li>
-<li><code>*.asmm</code>：反汇编后的文件，用于查看编译结果。</li>
-<li><code>*.hex</code>：使用 <code>asm2hex.py</code> 脚本生成的十六进制内存初始化文件，用于仿真。</li>
-</ul>
-<details class="tip">
-<summary>关于反汇编结果</summary>
-<p>如果你查看过反汇编结果，你会发现反汇编后的代码和源代码有些不同。
-具体来说，反汇编后的代码的开头和结尾会有一些额外的指令，这些指令都与 <code>sp</code> 寄存器相关。</p>
-<p><code>sp</code> 寄存器是栈指针寄存器，用于指向当前栈顶的地址。
-C 代码中的函数调用会使用栈来保存函数的返回地址、参数和局部变量。
-因此，函数的编译结果包括三个部分：函数的栈分配、函数的代码、函数的栈释放。</p>
-</details>
-<details class="tip">
-<summary>关于静态数组与动态数组</summary>
-<p>在嵌入式 RISC-V 平台上编译 C 程序时，数组大小的不同可能会导致编译器生成不同的代码，进而影响程序的行为。
-特别是当数组的大小超过一定阈值时，编译器可能会选择<strong>使用库函数</strong>（如 <code>memcpy</code>）来初始化或复制数组。</p>
-<p>嵌入式环境中通常不使用标准 C 库（如 libc），因为这些库可能依赖于操作系统提供的功能。
-在使用 <code>-nostdlib</code> 选项时，你的程序不会链接标准 C 库，因此如果编译器自动生成了对 <code>memcpy</code> 的调用，而你没有提供 <code>memcpy</code> 的实现，就会导致<strong>链接错误</strong>。</p>
-<p>为了避免这种情况，我们可以使用<strong>静态数组（static）</strong>，这样编译器就会在编译时将数组的大小固定下来，而不会使用库函数。
-编译器会将数组的内容直接放入 <code>.data</code> 段（如果是可修改的）或 <code>.rodata</code> 段（如果是只读的）。</p>
-<p>与静态数组相对应的是<strong>动态数组（dynamic）</strong>，它的大小是在运行时确定的，因此编译器无法在编译时将数组的大小固定下来，通常使用<strong>动态内存分配函数</strong>（如 malloc）来在堆（heap）中分配内存。</p>
-</details>
-<details class="tip">
-<summary>关于<code>.rodata</code>字段</summary>
-<p>如果将 <code>.rodata</code> 段放置在 RAM 中，并且没有任何硬件或软件保护措施，那么这些数据实际上是可修改的，不再具有只读属性。</p>
-<p>保持 <code>.rodata</code> 只读属性：</p>
-<ul>
-<li>确保 <code>.rodata</code> 段放在只读存储器中（如 Flash/ROM）。</li>
-<li>如果必须放在 RAM 中，使用 MMU 或类似的机制来施加只读保护。</li>
-<li>在没有硬件支持的嵌入式系统中，依赖编程约定来保证 <code>.rodata</code> 不被修改。</li>
-</ul>
-</details>
-<div class="admonition bug">
-<p class="admonition-title">FIXME!!!</p>
-<p>添加对于直接写 C 代码的支持。</p>
-</div>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/12_assembly/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

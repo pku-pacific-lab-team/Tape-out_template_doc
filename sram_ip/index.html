@@ -1254,233 +1254,33 @@
   
 
 
-<h1 id="sram-ip">SRAM IP 使用规范</h1>
-<h2 id="_1">尺寸</h2>
-<p>SRAM 的尺寸是由 <code>Number of Words</code>、<code>Number of Bits</code>、<code>Multiplexer Width</code> <code>Number of banks</code> 所决定的，对应能生成的 SRAM 尺寸如下表所示。</p>
-<div style="display: flex; justify-content: center;">
-
-<table style="border-collapse: collapse;">
-    <thead>
-        <tr style="border: 2px solid black; background-color: #9a0000; color: white;">
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">Mux</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">Flexible_banking</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">Words (min:max:step)</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">Bits (min:max:step)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">512:2048:32</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:160:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">1024:4096:64</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:160:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2048:8192:128</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:160:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">1024:4096:64</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:160:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">20048:8192:128</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:160:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4096:16384:256</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:160:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">16</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">2048:8192:128</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:80:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">16</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4096:16384:256</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:80:1</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">16</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">8192:32768:512</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">4:80:1</td>
-        </tr>
-    </tbody>
-</table>
-
+<div id="mkdocs-encrypted-content" style="display:none">iaTczPBORuhJpIHTmIwhjA==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
 </div>
 
-<figure>
-  <img src="../figs/sram_array.png" width=80%>
-  <figcaption>SRAM Array Architecture</figcaption>
-</figure>
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/sram_ip/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
 
-<p>对于逻辑尺寸相同的 SRAM，Bank 的数量并<strong>不会</strong>显著影响面积。
-Mux <strong>越多</strong>，SRAM 的 Wordline <strong>越长</strong>，Bitline <strong>越短</strong>。</p>
-<h2 id="_2">端口</h2>
-<p>SRAM IP 的端口定义如下表所示。</p>
-<div style="display: flex; justify-content: center;">
-
-<table style="border-collapse: collapse;">
-    <thead>
-        <tr style="border: 2px solid black; background-color: #9a0000; color: white;">
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">端口</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">方向</th>
-            <th style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">描述</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">VSSE</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">接地</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">VDDPE</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">I/O 以及外围电路供电</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">VDDCE</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">SRAM 阵列供电</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">CLK</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">时钟</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">A[m-1:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">地址</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">D[n-1:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">写数据</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">Q[n-1:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">output</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">读数据</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">CEN</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">片选，低电平有效</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">WEN</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">写使能，低电平有效</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">RET1N</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">保留模式，低电平有效</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px;text-align: center; vertical-align: middle;">EMA[2:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">裕量调整</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: #eeeeee; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">EMAW[1:0]</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">写裕量调整</td>
-        </tr>
-        <tr style="border: 2px solid black; background-color: white; color: black;">
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">EMAS</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">input</td>
-            <td style="border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle;">灵敏放大器裕量调整</td>
-        </tr>
-    </tbody>
-</table>
-
-</div>
-
-<div class="admonition warning">
-<p class="admonition-title">Bit Mask</p>
-<p>如果加入了 Bit Mask 功能，则 <code>WEN</code> 信号会被替换为两个信号 <code>GWEN</code>，<code>WEN[n-1:0]</code>。
-前者表示全局写使能（低电平有效），后者表示每个 Bit 的写使能（低电平有效）。</p>
-</div>
-<h3 id="extra-margin-adjustment-ema">Extra Margin Adjustment (EMA)</h3>
-<p>EMA 允许 SRAM 添加<strong>内部时序延迟</strong>，以提高制造良率。
-这些延迟<strong>减慢</strong>内存访问速度，为成功的内存读写操作提供了<strong>额外的时间</strong>。</p>
-<p><code>EMA[2:0]</code> 从 3'b000-3'b111 变化时，访问时间、周期时间和裕量分别<strong>增加</strong>。
-即 3'b000 是<strong>最快</strong>设置，3'b111 <strong>最慢</strong>。</p>
-<p><code>EMAW[1:0]</code> 通过延长内部<strong>写脉冲</strong>来控制<strong>写操作</strong>的延迟。
-随着 EMAW[1:0] 从 2'b00-2'b11 依次递增，裕量也依次<strong>增大</strong>。
-<strong>最快</strong>的设置是 2'b00，<strong>最慢</strong>的设置是 2'b11。
-<code>EMAW[1:0]</code> 的设置<strong>不会</strong>影响读操作期间的访问时间。</p>
-<p><code>EMAS</code> 扩展了检测放大器使能信号的<strong>脉冲宽度</strong>。
-当驱动为<strong>高电平</strong>时，脉冲宽度会<strong>延长</strong>。
-<code>EMAS</code> <strong>不会</strong>影响访问时间。</p>
-<p><code>EMA[2:0]</code> 和 <code>EMAW[1:0]</code> 都会<strong>影响</strong>总周期时间。
-Liberty 文件中的时间是读写时间的最坏情况。</p>
-<div class="admonition danger">
-<p class="admonition-title">EMA 配置</p>
-<p>建议通过使用<strong>寄存器</strong>或<strong>复用外部引脚</strong>来控制 EMA 引脚。
-如果 EMA 设置与默认设置<strong>不同</strong>，则必须能够在操作期间<strong>动态更改</strong> EMA 设置。
-不得将 EMA 引脚<strong>硬编码</strong>为默认值以外的任何值，否则<strong>后果自负</strong>！</p>
-</div>
-<h3 id="retention">Retention</h3>
-<p>保留模式允许降低 SRAM 供电电压。
-这种低功耗模式会<strong>保留</strong>存储器阵列内容。
-在此模式下<strong>无法</strong>进行读或写操作。</p>
-<h3 id="vmin-assist-read-assist">Vmin Assist (Read Assist)</h3>
-<p>读辅助添加了逻辑以改善位单元的<strong>读干扰裕度</strong>，确保读/写操作期间不会发生意外写入。</p>
-<div class="admonition danger">
-<p class="admonition-title">RAWL 配置</p>
-<p>建议通过使用<strong>寄存器</strong>或<strong>复用外部引脚</strong>来控制 RAWL 引脚。
-如果 RAWL 设置与默认设置<strong>不同</strong>，则必须能够在操作期间<strong>动态更改</strong> RAWL 设置。
-不得将 RAWL 引脚<strong>硬编码</strong>为默认值以外的任何值，否则<strong>后果自负</strong>！</p>
-</div>
-<h3 id="vmin-assist-write-assist">Vmin Assist (Write Assist)</h3>
-<p>写入辅助添加了逻辑，以在低于典型值的电压下<strong>提高</strong>位单元的<strong>写入能力</strong>，从而确保写入操作期间的正确功能。</p>
-<div class="admonition danger">
-<p class="admonition-title">WABL 配置</p>
-<p>建议通过使用<strong>寄存器</strong>或<strong>复用外部引脚</strong>来控制 WABL 引脚。
-如果 WABL 设置与默认设置<strong>不同</strong>，则必须能够在操作期间<strong>动态更改</strong> WABL 设置。
-不得将 WABL 引脚<strong>硬编码</strong>为默认值以外的任何值，否则<strong>后果自负</strong>！</p>
-</div>
-<h3 id="self-time-overide-stov">Self-time Overide (STOV)</h3>
-<p>STOV 功能允许<strong>覆盖</strong>存储器内部时钟脉冲的<strong>自定时生成</strong>。
-该覆盖允许您使用非内部时钟脉冲进行芯片<strong>调试</strong>，因此可以在 SoC 中将该引脚实现为可编程。</p>
-<div class="admonition danger">
-<p class="admonition-title">STOV 配置</p>
-<p>STOV 信号为<strong>高电平有效</strong>。
-STOV 引脚仅用于<strong>测试目的</strong>，在正常操作期间<strong>不得置位</strong>，否则<strong>后果自负</strong>！</p>
-</div>
-<h2 id="_3">时序</h2>
-<figure>
-  <img src="../figs/sram_read_timing.png" width=80%>
-  <figcaption>SRAM Read-cycle Timing</figcaption>
-</figure>
-
-<figure>
-  <img src="../figs/sram_write_timing.png" width=80%>
-  <figcaption>SRAM Write-cycle Timing</figcaption>
-</figure>
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 

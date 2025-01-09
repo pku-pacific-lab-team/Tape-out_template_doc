@@ -1134,40 +1134,33 @@
   
 
 
-<h1 id="innovus">Innovus 入门</h1>
-<p>物理实现（后端）主要分为如下几个步骤：</p>
-<ul>
-<li></li>
-<li>Place</li>
-<li>Clock Tree Synthesis (CTS)</li>
-<li>Route</li>
-<li>Metal Fill</li>
-</ul>
-<figure>
-  <img src="../figs/timing_closure_flow.png" width=80%>
-  <figcaption>Recommended Timing Closure Flow</figcaption>
-</figure>
+<div id="mkdocs-encrypted-content" style="display:none">l5Da/ZNGh0RYpt9ymHSPLg==;E1wasfLiE3t8yWv2SrOkzworXtS0+hR7Oi5IXpnbcfVLzBjrSWgPaBNCV2gy36DTIijEXbzYDkT/BLOglvvTVKKXfRwWb81V1FY0jDUTHGdR6vi8YDCbpVyv/J0UrGpHS4H3dtSVaERqzE/VrAUAd6uiHGaWIT429UXnOU0OJJJhqJKDfDK9HnodPcHBN0FV5o5R7J4xr+Qo88hFMu1zE4yFTQ0NOjVznlCamzzUoFBGRGokJQS2sfMffxOF9gfsZMx96NHMBQ8wvu/NtnoWwZmKW1XoPuz2plKW80jgs4C3TRTRxVTgiPmaW5i1/msNsfepk0GgdyECgd16z5cZeEEqH5iB++2uyqLfbfrVEPTKY4KolhxpDl/WtM0z9OTcSm8Zkc/OoohKW/4m6iaciS0HlN641d9TrJg6HLyVBOccUHPPywXURILEaqtSgJrBdWtTQrvgj74uUc+7cw9ye32PV7tPUwIL558pneQjSWb3DM0/o2O+eT4lmCxcNH0LBApwjj6n/hwWCR8YlO5usOjHV1IH3Rkg05Q0IVyWCwVyJhRWD6YRSdDqDEk4w77nxXPvkWL8Cu+Vvyp1E856jgr6nZTC4ezIKc94onT/L0M6CuKBt7q9nrx4XtWZ2LaEV+VldlxHhPUnvk7uv9Hxfq7Xg14NYXcNF9hYeQvR7eqPGXO+7V1g9edWYc8rEEVe0p7/K7jI3Vjn6g5tugNafexnvAc+gw34UIulKoso9cS/gmMHVydGBu5iwAF4GESzUwjbx7/0KF2Hj9cekP3MzcynOB+fymykr7jDTdM+M0G0i0c/hbB2SlogMMAdNgOBpdEoXBR25xnx8M11pgt7XgaNY2AczeLr4b5PHXOueJMWxYOfm4CLnil3Er4l+TNGo+GxoWEINF1fO834zrMXMzx5VCjdr5s6EUt6q4u7bGJT84QtB8LBEoFKyPpFCu6SzeMV9s54ESRK2P2N+4C1Hg3vqIoRcS38VcayOis2t/GPIieUlICTvaXoDtnhc+7Mzx3F08aRcTZpoN+7v3ObtjtyjgFsUX6kdHDvXCs2vW530Sh8exu/b61puorjsvQkC3F9zLYlIZAhqEuNrIxhrJpOKLV2L/Ne9n98Hkss+GWuf7B+uOvWnX1gx8IGr/NQPatZ6QkG8f7lmU2Eos7MrFIovENAd0Z2Z5Ds1vbBd5DuGI0uIhpi0ta0sLldap3d0dghuBof0J/P/QeDngNQTulXwcIP/ZuenM7+73C+WYrYd7PHuKBoFc21s7iu/u/tnUt2OqrEsIqKgorBZB1d7rH8fe4Elu1+R0IxGh+DVYx10u56CM/VeA2fXR0bv5E16hEYJUkhu0nvNoAvQiy9+XJfjHFZGLQ4BwJ5wUQfwlgaTXAw3LRvT88AaOwaiwAjkxQS3yBBw7RijvLvGAGy1FBbWllJaU3q4CAjadXZmuRaClBRZUeDpzyzNXqn9vdEl73bIRTjqaSSTMD3bbdebLwH852sWUEExSxccIl7LDxBwTe23FZdr9mo2g45CnVbM8GTxRhMLgJ2m4LUfDb+DU/brM43FvMGcEahoKzEUhFf+sTggSH9XS1iMLOy7w849tEhvFcGHE5Ibp4QbZzPunqcTLQmUIhfod4H90GBW/d1q2kS95z2cy67mT6Fpz7t8uu4Ez7MM9FwRShFl7y5Z773Pw2Pv10fRTTo4hjHAG6XG4MAqQU9RZ9m2f9p7vuJ</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">ENTER</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
+</div>
 
-<h2 id="_1">数据准备</h2>
-<p>后端流程需要的数据如下：</p>
-<ul>
-<li>Timing Libaraies：<code>.lib</code> 文件，所有单元的时序信息。</li>
-<li>Physical Libraries：<code>.lef</code> 文件，所有单元的物理信息。</li>
-<li>Verilog Netlist：<code>.v</code> 文件，逻辑综合后的网表。</li>
-<li>Timing Constraints：<code>.sdc</code> 文件，时序约束。</li>
-<li>Multi-Mode Multi-Corner (MMMC) Setup for Timing：<code>.tcl</code> 文件，多模式多角约束。</li>
-</ul>
-<p>Innovus 拥有全局 TCL 变量，这些变量都形如 <code>init_*</code>，可以通过 <code>set</code> 命令修改。
-<code>saveDesign</code> 命令会将这些全局变量保存到 <code>.globals</code> 文件中。</p>
-<h2 id="backup">backup</h2>
-<p>foundation flow</p>
-<p>hierachical flow</p>
-<p>已修改的文件夹：</p>
-<ul>
-<li><code>utils</code></li>
-<li><code>pnr</code></li>
-<li>Makefile</li>
-</ul>
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "Tape-out_template_doc/innovus_guide/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["G74rQ/teEar8MiSpLxFm0g==;FuFg7CKxKIys8f++Q1Ckf9GDZ16AMbaRYJQMjuwj71okehC9AYCQoMdJOjmmskp6lNRJJN/W4lYeKpBbUpqjpinpFJhz3Qv4EsN3srT0AF84/enBM6SShMhAdXX4e+QC;jS7ISP+1pXV2eSOTIYvjEw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
+<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script>
 
 
 
