@@ -28,6 +28,7 @@ pip install mkdocs-material
 pip install mkdocs-git-revision-date-localized-plugin
 pip install mkdocs-git-authors-plugin
 pip install mkdocs-git-committers-plugin-2
+pip install mkdocs-encryptcontent-plugin
 ```
 
 将本仓库克隆到本地，然后在仓库根目录下执行 `mkdocs serve`，然后在浏览器中输入 `http://127.0.0.1:8000` 即可预览网页。

@@ -63,6 +63,15 @@ plugins:
       show_contribution: true
       show_line_count: true
       count_empty_lines: true
+  - encryptcontent:
+      global_password: 'jialab'
+      password_button: True
+      password_button_text: 'ENTER'
+      encryption_info_message: 'Contact your administrator for access to this page.'
+      decryption_failure_message: 'Invalid password.'
+      remember_keys: true
+      remember_password: true
+      title_prefix: ''
 
 extra_css:
   - extra.css
