@@ -14,9 +14,9 @@
 
 - Floorplan
 - Powerplan
-- Place
+- Placement
 - Clock Tree Synthesis (CTS)
-- Route
+- Routing
 - Metal Fill
 
 <figure>
@@ -496,8 +496,158 @@ sroute -connect                { corePin } \
 
     如果发现连接有误，需要及时修改 `pnr/scripts/floorplan/global_net_connect.tcl` 和 `pnr/scripts/powerplan/power_stripe.tcl` 中的相关命令，并通过查看 `LEF` 文件或者 Innovus GUI 界面查看 各个 Macro 内部 P/G Pin 所在的金属层。
 
+#### 检查 DRC 和分析时序
 
-#### 添加 Halo 和 Route Blockage
+在完成 Powerplan 之后，需要检查 DRC 和分析时序。
 
-Halo 用于防止 Macro 四周摆放标准单元，Route Blockage 用于防止布线进入指定区域，两者都可以减缓布线阻塞。
+```tcl
+verify_drc
+timeDesign -prePlace
+```
 
+DRC 违例需要**为 0**，这里分析的时序**不考虑**连线的负载。
+
+### 4.2.3 Placement
+
+布局遵循**布局规划约束**，完成标准单元、Macro等的所有模块的摆放。
+
+#### 设置 Macro Halo 和 _（可选）_ Placement blockage
+
+Halo 用于**防止 Macro 四周**摆放标准单元，可以减缓**布线阻塞**。
+
+``` tcl
+addHaloToBlock [list $macro_halo_spc_4 $macro_halo_spc_4 $macro_halo_spc_4 $macro_halo_spc_4] -allMacro
+```
+
+观察该命令可知，Halo 的宽度为 `$macro_halo_spc_4`。
+
+!!! question "删除 Halo"
+    使用 `deleteHaloFromBlock` 命令可以删除此前摆放的 Halo。
+
+在后端设计迭代优化时，我们往往会发现在**某个区域**内会出现较多 DRC 报错，布局布线**密度较高**。
+在这种情况下，我们可以考虑手动添加 Cell placement blockage，从而**限制**该局部区域的布局布线密度，减少 DRC 报错。
+
+``` tcl
+createPlaceBlockage -name     setdensity_blk1 \
+                    -box      300 50 1000 500 \
+                    -type     partial \
+                    -density  75
+```
+
+* `createPlaceBlockage`：设置 Cell placement blockage，用于**阻碍**在特定区域内标准单元的摆放。
+  * `-type partial`：指定该 Placement blockage 的类型，总共有4种类型，包括 `hard`（默认选项，**不能**在指定区域摆放任何标准单元），`soft`（不能在**布局阶段**摆放标准单元，但可以在后续布局优化、时钟树综合等阶段摆放标准单元），`partial`（设定指定区域内标准单元的**最大密度**），还有`macroOnly`（允许摆放标准单元，但**不允许**摆放 Macro）。
+  * `-density 75`：指定了该 Partial placement blockage 所允许的最大密度，该选项一定需要和 `-type Partial` 一起使用。
+  * `-box 300 50 1000 500`：如下图所示，设置了该 Placement blockage 的具体范围（粉色方格区域），使用左下角和右上角的横纵坐标表示。
+
+<figure>
+  <img src="../figs/place_blockage.png" width=80%>
+  <figcaption>Layout after setting placement blockage</figcaption>
+</figure>
+
+#### 摆放 End-Cap、Well-Tap 和 Decap
+
+End-Cap 是预先放置的纯物理单元，用于满足某些设计规则。
+在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。
+这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。
+当最后一个标准单元不能完美地适应行的长度时，Endcap Cells用于**填充标准单元行末端的剩余空间**。
+它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。
+
+``` tcl
+addEndCap
+```
+
+添加 Endcap Cells 之后的部分版图如下所示，可以看见在 Macro 的左侧和右侧，以及 Core box 的左侧和右侧（也就是标准单元行末端的剩余空间添加了 Endcap Cells。
+
+<figure>
+  <img src="../figs/add_endcap_cells.png" width=80%>
+  <figcaption>Partial layout after adding endcap cells</figcaption>
+</figure>
+
+Well-Tap 为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在 CMOS 工艺中确保适当的电气连接并防止闩锁效应。
+Welltap Cells 在整个 IC 布局中被有规律地摆放，特别是在电源和接地连接附近。
+它们的放置通常由代工厂指定的设计规则所规定。
+
+``` tcl
+addWellTap  -cell         ${rm_tap_cell} \
+            -cellInterval $rm_tap_cell_distance \
+            -checkerboard
+```
+
+* `-cell <cellName>` 指定所使用的 Welltap Cells 的名称；
+* `-cellInterval <microns>`：指定每一行之间相邻两个 Welltap Cells 的最大距离；
+* `-checkerBoard`：指定 Welltap Cells 以棋盘格模式放置，即每隔一行偏移半个间距。
+
+添加 Welltap Cells 之后的部分版图如下所示。
+可以看到在每个标准单元行，以棋盘形式交替摆放着 Welltap Cells。
+
+<figure>
+  <img src="../figs/add_welltap_cells.png" width=80%>
+  <figcaption>Partial layout after adding welltap cells</figcaption>
+</figure>
+
+Decap Cells（去耦电容单元）主要用于减少电源噪声和稳定电源电压。
+它们通过提供额外的电容来平滑电源电压的波动，防止电源噪声影响电路性能。
+Decap Cells 常放置在电源网络中，以确保电源电压的稳定性，特别是在高频信号和快速开关电路中。
+Decap Cells 主要关注电源电压的稳定性，而 Welltap Cells 主要关注衬底电位的稳定性。
+
+我们使用添加 Well-Tap 的方式添加 Decap Cells，即替换 `-cell` 选项为 Decap 标准单元。
+
+``` tcl
+addWellTap  -prefix       DECAP \
+            -cellInterval $rm_tap_cell_distance \
+            -cell         ${dcap_cell} \
+            -skipRow      1
+```
+
+放置 Decap Cells 之后的部分版图如下所示，可以看见每隔一行（因为指定了 `-skipRow 1`）在 Welltap Cells 旁边添加了 Decap Cells。
+
+<figure>
+  <img src="../figs/add_decap_cells.png" width=80%>
+  <figcaption>Partial layout after adding decap cells</figcaption>
+</figure>
+
+!!! question "删除 End-Cap、Well-Tap 和 Decap"
+    使用 `deleteFiller -prefix ENDCAP; deleteFiller -prefix WELLTAP; deleteFiller -prefix DECAP` 即可删除全部的 End-Cap、Well-Tap 和 Decap。
+
+!!! Warning "摆放顺序"
+    End-Cap 应该**先于** Well-Tap 和 Decap 摆放。
+
+#### 摆放标准单元
+
+``` tcl
+deleteTieHiLo
+place_design
+addTieHiLo
+```
+
+* `deleteTieHiLo`：从门级网表中删除目前摆放的 Tie-high 和 Tie-low 标准单元，将相应信号重新连接到逻辑高电平和逻辑低电平。此处可以理解为初始化操作。
+* `place_design`：基于标准单元的布局设置和相关时序分析的设置，摆放标准单元。
+* `addTieHiLo`：添加 Tie-high 和 Tie-low 标准单元，**在放置标准单元之后使用该命令**。
+
+在 Innovus GUI 界面右上角选择 `Physical View`，即可查看摆放完标准单元之后的版图。
+
+<figure>
+  <img src="../figs/place_layout.png" width=80%>
+  <figcaption>Layout after adding standard cells</figcaption>
+</figure>
+
+!!! question "Layout 中的金属信号线"
+    如果在 GUI 中打开各个金属层的显示，可以发现上述命令不仅仅完成了标准单元的放置，还完成了信号线的互联。
+    这是因为 Innovus 在进行 `place_design` 时会自动进行**预布线（pre-route）**，将标准单元的输入输出端口连接起来。
+
+完成标准单元的摆放之后，需要进行**布局优化**，以减少布局布线的阻塞、优化时序。
+
+``` tcl
+place_opt_design  -incremental
+```
+
+运行完成后，可以在 terminal 的输出或者 `pnr/<top_module_name>/postPlace/<top_module_name>_preCTS.summary` 中查看时序优化的结果，请确保**裕度不为负数**的情况下再进行之后的步骤。
+此处的 DRC 错误可以**暂时忽略**，在之后的步骤中会一并修复。
+
+??? question "修复时序"
+    当时序不满足要求，可以依次做以下尝试：
+
+    * 多次使用 `place_opt_design -incremental` 命令进行布局优化。
+    * 调整时序约束，减小时钟频率。
+    * 调整初始 floorplan。
+    * 修改 RTL 中关键路径的逻辑。
