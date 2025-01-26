@@ -651,3 +651,64 @@ place_opt_design  -incremental
     * 调整时序约束，减小时钟频率。
     * 调整初始 floorplan。
     * 修改 RTL 中关键路径的逻辑。
+
+### 4.2.4 Clock Tree Synthesis
+
+时钟树综合（Clock Tree Synthesis，CTS）是指在版图中规划**时钟网络**，以确保时钟信号的**稳定传输**。
+所有的触发器都由时钟信号驱动，时钟信号的传输质量直接影响到整个数字系统的稳定性和功耗。
+在 CTS 之前，所有的时钟都是**理想**的，在引入时钟树之后，需要考虑时钟的**偏移、抖动**等问题。
+
+``` tcl
+set_interactivate_constraint_mode [all_constraint_modes -active]
+source <path>/cts_constraints_<top_module_name>.sdc
+set_interactivate_constraint_mode {}
+
+create_ccopt_clock_tree_spec
+
+ccopt_design
+
+set_interactivate_constraint_mode [all_constraint_modes -active]
+set_propagated_clock [list clk]
+set_interactivate_constraint_mode {}
+
+optDesign -postCTS -drv
+optDesign -postCTS -incr
+optDesign -postCTS -hold
+```
+
+* `set_interactivate_constraint_mode`：用于更新 CTS 后所需的时序约束。
+* `create_ccopt_clock_tree_spec`：用于自动生成时钟树。
+* `ccopt_design`：对时钟树进行布局布线，并优化时序。
+* `set_propagated_clock`：设置时钟信号为传播模式（propagated），用于反映时钟树的影响。
+* `optDesign`：根据时序约束进行优化。`-drv, -incr, -hold` 分别表示优化设计规则冲突（design rule violation，扇出、电容等）、渐进优化 setup（incremental）、优化 hold。
+
+运行完成后，可以在 terminal 的输出或者 `pnr/<top_module_name>/postCTS/<top_module_name>_postCTS.summary, pnr/<top_module_name>/postCTS/<top_module_name>_hold_postCTS.summary` 中查看时序（setup和hold）优化的结果，请确保**裕度不为负数**的情况下再进行之后的步骤。
+此处的 DRC 错误可以**暂时忽略**，在之后的步骤中会一并修复。
+
+!!! warning "setup 和 hold"
+    请**务必确保** hold 的时序要满足要求！
+    如果设计过于复杂，**优先满足** hold，再尽可能减少 setup 违例。
+    hold 如果违例，那么最终芯片**不能工作**。
+    setup 如果过差，会导致最终芯片的**频率低**。
+
+??? question "修复时序"
+    当时序不满足要求，可以依次做以下尝试：
+
+    * 多次使用 `optDesign` 命令进行优化。
+    * 调整时序约束，减小时钟频率。
+    * 调整初始 floorplan（减少布局密度）。
+    * 修改 RTL 中关键路径的逻辑。
+
+在 GUI 中可以通过 `Clock Tree Debugger` 看到生成的时钟树。
+
+<figure>
+  <img src="../figs/clk_tree_debug.png" width=80%>
+  <figcaption>Clock Tree Debugger Navigation</figcaption>
+</figure>
+
+一个时钟树的实例如下。
+
+<figure>
+  <img src="../figs/ctd.png" width=80%>
+  <figcaption>Clock Tree Debugger Example</figcaption>
+</figure>
