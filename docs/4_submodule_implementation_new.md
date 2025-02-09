@@ -21,12 +21,14 @@
 ```
 SOC_CVA6
 ├── src                                          # Source Files
-│   ├── macro
-│   │   └── <macro_name>
-│   │       ├── <macro_name>.lef                 # Macro physical abstract
-│   │       ├── <macro_name>.cdl                 # Macro netlist
-│   │       ├── <macro_name>.gds                 # Macro layout
-│   │       └── <macro_name>_tt_0p80v_25c.lib    # Macro timing library
+│   ├── macro                                    # Manually drawn layout or smaller submodules
+│   │   ├── <macro_name_1>
+│   │   │   ├── <macro_name_1>.lef                 # Macro physical abstract
+│   │   │   ├── <macro_name_1>.cdl                 # Macro netlist
+│   │   │   ├── <macro_name_1>.gds                 # Macro layout
+│   │   │   └── <macro_name_1>_tt_0p80v_25c.lib    # Macro timing library
+│   │   └── <macro_name_2>
+│   │       └── ...
 │   ├── sram                                     # Compiler Generated SRAM
 │   │   ├── sram128x46
 │   │   │   ├── sram128x46.lef                   # SRAM physical abstract
@@ -57,14 +59,16 @@ SOC_CVA6
 │   │   └── pnr_mmmc.tcl                          # define MMMC constraints
 │   └── Makefile
 ├── config
-│   ├── constraints_soc.sdc                       # define pre-CTS timing constraints
-│   ├── cts_constraints_soc.sdc                   # define post-CTS timing constraints
+│   ├── constraints_<top_module_name>.sdc                       # define pre-CTS timing constraints
+│   ├── cts_constraints_<top_module_name>.sdc                   # define post-CTS timing constraints
 │   ├── global_define.tcl                         # define global parameters
 │   └── user_define.tcl                           # user-specific parameters
 ├── Makefile                                      # Top-level Makefile
 ├── ...
 ...                                               # Other Folders/Files
 ```
+
+`<macro_name_1>`, `<macro_name_2>` 是更低层级的子系统。`<top_module_name>` 是该数字子系统的顶层模块名称，例如 `soc`。
 
 ### 4.1.1 修改配置文件
 
@@ -83,9 +87,9 @@ SOC_CVA6
 ### 4.1.2 编写时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，一共需要编写两个文件，分别用于时钟树综合前的阶段和时钟树综合后的阶段。
-可以分别参考 `config/constraints_soc.sdc, config/cts_constraints_soc.sdc,`。
+可以分别参考 `config/constraints_soc.sdc, config/cts_constraints_soc.sdc,`。其中 `config/constraints_soc.sdc` 也会在数字子系统的逻辑综合阶段用到。 
 
-请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc, cts_constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
+`sdc` 文件的更多信息详见逻辑综合中的[相关章节](./2_submodule_synthesis_new.md#修改时序约束)。请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc, cts_constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
 ### 4.1.3 启动 Innovus
 
@@ -288,7 +292,7 @@ placeInstance instance_name location [orientation]
 * `[orientation]`：（可选）设置 Macro 的摆放方向，可以选择 `R0`, `R90`, `R180`, `R270`, `MX`, `MX90`, `MY`, `MY90`，默认为 `R0`。
 
 !!! danger "Macro 摆放方向"
-    由于 22nm 工艺中栅极必须纵向摆放，所以在摆放 Macro 时只能选择 `R0`, `R180`,`MX`, `MY`。
+    由于 22nm 工艺中栅极必须纵向摆放，所以在摆放 Macro 时只能选择 `R0`, `R180`, `MX`, `MY`。
 
 *GUI 操作*
 
@@ -396,7 +400,7 @@ createRouteBlk  -cover \
   <figcaption>Innovus Pin Editor</figcaption>
 </figure>
 
-可以设想，如果管脚数量增加，例如有2组 64-bit 输入信号和1组 64-bit 输出信号，手写脚本命令过于繁琐，这也是我们在此使用 GUI 界面的原因。
+可以设想，如果管脚数量增加，例如有 2 组 64-bit 输入信号和 1 组 64-bit 输出信号，手写脚本命令过于繁琐，这也是我们在此使用 GUI 界面的原因。
 
 !!! tip "关于 Pin 金属层数的选择"
     在常规的数字芯片中，奇数层的为横向金属，偶数层为纵向金属（常称为**奇横偶纵**），因此对于 Top/Bottom 可以选择 M4/M6 等金属，Left/Right 选择 M3/M5 等金属。
@@ -405,7 +409,7 @@ createRouteBlk  -cover \
 !!! question "关于数字子系统的 Power/Ground 的 Pin 管脚"
     数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在后续步骤做进一步介绍。
 
-添加完 pin 后的版图如下图所示，每一个黄色的三角形代表一个 pin 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。
+添加完 Pin 后的版图如下图所示，每一个黄色的三角形代表一个 Pin 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。
 
 <figure>
   <img src="../figs/add_pin.png" width=80%>
@@ -415,7 +419,7 @@ createRouteBlk  -cover \
 ### 4.2.2 Powerplan
 
 电源规划（Powerplan）是指在版图中规划**电源和接地网络**，以确保数字模块的稳定供电。
-主要包括定义电源线地线（power/ground net）、电源格栅（power stripe）、电源环（power ring）等。
+主要包括定义电源线地线（Power/Ground net）、电源格栅（Power Stripe）、电源环（Power Ring）等。
 
 #### 定义电源信号和接地信号（`pnr/scripts/powerplan/global_net_connect.tcl`）
 
@@ -433,35 +437,38 @@ globalNetConnect <globalNetName> {-type pgpin -pin <pinNamePattern> | -type tieh
 * `-all`：指该命令适用于该设计中所有的 Instance，包括标准单元和 Macro。
 * `-override`：指定使用 `globalNetConnect` 命令的值覆盖先前设置的全局网络连接值。
 
-一般的数字电路中，主要包括标准单元、Macro 和上拉下拉（tie high，tie low）三种类型的电源接地连接，因此需要分别对这三类进行电源和地的连接。
+一般的数字电路中，主要包括标准单元、Macro 和上拉下拉（Tie-high，Tie-low）三种类型的电源接地连接，因此需要分别对这三类进行电源和地的连接。
 
 1. 标准单元。
 
-```tcl
-globalNetConnect VDD -type pgpin -pin VDD -all -override
-globalNetConnect VSS -type pgpin -pin VSS -all -override
-```
+    ```tcl
+    globalNetConnect VDD -type pgpin -pin VDD -all -override
+    globalNetConnect VSS -type pgpin -pin VSS -all -override
+    ```
 
 2. Macro，以 SRAM IP 为例。
 
-```tcl
-globalNetConnect VDD_SRAM -type pgpin -pin VDDCE -sinst $mainmem -override
-globalNetConnect VDD_SRAM -type pgpin -pin VDDPE -sinst $mainmem -override
-globalNetConnect VSS -type pgpin -pin VSSE  -sinst $mainmem -override
-```
+    ```tcl
+    globalNetConnect VDD_SRAM -type pgpin -pin VDDCE -sinst $mainmem -override
+    globalNetConnect VDD_SRAM -type pgpin -pin VDDPE -sinst $mainmem -override
+    globalNetConnect VSS -type pgpin -pin VSSE  -sinst $mainmem -override
+    ```
 
 3. 上拉下拉。
 
-```tcl
-globalNetConnect VDD -type tiehi
-globalNetConnect VSS -type tielo
-```
+    ```tcl
+    globalNetConnect VDD -type tiehi
+    globalNetConnect VSS -type tielo
+    ```
 
-#### 添加 power ring（`pnr/scripts/powerplan/power_ring.tcl`）
+!!! question "关于 Tie-high 与 Tie-low 标准单元"
+    在数字模块中，我们有时会有类似于 `assign a = 1'b1` 的赋值语句。在后端流程时，这些 `1'b1` 与 `1'b0` 会转化成 Tie-high 和 Tie-low 标准单元。在定义电源信号和接地信号时，我们需要指明这些 Tie-high 和 Tie-low 标准单元和哪些电源信号和接地信号相连。
 
-Power Ring 用来确保电源信号的**稳定供电**，通常是在 Core Box、Macro 的四周摆放一圈电源线，一般包括 core ring 和 block ring。
+#### 添加 Power ring（`pnr/scripts/powerplan/power_ring.tcl`）
 
-添加 core ring 的示例命令如下所示：
+Power ring 用来确保电源信号的**稳定供电**，通常是在 Core box、Macro 的四周摆放一圈电源线，一般包括 Core ring 和 Block ring。
+
+添加 Core ring 的示例命令如下所示：
 
 ```tcl
 addRing -nets [list VDD VDD_SRAM VSS] \
@@ -474,7 +481,7 @@ addRing -nets [list VDD VDD_SRAM VSS] \
 ```
 
 * `-type core_rings`：指定生成的 Power rings 为 Core rings，即在 Core box 和 I/O boundary 之间的空隙生成我们指定的 Power rings（回忆在设置版图大小的时候，我们指定了在 Core box 与 I/O boundary 之间设置 3.5um 的空隙）；
-* `-nets [list VDD VDD_SRAM VSS]`：指定生成的 Power rings 的信号名称。对于 Core rings，该数字子模块中**所有的 P/G 信号**至少需要生成一条 Core ring；
+* `-nets [list VDD VDD_SRAM VSS]`：指定生成的 Power rings 的信号名称。对于 Core rings，该数字子系统中**所有的 P/G 信号**至少需要生成一条 Core ring；
 * `-follow core`：指定生成的 Core rings 以 Core boundary 为基准，如果设置 `-follow io`，则以 I/O boundary 为基准；
 * `-layer {top M5 bottom M5 left M6 right M6}`：字面意思，设置 Core rings 在每个方向所在的金属层；
 * `-width 0.35`：设置每一条 Core ring 的宽度；
@@ -562,7 +569,7 @@ addStripe         -nets                             { VSS VDD VDD_SRAM } \
                   -padcore_ring_top_layer_limit     M8
 ```
 
-* `-stacked_via_bottom_layer M1`：指定 stripe 能通过通孔连接到的最底层金属层。对于**最底层**的 stripe，该值设定为 **M1**；对于**其他**的 stripe，该值一般设定为**更低的一层**。
+* `-stacked_via_bottom_layer M1`：指定 stripe 能通过通孔连接到的最底层金属层。对于**最底层**的 Stripe，该值设定为 **M1**；对于**其他**的 stripe，该值一般设定为**更低的一层**。
 * `-stacked_via_top_layer M6`：指定 stripe 能通过通孔连接到的最高层金属层。一般设定为当前层。
 * `-nets { VSS VDD VDD_SRAM }`：指定 Power Stripe 的信号名称，同时这些电源/地信号会被认为是**一个组（set）**。
 * `-layer M6`：指定 Power Stripe 的金属层。
@@ -625,8 +632,8 @@ addStripe         -layer                            M6 \
 
 #### 电源布线（`pnr/scripts/powerplan/power_route.tcl`）
 
-**标准单元**通过 **M1** 金属层供电/接地，这些供电/接地的 M1 金属被称为**电源轨道（power rail）**。
-需要将高层金属层的 Power Stripe 与 M1 金属层的 Power Stripe 连接起来。
+**标准单元**通过 **M1** 金属层供电/接地，这些供电/接地的 M1 金属被称为**电源轨道（Power rail）**。
+需要将高层金属层的 Power Stripe 与 M1 金属层的 Power Stripe 通过贯穿多层金属的 VIA 连接起来。
 
 ```tcl
 sroute -connect                { corePin } \
@@ -648,7 +655,7 @@ sroute -connect                { corePin } \
 * `-allowLayerChange 1`：是否允许金属层的改变。
 * `-deleteExistingRoutes`：是否删除已有的走线。
 
-在设置 `-*LayerRange` 时，需要注意**顶层金属层** 应为 power stripe 中的**最底层金属层**。
+在设置 `-*LayerRange` 时，需要注意**顶层金属层** 应为 Power stripe 中的**最底层金属层**。
 
 !!! danger "`sroute` 之后 GUI 中 Macro 周围的 Violation"
     在执行 `sroute` 之后，会出现 Macro 周围的 Violation，在 GUI 中表现为白色的叉号，如下图所示。
@@ -687,7 +694,7 @@ sroute -connect                { corePin } \
 
 ### 4.2.3 Placement
 
-布局遵循**布局规划约束**，完成标准单元、Macro等的所有模块的摆放。
+布局遵循**布局规划约束**，完成标准单元、Macro 等的所有模块的摆放。
 
 #### 摆放 Physical-only Cell（`pnr/scripts/placement/physical_cell_insert.tcl`）
 
@@ -703,7 +710,7 @@ End-Cap 是预先放置的纯物理单元，用于满足某些设计规则。
 addEndCap
 ```
 
-添加 Endcap Cells 之后的部分版图如下所示，可以看见在 Macro 的左侧和右侧，以及 Core box 的左侧和右侧（也就是标准单元行末端的剩余空间添加了 Endcap Cells。
+添加 End-Cap Cells 之后的部分版图如下所示，可以看见在 Macro 的左侧和右侧，以及 Core box 的左侧和右侧（也就是标准单元行末端的剩余空间添加了 Endcap Cells。
 
 <figure>
   <img src="../figs/add_endcap_cells.png" width=80%>
@@ -711,7 +718,7 @@ addEndCap
 </figure>
 
 Well-Tap 为制造晶体管的衬底或阱提供低阻抗的接地或 VDD 路径，用于在 CMOS 工艺中确保适当的电气连接并防止闩锁效应。
-Welltap Cells 在整个 IC 布局中被有规律地摆放，特别是在电源和接地连接附近。
+Well-Tap Cells 在整个 IC 布局中被有规律地摆放，特别是在电源和接地连接附近。
 它们的放置通常由代工厂指定的设计规则所规定。
 
 ``` tcl
@@ -720,16 +727,16 @@ addWellTap  -cell         ${rm_tap_cell} \
             -checkerboard
 ```
 
-* `-cell <cellName>` 指定所使用的 Welltap Cells 的名称；
-* `-cellInterval <microns>`：指定每一行之间相邻两个 Welltap Cells 的最大距离；
-* `-checkerBoard`：指定 Welltap Cells 以棋盘格模式放置，即每隔一行偏移半个间距。
+* `-cell <cellName>` 指定所使用的 Well-Tap Cells 的名称；
+* `-cellInterval <microns>`：指定每一行之间相邻两个 Well-Tap Cells 的最大距离；
+* `-checkerBoard`：指定 Well-Tap Cells 以棋盘格模式放置，即每隔一行偏移半个间距。
 
-添加 Welltap Cells 之后的部分版图如下所示。
-可以看到在每个标准单元行，以棋盘形式交替摆放着 Welltap Cells。
+添加 Well-Tap Cells 之后的部分版图如下所示。
+可以看到在每个标准单元行，以棋盘形式交替摆放着 Well-Tap Cells。
 
 <figure>
   <img src="../figs/add_welltap_cells.png" width=80%>
-  <figcaption>Partial layout after adding welltap cells</figcaption>
+  <figcaption>Partial layout after adding Well-Tap cells</figcaption>
 </figure>
 
 Decap Cells（去耦电容单元）主要用于减少电源噪声和稳定电源电压。
@@ -746,7 +753,7 @@ addWellTap  -prefix       DECAP \
             -skipRow      1
 ```
 
-放置 Decap Cells 之后的部分版图如下所示，可以看见每隔一行（因为指定了 `-skipRow 1`）在 Welltap Cells 旁边添加了 Decap Cells。
+放置 Decap Cells 之后的部分版图如下所示，可以看见每隔一行（因为指定了 `-skipRow 1`）在 Well-Tap Cells 旁边添加了 Decap Cells。
 
 <figure>
   <img src="../figs/add_decap_cells.png" width=80%>
@@ -785,7 +792,7 @@ addTieHiLo
     这是因为 Innovus 在进行 `place_opt_design` 时会自动进行**预布线（preroute）**，将标准单元的输入输出端口连接起来。
 
 !!! tip "`place_detail_preroute_as_obs` 作用"
-    该选项通常选择**纵向** Power Stripe 的**最底层**，防止最底层的 Power Stripe 通过 stacked via 连接到 M1 金属层时，和标准单元发生 DRC 违例。
+    该选项通常选择**纵向** Power Stripe 的**最底层**，防止最底层的 Power Stripe 通过 stacked VIA 连接到 M1 金属层时，和标准单元发生 DRC 违例。
 
 完成标准单元的摆放之后，需要进行**布局优化**，以减少布局布线的阻塞、优化时序。
 
@@ -793,7 +800,7 @@ addTieHiLo
 place_opt_design  -incremental
 ```
 
-运行完成后，可以在 terminal 的输出或者 `pnr/<top_module_name>/postPlace/<top_module_name>_preCTS.summary` 中查看时序优化的结果，请尽可能使得 **裕度（slack）不为负数**的情况下再进行之后的步骤。
+运行完成后，可以在 Terminal 的输出或者 `pnr/<top_module_name>/postPlace/<top_module_name>_preCTS.summary` 中查看时序优化的结果，请尽可能使得 **裕度（slack）不为负数**的情况下再进行之后的步骤。
 此处的 DRC 错误可以**暂时忽略**，在之后的步骤中会一并修复。
 
 ??? question "修复时序"
@@ -801,7 +808,7 @@ place_opt_design  -incremental
 
     * 多次使用 `place_opt_design -incremental` 命令进行布局优化。
     * 调整时序约束，减小时钟频率。
-    * 调整初始 floorplan。
+    * 调整初始 Floorplan。
     * 修改 RTL 中关键路径的逻辑。
 
 ### 4.2.4 Clock Tree Synthesis（`pnr/scripts/clock_tree/cts.tcl`）
@@ -834,7 +841,7 @@ optDesign -postCTS -hold
 * `set_propagated_clock`：设置时钟信号为传播模式（propagated），用于反映时钟树的影响。
 * `optDesign`：根据时序约束进行优化。`-drv, -incr, -hold` 分别表示优化设计规则冲突（design rule violation，扇出、电容等）、渐进优化 setup（incremental）、优化 hold。
 
-运行完成后，可以在 terminal 的输出或者 `pnr/<top_module_name>/postCTS/<top_module_name>_postCTS.summary, pnr/<top_module_name>/postCTS/<top_module_name>_hold_postCTS.summary` 中查看时序（setup和hold）优化的结果。
+运行完成后，可以在 Terminal 的输出或者 `pnr/<top_module_name>/postCTS/<top_module_name>_postCTS.summary, pnr/<top_module_name>/postCTS/<top_module_name>_hold_postCTS.summary` 中查看时序（setup 和 hold）优化的结果。
 此处的 setup 和 hold 可以有**一定程度**的违例，但还是推荐尽量减少违例（没必要确保 slack = 0）。
 此处的 DRC 错误可以**暂时忽略**，在之后的步骤中会一并修复。
 
@@ -869,9 +876,9 @@ optDesign -postCTS -hold
 ### 4.2.5 Routing
 
 布线分为两步：全局布线（Global Route）和局部布线（Detail Route）。
-另一个重要的概念是 ECO routing (Engineering Change Order)，用于在布线之后对设计进行修改，用于**修复 DRC 违例**。
+另一个重要的概念是 ECO Route (Engineering Change Order)，用于在布线之后对设计进行修改，用于**修复 DRC 违例**。
 ECO 布线包括增量式的全局和局部。
-在ECO 布线期间，会尽量保持整体布线不变，进行最小程度的更改。
+在 ECO 布线期间，会尽量保持整体布线不变，进行最小程度的更改。
 除了布线，在这一阶段还需要满足时序约束、无 DRC 违例。
 
 #### 布线并收敛时序（`pnr/scripts/routing/route.tcl`）
@@ -892,17 +899,17 @@ optDesign -postRoute -hold
 * `routeDesign`：进行布线，首先进行全局布线，再进行局部布线。
 * `optDesign`：根据时序约束进行优化。
 
-运行完成后，可以在 terminal 的输出或者 `pnr/<top_module_name>/postRoute/<top_module_name>_postRoute.summary, pnr/<top_module_name>/postRoute/<top_module_name>_hold_postRoute.summary` 中查看布线的时序结果。
+运行完成后，可以在 Terminal 的输出或者 `pnr/<top_module_name>/postRoute/<top_module_name>_postRoute.summary, pnr/<top_module_name>/postRoute/<top_module_name>_hold_postRoute.summary` 中查看布线的时序结果。
 
 !!! danger "时序收敛"
-    请**确保**此处的 setup 和 hold **不要违例**，如果违例，请确保违例保证在 **10ps 以内**。
+    请**确保**此处的 setup 和 hold **不要违例**。如果违例，请确保违例保证在 **10ps 以内**。
 
 ??? question "修复时序"
     当时序不满足要求，可以依次做以下尝试：
 
     * 多次使用 `optDesign` 命令进行优化。
     * 调整时序约束，减小时钟频率。
-    * 调整初始 floorplan（减少布局密度）。
+    * 调整初始 Floorplan（减少布局密度）。
     * 修改 RTL 中关键路径的逻辑。
 
 #### DRC 修复并检查（`pnr/scripts/routing/drc_fix.tcl`）
@@ -916,7 +923,7 @@ globalDetailRoute
 verify_drc
 ```
 
-* `deleteRouteBlk`：删除之前的布线 blockage，以便进行 DRC 检查。
+* `deleteRouteBlk`：删除之前的布线 Blockage，以便进行 DRC 检查。
 * `setNanoRouteMode -routeWithECO true`：设置 NanoRoute 的模式为 ECO。
 * `globalDetailRoute`：在 ECO 模式下重新布线。
 * `verify_drc`：检查 DRC 违例。
@@ -973,7 +980,7 @@ verify_drc
 
 之前使用的 `globalNetConnect` 命令只是定义了**逻辑**上的电源端口，但是在版图中并没有实际的电源端口。
 在 Signoff 阶段，需要添加实际的电源端口。
-我们一般把**最高层**的 power stripe 作为**物理**电源端口。
+我们一般把**最高层**的 Power Stripe 作为**物理**电源端口。
 
 ``` tcl
 for { set i 0 } { $i <= 32 } { incr i } {
@@ -1004,7 +1011,7 @@ for { set i 0 } { $i <= 32 } { incr i } {
 命令格式为 `createPGPin <netName> -geom <layer> <x1> <y1> <x2> <y2>`，其中 `<x1> <y1>` 和 `<x2> <y2>` 分别表示电源端口的左下角和右上角的坐标。
 请确保电源端口的位置和大小与 Power Stripe 的**位置和大小一致**。
 
-可以通过 GUI 查看最高层 power stripe 的位置和大小，如下图所示。
+可以通过 GUI 查看最高层 Power Stripe 的位置和大小，如下图所示。
 
 <figure>
   <img src="../figs/add_pgpin.png" width=80%>
@@ -1023,7 +1030,7 @@ for { set i 0 } { $i <= 32 } { incr i } {
 **直接运行**`pnr/scripts/signoff/file_gen.tcl` 脚本即可导出 Innovus 的结果文件。
 该脚本会在 `pnr/<top_module_name>` 文件夹下生成 Innovus 的结果文件，包括如下几个文件：
 
-- `<top_module_name>_flat_postpnr.v`：物理实现后带有电源的 flatten 网表，用于 **LVS 检查**。
+- `<top_module_name>_flat_postpnr.v`：物理实现后带有电源（VDD, VSS 等）的 Flatten 网表，用于 **LVS 检查**。
 - `<top_module_name>_hier_postpnr.v`：物理实现后没有电源的层次化网表，用于**后仿**。
 - `<top_module_name>_tt0p8v25c.lib`：物理实现后的时序信息库，用于**顶层模块集成**。
 - `<top_module_name>_tt0p8v25c.sdf`：物理实现后的标准延迟表，用于**后仿**。
@@ -1034,7 +1041,7 @@ for { set i 0 } { $i <= 32 } { incr i } {
 
 为了便于后续的 **LVS 物理验证**，需要将网表转换为 CDL（Circuit Description Language）格式。
 
-**直接运行** `pnr/scripts/signoff/netlist2cdl.tcl`，会在 `pnr/scripts/signoff` 文件夹下生成 `v2lvs_run.csh` 脚本文件并运行，将 Verilog 网表转换为 CDL 格式并保存为 `pnr/<top_module_name>/<top_module_name>.cdl`。
+**直接运行** `pnr/scripts/signoff/netlist2cdl.tcl`，会在 `pnr/scripts/signoff` 文件夹下生成 `v2lvs_run.csh` 脚本文件并运行，将 Verilog 网表转换为 CDL 格式并保存为 `pnr/<top_module_name>/<top_module_name>.cdl`。在后续使用 Cadence Virtuoso 进行 LVS 物理验证时会用到该文件。
 
 !!! success ""
     特别感谢 Zhantong Zhu 对本页内容的贡献和校对！

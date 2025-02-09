@@ -68,8 +68,8 @@ CIM_BIST
 !!! tip "lib 文件命名"
     lib 文件命名规则为 `<name>_<process>_<voltage>_<tempurature>`，可以参考 sram 的 lib 文件。
 
-!!! warning "sram 与 macro 文件"
-    请注意，sram 与 macro 文件夹下的文件名**务必**与 `sram_insts` 与 `macro_insts` 中的名称**一致**！参考模板文件夹的命名规则。
+!!! warning "SRAM 与 Macro 文件"
+    请注意，SRAM 与 Macro 文件夹下的文件名**务必**与 `sram_insts` 与 `macro_insts` 中的名称**一致**！参考模板文件夹的命名规则。
 
 !!! question "综合参数进阶"
 
@@ -107,7 +107,7 @@ CIM_BIST
 b make genus TOP=<top_module_name>
 ```
 
-综合 CIM_BIST 的时间大致需要 5-7min 左右。
+综合 CIM_BIST 的时间大致需要 5-7 min 左右。
 逻辑综合会在 `syn` 文件夹下生成 2 个文件夹 `logs, <top_module_name>`，文件结构如下所示。
 
 ```
