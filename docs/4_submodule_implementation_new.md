@@ -23,10 +23,10 @@ SOC_CVA6
 ├── src                                          # Source Files
 │   ├── macro                                    # Manually drawn layout or smaller submodules
 │   │   ├── <macro_name_1>
-│   │   │   ├── <macro_name_1>.lef                 # Macro physical abstract
-│   │   │   ├── <macro_name_1>.cdl                 # Macro netlist
-│   │   │   ├── <macro_name_1>.gds                 # Macro layout
-│   │   │   └── <macro_name_1>_tt_0p80v_25c.lib    # Macro timing library
+│   │   │   ├── <macro_name_1>.lef               # Macro physical abstract
+│   │   │   ├── <macro_name_1>.cdl               # Macro netlist
+│   │   │   ├── <macro_name_1>.gds               # Macro layout
+│   │   │   └── <macro_name_1>_tt_0p80v_25c.lib  # Macro timing library
 │   │   └── <macro_name_2>
 │   │       └── ...
 │   ├── sram                                     # Compiler Generated SRAM
@@ -37,35 +37,35 @@ SOC_CVA6
 │   │   │   └── ...
 │   │   ├── sram128x128
 │   │   │   └── ...
-│   │   └── ...                                   # other sram instances
-│   └── ...                                       # other source files
+│   │   └── ...                                  # other sram instances
+│   └── ...                                      # other source files
 ├── pnr
 │   ├── scripts
-│   │   ├── floorplan                             # floorplan stage script
+│   │   ├── floorplan                            # floorplan stage script
 │   │   │   └── ...
-│   │   ├── powerplan                             # powerplan stage script
+│   │   ├── powerplan                            # powerplan stage script
 │   │   │   └── ...
-│   │   ├── placement                             # placement stage script
+│   │   ├── placement                            # placement stage script
 │   │   │   └── ...
-│   │   ├── clock_tree                            # CTS stage script
+│   │   ├── clock_tree                           # CTS stage script
 │   │   │   └── ...
-│   │   ├── routing                               # routing stage script
+│   │   ├── routing                              # routing stage script
 │   │   │   └── ...
-│   │   ├── signoff                               # signoff stage script
+│   │   ├── signoff                              # signoff stage script
 │   │   │   └── ...
-│   │   ├── innovus_implementation.tcl            # main implementation script
-│   │   ├── init_pnr_express.tcl                  # init implementation script
-│   │   ├── init_pnr_standard.tcl                 # init implementation script
-│   │   └── pnr_mmmc.tcl                          # define MMMC constraints
+│   │   ├── innovus_implementation.tcl           # main implementation script
+│   │   ├── init_pnr_express.tcl                 # init implementation script
+│   │   ├── init_pnr_standard.tcl                # init implementation script
+│   │   └── pnr_mmmc.tcl                         # define MMMC constraints
 │   └── Makefile
 ├── config
-│   ├── constraints_<top_module_name>.sdc                       # define pre-CTS timing constraints
-│   ├── cts_constraints_<top_module_name>.sdc                   # define post-CTS timing constraints
-│   ├── global_define.tcl                         # define global parameters
-│   └── user_define.tcl                           # user-specific parameters
-├── Makefile                                      # Top-level Makefile
+│   ├── constraints_<top_module_name>.sdc        # define pre-CTS timing constraints
+│   ├── cts_constraints_<top_module_name>.sdc    # define post-CTS timing constraints
+│   ├── global_define.tcl                        # define global parameters
+│   └── user_define.tcl                          # user-specific parameters
+├── Makefile                                     # Top-level Makefile
 ├── ...
-...                                               # Other Folders/Files
+...                                              # Other Folders/Files
 ```
 
 `<macro_name_1>`, `<macro_name_2>` 是更低层级的子系统。`<top_module_name>` 是该数字子系统的顶层模块名称，例如 `soc`。
