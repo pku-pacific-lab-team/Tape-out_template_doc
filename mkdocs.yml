@@ -94,7 +94,7 @@ nav:
       - Current Version: 4_submodule_implementation_new.md
       - Deprecated Version: 4_submodule_implementation_deprecated.md
     - 5. TOP IO Implementation: 5_io.md
-    - 6. DRC/LVS: 6_lvs_drc.md
+    - 6. DRC/LVS Verification: 6_lvs_drc.md
     - 7. Tape-out: 7_final_layout.md
   - IV. Post-tapeout:
     - 8. PCB: 8_PCB.md

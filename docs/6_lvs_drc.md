@@ -186,7 +186,7 @@ b make virtuoso
 
 ### 6.2.2 设置 LVS 运行选项
 
-导入了 LVS 所需的输入文件之后，在 `LVS Options` 设置 LVS 物理验证的运行选项，主要有 `Supply`, `Connect`, `LVS Box` 三个需要选择。
+导入了 LVS 所需的输入文件之后，在 `LVS Options` 设置 LVS 物理验证的运行选项，以下对 `Supply`, `Connect`, `Gates`, `LVS Box` 四个选项进行简要说明。
 
 !!! tip "Calibre Interactive 中没有 `LVS Options` 选项"
     在 Calibre Interactive 上方菜单点击 `Setup`（如下图 `1` 所示），并勾选 `LVS Options`，然后就可以看到具体的选项了 :)
@@ -205,7 +205,28 @@ b make virtuoso
   <figcaption>Configure connections in LVS options</figcaption>
 </figure>
 
-* 在 `LVS Box` 可以选择 (a) 不处理特定的模块或者子电路，进行常规的 LVS 流程；(b) 根据设计的情况选择添加 LVS Box，需要在 GUI 界面中手动添加想添加 Box 的**子模块名称**，名称需要和 Virtuoso 设计中 Cell 名称保持一致。下图所示，给 CVA6 CPU 中的 3 种 SRAM IP 添加了 LVS Box。
+* 在 `Gates` 中可以设置 LVS 物理验证中用于识别和匹配设计中逻辑门的方法。对于常规的数字流程来说，不需要在这里做特殊的设置。
+
+??? info "一种可能的解决 LVS 报错的方式"
+    在此展示一种通过 `Gates` 中的设置解决 LVS 报错的例子。对于我们的 CVA6 CPU 进行层次化 LVS 物理验证，并将 SRAM IP 设置 LVS Box，只对逻辑综合出来的标准单元进行物理验证，最终 LVS 报告如下，显示有许多的 Instances 和 Nets 在网标中缺失。
+
+    <figure>
+      <img src="../figs/virtuoso_lvs_fail_demo.png" width=80%>
+      <figcaption>Demo of LVS verification failure</figcaption>
+    </figure>
+
+    此时我们在 `Gates` 中设置 `Filter Unused Device Options`，勾选其中的 `Q` 选项，即 `MOS, bipolar, resistor, capacitor, and diode devices with no general paths to any non-power/ground pads`，如下图中 `3*` 所示，此时重新进行 LVS 物理验证，会发现 LVS 验证通过。
+
+    出现这个 LVS 报错的原因，是我们此前 Innovus 中进行物理实现时，[添加了许多 Physical-only cells](./4_submodule_implementation_new.md#摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl)，而且在 Signoff 阶段[生成门级网表](./4_submodule_implementation_new.md#结果文件导出pnrscriptssignofffile_gentcl)时设置了 `saveNetlist -excludeCellInst` 选项，因此在 CDL 网表中没有这些特殊的标准单元，例如 End-Cap，Well-Tap 等单元，而版图中却实际包含它们，因此 LVS 物理验证会报错。
+
+    另一种解决 LVS 报错的方法，则是在导出网表文件时去掉 `-excludeCellInst` 选项，那么在生成的 Verilog（以及后续生成的 CDL）门级网表中就会包含这些标准单元，它们没有逻辑功能，只有 P/G Pin 连接。
+
+<figure>
+  <img src="../figs/virtuoso_configure_lvs_options_gates.png" width=80%>
+  <figcaption>Configure gates in LVS options</figcaption>
+</figure>
+
+* 在 `LVS Box` 可以选择 (a) 不处理特定的模块或者子电路，进行常规的 LVS 流程；(b) 根据设计的情况选择添加 LVS Box，需要在 GUI 界面中手动添加想添加 Box 的**子模块名称**，名称需要和 Virtuoso 设计中 Cell 名称保持一致。如下图所示，我们给 CVA6 CPU 中的 3 种 SRAM IP 添加了 LVS Box。
 
 <figure>
   <img src="../figs/virtuoso_lvs_box.png" width=80%>
@@ -223,13 +244,39 @@ b make virtuoso
 
 ### 6.2.4 查看 LVS 物理验证结果
 
-在 Calibre Interactive 左侧选择 `Run LVS`，即可开始 LVS 物理验证。按照此前的设置，LVS 输出文件在 `layout/workspace/lvs` 路径下。
+在 Calibre Interactive 左侧选择 `Run LVS`，即可开始 LVS 物理验证。按照此前的设置，LVS 输出文件在 `layout/workspace/lvs` 路径下。同样地，我们可以在 GUI 界面中查看 LVS 物理验证的结果，例如报错的 Instance 与 Net 名称、在版图中的位置，等等。
+
+一个通过 LVS 物理验证的 GUI 界面如下。
+
+<figure>
+  <img src="../figs/virtuoso_lvs_results.png" width=80%>
+  <figcaption>Demo of a successful LVS verification</figcaption>
+</figure>
+
+!!! Warning "注意"
+    需要保证 `Extraction Results`, `Comparison Results`，以及 `ERC Results` 都没有报错。
+
+### 6.2.5 常见的 LVS 报错
+
+!!! Bug "Under development!"
 
 ## 6.3 DRC 物理验证
 
 ### 6.3.1 设置 DRC 运行选项
 
+因为 DRC 物理验证流程与 LVS 类似，都是适用 Calibre Interactive 窗口进行操作，也可以保存/读取 DRC Runset，主要有以下几个步骤：
+
+* 在 Virtuoso Layout Suite L 上方菜单栏中选择 `Calibre -> Run nmDRC`，配置 DRC 运行选项；
+* 在 Calibre Interactive 左侧选择 `Rules` 导入 DRC Rules，位于`layout/rule/calibre.drc`，并设置 DRC 输出文件路径为 `layout/workspace/drc`；
+* 在 Calibre Interactive 左侧选择 `Inputs`，设置 `Hierarchical（层次化）` 或者 `Flat（扁平化）` 选项。层次化的验证速度更优，而扁平化的物理验证更加完善；
+* **保存 DRC Runset**：在 Calibre Interactive 上方菜单栏选择 `File -> Save Runset As`，并保存至 `layout/workspace/runset/drc.runset` 路径；
+* **读取 DRC Runset**：在 Calibre Interactive 上方菜单栏选择 `File -> Load Runset` 读取之前保存的 Runset 文件。
+
 ### 6.3.2 数字子系统的 DRC 流程
+
+在 Calibre Interactive 左侧选择 `Run DRC`。可以在 `layout/workspace/drc/` 中查看 DRC 报告，或者在 GUI 界面中查看更多的版图信息，包括报错的 Cell、Net 位置等。
+
+对于数字子系统来说，有些 DRC 报错不需要考虑（即可以 Waive），例如 Seal Ring 和 IO Pad 相关的报错，具体详见[常见的 DRC 报错](./6_lvs_drc.md#636-常见的-drc-报错)。
 
 ### 6.3.3 顶层模块 (w/ Dummy) 的 DRC 流程
 
@@ -237,4 +284,6 @@ b make virtuoso
 
 ### 6.3.5 Antenna
 
-!!! Warning "Under development!"
+### 6.3.6 常见的 DRC 报错
+
+!!! Bug "Under development!"
