@@ -45,11 +45,17 @@ CIM_BIST
 ...                                             # Other Folders/Files
 ```
 
+!!! warning "关于模板文件"
+    该 DCIM 自检电路仅作为**逻辑综合**流程的模板文件，其中不包含用于 Cadence Innovus 的脚本。
+    如果希望后续进行**物理设计**流程，请使用[数字子系统的物理设计](./4_submodule_implementation_new.md)中的模板文件！
+
 ## 2.2 逻辑综合流程
 
 ### 添加源文件
 
 在 `src/filelist.f` 中添加你的子模块源文件。
+
+如果在子模块中例化了 SRAM IP，或者其他的定制 IP，则不需要在 `src/filelist.f` 中添加源文件，但是需要在后续综合参数中添加 SRAM 实例以及宏单元的名称。
 
 ### 修改综合参数
 

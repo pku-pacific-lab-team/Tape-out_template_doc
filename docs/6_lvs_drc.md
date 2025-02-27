@@ -278,6 +278,14 @@ b make virtuoso
 
 对于数字子系统来说，有些 DRC 报错不需要考虑（即可以 Waive），例如 Seal Ring 和 IO Pad 相关的报错，具体详见[常见的 DRC 报错](./6_lvs_drc.md#636-常见的-drc-报错)。
 
+一个 DRC 物理验证报告的 GUI 界面如下。
+
+<figure>
+  <img src="../figs/virtuoso_drc_results.png" width=80%>
+  <figcaption>Demo of DRC verification</figcaption>
+</figure>
+
+
 ### 6.3.3 顶层模块 (w/ Dummy) 的 DRC 流程
 
 ### 6.3.4 PAD
