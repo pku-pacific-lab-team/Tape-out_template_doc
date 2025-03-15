@@ -84,7 +84,7 @@ module soc (
     REG_BUS #(
         .ADDR_WIDTH(64),
         .DATA_WIDTH(64)
-    ) my_reg_bus();
+    ) my_reg_bus(.clk_i(clk));
 
     axi_to_reg_intf #(
         .ADDR_WIDTH  (64),
@@ -112,8 +112,8 @@ module soc (
         .reg_req_t   (my_reg_req_t),
         .reg_rsp_t   (my_reg_rsp_t)
     ) my_reg_inst (
-        .clk_i,
-        .rst_ni,
+        .clk_i    (clk),
+        .rst_ni   (rst_n),
         .req_i    (my_reg_req),
         .rsp_o    (my_reg_rsp)
     );
@@ -137,12 +137,12 @@ module my_reg #(
     logic [63:0] reg0_d, reg0_q, reg1_d, reg1_q;
 
     always_comb begin
-        rsp_o.ready = 1'b1;
-        rsp_o.data  = 64'b0;
-        rsp_o.error = 1'b0;
+        rsp_o.ready  = 1'b1;
+        rsp_o.rdata  = 64'b0;
+        rsp_o.error  = 1'b0;
 
-        reg0_d      = reg0_q;
-        reg1_d      = reg1_q;
+        reg0_d       = reg0_q;
+        reg1_d       = reg1_q;
 
         if (req_i.valid) begin
             if (req_i.write) begin
@@ -175,6 +175,8 @@ module my_reg #(
 
 endmodule
 ```
+
+在上述例子中，寄存器在 `req_i.valid` 信号为高的**当周期内**读出或者写入寄存器。
 
 *(II) AXI to Memory Converter*
 
@@ -257,6 +259,7 @@ endmodule
   <figcaption>axi2mem Memory Port Write Timing Diagram</figcaption>
 </figure>
 
+对于**读操作**，上述端口会采样 `req_o` 拉高的**下一个周期**的 `data_i` 信号。
 接下来，你需要根据上述端口和时序，**自行编写** 子模块 memory 接口，如下是一个简单的例子。
 
 ```systemverilog

@@ -83,11 +83,13 @@ SOC_CVA6
 - `proj(analysis_view,[setup|hold])`：选择时序分析的 PVT，学术片考虑 `tt` 的两个选项即可。
 - `init_pwr_net`：电源端口名称。
 - `init_gnd_net`：接地端口名称。
+- `topRoutingLayer`：顶层布线层。
+- `bottomRoutingLayer`：底层布线层，除非布线资源紧张，否则一般使用 `M2`。
 
 ### 4.1.2 编写时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，一共需要编写两个文件，分别用于时钟树综合前的阶段和时钟树综合后的阶段。
-可以分别参考 `config/constraints_soc.sdc, config/cts_constraints_soc.sdc,`。其中 `config/constraints_soc.sdc` 也会在数字子系统的逻辑综合阶段用到。 
+可以分别参考 `config/constraints_soc.sdc, config/cts_constraints_soc.sdc,`。其中 `config/constraints_soc.sdc` 也会在数字子系统的逻辑综合阶段用到。
 
 `sdc` 文件的更多信息详见逻辑综合中的[相关章节](./2_submodule_synthesis_new.md#修改时序约束)。请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc, cts_constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
@@ -274,12 +276,29 @@ floorPlan -d {W H Left Bottom Right Top}
 
     版图的面积会由如下公式计算得到：coreArea = stdCellArea ÷ stdCellDensity + macroArea。
 
+#### 设置 Macro 别名（`pnr/scripts/floorplan/macro_alias.tcl`）
+
+Macro 的名称通常比较长，为了后续脚本简洁，建议使用 TCL 命令 `set nickName realName` 给 Macro 设置简短的别名，例如 `set icache_data0 i_wt_dcache_i_wt_dcache_mem/gen_data_banks[0].i_data_sram`。
+Macro 的名称可以在 `Floorplan View` 中右键点击 Macro 选择 `Attrbite Editor -> Name`（快捷键 Q）查看。
+
+```tcl
+set dcache_tag0 i_cpu/gen_cache_wt.i_cache_subsystem/i_wt_dcache/i_wt_dcache_mem/gen_tag_srams[0].i_tag_sram
+set dcache_tag1 i_cpu/gen_cache_wt.i_cache_subsystem/i_wt_dcache/i_wt_dcache_mem/gen_tag_srams[1].i_tag_sram
+set icache_tag0 i_cpu/gen_cache_wt.i_cache_subsystem/i_cva6_icache/gen_sram[0].i_tag_sram
+set icache_tag1 i_cpu/gen_cache_wt.i_cache_subsystem/i_cva6_icache/gen_sram[1].i_tag_sram
+```
+
+为了便于之后对 Macro 进行批量操作，可以如下定义数组。
+
+```tcl
+set dcache_tag_srams [list $dcache_tag0 $dcache_tag1]
+set icache_tag_srams [list $icache_tag0 $icache_tag1]
+```
+
+
 #### 摆放 Macro（`pnr/scripts/floorplan/macro_preplace.tcl`）
 
 *脚本命令*
-
-Macro 的名称可以在 `Floorplan View` 中右键点击 Macro 选择 `Attrbite Editor -> Name`（快捷键 Q）查看。
-Macro 的名称通常比较长，为了后续脚本简洁，建议使用 TCL 命令 `set nickName realName` 给 Macro 设置简短的别名，例如 `set icache_data0 i_wt_dcache_i_wt_dcache_mem/gen_data_banks[0].i_data_sram`。
 
 我们使用如下命令摆放 Macro。
 
