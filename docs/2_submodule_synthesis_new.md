@@ -1,22 +1,22 @@
 # 2. 数字子系统的逻辑综合（重构版）
 
 !!! tip "TLDR"
-    1. 模板文件路径：`/work/home/limingxuan/common/CIM_BIST/`
-    2. 仿真脚本：`/work/home/limingxuan/common/CIM_BIST/Makefile`
+    1. 模板文件路径：`/work/home/limingxuan/common/SOC_CVA6/`
+    2. 仿真脚本：`/work/home/limingxuan/common/SOC_CVA6/Makefile`
     3. 仿真命令：`b make genus`
 
 ## 2.1 模板文件
 
-我们使用 DCIM 自检电路作为逻辑综合模板示例，其文件夹路径为：
+我们使用 CVA6 作为逻辑综合模板示例，其文件夹路径为：
 
 ```
-/work/home/limingxuan/common/CIM_BIST/
+/work/home/limingxuan/common/SOC_CVA6/
 ```
 
 该文件夹的结构为：
 
 ```
-CIM_BIST
+SOC_CVA6
 ├── src                                         # RTL Source Files
 │   ├── macro
 │   │   └── dcim_ip_bm
@@ -107,13 +107,13 @@ CIM_BIST
 
 ### 运行逻辑综合
 
-在 `CIM_BIST` 文件夹下运行以下命令：
+在 `SOC_CVA6` 文件夹下运行以下命令：
 
 ```
 b make genus TOP=<top_module_name>
 ```
 
-综合 CIM_BIST 的时间大致需要 5-7 min 左右。
+综合 CVA6 的时间大致需要 30-40 min 左右。
 逻辑综合会在 `syn` 文件夹下生成 2 个文件夹 `logs, <top_module_name>`，文件结构如下所示。
 
 ```
@@ -154,7 +154,7 @@ syn
 
 ### 恢复设计
 
-在进行一次逻辑综合后，可以在 `CIM_BIST` 路径下通过如下指令快速恢复设计：
+在进行一次逻辑综合后，可以在 `SOC_CVA6` 路径下通过如下指令快速恢复设计：
 
 ```
 b make restore_genus TOP=<top_module_name>
