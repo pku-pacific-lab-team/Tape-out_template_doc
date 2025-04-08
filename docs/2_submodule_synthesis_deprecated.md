@@ -97,6 +97,27 @@
 
 #### SRAM IP 的例化
 
+??? info "关于 STOV Pin"
+  STOV (Self-Time Override) 是一种用于调试的 SRAM 控制功能，允许覆盖 SRAM 内部自生成的时钟脉冲，改用外部时钟直接控制。在硅片调试阶段，STOV 可以强制内存使用外部时钟的高电平相位生成内部时钟脉冲，用于测试和分析。
+  可以在集成时通过寄存器或者逻辑动态配置，或者**固定拉低**
+
+??? info "关于 RET1N Pin"
+  RET1N 用于启用 Retention mode（低电平有效），可以降低 SRAM 的供电电压，从而降低 SRAM 的静态功耗。
+  在这个模式下，SRAM 无法进行读写操作，但是可以保持 SRAM 存储内容。
+
+??? info "关于 EMA Pins"
+  SRAM 中 EMA (Extra Margin Adjustment) 功能通过调整内部时序延迟来提高制造良率。`EMA[2:0]` 用于控制读写操作的总体延迟，从 000（最快）到 111（最慢）逐步增加访问时间和周期时间。
+  `EMAW[1:0]` 专门用于延长写操作的脉冲宽度，从 00（最快）到 11（最慢）逐步增加写周期时间，但不影响读操作。
+  `EMAS` 引脚用于延长敏感放大器的使能信号脉冲宽度（高电平有效），但不影响访问时间。
+  **建议使用 README 中的默认设置**，并通过寄存器或外部引脚动态配置 EMA，**避免硬编码非默认值**。
+
+??? info "关于 Vmin Assist Pins"
+  SRAM 的 Vmin Assist 功能包括 Read assist 和 Write assist，用于优化低电压下的读写稳定性。
+  Read Assist 通过增强读抗扰度，放置误写操作，适用于 SRAM README 指定的电压域。
+  Write Assist 改善低电压下的写入能力，确保写操作的正确性。
+  这两种辅助功能*均不能保证最低工作电压*，实际性能收到制程良率影响。
+  和 EMA Pins 一致，**建议使用 README 中的默认值**，或者通过寄存器或外部引脚动态配置。
+
 不带 `Bit-Write Mask` 功能的 SRAM 例化示例如下：
 ```verilog
 sram_1024x64 sram_inst(
@@ -107,17 +128,17 @@ sram_1024x64 sram_inst(
   .A(RW0_addr), // SRAM address
   .D(RW0_wdata), // SRAM write port
 
-  // Keep the following unchanged. 
+  // Default values according to ARM.
   // For details of these SRAM I/O ports, refer to the user guide.
   .STOV(1'b0),
-  .EMA(3'b111),
-  .EMAW(2'b11),
-  .EMAS(1'b1),
+  .EMA(3'b100),
+  .EMAW(2'b00),
+  .EMAS(1'b0),
   .RET1N(1'b1),
-  .WABL(1'b1),
   .RAWL(1'b0),
-  .RAWLM(2'b0),
-  .WABLM(3'b1)
+  .RAWLM(2'b00),
+  .WABL(1'b1),
+  .WABLM(3'b001)
 );
 ```
 
@@ -138,17 +159,17 @@ sram_1024x128 sram_inst(
   .A(RW0_addr), // SRAM address
   .D(RW0_wdata), // SRAM write port
 
-  // Keep the following unchanged. 
+  // Default values according to ARM.
   // For details of these SRAM I/O ports, refer to the user guide.
   .STOV(1'b0),
-  .EMA(3'b111),
-  .EMAW(2'b11),
-  .EMAS(1'b1),
+  .EMA(3'b100),
+  .EMAW(2'b00),
+  .EMAS(1'b0),
   .RET1N(1'b1),
-  .WABL(1'b1),
   .RAWL(1'b0),
-  .RAWLM(2'b0),
-  .WABLM(3'b1)
+  .RAWLM(2'b00),
+  .WABL(1'b1),
+  .WABLM(3'b001)
 );
 ```
 
@@ -164,16 +185,16 @@ rf_128x128 rf_inst(
   .a(RW0_addr), // RF address
   .d(RW0_wdata[127:0]), // RF write port
 
-  // Keep the following unchanged.
+  // Default values according to ARM.
   // For details of these RF I/O ports, refer to the user guide.
-  .ema(3'b111), 
-  .emaw(2'b11),
-  .emas(1'b1),
+  .ema(3'b100), 
+  .emaw(2'b00),
+  .emas(1'b0),
   .ret1n(1'b1),
-  .wabl(1'b1),
-  .wablm(2'b1),
   .rawl(1'b0),
-  .rawlm(2'b0)
+  .rawlm(2'b00)
+  .wabl(1'b1),
+  .wablm(2'b01),
 );
 ```
 
@@ -194,16 +215,16 @@ rf_128x128 rf_inst(
   .d(RW0_wdata[127:0]), // RF write port
   .gwen(!RW0_wmode), // Write control signal. When gwen set to low, RF write enabled, otherwise RF read is enabled
 
-  // Keep the following unchanged.
+  // Default values according to ARM.
   // For details of these RF I/O ports, refer to the user guide.
-  .ema(3'b111), 
-  .emaw(2'b11),
-  .emas(1'b1),
+  .ema(3'b100), 
+  .emaw(2'b00),
+  .emas(1'b0),
   .ret1n(1'b1),
-  .wabl(1'b1),
-  .wablm(2'b1),
   .rawl(1'b0),
-  .rawlm(2'b0)
+  .rawlm(2'b00)
+  .wabl(1'b1),
+  .wablm(2'b01),
 );
 ```
 
