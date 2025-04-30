@@ -64,7 +64,14 @@ PDDWUW0408SDGH_H i_jtag_tck_pad_i(
 
 ## 布局布线
 
-## 版图
+顶层的布局布线流程与脚本与模块层级无明显区别，在此仅列出需要额外修改的部分：
+
+1. 在/script/powerplan/global_connect.tcl 中需要额外连接Signal Pad 和Power Pad 的 VDDPST(VDD_IO), VSSPST(VSS), POC(对应电源域的POC), VDD(对应电源域的数字VDD)，AVDD(仅用于模拟PAD，连接到希望单独测量的VDD)
+2. 在/script/powerplan/power_stripe.tcl 中需要将stripe根据所划分的供电区域分别向上打到AP层
+
+## Virtuoso中的电源连线
+
+布局布线完成后，信号PAD所需的连线已经完成，但是电源PAD仍旧没有和Power Stripe相连，这需要我们在Virtuoso中手动完成电源连接，完成的示例如下图
 
 ## SealRing
 
