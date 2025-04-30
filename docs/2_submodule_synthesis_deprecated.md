@@ -1,12 +1,17 @@
-# 2. 数字子系统的逻辑综合
+# 2. 数字子系统的逻辑综合（弃用）
+
+!!! Warning "注意"
+    本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，强烈推荐阅读[新版文档](./2_submodule_synthesis_new.md)。
+
+## 2.1 逻辑综合基本原理
 
 在数字芯片的设计流程中，后端设计是在逻辑综合的基础上进行的。在我们的模板文件中，逻辑综合和后端设计均会调用部分相同的脚本文件，因此先对数字子系统的逻辑综合流程做简要说明。
 
-[逻辑综合](https://en.wikipedia.org/wiki/Logic_synthesis) (Logic Synthesis) 主要目的是将RTL级的设计进行优化，并映射到特定的工艺库中。此外，逻辑综合器也可以进行静态时序分析。
+[逻辑综合](https://en.wikipedia.org/wiki/Logic_synthesis) (Logic Synthesis) 主要目的是将 RTL 级的设计进行优化，并映射到特定的工艺库中。此外，逻辑综合器也可以进行静态时序分析。
 
 电路的逻辑综合一般由三个步骤组成：**转化、逻辑优化、映射**。在综合过程中，优化进程尝试完成标准单元的组合，使得组合能够最好满足设计的功能、时序和面积的要求。综合为约束驱动，给定的约束是优化目标。
 
-## 逻辑综合流程介绍
+## 2.2 逻辑综合流程介绍
 
 !!! Warning "注意"
     数字子系统的逻辑综合使用`/work/home/ztzhu/tapeout_templates/submodule_tapeout/`文件夹。
@@ -24,9 +29,9 @@
 
 查看 `./scripts/genus_synthesis.tcl` 可以观察逻辑综合的大致流程。首先读入 `./scripts/core_config.tcl`, `./scripts/tech.tcl`, `./scripts/init_syn.tcl` 等工艺库、工程定义等相关文件，之后读入 MMMC 配置文件，进行逻辑综合，迭代优化时序，最终将逻辑综合的报告写入 `./reports/genus/` 文件夹下。
 
-以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要4-5小时）
+以下按照顺序介绍进行逻辑综合的准备工作的几个关键步骤。（进行完整的逻辑综合流程需要 4-5 小时）
 
-### 2.1 SRAM/Register File 替换 _（可选）_
+### SRAM/Register File 替换 _（可选）_
 
 !!! question "提示"
     该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
@@ -58,6 +63,11 @@
 
 在 `Corners` 菜单中 DOMAINS（电压域）一般选择 `0p80v`，PROCESSES（工艺角）全选，可选 tt (typical)，ffg (best)，ssg (worst)。在选择了电压域之后，点击 `All` 全选所有的温度值（包括负40摄氏度，80摄氏度等）。
 
+!!! tip "延迟"
+
+  相同的 Word，Bit，不同的 bank 和 mux 数会影响 SRAM 的延迟。
+  增加 bank 和 mux 的数量均会导致延迟的**减小**。
+
 <figure>
   <img src="../figs/corners.png">
   <figcaption>SRAM Compiler Available Corners </figcaption>
@@ -65,11 +75,11 @@
 
 在 `views` 部分依次选择 `LEF Footprint`, `LVS Netlist`, `Liberty Model`, `Verilog Model`, `GDSII Layout`，点击 `Generate` 生成相应的文件，这些文件的用途大致如下：
 
-* `Liberty Model`：用于逻辑综合与后端设计的时序分析与优化，包含SRAM的时序信息；
-* `Verilog Model`：SRAM的Verilog代码，用于功能仿真；
-* `LEF Footprint`：包含SRAM的版图信息（使用的金属层、IO位置等），为逻辑综合和后端设计提供SRAM的面积信息；
-* `LVS Netlist`：用于后端设计的LVS检查，在逻辑综合阶段暂不需要；
-* `GDSII Layout`：用于后端设计的DRC检查和最终版图导出。
+* `Liberty Model`：用于逻辑综合与后端设计的时序分析与优化，包含 SRAM 的时序信息；
+* `Verilog Model`：SRAM 的 Verilog 代码，用于功能仿真；
+* `LEF Footprint`：包含 SRAM 的版图信息（使用的金属层、IO 位置等），为逻辑综合和后端设计提供 SRAM 的面积信息；
+* `LVS Netlist`：用于后端设计的 LVS 检查，在逻辑综合阶段暂不需要；
+* `GDSII Layout`：用于后端设计的 DRC 检查和最终版图导出。
 
 <figure>
   <img src="../figs/views.png">
@@ -87,29 +97,138 @@
 
 #### SRAM IP 的例化
 
+??? info "关于 STOV Pin"
+  STOV (Self-Time Override) 是一种用于调试的 SRAM 控制功能，允许覆盖 SRAM 内部自生成的时钟脉冲，改用外部时钟直接控制。在硅片调试阶段，STOV 可以强制内存使用外部时钟的高电平相位生成内部时钟脉冲，用于测试和分析。
+  可以在集成时通过寄存器或者逻辑动态配置，或者**固定拉低**
+
+??? info "关于 RET1N Pin"
+  RET1N 用于启用 Retention mode（低电平有效），可以降低 SRAM 的供电电压，从而降低 SRAM 的静态功耗。
+  在这个模式下，SRAM 无法进行读写操作，但是可以保持 SRAM 存储内容。
+
+??? info "关于 EMA Pins"
+  SRAM 中 EMA (Extra Margin Adjustment) 功能通过调整内部时序延迟来提高制造良率。`EMA[2:0]` 用于控制读写操作的总体延迟，从 000（最快）到 111（最慢）逐步增加访问时间和周期时间。
+  `EMAW[1:0]` 专门用于延长写操作的脉冲宽度，从 00（最快）到 11（最慢）逐步增加写周期时间，但不影响读操作。
+  `EMAS` 引脚用于延长敏感放大器的使能信号脉冲宽度（高电平有效），但不影响访问时间。
+  **建议使用 README 中的默认设置**，并通过寄存器或外部引脚动态配置 EMA，**避免硬编码非默认值**。
+
+??? info "关于 Vmin Assist Pins"
+  SRAM 的 Vmin Assist 功能包括 Read assist 和 Write assist，用于优化低电压下的读写稳定性。
+  Read Assist 通过增强读抗扰度，放置误写操作，适用于 SRAM README 指定的电压域。
+  Write Assist 改善低电压下的写入能力，确保写操作的正确性。
+  这两种辅助功能*均不能保证最低工作电压*，实际性能收到制程良率影响。
+  和 EMA Pins 一致，**建议使用 README 中的默认值**，或者通过寄存器或外部引脚动态配置。
+
 不带 `Bit-Write Mask` 功能的 SRAM 例化示例如下：
 ```verilog
+sram_1024x64 sram_inst(
+  .Q(RW0_rdata), // SRAM read port data
+  .CLK(RW0_clk), // SRAM clock
+  .CEN(!RW0_en), // Global enable signal, SRAM enabled when set to low
+  .GWEN(!RW0_wmode), // Write control signal. When gwen set to low, SRAM write enabled, otherwise SRAM read is enabled
+  .A(RW0_addr), // SRAM address
+  .D(RW0_wdata), // SRAM write port
 
+  // Default values according to ARM.
+  // For details of these SRAM I/O ports, refer to the user guide.
+  .STOV(1'b0),
+  .EMA(3'b100),
+  .EMAW(2'b00),
+  .EMAS(1'b0),
+  .RET1N(1'b1),
+  .RAWL(1'b0),
+  .RAWLM(2'b00),
+  .WABL(1'b1),
+  .WABLM(3'b001)
+);
 ```
 
 带有 `Bit-Write Mask` 功能的 SRAM 例化示例如下：
 ```Verilog
+// Assuming data width is 128, Bit-write mask needs a 128-bit control signal 
+wire [127:0] wen;
+// For generality, we assume that bit-level mask in RTL design is not needed.
+// Instead, we have a 4-bit control signal specifiying whether to write to [127:96], [95:64], [63:32], or [31:0].
+assign wen = { 32{RW0_wmask[3]}, {32{RW0_wmask[2]}}, {32{RW0_wmask[1]}}, {32{RW0_wmask[0]}}};
 
+sram_1024x128 sram_inst(
+  .Q(RW0_rdata), // SRAM read port data
+  .CLK(RW0_clk), // SRAM clock
+  .CEN(!RW0_en), // Global enable signal, SRAM enabled when set to low
+  .WEN(wen), // Bit-write mask control signal. When set to low, wrtie function is activated.
+  .GWEN(!RW0_wmode), // Write control signal. When gwen set to low, SRAM write enabled, otherwise SRAM read is enabled
+  .A(RW0_addr), // SRAM address
+  .D(RW0_wdata), // SRAM write port
+
+  // Default values according to ARM.
+  // For details of these SRAM I/O ports, refer to the user guide.
+  .STOV(1'b0),
+  .EMA(3'b100),
+  .EMAW(2'b00),
+  .EMAS(1'b0),
+  .RET1N(1'b1),
+  .RAWL(1'b0),
+  .RAWLM(2'b00),
+  .WABL(1'b1),
+  .WABLM(3'b001)
+);
 ```
 
 #### Register File IP 的例化
 
 不带 `Bit-Write Mask` 功能的 Register File 例化示例如下：
 ``` Verilog
+rf_128x128 rf_inst(
+  .q(RW0_rdata[127:0]), // RF read port data
+  .clk(RW0_clk), // RF clock
+  .cen(!RW0_en), // Global enable signal, RF enabled when set to low
+  .wen(!RW0_wmode), // Write control signal. When gwen set to low, RF write enabled, otherwise RF read is enabled
+  .a(RW0_addr), // RF address
+  .d(RW0_wdata[127:0]), // RF write port
 
+  // Default values according to ARM.
+  // For details of these RF I/O ports, refer to the user guide.
+  .ema(3'b100), 
+  .emaw(2'b00),
+  .emas(1'b0),
+  .ret1n(1'b1),
+  .rawl(1'b0),
+  .rawlm(2'b00)
+  .wabl(1'b1),
+  .wablm(2'b01),
+);
 ```
 
 带有 `Bit-Write Mask` 功能的 Register File 例化示例如下：
 ``` Verilog
+// Assuming data width is 128, Bit-write mask needs a 128-bit control signal 
+wire [127:0] wen;
+// For generality, we assume that bit-level mask in RTL design is not needed.
+// Instead, we have a 2-bit control signal specifiying whether to write to [127:64] or [63:0].
+assign wen = { 64{RW0_wmask[1]}, {64{RW0_wmask[0]}}};
 
+rf_128x128 rf_inst(
+  .q(RW0_rdata[127:0]), // RF read port data
+  .clk(RW0_clk), // RF clock
+  .cen(!RW0_en), // Global enable signal, RF enabled when set to low
+  .wen(~wen[127:0]), // Bit-write mask control signal. When set to low, wrtie function is activated.
+  .a(RW0_addr), // RF address
+  .d(RW0_wdata[127:0]), // RF write port
+  .gwen(!RW0_wmode), // Write control signal. When gwen set to low, RF write enabled, otherwise RF read is enabled
+
+  // Default values according to ARM.
+  // For details of these RF I/O ports, refer to the user guide.
+  .ema(3'b100), 
+  .emaw(2'b00),
+  .emas(1'b0),
+  .ret1n(1'b1),
+  .rawl(1'b0),
+  .rawlm(2'b00)
+  .wabl(1'b1),
+  .wablm(2'b01),
+);
 ```
 
-### 2.2 添加可综合 RTL 代码
+### 添加可综合 RTL 代码
 
 将数字子系统的可综合 RTL 代码放在 `./rtl/` 目录下，并在 `./rtl/srcs.tcl` 中添加所有 RTL 代码的文件名称。`srcs.tcl` 的示例如下。
 
@@ -126,7 +245,7 @@ read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/S
 read_hdl -language sv /work/home/ztzhu/tapeout_templates/submodule_tapeout/rtl/SystemVerilog_MODULE_2.sv
 ```
 
-### 2.3 修改 `core_config.tcl`
+### 修改 `core_config.tcl`
 
 在 `./scripts/core_config.tcl` 中定义了数字系统的**顶层模块名称**、**时钟信号名称**等信息，需要根据情况进行调整。
 
@@ -136,7 +255,7 @@ set rm_core_top MY_TOP_MODULE
 set rm_clock_pin clk
 ```
 
-### 2.4 修改 `design_inputs_macro.tcl`
+### 修改 `design_inputs_macro.tcl`
 
 #### 选择逻辑综合和后端设计使用的**标准单元库**
 
@@ -193,11 +312,11 @@ set rm_lef_reflib [concat ${rm_lef_tech_file} ${rm_foundry_lib_dirs}/Back_End/le
 set rm_clock_period 5
 ```
 
-### 2.5 修改 `tech.tcl`
+### 修改 `tech.tcl`
 
 #### 添加子模块所需的 `LIB` 文件
 
-`LIB` 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的PVT都会有相应的 `LIB` 文件。
+`LIB` 文件包含时序信息，对于 Genus 逻辑综合是必须的。对于不同的 PVT 都会有相应的 `LIB` 文件。
 对于 `ff_0p88v_m40c`，添加 `LIB` 文件的示例如下：
 
 ``` tcl
@@ -212,7 +331,7 @@ foreach sram ${sram_insts} { \
 }
 ```
 
-可以看到，除了标准单元和子模块的 `LIB` 文件，此处也自动添加了 Compiler 生成的SRAM IP的 `LIB` 文件。
+可以看到，除了标准单元和子模块的 `LIB` 文件，此处也自动添加了 Compiler 生成的 SRAM IP 的 `LIB` 文件。
 
 一个较完整的例子如下：
 
@@ -222,13 +341,13 @@ foreach sram ${sram_insts} { \
 </figure>
 
 
-### 2.6 启动 Genus 综合
+### 启动 Genus 综合
 
 ``` shell
 b make genus_syn
 ```
 
-### 2.7 查看综合报告
+### 查看综合报告
 
 * `./data/MY_TOP_MODULE-genus.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
 * `./logs/genus_synthesis.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查流程是否有误。

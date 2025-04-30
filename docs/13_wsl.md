@@ -96,52 +96,43 @@ wsl --import <Distribution Name> <Installation Folder> <Ubuntu WSL2 Image path>
   <figcaption>Clash 代理配置</figcaption>
 </figure>
 
-### WSL 虚拟网卡 IP
-
-WSL 通过虚拟以太网接口（vEthernet）与 Windows 主机的通信。
-如果需要配置代理，需要知道 WSL 的虚拟网卡 IP 地址，让 Windows 的代理服务能够转发该 IP 的流量。
-我们可以通过脚本自动获取该 IP 地址。
-
-在 WSL 的 `~/.bashrc` 文件中添加以下内容。
-
-```bash
-host_ip=$(ip route | grep default | awk '{print $3}')
-```
-
-该命令会自动获取 vEthernet 的 IP 地址。
-
 ### WSL 代理配置
 
-修改 `~/.bashrc` 文件。
+WSL 可以镜像 Windows 的代理设置，只需要编写 WSL 的全局配置文件即可。
+在 Windows 的文件资源管理器中导航到 `%USERPROFILE%` 目录，新建一个 `.wslconfig` 文件，文件内容如下。
 
-```bash
-export http_proxy="http://$host_ip:7890"
-export https_proxy="http://$host_ip:7890"
+```shell
+# Settings apply across all Linux distros running on WSL 2
+# Can see memory in wsl2 with "free -m"
+# Goes in windows home directory as .wslconfig
+[wsl2]
+
+# Limits VM memory to use no more than 16 GB, defaults to 50% of ram
+memory=16GB
+
+# Sets the VM to use 8 virtual processors
+processors=8
+
+# Sets the amount of swap storage space to 8GB, default is 25% of available RAM
+swap=8GB
+
+# network proxy settings
+networkingMode=mirrored
+dnsTunneling=true
+firewall=true
+autoProxy=true
+
+# gradually reclaim WSL memory
+[experimental]
+autoMemoryReclaim=gradual
 ```
 
-利用上一步获取的 IP 地址，设置 WSL 的代理。
-如果你使用的是 Clash 代理，那么端口号应该是 7890。
-
-??? tip "手动获取 vEthernet IP 地址"
-    可以在 powershell 中通过以下命令查看 WSL 的虚拟网卡 IP 地址。
-
-    ```powershell
-    $ ipconfig
-        ...
-        以太网适配器 vEthernet (WSL (Hyper-V firewall)):
-
-        连接特定的 DNS 后缀 . . . . . . . :
-        本地链接 IPv6 地址. . . . . . . . : fe80::33eb:9f74:8b73:253f%49
-        IPv4 地址 . . . . . . . . . . . . : 172.18.48.1
-        子网掩码  . . . . . . . . . . . . : 255.255.240.0
-        默认网关. . . . . . . . . . . . . :
-    ```
-
-    其中 IPv4 地址即为 WSL 的虚拟网卡 IP 地址。
+每次修改 `.wslconfig` 文件后，需要重启 WSL 才能生效。
+在 PowerShell 中输入 `wsl --shutdown` 即可重启 WSL。
 
 如果代理成功，那么在 WSL 中的命令行中输入 `curl ipinfo.io` 应该能够得到类似的输出：
 
-```bash
+```shell
 {
   "ip": "152.70.124.200",
   "city": "San Jose",
@@ -157,3 +148,30 @@ export https_proxy="http://$host_ip:7890"
 
 !!! Bug
     配置代理后，`curl ipinfo.io` 会出现无法终止的情况，可以使用 `Ctrl+C` 终止。
+
+!!! tip "Tun 模式"
+    如果你觉得上述配置太麻烦，可以尝试在你的代理软件中使用 Tun 模式，这样 WSL 就可以直接访问外网了。
+
+
+## 13.3 Python 环境搭建
+
+由于 Python 各个版本之间**并不兼容**，因此对于每一个 Python 项目，我们都需要创建一个**独立的虚拟环境**。
+这样可以避免不同项目之间的**依赖冲突**。
+我们推荐使用 **anaconda** 来管理 Python 环境。
+
+### 安装 miniconda
+
+根据[官方文档](https://docs.anaconda.com/miniconda/miniconda-install/)安装即可。
+
+### 使用虚拟环境
+
+```bash
+conda env list # 查看已有环境·
+conda create -n <env_name> python=3.8 # 创建一个新环境
+conda activate <env_name> # 激活环境
+conda list # 查看环境中已安装的包
+which python # 查看当前环境的 Python 路径
+```
+
+!!! bug "Todo"
+    More Details!!!

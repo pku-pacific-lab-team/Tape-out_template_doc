@@ -1,7 +1,7 @@
 site_name: Documentation for Tape-out
 site_url: https://bwoah-kimi.github.io/Tape-out_template_doc/
 site_author: Bwoah-Kimi
-copyright: Copyright &copy; 2024 School of Integrated Circuits, Peking University
+copyright: Copyright &copy; 2024-2025 School of Integrated Circuits, Peking University
 
 repo_url: https://github.com/Bwoah-Kimi/Tape-out_template_doc
 repo_name: GitHub Repo
@@ -46,6 +46,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.snippets
+  - pymdownx.arithmatex
 
 plugins:
   - search:
@@ -62,20 +63,38 @@ plugins:
       show_contribution: true
       show_line_count: true
       count_empty_lines: true
+  - encryptcontent:
+      global_password: 'coICRGGm5sY9OyztWam0Q2n+tjwb++kv3J9qXAEx5vc=' # jialab-tapeout Base64 encoded
+      password_button: True
+      password_button_text: 'ENTER'
+      encryption_info_message: 'Contact your administrator for access to this page.'
+      decryption_failure_message: 'Invalid password.'
+      remember_keys: true
+      remember_password: true
+      title_prefix: ''
+
 extra_css:
   - extra.css
+
+extra_javascript:
+  - 'js/extra.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 
 nav:
   - Welcome to Tape-out Docs!: index.md
   - I. EDA Tools & Environment: 0_eda.md
   - II. Frontend:
-    - 1. Submodule Behavioral Simulation: 1_submodule_behavioral_simulation.md
-    - 2. Submodule Synthesis: 2_submodule_synthesis.md
+    - 1. Behavioral Simulation: 1_behavioral_simulation.md
+    - 2. Submodule Synthesis:
+      - Current Version: 2_submodule_synthesis_new.md
+      - Deprecated Version: 2_submodule_synthesis_deprecated.md
     - 3. Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - III. Backend:
-    - 4. Submodule Implementation: 4_submodule_implementation.md
+    - 4. Submodule Implementation:
+      - Current Version: 4_submodule_implementation_new.md
+      - Deprecated Version: 4_submodule_implementation_deprecated.md
     - 5. TOP IO Implementation: 5_io.md
-    - 6. DRC/LVS: 6_lvs_drc.md
+    - 6. DRC/LVS Verification: 6_lvs_drc.md
     - 7. Tape-out: 7_final_layout.md
   - IV. Post-tapeout:
     - 8. PCB: 8_PCB.md
@@ -86,3 +105,8 @@ nav:
     - 12. C Assembly: 12_assembly.md
     - 13. WSL: 13_wsl.md
     - 14. FPGA Verification: 14_FPGA_verification.md
+    - 15. PDK Setup: 15_PDK_setup.md
+    - 16. Digital-CIM Specification: DCIM_spec.md
+    - 17. SRAM IP Specification: sram_ip.md
+    - 18. System Integration: system_integration.md
+  - VI. Join Us! How to Contribute?: contribute.md

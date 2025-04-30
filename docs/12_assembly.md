@@ -1,7 +1,7 @@
 # C 代码编译
 
 !!! info "阅读建议"
-    如果你不想了解编译原理，只想获得一个编译模板以便开发测试代码，可以直接跳到 12.2。
+    如果你不想了解编译原理，只想获得工具链和一个编译模板以便开发测试代码，可以直接跳到 12.2。
     但我们建议你阅读整个章节，以便更好地理解编译的过程。
 
 ## 12.1 编译流程
@@ -122,8 +122,71 @@ main 函数的原型为 ``int main(argc, *argv[])``。
 !!! Tip
 	你可以查询 [RISC-V Assembly Programmer's Manual](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md) 来了解如何编写 RISC-V 汇编语言。
 
+## 12.2 安装 RISC-V Toolchain
 
-## 12.2 编译模板
+!!! Warning
+	需要在 WSL 环境中安装！
+	WSL 的安装以及网络配置请参考 [13. WSL](./13_wsl.md)。
+
+从 GitHub 上下载 RISC-V 工具链源码并进入该目录：
+
+```bash
+git clone https://github.com/Siris-Li/RISC-V-GCC-TOOLCHAIN
+cd RISC-V-GCC-TOOLCHAIN
+```
+
+安装依赖：
+
+```bash
+sudo apt-get install autoconf automake autotools-dev curl git libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool bc zlib1g-dev
+```
+
+（可选）配置 CPU 核数以便多线程编译：
+
+```bash
+export NUM_JOBS=<num of processors>
+```
+
+??? tip "如何查看 CPU 核数"
+	**WSL：**
+
+	在 Terminal 中输入：
+	```bash
+	nproc
+	```
+	**Windows：**
+
+	打开任务管理器，左栏中选择“性能”选项卡，右下角即可看到 CPU 核数（逻辑处理器）。
+
+	<figure>
+	  <img src="../figs/nproc_win.png" width=70%>
+	  <figcaption>Windows 查看逻辑处理器个数</figcaption>
+	</figure>
+
+	*逻辑处理器与内核的区别*：
+
+	- **内核**：CPU 的物理核心数
+	- **逻辑处理器**：CPU 的线程数，例如单个物理 CPU 内核支持双线程，则 2 个这样内核的逻辑处理器数为 4。
+
+配置工具链安装路径：
+
+```bash
+export RISCV=<install path>
+```
+
+执行脚本安装工具链：
+
+```bash
+# Fetch the source code of the toolchain (assumes Internet access.)
+sh get-toolchain.sh
+
+# Build and install the toolchain (requires write+create permissions for $RISCV.)
+sh build-toolchain.sh $RISCV
+```
+
+安装完成后，`$RISCV/bin` 目录下会有 RISC-V 工具链的可执行文件（例如 `riscv-none-elf-gcc`、`riscv-none-elf-gdb`）。
+
+## 12.3 编译模板
 
 从 GitHub 上下载一个简单的 C 代码模板，用于编译 RISC-V 汇编代码。
 
@@ -145,7 +208,8 @@ export RISCV_OBJDUMP=<riscv-gcc-toolchain>/bin/riscv-none-elf-objdump
 Makefile 会生成如下两个文件：
 
 - ``*.o``：编译后的目标文件，用于 GDB 的 `load` 指令。
-- ``*.d``：反汇编后的文件，用于查看编译结果。
+- ``*.asmm``：反汇编后的文件，用于查看编译结果。
+- ``*.hex``：使用 `asm2hex.py` 脚本生成的十六进制内存初始化文件，用于仿真。
 
 ??? tip "关于反汇编结果"
     如果你查看过反汇编结果，你会发现反汇编后的代码和源代码有些不同。
