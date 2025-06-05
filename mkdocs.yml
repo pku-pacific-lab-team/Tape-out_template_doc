@@ -102,7 +102,7 @@ nav:
     - 10. Testing: 10_testing.md
   - V. Appendix:
     - 11. RISC-V CPU Debugging: 11_cpu_debug.md
-    - 12. C Assembly: 12_assembly.md
+    - 12. C Compiling: 12_compiling.md
     - 13. WSL: 13_wsl.md
     - 14. FPGA Verification: 14_FPGA_verification.md
     - 15. PDK Setup: 15_PDK_setup.md
