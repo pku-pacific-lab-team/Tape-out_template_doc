@@ -14,21 +14,30 @@ theme:
   logo: figs/pku_logo.png
   favicon: figs/pku_logo_red.png
   palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/refresh-auto
+        name: Switch to light mode
+
     # Palette toggle for light mode
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: custom
       accent: pink
       toggle:
-        icon: material/weather-night
+        icon: material/weather-sunny
         name: Switch to dark mode
 
     # Palette toggle for dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: indigo
       accent: cyan
       toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
+        icon: material/weather-night
+        name: Switch to system preference
+
   font:
     code: JetBrainsMono
   features:
@@ -102,7 +111,7 @@ nav:
     - 10. Testing: 10_testing.md
   - V. Appendix:
     - 11. RISC-V CPU Debugging: 11_cpu_debug.md
-    - 12. C Assembly: 12_assembly.md
+    - 12. C Compiling: 12_compiling.md
     - 13. WSL: 13_wsl.md
     - 14. FPGA Verification: 14_FPGA_verification.md
     - 15. PDK Setup: 15_PDK_setup.md

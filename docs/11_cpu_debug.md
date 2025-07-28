@@ -440,7 +440,7 @@ Type "apropos word" to search for commands related to "word".
 </figure>
 
 !!! info "测试代码"
-    有关如何编写测试代码，请参考 [12. C 代码编译](./12_assembly.md)。
+    有关如何编写测试代码，请参考 [12. C 代码编译](./12_compiling.md)。
 
 !!! success ""
     特别感谢 Jiaqi Zhou，[Yiyang Sun](https://ieeexplore.ieee.org/author/37089999502)，Peiran Yan，Siyuan He 对本页内容的贡献和校对！
