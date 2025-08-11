@@ -13,7 +13,7 @@
 
     ## Another shell to run GDB
     riscv-none-elf-gdb              # step 4
-    (gdb) target remote :3333
+    (gdb) target extended-remote :3333
     ```
 
 为了便于 CPU 的调试，ISA 会规定 Debug Module 的设计规范，以便于调试器（Debugger）与 CPU 之间的通信。
@@ -78,7 +78,7 @@ cd riscv-openocd
 安装依赖并执行安装：
 
 ```bash
-sudo apt-get install libftdi-dev libusb-1.0-0 libusb-1.0-0-dev autoconf automake texinfo pkg-config
+sudo apt-get install libftdi-dev libusb-1.0-0 libusb-1.0-0-dev autoconf automake texinfo pkg-config libjim-dev
 ./bootstrap
 ./configure --enable-ftdi
 make -j<number of your cpus>
