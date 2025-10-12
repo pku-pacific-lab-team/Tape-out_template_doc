@@ -95,15 +95,17 @@ nav:
   - II. Frontend:
     - 1. Behavioral Simulation: 1_behavioral_simulation.md
     - 2. Submodule Synthesis:
-      - Current Version: 2_submodule_synthesis_new.md
-      - Deprecated Version: 2_submodule_synthesis_deprecated.md
+      - TSMC N22 Synthesis: 2_submodule_synthesis_22nm.md
+      - TSMC N12 Synthesis: 2_submodule_synthesis_12nm.md
     - 3. Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - III. Backend:
-    - 4. Submodule Implementation:
-      - Current Version: 4_submodule_implementation_new.md
-      - Deprecated Version: 4_submodule_implementation_deprecated.md
+    - 4. Submodule Physical Implementation:
+      - TSMC N22 Implementation: 4_submodule_implementation_22nm.md
+      - TSMC N12 Implementation: 4_submodule_implementation_12nm.md
     - 5. TOP IO Implementation: 5_io.md
-    - 6. DRC/LVS Verification: 6_lvs_drc.md
+    - 6. Physical Verification:
+      - Block-Level Verification: 6_lvs_drc_block.md
+      - Top-Level Verification: 6_lvs_drc_top.md
     - 7. Tape-out: 7_final_layout.md
   - IV. Post-tapeout:
     - 8. PCB: 8_PCB.md
