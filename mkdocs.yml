@@ -120,4 +120,5 @@ nav:
     - 16. Digital-CIM Specification: DCIM_spec.md
     - 17. SRAM IP Specification: sram_ip.md
     - 18. System Integration: system_integration.md
+    - 19. Using DRAM on FPGA: FPGA_DRAM.md
   - VI. Join Us! How to Contribute?: contribute.md
