@@ -322,7 +322,10 @@ Vivado 的 `dbg_hub` 负责管理所有的 ILA，它需要连接到自由运行 
 
 请使用以下 Tcl 脚本定位网络名称并添加至 XDC 末尾：
 
-```tcl
+!!! Bug "FIXME!!!"
+    待添加
+
+<!-- ```tcl
 set port_net [get_nets -of_objects [get_ports sys_clk_p]]
 set load_pins [get_pins -leaf -of_objects $port_net -filter {DIRECTION == IN}]
 set buffer_cell [get_cells -of_objects $load_pins]
@@ -340,7 +343,7 @@ puts "--------------------------------------------------------"
 
 ```xdc
 connect_debug_port dbg_hub/clk [get_nets -hierarchical "u_ddr_sys/design_1_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/inst/u_ddr4_phy_pll/diff_input_clk.u_ibufg_sys_clk/OUT"]
-```
+``` -->
 
 !!! Warning "注意"
     若增加过多 ILA 或多个时钟域的 ILA 可能导致时序违例，请适当减少探针数量。
