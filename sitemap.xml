@@ -2,122 +2,130 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/0_eda/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/10_testing/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/11_cpu_debug/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/12_compiling/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/13_wsl/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/14_FPGA_verification/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/15_PDK_setup/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/1_behavioral_simulation/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
+    </url>
+    <url>
+         <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/1_simulation/</loc>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis_12nm/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis_22nm/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis_deprecated/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/2_submodule_synthesis_new/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/3_submodule_gate_level_simulation/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/4_submodule_implementation_12nm/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/4_submodule_implementation_22nm/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/4_submodule_implementation_deprecated/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/4_submodule_implementation_new/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/5_io/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/6_lvs_drc_block/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/6_lvs_drc_top/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/7_final_layout/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/8_PCB/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/9_package/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/DCIM_spec/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/FPGA_DRAM/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/contribute/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/fpu_spec/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/sram_ip/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
+    </url>
+    <url>
+         <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/sta_pwr/</loc>
+         <lastmod>2026-01-03</lastmod>
     </url>
     <url>
          <loc>https://bwoah-kimi.github.io/Tape-out_template_doc/system_integration/</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2026-01-03</lastmod>
     </url>
 </urlset>
