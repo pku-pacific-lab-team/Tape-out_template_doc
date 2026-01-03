@@ -1,4 +1,4 @@
-# 6. 模块级 LVS/DRC/Antenna 物理验证
+# 5. 模块级 LVS/DRC/Antenna 物理验证
 
 !!! tip "TLDR（太长不看）"
     1. 验证脚本：`pv/Makefile`。
@@ -7,7 +7,7 @@
     4. 查看天线验证结果：`make ant` 后查看 `pv/reports/antenna.summary`。
     5. 一键运行所有验证：`make pv`。
 
-## 6.1 模板文件
+## 5.1 模板文件
 
 在 Cadence Innovus 中完成[数字子系统的物理设计](./4_submodule_implementation_new.md)或者[顶层系统的物理设计](./5_io.md)之后，需要在 Siemens Calibre 中进行 LVS 和 DRC 物理验证。
 
@@ -57,9 +57,9 @@ $ROOT
 └── ...
 ```
 
-## 6.2 使用脚本进行 LVS/DRC/Antenna 物理验证
+## 5.2 使用脚本进行 LVS/DRC/Antenna 物理验证
 
-### 6.2.1 LVS
+### 5.2.1 LVS
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -77,7 +77,7 @@ LVS 会在 `pv/reports/lvs.summary` 生成 LVS 报告文件。
 
 如果 LVS 没有通过，证明在后端物理实现的时候某些步骤出现了问题，需要根据 LVS 报告中的错误信息进行排查和修正。
 
-### 6.2.2 DRC
+### 5.2.2 DRC
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -104,7 +104,7 @@ DRC 会在 `pv/reports/drc.summary` 生成 DRC 报告文件。
     - \*.DN.\*
     - DM\*.R.1
 
-### 6.2.3 天线效应
+### 5.2.3 天线效应
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -125,7 +125,7 @@ make ant
     在此文档中所提及的 DRC 都指的是狭义上的 DRC，即不包括天线效应的规则检查。
 
 
-### 6.2.4 一键运行所有验证
+### 5.2.4 一键运行所有验证
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -133,9 +133,9 @@ make ant
 make pv
 ```
 
-## 6.3 使用 GUI 进行 LVS/DRC/Antenna 物理验证
+## 5.3 使用 GUI 进行 LVS/DRC/Antenna 物理验证
 
-### 6.3.1 LVS
+### 5.3.1 LVS
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -159,7 +159,7 @@ make lvs GUI=1
 
 看到笑脸则表示 LVS 物理验证通过。
 
-### 6.3.2 DRC
+### 5.3.2 DRC
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -194,7 +194,7 @@ make drc GUI=1
     - \*.DN.\*
     - DM\*.R.1
 
-### 6.3.3 天线效应
+### 5.3.3 天线效应
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -223,7 +223,7 @@ make ant GUI=1
     在此文档中所提及的 DRC 都指的是狭义上的 DRC，即不包括天线效应的规则检查。
 
 
-## 6.4 使用 Virtuoso 查看版图并进行 LVS/DRC/Antenna 物理验证
+## 5.4 使用 Virtuoso 查看版图并进行 LVS/DRC/Antenna 物理验证
 
 在 `$ROOT` 路径下，运行如下命令启动 Virtuoso。
 
@@ -231,7 +231,7 @@ make ant GUI=1
 make virtuoso
 ```
 
-### 6.4.1 导入设计（初次使用）
+### 5.4.1 导入设计（初次使用）
 
 若**首次打开** Virtuoso，需要将 Innovus 完成的设计导入到 Virtuoso 中。
 
@@ -275,7 +275,7 @@ make virtuoso
       <figcaption>Virtuoso StreamIn Warning</figcaption>
     </figure>
 
-### 6.4.2 打开设计
+### 5.4.2 打开设计
 
 如果之前已经把设计导入到 Virtuoso 中，则可以在 Virtuoso Terminal 中选择 `Open` 打开设计，具体步骤如下所示。
 
@@ -289,7 +289,7 @@ make virtuoso
 
     设置最小格点：在 Virtuoso Layout Suite L 上方菜单栏中选择 `Options -> Display`，把 `X Snap Spacing` 和 `Y Snap Spacing` 改成 0.005
 
-## 6.4.3 LVS 物理验证
+## 5.4.3 LVS 物理验证
 
 ### 导入 LVS Rule 与 CDL 网表文件
 
@@ -407,7 +407,7 @@ make virtuoso
 
 !!! Bug "Under development!"
 
-## 6.4.4 DRC 物理验证
+## 5.4.4 DRC 物理验证
 
 ### 设置 DRC 运行选项
 
@@ -432,7 +432,7 @@ make virtuoso
   <figcaption>Demo of DRC verification</figcaption>
 </figure>
 
-## 6.4.5 天线效应物理验证
+## 5.4.5 天线效应物理验证
 
 天线效应的物理验证流程除了规则文件，其他与 DRC 完全一致。
 天线效应的规则文件位于 `/PDK/TSMC_22NM/PDK/1P9M_6X1Z1U_iPDK_CRN22ULL_shrink_T-N22-CR-SP-004-W1_v1.3_1p1a_20211230/Calibre/drc/calibre.ant`。

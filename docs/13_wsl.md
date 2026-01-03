@@ -1,9 +1,9 @@
-# 13. WSL
+# 12. WSL
 
 WSL（Windows Subsystem for Linux）是 Windows 提供的一个 Linux 子系统，它允许你在 Windows 上运行 Linux 程序。
 简单来说，WSL 是微软提供的一个官方 **Linux 虚拟机**，具有更小的性能开销和接近原生 Linux 的体验。
 
-## 13.1 安装 WSL
+## 12.1 安装 WSL
 
 !!! Warning
     在安装 WSL 之前，请确保你没有安装过任何 Linux 发行版，否则可能会导致安装失败。
@@ -83,7 +83,7 @@ wsl --import <Distribution Name> <Installation Folder> <Ubuntu WSL2 Image path>
 !!! tip "修改默认用户"
     参考该[博客](https://www.20001106.xyz/2024/05/11/WSL-%E5%AE%89%E8%A3%85%E5%A4%9A%E4%B8%AA%E5%AE%9E%E4%BE%8B%EF%BC%88%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%89/)中的第五步至第七步。
 
-## 13.2 网络配置（代理）
+## 12.2 网络配置（代理）
 
 为了让 WSL 能够访问外网，需要配置 WSL 的网络。
 
@@ -153,7 +153,7 @@ autoMemoryReclaim=gradual
     如果你觉得上述配置太麻烦，可以尝试在你的代理软件中使用 Tun 模式，这样 WSL 就可以直接访问外网了。
 
 
-## 13.3 Python 环境搭建
+## 12.3 Python 环境搭建
 
 由于 Python 各个版本之间**并不兼容**，因此对于每一个 Python 项目，我们都需要创建一个**独立的虚拟环境**。
 这样可以避免不同项目之间的**依赖冲突**。

@@ -1,6 +1,6 @@
-# 9. 划片与封装
+# 8. 划片与封装
 
-## 9.1 划片
+## 8.1 划片
 
 [芯片分割](https://en.wikipedia.org/wiki/Die_singulation)（Die singulation），也称为晶圆切割（wafer dicing）。
 在这个过程中，一个大的硅晶圆被切割成许多小的，独立的半导体芯片或集成电路。
@@ -22,7 +22,7 @@
 
 划片所需的时间大约为**1-2天**，20颗50颗划片时间基本一样。
 
-## 9.2 封装
+## 8.2 封装
 
 [芯片封装](https://en.wikipedia.org/wiki/Integrated_circuit_packaging)（Integrated circuit packaging，chip packaging）发生在硅晶圆划片之后。封装的主要目的是保护微小、脆弱的半导体芯片，同时提供交互接口，**使芯片可以和电子设备的其他部分进行电气连接**。
 

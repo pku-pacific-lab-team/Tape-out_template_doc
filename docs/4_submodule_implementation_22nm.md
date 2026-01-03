@@ -1,4 +1,4 @@
-# 4. 数字子系统的物理设计（TSMC N22）
+# 3. 数字子系统的物理设计（TSMC N22）
 
 !!! tip "TLDR（太长不看）"
     1. 模板文件路径：`/project/common/block_flow_22nm_v1/`
@@ -8,7 +8,7 @@
     5. 修改并运行脚本：`pnr/scripts/innovus_implementation.tcl`
     6. 查看结果文件夹：`pnr/<top_module_name>`
 
-## 4.1 模板文件
+## 3.1 模板文件
 
 我们使用开源 RISC-V CPU CVA6 作为物理实现模板示例，其文件夹路径为：
 
@@ -71,7 +71,7 @@ $ROOT
 
 `<macro_name_1>`, `<macro_name_2>` 是更低层级的子系统。`<top_module_name>` 是该数字子系统的顶层模块名称，例如 `soc`。
 
-### 4.1.1 修改配置文件
+### 3.1.1 修改配置文件
 
 根据注释修改 `config/user_define.tcl` 中的物理设计参数。你需要定义的参数如下：
 
@@ -89,14 +89,14 @@ $ROOT
 - `bottomRoutingLayer`：底层布线层，除非布线资源紧张，否则一般使用 `M2`。
 - `ilm_block`：使用 interface logic model 的子模块名称。
 
-### 4.1.2 编写时序约束
+### 3.1.2 编写时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，一共需要编写两个文件，分别用于时钟树综合前的阶段和时钟树综合后的阶段。
 可以分别参考 `config/constraints_soc.sdc, config/cts_constraints_soc.sdc,`。其中 `config/constraints_soc.sdc` 也会在数字子系统的逻辑综合阶段用到。
 
 `sdc` 文件的更多信息详见逻辑综合中的[相关章节](./2_submodule_synthesis_22nm.md#修改时序约束)。请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc, cts_constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
-### 4.1.3 启动 Innovus
+### 3.1.3 启动 Innovus
 
 在 `$ROOT` 路径下，运行如下命令启动 Innovus。
 
@@ -116,11 +116,11 @@ make innovus
 !!! warning "检查 Warning/Error"
     检查 terminal 或者 `pnr/logs/<top_module_name>.log` 中的 Warning 和 Error，确保初始化没有问题。
 
-### 4.1.4 修改并运行脚本
+### 3.1.4 修改并运行脚本
 
 按照 `pnr/scripts/innovus_implementation.tcl` 中的注释，依次修改对应的子脚本并手动运行，直到该父脚本中的所有子脚本均被运行完毕。
 
-### 4.1.5 结果文件
+### 3.1.5 结果文件
 
 物理实现完成后，会在 `pnr` 文件夹下生成 `<top_module_name>` 文件夹，其中包含了 Innovus 的结果文件，包括如下几个文件：
 
@@ -134,7 +134,7 @@ make innovus
 
 另外，每个阶段还会生成对应的**时序报告**，位于 `pnr/<top_module_name>/reports` 文件夹中。
 
-### 4.1.6 恢复设计
+### 3.1.6 恢复设计
 
 `pnr/scripts/innovus_implementation.tcl` 中在每一阶段结束后有 `saveDesign` 命令，可以将当前阶段的设计保存到 `pnr/<top_module_name>/backup` 文件夹中，以便后续恢复设计。
 
@@ -146,7 +146,7 @@ make restore_innovus STAGE=<stage_name>
 
 其中 `<stage_name>` 为需要恢复的阶段名称，一共有 6 种选择：`Floorplan, Powerplan, Place, CTS, Route, Finish`，注意**大小写**。
 
-## 4.2 物理设计流程
+## 3.2 物理设计流程
 
 物理实现（后端）主要分为如下几个步骤：
 
@@ -176,7 +176,7 @@ Innovus 拥有全局 TCL 变量，这些变量都形如 `init_*`，可以通过 
 !!! Tip "GUI 操作与脚本命令"
     所有的 GUI 操作都有对应的脚本命令，可以通过 GUI 操作后查看 `pnr/logs/<top_module_name>.cmd` 得到对应的脚本命令。
 
-### 4.2.1 Floorplan
+### 3.2.1 Floorplan
 
 布局规划（Floorplan）决定了**数字逻辑模块（soft module）**的位置、尺寸和形状以及**硬宏（hard macro）**的放置。
 布局规划包括确定整体尺寸、I/O 引脚布局、凸块（bump）分配（倒装芯片，flip chip）等。
@@ -388,7 +388,7 @@ addHaloToBlock [list 4 4 4 4] -allMacro
   <figcaption>Layout after adding I/O pins</figcaption>
 </figure>
 
-### 4.2.2 Powerplan
+### 3.2.2 Powerplan
 
 电源规划（Powerplan）是指在版图中规划**电源和接地网络**，以确保数字模块的稳定供电。
 主要包括定义电源线地线（Power/Ground net）、电源格栅（Power Stripe）、电源环（Power Ring）等。
@@ -664,7 +664,7 @@ sroute -connect                { corePin } \
 
     如果发现连接有误，需要及时修改 `pnr/scripts/floorplan/global_net_connect.tcl` 和 `pnr/scripts/powerplan/power_stripe.tcl` 中的相关命令，并通过查看 `LEF` 文件或者 Innovus GUI 界面查看 各个 Macro 内部 P/G Pin 所在的金属层。
 
-### 4.2.3 Placement
+### 3.2.3 Placement
 
 #### _（可选）_ Placement/Routing blockage（`pnr/scripts/placement/general_constraints.tcl`）
 
@@ -829,7 +829,7 @@ place_opt_design  -incremental
     * 调整初始 Floorplan。
     * 修改 RTL 中关键路径的逻辑。
 
-### 4.2.4 Clock Tree Synthesis（`pnr/scripts/clock_tree/cts.tcl`）
+### 3.2.4 Clock Tree Synthesis（`pnr/scripts/clock_tree/cts.tcl`）
 
 时钟树综合（Clock Tree Synthesis，CTS）是指在版图中规划**时钟网络**，以确保时钟信号的**稳定传输**。
 所有的触发器都由时钟信号驱动，时钟信号的传输质量直接影响到整个数字系统的稳定性和功耗。
@@ -891,7 +891,7 @@ optDesign -postCTS -hold
   <figcaption>Clock Tree Debugger Example</figcaption>
 </figure>
 
-### 4.2.5 Routing
+### 3.2.5 Routing
 
 布线分为两步：全局布线（Global Route）和局部布线（Detail Route）。
 另一个重要的概念是 ECO Route (Engineering Change Order)，用于在布线之后对设计进行修改，用于**修复 DRC 违例**。
@@ -977,7 +977,7 @@ verify_drc
 !!! question "标准单元的移动距离"
     在移动标准单元时，**至少**需要移动**2 格**，留下**足够的空间**为后续填充标准单元之间的间隙。
 
-### 4.2.6 Block Finishing
+### 3.2.6 Block Finishing
 
 在完成布局布线并且满足时序和 DRC 约束之后，需要进行版图填充、添加电源端口、导出文件等收尾操作。
 

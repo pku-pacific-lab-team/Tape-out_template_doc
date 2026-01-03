@@ -93,33 +93,33 @@ nav:
   - Welcome to Tape-out Docs!: index.md
   - I. EDA Tools & Environment: 0_eda.md
   - II. Frontend:
-    - 1. Behavioral Simulation: 1_behavioral_simulation.md
+    - 1. Simulation: 1_simulation.md
     - 2. Submodule Synthesis:
       - TSMC N22 Synthesis: 2_submodule_synthesis_22nm.md
       - TSMC N12 Synthesis: 2_submodule_synthesis_12nm.md
-    - 3. Submodule Gate Level Simulation: 3_submodule_gate_level_simulation.md
   - III. Backend:
-    - 4. Submodule Physical Implementation:
+    - 3. Submodule Physical Implementation:
       - TSMC N22 Implementation: 4_submodule_implementation_22nm.md
       - TSMC N12 Implementation: 4_submodule_implementation_12nm.md
-    - 5. TOP IO Implementation: 5_io.md
-    - 6. Physical Verification:
+    - 4. TOP IO Implementation: 5_io.md
+    - 5. Physical Verification:
       - Block-Level Verification: 6_lvs_drc_block.md
       - Top-Level Verification: 6_lvs_drc_top.md
-    - 7. Tape-out: 7_final_layout.md
+    - 6. Tape-out: 7_final_layout.md
   - IV. Post-tapeout:
-    - 8. PCB: 8_PCB.md
-    - 9. Packaging: 9_package.md
-    - 10. Testing: 10_testing.md
+    - 7. PCB: 8_PCB.md
+    - 8. Packaging: 9_package.md
+    - 9. Testing: 10_testing.md
   - V. Appendix:
-    - 11. RISC-V CPU Debugging: 11_cpu_debug.md
-    - 12. C Compiling: 12_compiling.md
-    - 13. WSL: 13_wsl.md
-    - 14. FPGA Verification: 14_FPGA_verification.md
-    - 15. PDK Setup: 15_PDK_setup.md
-    - 16. Digital-CIM Specification: DCIM_spec.md
-    - 17. SRAM IP Specification: sram_ip.md
-    - 18. System Integration: system_integration.md
-    - 19. FPU Specification: fpu_spec.md
-    - 20. Using DRAM on FPGA: FPGA_DRAM.md
+    - 10. RISC-V CPU Debugging: 11_cpu_debug.md
+    - 11. C Compiling: 12_compiling.md
+    - 12. WSL: 13_wsl.md
+    - 13. FPGA Verification: 14_FPGA_verification.md
+    - 14. PDK Setup: 15_PDK_setup.md
+    - 15. Digital-CIM Specification: DCIM_spec.md
+    - 16. SRAM IP Specification: sram_ip.md
+    - 17. System Integration: system_integration.md
+    - 18. FPU Specification: fpu_spec.md
+    - 19. Using DRAM on FPGA: FPGA_DRAM.md
+    - 20. STA & Power: sta_pwr.md
   - VI. Join Us! How to Contribute?: contribute.md
