@@ -1,7 +1,7 @@
 # 2. 数字子系统的逻辑综合（TSMC N22）
 
 !!! tip "TLDR"
-    1. 模板文件路径：`/project/common/block_flow_22nm_v1/`
+    1. 模板文件路径：`/project/common/block_flow_22nm/`
     2. 仿真脚本：`./Makefile`、`./syn/Makefile`
     3. 仿真命令：`make genus`
 
@@ -10,7 +10,7 @@
 我们使用 CVA6 作为逻辑综合模板示例，其文件夹路径为：
 
 ```
-/project/common/block_flow_22nm_v1/
+/project/common/block_flow_22nm/
 ```
 
 该文件夹的结构为：
@@ -50,7 +50,7 @@ $ROOT
 
 在 `src/filelist.f` 中添加你的子模块源文件。
 
-如果在子模块中例化了 SRAM IP，或者其他的定制 IP，则不需要在 `src/filelist.f` 中添加源文件，但是需要在后续综合参数中添加 SRAM 实例以及宏单元的名称。
+如果在子模块中例化了 SRAM IP，或者其他的定制 IP，则**不需要**在 `src/filelist.f` 中添加源文件，但是需要在后续综合参数中添加 SRAM 实例以及宏单元的名称。
 
 ### 修改综合参数
 
@@ -88,14 +88,14 @@ $ROOT
 - `set_output_delay`：设置输出延迟，告诉工具输出信号的延迟。
 - `set_false_path`：设置假路径，告诉工具哪些路径不需要做时序分析。
 
-其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值`60% clock_period`。
+其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值`30% clock_period`。
 
 !!! question "虚拟时钟"
     时序约束中，虚拟时钟是一个很常见的概念。
     虚拟时钟是为了描述**输入输出的时序信息**而引入的，对于综合工具来说，它**不了解**所综合的**子模块之外**的任何信息，因此需要一个虚拟时钟来告诉工具输入输出的时序信息。
 
     大部分情况下，虚拟时钟和实际时钟是**同步**的。
-    实际上，这和直接将输入输出约束到实际时钟上是**等效**的，但是这样做会使得时钟树综合后的时序与预期不符，因此通常使用虚拟时钟约束 IO。
+    这种情况下，这和直接将输入输出约束到实际时钟上是**等效**的。
 
 请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
@@ -113,7 +113,7 @@ make genus
 ```
 syn
 ├── logs
-│   ├── fv                              # empty functional verification folder
+│   ├── fv                              # functional verification folder
 │   ├── <top_module_name>.cmd           # genus command file
 │   └── <top_module_name>.log           # genus log file
 ├── <top_module_name>

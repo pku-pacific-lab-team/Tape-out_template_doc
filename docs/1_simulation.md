@@ -43,7 +43,11 @@ $ROOT
 ### 1.2 添加源文件
 
 - **RTL文件**: 在 `src/filelist.f` 中添加你的子模块源文件路径。
-- **IP行为级模型**: 如果在子模块中例化了SRAM或其他IP，请在 `sim/Makefile` 中通过 `SRC_LIST += <your_ip_behavior_model>.v` 的形式添加其行为级模型。
+- **IP行为级模型**: 如果在子模块中例化了SRAM或其他IP，请在 `sim/Makefile:67` 中通过 `SRC_LIST += <your_ip_behavior_model>.v` 的形式添加其行为级模型。
+
+!!! tip "SRAM 行为级模型"
+    当前脚本会自动获取 `src/sram/` 路径下所有 SRAM 对应的行为级模型，无需重复添加。
+
 
 ### 1.3 编写 Testbench
 
@@ -88,7 +92,7 @@ make verdi TOP=<top_module_name>_tb SIM_MODE=SYN
 
 !!! warning "网表与SDF文件路径"
     脚本只会搜索默认位置的网表和SDF文件。如果你的文件位置或命名有变，请手动修改 `sim/Makefile`。
-    
+
 !!! info "综合后仿真的时序意义"
     综合后的网表没有时钟树等真实的布线信息，因此其时序仿真结果**参考意义有限**，主要用于验证网表的功能正确性。
 

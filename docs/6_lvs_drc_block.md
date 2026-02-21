@@ -302,7 +302,7 @@ make virtuoso
 
 ??? bug "菜单栏中没有 `Calibre` 选项"
     如果使用文档提供的模板文件，原则上应该不会出现这个情况。这是因为在启动 Virtuoso 的时候缺少一个初始化文件。
-    可以将 `/project/common/[block|top]_flow_[12|22]nm_v*/pv/workspace/.cdsinit` 复制到自己项目下的 `layout/workspace/` 路径下面。
+    可以将 `/project/common/[block|top]_flow_[12|22]nm/pv/workspace/.cdsinit` 复制到自己项目下的 `layout/workspace/` 路径下面。
     或者也可以将上述 `.cdsinit` 复制到 `/work/home/<your_name>` 目录下，这样在任何位置打开 Virtuoso 都可以使用 Calibre 工具了 :)
 
 随后，按照如下操作步骤导入 LVS Rules，文件位于 `/PDK/TSMC_22NM/PDK/1P9M_6X1Z1U_iPDK_CRN22ULL_shrink_T-N22-CR-SP-004-W1_v1.3_1p1a_20211230/Calibre/lvs/calibre.lvs` 路径。
