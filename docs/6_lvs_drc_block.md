@@ -5,7 +5,7 @@
     2. 查看 LVS 验证结果：`make lvs` 后查看 `pv/reports/lvs.summary`。
     3. 查看 DRC 验证结果：`make drc` 后查看 `pv/reports/drc.summary`。
     4. 查看天线验证结果：`make ant` 后查看 `pv/reports/antenna.summary`。
-    5. 一键运行所有验证：`make pv`。
+    5. 一键运行所有验证：`make all`。
 
 ## 5.1 模板文件
 
@@ -61,7 +61,7 @@ $ROOT
 
 ### 5.2.1 LVS
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
 make lvs
@@ -79,7 +79,7 @@ LVS 会在 `pv/reports/lvs.summary` 生成 LVS 报告文件。
 
 ### 5.2.2 DRC
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
 make drc
@@ -106,7 +106,7 @@ DRC 会在 `pv/reports/drc.summary` 生成 DRC 报告文件。
 
 ### 5.2.3 天线效应
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
 make ant
@@ -127,17 +127,17 @@ make ant
 
 ### 5.2.4 一键运行所有验证
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
-make pv
+make all
 ```
 
 ## 5.3 使用 GUI 进行 LVS/DRC/Antenna 物理验证
 
 ### 5.3.1 LVS
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
 make lvs GUI=1
@@ -161,7 +161,7 @@ make lvs GUI=1
 
 ### 5.3.2 DRC
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
 make drc GUI=1
@@ -196,7 +196,7 @@ make drc GUI=1
 
 ### 5.3.3 天线效应
 
-在 `$ROOT` 路径下运行以下命令：
+在 `$ROOT/pv` 路径下运行以下命令：
 
 ```
 make ant GUI=1
@@ -302,8 +302,8 @@ make virtuoso
 
 ??? bug "菜单栏中没有 `Calibre` 选项"
     如果使用文档提供的模板文件，原则上应该不会出现这个情况。这是因为在启动 Virtuoso 的时候缺少一个初始化文件。
-    可以将 `/project/common/[block|top]_flow_[12|22]nm/pv/workspace/.cdsinit` 复制到自己项目下的 `layout/workspace/` 路径下面。
-    或者也可以将上述 `.cdsinit` 复制到 `/work/home/<your_name>` 目录下，这样在任何位置打开 Virtuoso 都可以使用 Calibre 工具了 :)
+    可以将 `/project/common/[block|top]_flow_tsmc_n[12|22]/pv/workspace/.cdsinit` 复制到自己项目下的 `pv/workspace/` 路径下面。
+    或者也可以将上述 `.cdsinit` 复制到 `/home/<your_name>` 目录下，这样在任何位置打开 Virtuoso 都可以使用 Calibre 工具了 :)
 
 随后，按照如下操作步骤导入 LVS Rules，文件位于 `/PDK/TSMC_22NM/PDK/1P9M_6X1Z1U_iPDK_CRN22ULL_shrink_T-N22-CR-SP-004-W1_v1.3_1p1a_20211230/Calibre/lvs/calibre.lvs` 路径。
 
@@ -352,28 +352,28 @@ make virtuoso
   <figcaption>Configure connections in LVS options</figcaption>
 </figure>
 
-* 在 `Gates` 中可以设置 LVS 物理验证中用于识别和匹配设计中逻辑门的方法。对于常规的数字流程来说，不需要在这里做特殊的设置。
+* 在 `Filter Unused Device Options` 中可以设置 LVS 物理验证中用于识别和匹配设计中逻辑门的方法。对于常规的数字流程来说，不需要在这里做特殊的设置。
 
 ??? info "一种可能的解决 LVS 报错的方式"
-    在此展示一种通过 `Gates` 中的设置解决 LVS 报错的例子。对于我们的 CVA6 CPU 进行层次化 LVS 物理验证，并将 SRAM IP 设置 LVS Box，只对逻辑综合出来的标准单元进行物理验证，最终 LVS 报告如下，显示有许多的 Instances 和 Nets 在网标中缺失。
+    在此展示一种通过 `Filter Unused Device Options` 中的设置解决 LVS 报错的例子。对于我们的 CVA6 CPU 进行层次化 LVS 物理验证，并将 SRAM IP 设置 LVS Box，只对逻辑综合出来的标准单元进行物理验证，最终 LVS 报告如下，显示有许多的 Instances 和 Nets 在网标中缺失。
 
     <figure>
       <img src="../figs/virtuoso_lvs_fail_demo.png" width=80%>
       <figcaption>Demo of LVS verification failure</figcaption>
     </figure>
 
-    此时我们在 `Gates` 中设置 `Filter Unused Device Options`，勾选其中的 `Q` 选项，即 `MOS, bipolar, resistor, capacitor, and diode devices with no general paths to any non-power/ground pads`，如下图中 `3*` 所示，此时重新进行 LVS 物理验证，会发现 LVS 验证通过。
+    此时我们设置 `Filter Unused Device Options`，勾选其中的 `Q` 选项，即 `MOS, bipolar, resistor, capacitor, and diode devices with no general paths to any non-power/ground pads`，如下图中 `3*` 所示，此时重新进行 LVS 物理验证，会发现 LVS 验证通过。
 
-    出现这个 LVS 报错的原因，是我们此前 Innovus 中进行物理实现时，[添加了许多 Physical-only cells](./4_submodule_implementation_new.md#摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl)，而且在 Signoff 阶段[生成门级网表](./4_submodule_implementation_new.md#结果文件导出pnrscriptssignofffile_gentcl)时设置了 `saveNetlist -excludeCellInst` 选项，因此在 CDL 网表中没有这些特殊的标准单元，例如 End-Cap，Well-Tap 等单元，而版图中却实际包含它们，因此 LVS 物理验证会报错。
+    出现这个 LVS 报错的原因，是我们此前 Innovus 中进行物理实现时，[添加了许多 Physical-only cells](./4_submodule_implementation_new.md#摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl)，而且在 Finish 阶段[生成门级网表](./4_submodule_implementation_new.md#结果文件导出pnrscriptssignofffile_gentcl)时设置了 `saveNetlist -excludeCellInst` 选项，因此在 CDL 网表中没有这些特殊的标准单元，例如 End-Cap，Well-Tap 等单元，而版图中却实际包含它们，因此 LVS 物理验证会报错。
 
     另一种解决 LVS 报错的方法，则是在导出网表文件时去掉 `-excludeCellInst` 选项，那么在生成的 Verilog（以及后续生成的 CDL）门级网表中就会包含这些标准单元，它们没有逻辑功能，只有 P/G Pin 连接。
 
 <figure>
   <img src="../figs/virtuoso_configure_lvs_options_gates.png" width=80%>
-  <figcaption>Configure gates in LVS options</figcaption>
+  <figcaption>Configure unused device in LVS options</figcaption>
 </figure>
 
-* 在 `LVS Box` 可以选择 (a) 不处理特定的模块或者子电路，进行常规的 LVS 流程；(b) 根据设计的情况选择添加 LVS Box，需要在 GUI 界面中手动添加想添加 Box 的**子模块名称**，名称需要和 Virtuoso 设计中 Cell 名称保持一致。如下图所示，我们给 CVA6 CPU 中的 3 种 SRAM IP 添加了 LVS Box。
+* 在 `LVS Box` 可以选择 (a) 不处理特定的模块或者子电路，进行常规的 LVS 流程；(b) 根据设计的情况选择添加 LVS Box，需要在 GUI 界面中手动添加想添加 Box 的**子模块名称**，名称需要和 Virtuoso 设计中 Cell 名称保持一致。如下图所示，我们给 CVA6 CPU 中的 2 种 SRAM IP 添加了 LVS Box。
 
 <figure>
   <img src="../figs/virtuoso_lvs_box.png" width=80%>
