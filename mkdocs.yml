@@ -101,7 +101,9 @@ nav:
     - 3. Submodule Physical Implementation:
       - TSMC N22 Implementation: 4_submodule_implementation_22nm.md
       - TSMC N12 Implementation: 4_submodule_implementation_12nm.md
-    - 4. TOP IO Implementation: 5_io.md
+    - 4. TOP IO Implementation:
+      - TSMC N22 Implementation: 5_io_22nm.md
+      - TSMC N12 Implementation: 5_io_12nm.md
     - 5. Physical Verification:
       - Block-Level Verification: 6_lvs_drc_block.md
       - Top-Level Verification: 6_lvs_drc_top.md

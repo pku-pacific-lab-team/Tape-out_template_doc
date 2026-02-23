@@ -9,7 +9,7 @@
 
 ## 5.1 模板文件
 
-在 Cadence Innovus 中完成[数字子系统的物理设计](./4_submodule_implementation_new.md)或者[顶层系统的物理设计](./5_io.md)之后，需要在 Siemens Calibre 中进行 LVS 和 DRC 物理验证。
+在 Cadence Innovus 中完成数字子系统的物理设计或者顶层系统的物理设计之后，需要在 Siemens Calibre 中进行 LVS 和 DRC 物理验证。
 
 ??? info "什么是 LVS 与 DRC 物理验证"
     LVS（Layout Versus Schematic）物理验证用于确保集成电路的版图（Layout）与其原理图（Schematic）一致。LVS 检查的内容包括：电路网络一致性、器件匹配。
