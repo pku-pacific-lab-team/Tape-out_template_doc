@@ -126,7 +126,7 @@ main 函数的原型为 ``int main(argc, *argv[])``。
 
 !!! Warning
 	需要在 WSL 环境中安装！
-	WSL 的安装以及网络配置请参考 [13. WSL](./13_wsl.md)。
+	WSL 的安装以及网络配置请参考 [13. WSL](wsl.md)。
 
 从 GitHub 上下载 RISC-V 工具链源码并进入该目录：
 
@@ -159,7 +159,7 @@ export NUM_JOBS=<num of processors>
 	打开任务管理器，左栏中选择“性能”选项卡，右下角即可看到 CPU 核数（逻辑处理器）。
 
 	<figure>
-	  <img src="../figs/nproc_win.png" width=70%>
+	  <img src="../assets/images/nproc_win.png" width=70%>
 	  <figcaption>Windows 查看逻辑处理器个数</figcaption>
 	</figure>
 

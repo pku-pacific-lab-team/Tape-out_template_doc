@@ -93,7 +93,7 @@ $ROOT
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `config/constraints_soc.sdc`。
 该文件也会在数字子系统的逻辑综合阶段用到。
 
-`sdc` 文件的更多信息详见逻辑综合中的[相关章节](./2_submodule_synthesis_22nm.md#修改时序约束)。请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
+`sdc` 文件的更多信息详见逻辑综合中的[相关章节](../frontend/submodule_synthesis_22nm.md#修改时序约束)。请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
 ### 3.1.3 启动 Innovus
 
@@ -108,7 +108,7 @@ make innovus
 如果成功运行，会弹出 Innovus GUI 界面，并且终端处于 Innvous 命令行模式，如下图所示。
 
 <figure>
-  <img src="../figs/innovus_startup.png" width=80%>
+  <img src="../assets/images/innovus_startup.png" width=80%>
   <figcaption>Innovus Startup</figcaption>
 </figure>
 
@@ -157,7 +157,7 @@ make restore_innovus STAGE=<stage_name>
 - Block Finishing
 
 <figure>
-  <img src="../figs/timing_closure_flow.png" width=80%>
+  <img src="../assets/images/timing_closure_flow.png" width=80%>
   <figcaption>Recommended Timing Closure Flow</figcaption>
 </figure>
 
@@ -189,21 +189,21 @@ Innovus 拥有全局 TCL 变量，这些变量都形如 `init_*`，可以通过 
 在 Innovus GUI 界面右上角选择 `Floorplan View`，如下图所示。
 
 <figure>
-  <img src="../figs/check_floorplan_view.png" width=100%>
+  <img src="../assets/images/check_floorplan_view.png" width=100%>
   <figcaption>Check Floorplan View</figcaption>
 </figure>
 
 可以看到初始的版图如下所示。
 
 <figure>
-  <img src="../figs/init_floorplan_view.png" width=80%>
+  <img src="../assets/images/init_floorplan_view.png" width=80%>
   <figcaption>Initial Floorplan View</figcaption>
 </figure>
 
 中央为整个芯片的版图，分为 Core Box，IO Box 和 Die Box，如下图所示。
 
 <figure>
-  <img src="../figs/floorplan_box.png" width=70%>
+  <img src="../assets/images/floorplan_box.png" width=70%>
   <figcaption>Floorplan Box Definition</figcaption>
 </figure>
 
@@ -260,7 +260,7 @@ floorPlan -d {W H Left Bottom Right Top}
 一个初始的版图类似下图所示，设置该版图大小的命令为：`floorPlan -d 100 100 10 10 10 10`。
 
 <figure>
-  <img src="../figs/example_floorplan.png" width=80%>
+  <img src="../assets/images/example_floorplan.png" width=80%>
   <figcaption>Example Floorplan</figcaption>
 </figure>
 
@@ -319,12 +319,12 @@ placeInstance instance_name location [orientation]
 该图标的次级菜单可以选择是否只能水平垂直移动。
 
 <figure>
-  <img src="../figs/macro_move.png" width=100%>
+  <img src="../assets/images/macro_move.png" width=100%>
   <figcaption>Move/Resize/Reshape Widget</figcaption>
 </figure>
 
 <figure>
-  <img src="../figs/move_orthogonal.png" width=100%>
+  <img src="../assets/images/move_orthogonal.png" width=100%>
   <figcaption>Move Restriction</figcaption>
 </figure>
 
@@ -332,7 +332,7 @@ placeInstance instance_name location [orientation]
 按照下图中的步骤 1，可以看到在中央视图的左上角会出现一个工具箱，选中需要操作的多个 Macro，然后点击该工具箱即可对选中的 Macro 进行对齐、等间距排列等操作。
 
 <figure>
-  <img src="../figs/floorplan_toolbox.png" width=100%>
+  <img src="../assets/images/floorplan_toolbox.png" width=100%>
   <figcaption>Floorplan Toolbox</figcaption>
 </figure>
 
@@ -345,7 +345,7 @@ setInstancePlacementStatus -allHardMacros -status {fixed | placed | cover | soft
 摆放好所有 Macro 之后的版图如下所示。
 
 <figure>
-  <img src="../figs/place_macro.png" width=80%>
+  <img src="../assets/images/place_macro.png" width=80%>
   <figcaption>Layout after placing macros</figcaption>
 </figure>
 
@@ -369,7 +369,7 @@ addHaloToBlock [list 4 4 4 4] -allMacro
 * 打开 `pnr/logs/<top_module_name>.cmd` （Innovus 生成的日志文件）查看我们在 GUI 界面每一步操作所对应的命令，其中就有我们所需要的 `editPin` 命令。
 
 <figure>
-  <img src="../figs/pin_editor.png" width=80%>
+  <img src="../assets/images/pin_editor.png" width=80%>
   <figcaption>Innovus Pin Editor</figcaption>
 </figure>
 
@@ -386,7 +386,7 @@ addHaloToBlock [list 4 4 4 4] -allMacro
 添加完 Pin 后的版图如下图所示，每一个黄色的三角形代表一个 Pin 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。
 
 <figure>
-  <img src="../figs/add_pin.png" width=80%>
+  <img src="../assets/images/add_pin.png" width=80%>
   <figcaption>Layout after adding I/O pins</figcaption>
 </figure>
 
@@ -465,7 +465,7 @@ addRing -nets [list VDD VDD_SRAM VSS] \
 添加 Core rings 之后的部分版图如下所示.
 
 <figure>
-  <img src="../figs/add_core_rings.png" width=80%>
+  <img src="../assets/images/add_core_rings.png" width=80%>
   <figcaption>Partial layout after adding core rings</figcaption>
 </figure>
 
@@ -499,7 +499,7 @@ addRing -nets {VDD_CPU VSS} \
 一个 SRAM IP 周围的 Block rings 如下所示。
 
 <figure>
-  <img src="../figs/add_block_rings.png" width=80%>
+  <img src="../assets/images/add_block_rings.png" width=80%>
   <figcaption>Partial layout after adding block rings</figcaption>
 </figure>
 
@@ -567,7 +567,7 @@ SRAM IP 内部最顶层的 P/G 网络是 **M5 横向排布**的 `VDDPE`, `VDDCE`
 因此，最底层的电源金属层 M7 的 `VDD` 通过 VIA5、VIA6 连接到 SRAM macro 内部的 P/G Pin，如下图所示。
 
 <figure>
-  <img src="../figs/sram_pg_connection.png" width=90%>
+  <img src="../assets/images/sram_pg_connection.png" width=90%>
   <figcaption>P/G connections for SRAM macros</figcaption>
 </figure>
 
@@ -583,7 +583,7 @@ addStripe         -layer                            M7 \
 添加全局电源格栅之后的版图如下所示。
 
 <figure>
-  <img src="../figs/add_power_stripes.png" width=80%>
+  <img src="../assets/images/add_power_stripes.png" width=80%>
   <figcaption>Layout after adding power stripes</figcaption>
 </figure>
 
@@ -618,14 +618,14 @@ sroute -connect                { corePin } \
     在执行 `sroute` 之后，会出现 Macro 周围的 Violation，在 GUI 中表现为白色的叉号，如下图所示。
 
     <figure>
-      <img src="../figs/power_rail_open.png" width=80%>
+      <img src="../assets/images/power_rail_open.png" width=80%>
       <figcaption>Power Rail Violation</figcaption>
     </figure>
 
     出现这种违例的原因是 M1 金属线的两端没有连接到 Power Ring 上，属于开路（open）违例。
 
     <figure>
-      <img src="../figs/power_rail_open_zoomin.png" width=80%>
+      <img src="../assets/images/power_rail_open_zoomin.png" width=80%>
       <figcaption>Power Rail Open Circuit</figcaption>
     </figure>
 
@@ -639,7 +639,7 @@ sroute -connect                { corePin } \
 电源布线之后的版图如下所示。
 
 <figure>
-  <img src="../figs/sroute.png" width=80%>
+  <img src="../assets/images/sroute.png" width=80%>
   <figcaption>Partial layout after sroute</figcaption>
 </figure>
 
@@ -669,7 +669,7 @@ createPlaceBlockage -name     setdensity_blk1 \
   * `-box 300 50 1000 500`：如下图所示，设置了该 Placement blockage 的具体范围（粉色方格区域），使用左下角和右上角的横纵坐标表示。
 
 <figure>
-  <img src="../figs/place_blockage.png" width=80%>
+  <img src="../assets/images/place_blockage.png" width=80%>
   <figcaption>Layout after setting placement blockage</figcaption>
 </figure>
 
@@ -716,7 +716,7 @@ addEndCap
 添加 End-Cap Cells 之后的部分版图如下所示，可以看见在 Macro 的左侧和右侧，以及 Core box 的左侧和右侧（也就是标准单元行末端的剩余空间添加了 Endcap Cells。
 
 <figure>
-  <img src="../figs/add_endcap_cells.png" width=80%>
+  <img src="../assets/images/add_endcap_cells.png" width=80%>
   <figcaption>Partial layout after adding endcap cells</figcaption>
 </figure>
 
@@ -738,7 +738,7 @@ addWellTap  -cell         ${rm_tap_cell} \
 可以看到在每个标准单元行，以棋盘形式交替摆放着 Well-Tap Cells。
 
 <figure>
-  <img src="../figs/add_welltap_cells.png" width=80%>
+  <img src="../assets/images/add_welltap_cells.png" width=80%>
   <figcaption>Partial layout after adding Well-Tap cells</figcaption>
 </figure>
 
@@ -759,7 +759,7 @@ addWellTap  -prefix       DECAP \
 放置 Decap Cells 之后的部分版图如下所示，可以看见每隔一行（因为指定了 `-skipRow 1`）在 Well-Tap Cells 旁边添加了 Decap Cells。
 
 <figure>
-  <img src="../figs/add_decap_cells.png" width=80%>
+  <img src="../assets/images/add_decap_cells.png" width=80%>
   <figcaption>Partial layout after adding decap cells</figcaption>
 </figure>
 
@@ -786,7 +786,7 @@ addTieHiLo
 在 Innovus GUI 界面右上角选择 `Physical View`，即可查看摆放完标准单元之后的版图。
 
 <figure>
-  <img src="../figs/place_layout.png" width=80%>
+  <img src="../assets/images/place_layout.png" width=80%>
   <figcaption>Layout after adding standard cells</figcaption>
 </figure>
 
@@ -865,14 +865,14 @@ optDesign -postCTS -hold
 在 GUI 中可以通过 `Clock Tree Debugger` 看到生成的时钟树。
 
 <figure>
-  <img src="../figs/clk_tree_debug.png" width=80%>
+  <img src="../assets/images/clk_tree_debug.png" width=80%>
   <figcaption>Clock Tree Debugger Navigation</figcaption>
 </figure>
 
 一个时钟树的实例如下。
 
 <figure>
-  <img src="../figs/ctd.png" width=80%>
+  <img src="../assets/images/ctd.png" width=80%>
   <figcaption>Clock Tree Debugger Example</figcaption>
 </figure>
 
@@ -943,14 +943,14 @@ verify_drc
 如下图所示，两个标注单元之间的 Via1 距离过近导致了 DRC，选择图中红框所示的移动工具（快捷键 Shift+R），将左侧的标准单元向左移动**至少 2 格**，确保标准单元之间的间隔**至少为 2 格**。
 
 <figure>
-  <img src="../figs/drc_fix_pre.png" width=80%>
+  <img src="../assets/images/drc_fix_pre.png" width=80%>
   <figcaption>Via1 DRC</figcaption>
 </figure>
 
 移动后的效果如下图所示。
 
 <figure>
-  <img src="../figs/drc_fix_post.png" width=80%>
+  <img src="../assets/images/drc_fix_post.png" width=80%>
   <figcaption>Move Stdcell to fix DRC</figcaption>
 </figure>
 
@@ -1006,14 +1006,14 @@ for { set i 0 } { $i < 20 } {incr i} {
 可以通过 GUI 查看最高层 Power Stripe 的位置和大小，如下图所示。
 
 <figure>
-  <img src="../figs/add_pgpin.png" width=80%>
+  <img src="../assets/images/add_pgpin.png" width=80%>
   <figcaption>Power Stripe Attribute</figcaption>
 </figure>
 
 请确保所有的 Power Stripe 都添加了对应的电源端口，添加后的结果如下图所示。
 
 <figure>
-  <img src="../figs/pgpin_added.png" width=80%>
+  <img src="../assets/images/pgpin_added.png" width=80%>
   <figcaption>Power/Ground Pin</figcaption>
 </figure>
 

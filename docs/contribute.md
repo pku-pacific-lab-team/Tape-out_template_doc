@@ -38,7 +38,7 @@ pip install mkdocs-encryptcontent-plugin
 如果你想添加一个单独的页面，可以在 `docs` 目录下新建一个 `.md` 文件，然后在 `mkdocs.yml`、`index.md` 文件中添加该文件的路径。
 
 !!! warning "添加图片"
-    如果你想添加图片，请将图片放在 `docs` 目录下的 `figs` 文件夹中，然后在 `.md` 文件中使用`../figs/xxx.png`引用图片。
+    如果你想添加图片，请将图片放在 `docs/assets/images` 目录中，并在 `.md` 文件里按当前文件位置使用相对路径引用（例如 `assets/images/xxx.png` 或 `../assets/images/xxx.png`）。
 
 ## 提交代码
 

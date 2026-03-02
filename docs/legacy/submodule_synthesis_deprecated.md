@@ -1,7 +1,7 @@
 # 2. 数字子系统的逻辑综合（弃用）
 
 !!! Warning "注意"
-    本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，强烈推荐阅读[新版文档](./2_submodule_synthesis_new.md)。
+    本部分内容已经过时。[轩导](https://github.com/Siris-Li)重构了此前的模板文件，强烈推荐阅读[新版文档](submodule_synthesis_new.md)。
 
 ## 2.1 逻辑综合基本原理
 
@@ -36,7 +36,7 @@
 !!! question "提示"
     该步骤虽然不是必须的流程，但却可能造成较大的困惑，因此在此先进行说明。
 
-主要用到的是ARM提供的 `SRAM Compiler` 和 `Register File Compiler`（[工具路径](./0_eda.md#arm-sram-compiler)）
+主要用到的是ARM提供的 `SRAM Compiler` 和 `Register File Compiler`（[工具路径](../background/eda_tools_environment.md#arm-sram-compiler)）
 
 在 `./sram/` 路径下新建文件夹，并在该文件夹下启动 `SRAM Compiler`/`Register File Compiler`，用于存放生成的文件。
 
@@ -46,7 +46,7 @@
 #### SRAM Compiler 使用说明
 
 <figure>
-  <img src="../figs/sram_compiler.png" width=80%>
+  <img src="../assets/images/sram_compiler.png" width=80%>
   <figcaption>ARM SRAM Compiler</figcaption>
 </figure>
 
@@ -69,7 +69,7 @@
   增加 bank 和 mux 的数量均会导致延迟的**减小**。
 
 <figure>
-  <img src="../figs/corners.png">
+  <img src="../assets/images/corners.png">
   <figcaption>SRAM Compiler Available Corners </figcaption>
 </figure>
 
@@ -82,7 +82,7 @@
 * `GDSII Layout`：用于后端设计的 DRC 检查和最终版图导出。
 
 <figure>
-  <img src="../figs/views.png">
+  <img src="../assets/images/views.png">
   <figcaption>SRAM Compiler Available Views </figcaption>
 </figure>
 
@@ -91,7 +91,7 @@
 与 `SRAM Compiler` 流程类似，少了一个 `Number of Banks` 选择。
 
 <figure>
-  <img src="../figs/register_file_compiler.png" width=80%>
+  <img src="../assets/images/register_file_compiler.png" width=80%>
   <figcaption>ARM Register File Compiler</figcaption>
 </figure>
 
@@ -336,7 +336,7 @@ foreach sram ${sram_insts} { \
 一个较完整的例子如下：
 
 <figure>
-  <img src="../figs/add_lib_files.png" width=80%>
+  <img src="../assets/images/add_lib_files.png" width=80%>
   <figcaption>添加 LIB 文件</figcaption>
 </figure>
 

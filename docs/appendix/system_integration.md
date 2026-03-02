@@ -248,14 +248,14 @@ endmodule
 读操作的时序如下：
 
 <figure>
-  <img src="../figs/axi2mem_read.png" width=80%>
+  <img src="../assets/images/axi2mem_read.png" width=80%>
   <figcaption>axi2mem Memory Port Read Timing Diagram</figcaption>
 </figure>
 
 写操作的时序如下：
 
 <figure>
-  <img src="../figs/axi2mem_write.png" width=80%>
+  <img src="../assets/images/axi2mem_write.png" width=80%>
   <figcaption>axi2mem Memory Port Write Timing Diagram</figcaption>
 </figure>
 
@@ -346,8 +346,8 @@ CPU 的程序存储在主存中，因此需要在仿真开始前**初始化内�
 
 !!! question "编译"
     由于服务器上没有 RISC-V 编译链，因此你需要在**本地**编译代码。
-    如果你不会编译，可以参考 [12. C 代码编译](./12_compiling.md)。
+    如果你不会编译，可以参考 [12. C 代码编译](c_compiling.md)。
 
 ## 4. 系统级行为级仿真
 
-参考 [数字子系统的行为级仿真](./1_behavioral_simulation.md)。
+参考 [数字子系统的行为级仿真](../frontend/behavioral_simulation.md)。
