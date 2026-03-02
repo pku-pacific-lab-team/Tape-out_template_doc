@@ -1,6 +1,6 @@
 # Digital-CIM 使用规范
 
-## 概述
+## 1. 概述
 
 CIM 是 Compute-in-Memory 的缩写，即存内计算。
 Digital-CIM (DCIM) 使用标准 SRAM 单元实现存储，并在 SRAM 阵列中添加或非门和加法器树实现乘累加操作。
@@ -13,7 +13,7 @@ CIM 的功能可以大致分为三类：
 - 计算：将输入特征和权重相乘累加
 
 
-## 规模
+## 2. 规模
 
 <figure>
   <img src="../../assets/images/appendix/dcim_scale.png" width=80%>
@@ -47,7 +47,7 @@ DCIM 的规模为 512 行 x 256 列。
 !!! Warning "数据流"
     上述实例只是 DCIM 的一种数据流，可以有多种不同的映射方式。
 
-## 端口列表
+## 3. 端口列表
 
 <div style="display: flex; justify-content: center;">
 
@@ -136,7 +136,7 @@ DCIM 的规模为 512 行 x 256 列。
     这可以包括调整电压、电流或其他参数，以确保芯片在各种条件下都能正常工作。
     Trim信号的使用有助于提高芯片的良率和性能一致性。
 
-## DCIM IP 路径
+## 4. DCIM IP 路径
 
 服务器上经过流片验证的 DCIM IP 路径为：
 

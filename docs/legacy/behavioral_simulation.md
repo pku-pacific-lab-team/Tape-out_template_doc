@@ -33,7 +33,7 @@ $ROOT
 ```
 
 !!! question "集成到 SoC"
-    参考[系统集成](../appendix/system_integration.md)章节，将你的模块集成到 SoC 中，进行 SoC 级别的行为级仿真。
+    参考[系统集成](../frontend/rtl_design/system_integration.md)章节，将你的模块集成到 SoC 中，进行 SoC 级别的行为级仿真。
 
 ## 1.2 添加源文件
 

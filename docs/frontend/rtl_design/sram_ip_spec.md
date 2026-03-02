@@ -1,6 +1,6 @@
 # SRAM IP 使用规范
 
-## 尺寸
+## 1. 尺寸
 
 SRAM 的尺寸是由 `Number of Words`、`Number of Bits`、`Multiplexer Width` `Number of banks` 所决定的，对应能生成的 SRAM 尺寸如下表所示。
 
@@ -83,7 +83,7 @@ SRAM 的尺寸是由 `Number of Words`、`Number of Bits`、`Multiplexer Width` 
 对于逻辑尺寸相同的 SRAM，Bank 的数量并**不会**显著影响面积。
 Mux **越多**，SRAM 的 Wordline **越长**，Bitline **越短**。
 
-## 端口
+## 2. 端口
 
 SRAM IP 的端口定义如下表所示。
 
@@ -173,7 +173,7 @@ SRAM IP 的端口定义如下表所示。
     如果加入了 Bit Mask 功能，则 `WEN` 信号会被替换为两个信号 `GWEN`，`WEN[n-1:0]`。
     前者表示全局写使能（低电平有效），后者表示每个 Bit 的写使能（低电平有效）。
 
-### Extra Margin Adjustment (EMA)
+### 2.1 Extra Margin Adjustment (EMA)
 
 EMA 允许 SRAM 添加**内部时序延迟**，以提高制造良率。
 这些延迟**减慢**内存访问速度，为成功的内存读写操作提供了**额外的时间**。
@@ -199,13 +199,13 @@ Liberty 文件中的时间是读写时间的最坏情况。
     如果 EMA 设置与默认设置**不同**，则必须能够在操作期间**动态更改** EMA 设置。
     不得将 EMA 引脚**硬编码**为默认值以外的任何值，否则**后果自负**！
 
-### Retention
+### 2.2 Retention
 
 保留模式允许降低 SRAM 供电电压。
 这种低功耗模式会**保留**存储器阵列内容。
 在此模式下**无法**进行读或写操作。
 
-### Vmin Assist (Read Assist)
+### 2.3 Vmin Assist (Read Assist)
 
 读辅助添加了逻辑以改善位单元的**读干扰裕度**，确保读/写操作期间不会发生意外写入。
 
@@ -215,7 +215,7 @@ Liberty 文件中的时间是读写时间的最坏情况。
     如果 RAWL 设置与默认设置**不同**，则必须能够在操作期间**动态更改** RAWL 设置。
     不得将 RAWL 引脚**硬编码**为默认值以外的任何值，否则**后果自负**！
 
-### Vmin Assist (Write Assist)
+### 2.4 Vmin Assist (Write Assist)
 
 写入辅助添加了逻辑，以在低于典型值的电压下**提高**位单元的**写入能力**，从而确保写入操作期间的正确功能。
 
@@ -225,7 +225,7 @@ Liberty 文件中的时间是读写时间的最坏情况。
     如果 WABL 设置与默认设置**不同**，则必须能够在操作期间**动态更改** WABL 设置。
     不得将 WABL 引脚**硬编码**为默认值以外的任何值，否则**后果自负**！
 
-### Self-time Overide (STOV)
+### 2.5 Self-time Overide (STOV)
 
 STOV 功能允许**覆盖**存储器内部时钟脉冲的**自定时生成**。
 该覆盖允许您使用非内部时钟脉冲进行芯片**调试**，因此可以在 SoC 中将该引脚实现为可编程。
@@ -235,7 +235,7 @@ STOV 功能允许**覆盖**存储器内部时钟脉冲的**自定时生成**。
     STOV 信号为**高电平有效**。
     STOV 引脚仅用于**测试目的**，在正常操作期间**不得置位**，否则**后果自负**！
 
-## 时序
+## 3. 时序
 
 <figure>
   <img src="../../assets/images/appendix/sram_read_timing.png" width=80%>

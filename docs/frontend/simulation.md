@@ -39,7 +39,7 @@ $ROOT
 ```
 
 !!! question "集成到 SoC"
-    在进行SoC级别的仿真前，请参考[系统集成](../appendix/system_integration.md)相关章节，将你的模块正确集成到SoC中。
+    在进行SoC级别的仿真前，请参考[系统集成](rtl_design/system_integration.md)相关章节，将你的模块正确集成到SoC中。
 
 ### 1.2 添加源文件
 
