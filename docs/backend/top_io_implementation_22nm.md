@@ -110,7 +110,7 @@ PRWDWUWHWSWDGE_H_G ext_clk_pad_inst (
 布局布线完成后，信号PAD所需的连线已经完成，但是电源PAD仍旧没有和Power Stripe相连，这需要我们在Virtuoso中手动完成电源连接，完成的示例如下图。
 
 <figure>
-  <img src="../assets/images/backend/virtuoso_power_link.png" width=80%>
+  <img src="../../assets/images/backend/virtuoso_power_link.png" width=80%>
   <figcaption>Power Connection between PAD & Stripe</figcaption>
 </figure>
 

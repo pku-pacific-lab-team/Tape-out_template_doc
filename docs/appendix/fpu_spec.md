@@ -17,7 +17,7 @@ FPnew 的架构分为四个主要功能块，每个块处理一类指令：
 每个功能块可配置为**并行**或**合并**格式切片，支持不同精度的独立或共享数据通路。
 
 <figure>
-  <img src="../assets/images/appendix/merge_parallel.png" width=70%>
+  <img src="../../assets/images/appendix/merge_parallel.png" width=70%>
   <figcaption>Merge vs Parallel</figcaption>
 </figure>
 

@@ -138,7 +138,7 @@ make verdi TOP=<top_module_name>_tb SIM_MODE=PR
 下图展示了这一过程：CPU发起了四次地址递增的写0操作，然后发起了第一次读操作。`loadmem` 的时机应该这两次操作之间的窗口期内（如位于4,600,000 ps）。
 
 <figure>
-  <img src="../assets/images/frontend/simulation_load_mem.png" width=100%>
+  <img src="../../assets/images/frontend/simulation_load_mem.png" width=100%>
   <figcaption>Memory Load Timing Window</figcaption>
 </figure>
 
@@ -156,7 +156,7 @@ make verdi TOP=<top_module_name>_tb SIM_MODE=PR
 下图展示了一个典型的后仿波形，光标所在位置 `6,220,308 ps` 并非整数，`clk_i` 在此时刻发生跳变，且 `result_o` 在 `out_valid_o` 跳变为1后仍有密集毛刺，这表明SDF反标成功。
 
 <figure>
-  <img src="../assets/images/frontend/simulation_glitch.png" width=100%>
+  <img src="../../assets/images/frontend/simulation_glitch.png" width=100%>
   <figcaption>SDF Back-Annotated Waveform</figcaption>
 </figure>
 
@@ -168,7 +168,7 @@ make verdi TOP=<top_module_name>_tb SIM_MODE=PR
 该报告位于 `sim/build/sdfAnnotateInfo` 文件中。打开该文件，你会看到类似下面的摘要信息：
 
 <figure>
-  <img src="../assets/images/frontend/simulation_sdf_annotation.png" width=80%>
+  <img src="../../assets/images/frontend/simulation_sdf_annotation.png" width=80%>
   <figcaption>SDF Annotation Summary Report</figcaption>
 </figure>
 
@@ -184,7 +184,7 @@ $sdf_annotate(sdf_path, i_soc, , "sdf.log", "MINIMUM");
 因此，我们需要确认innovus工具导出的SDF文件中包含了我们指定的角。SDF文件中的延时值通常以 `(MIN:TYP:MAX)` 的三元组格式表示。
 
 <figure>
-  <img src="../assets/images/frontend/simulation_sdf_file.png" width=80%>
+  <img src="../../assets/images/frontend/simulation_sdf_file.png" width=80%>
   <figcaption>SDF File Delay Format</figcaption>
 </figure>
 
