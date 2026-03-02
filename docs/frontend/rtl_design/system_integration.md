@@ -5,13 +5,13 @@
 我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为系统集成模板示例，其文件夹路径为：
 
 ```
-/work/home/limingxuan/common/SOC_CVA6/
+/project/common/block_flow_22nm/
 ```
 
 该文件夹的结构为：
 
 ```
-SOC_CVA6
+block_flow_22nm
 ├── src
 │   ├── cpu_cva6
 │   │   ├── ...
@@ -248,14 +248,14 @@ endmodule
 读操作的时序如下：
 
 <figure>
-  <img src="../../assets/images/appendix/axi2mem_read.png" width=80%>
+  <img src="../../../assets/images/appendix/axi2mem_read.png" width=80%>
   <figcaption>axi2mem Memory Port Read Timing Diagram</figcaption>
 </figure>
 
 写操作的时序如下：
 
 <figure>
-  <img src="../../assets/images/appendix/axi2mem_write.png" width=80%>
+  <img src="../../../assets/images/appendix/axi2mem_write.png" width=80%>
   <figcaption>axi2mem Memory Port Write Timing Diagram</figcaption>
 </figure>
 

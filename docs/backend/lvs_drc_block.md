@@ -1,4 +1,4 @@
-# 5. 模块级 LVS/DRC/Antenna 物理验证
+# 模块级 LVS/DRC/Antenna 物理验证
 
 !!! tip "TLDR（太长不看）"
     1. 验证脚本：`pv/Makefile`。
@@ -7,7 +7,7 @@
     4. 查看天线验证结果：`make ant` 后查看 `pv/reports/antenna.summary`。
     5. 一键运行所有验证：`make all`。
 
-## 5.1 模板文件
+## 1. 模板文件
 
 在 Cadence Innovus 中完成数字子系统的物理设计或者顶层系统的物理设计之后，需要在 Siemens Calibre 中进行 LVS 和 DRC 物理验证。
 
@@ -57,9 +57,9 @@ $ROOT
 └── ...
 ```
 
-## 5.2 使用脚本进行 LVS/DRC/Antenna 物理验证
+## 2. 使用脚本进行 LVS/DRC/Antenna 物理验证
 
-### 5.2.1 LVS
+### 2.1 LVS
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -77,7 +77,7 @@ LVS 会在 `pv/reports/lvs.summary` 生成 LVS 报告文件。
 
 如果 LVS 没有通过，证明在后端物理实现的时候某些步骤出现了问题，需要根据 LVS 报告中的错误信息进行排查和修正。
 
-### 5.2.2 DRC
+### 2.2 DRC
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -104,7 +104,7 @@ DRC 会在 `pv/reports/drc.summary` 生成 DRC 报告文件。
     - \*.DN.\*
     - DM\*.R.1
 
-### 5.2.3 天线效应
+### 2.3 天线效应
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -125,7 +125,7 @@ make ant
     在此文档中所提及的 DRC 都指的是狭义上的 DRC，即不包括天线效应的规则检查。
 
 
-### 5.2.4 一键运行所有验证
+### 2.4 一键运行所有验证
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -133,9 +133,9 @@ make ant
 make all
 ```
 
-## 5.3 使用 GUI 进行 LVS/DRC/Antenna 物理验证
+## 3. 使用 GUI 进行 LVS/DRC/Antenna 物理验证
 
-### 5.3.1 LVS
+### 3.1 LVS
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -159,7 +159,7 @@ make lvs GUI=1
 
 看到笑脸则表示 LVS 物理验证通过。
 
-### 5.3.2 DRC
+### 3.2 DRC
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -194,7 +194,7 @@ make drc GUI=1
     - \*.DN.\*
     - DM\*.R.1
 
-### 5.3.3 天线效应
+### 3.3 天线效应
 
 在 `$ROOT/pv` 路径下运行以下命令：
 
@@ -223,7 +223,7 @@ make ant GUI=1
     在此文档中所提及的 DRC 都指的是狭义上的 DRC，即不包括天线效应的规则检查。
 
 
-## 5.4 使用 Virtuoso 查看版图并进行 LVS/DRC/Antenna 物理验证
+## 4. 使用 Virtuoso 查看版图并进行 LVS/DRC/Antenna 物理验证
 
 在 `$ROOT` 路径下，运行如下命令启动 Virtuoso。
 
@@ -231,7 +231,7 @@ make ant GUI=1
 make virtuoso
 ```
 
-### 5.4.1 导入设计（初次使用）
+### 4.1 导入设计（初次使用）
 
 若**首次打开** Virtuoso，需要将 Innovus 完成的设计导入到 Virtuoso 中。
 
@@ -275,7 +275,7 @@ make virtuoso
       <figcaption>Virtuoso StreamIn Warning</figcaption>
     </figure>
 
-### 5.4.2 打开设计
+### 4.2 打开设计
 
 如果之前已经把设计导入到 Virtuoso 中，则可以在 Virtuoso Terminal 中选择 `Open` 打开设计，具体步骤如下所示。
 
@@ -289,9 +289,9 @@ make virtuoso
 
     设置最小格点：在 Virtuoso Layout Suite L 上方菜单栏中选择 `Options -> Display`，把 `X Snap Spacing` 和 `Y Snap Spacing` 改成 0.005
 
-## 5.4.3 LVS 物理验证
+## 5. LVS 物理验证
 
-### 导入 LVS Rule 与 CDL 网表文件
+### 5.1 导入 LVS Rule 与 CDL 网表文件
 
 在 Virtuoso Layout Suite L 上方菜单栏中选择 `Calibre -> Run nmLVS`，如下所示。
 
@@ -331,7 +331,7 @@ make virtuoso
 * 层次化验证保留了设计的层次结构，每个模块在验证过程中都作为一个独立的单元进行检查。层次化验证速度更快，可以减少相同子模块的重复验证计算。
 * 扁平化验证将设计的所有模块展开为一个平面结构，即所有模块的内部细节都被展开并作为一个整体进行检查。检查会更加全面，但是速度较慢、内存占用更高。
 
-### 设置 LVS 运行选项
+### 5.2 设置 LVS 运行选项
 
 导入了 LVS 所需的输入文件之后，在 `LVS Options` 设置 LVS 物理验证的运行选项，以下对 `Supply`, `Connect`, `Gates`, `LVS Box` 四个选项进行简要说明。
 
@@ -364,7 +364,7 @@ make virtuoso
 
     此时我们设置 `Filter Unused Device Options`，勾选其中的 `Q` 选项，即 `MOS, bipolar, resistor, capacitor, and diode devices with no general paths to any non-power/ground pads`，如下图中 `3*` 所示，此时重新进行 LVS 物理验证，会发现 LVS 验证通过。
 
-    出现这个 LVS 报错的原因，是我们此前 Innovus 中进行物理实现时，[添加了许多 Physical-only cells](../legacy/submodule_implementation_new.md#摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl)，而且在 Finish 阶段[生成门级网表](../legacy/submodule_implementation_new.md#结果文件导出pnrscriptssignofffile_gentcl)时设置了 `saveNetlist -excludeCellInst` 选项，因此在 CDL 网表中没有这些特殊的标准单元，例如 End-Cap，Well-Tap 等单元，而版图中却实际包含它们，因此 LVS 物理验证会报错。
+    出现这个 LVS 报错的原因，是我们此前 Innovus 中进行物理实现时，[添加了许多 Physical-only cells](../legacy/submodule_implementation_new.md#摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl)，而且在 Finish 阶段[生成门级网表](../legacy/submodule_implementation_new.md#结果文件导出 pnrscriptssignofffile_gentcl)时设置了 `saveNetlist -excludeCellInst` 选项，因此在 CDL 网表中没有这些特殊的标准单元，例如 End-Cap，Well-Tap 等单元，而版图中却实际包含它们，因此 LVS 物理验证会报错。
 
     另一种解决 LVS 报错的方法，则是在导出网表文件时去掉 `-excludeCellInst` 选项，那么在生成的 Verilog（以及后续生成的 CDL）门级网表中就会包含这些标准单元，它们没有逻辑功能，只有 P/G Pin 连接。
 
@@ -383,13 +383,13 @@ make virtuoso
 ??? info "什么是 LVS Box"
     LVS Box 可以帮助用户在进行版图与原理图对比时，将某些模块视为一个“黑盒子”，即**不展开其内部结构**进行详细检查，而是只检查其**外部连接**是否正确。使用 LVS Box 可以简化和加速 LVS 检查过程，特别是在处理复杂设计时，但是同时可以确保这些模块的外部连接是正确的。
 
-### 保存 LVS 相关设置
+### 5.3 保存 LVS 相关设置
 
 在 Calibre Interactive 上方菜单栏选择 `File -> Save Runset As` 可以将 以上对于 LVS 物理验证的配置（包括输入读取文件路径、LVS Options 选项等）统一写入到一个 Runset 文件中。
 为了保持工作目录规整，建议将 Runset 保存至 `pv/runset/lvs.runset` 路径。
 在之后进行相同设计的版本迭代时，可以直接选择 `File -> Load Runset` 读取之前保存的 Runset 文件，加速工作流。
 
-### 查看 LVS 物理验证结果
+### 5.4 查看 LVS 物理验证结果
 
 在 Calibre Interactive 左侧选择 `Run LVS`，即可开始 LVS 物理验证。按照此前的设置，LVS 输出文件在 `pv/workspace/lvs` 路径下。同样地，我们可以在 GUI 界面中查看 LVS 物理验证的结果，例如报错的 Instance 与 Net 名称、在版图中的位置，等等。
 
@@ -403,13 +403,13 @@ make virtuoso
 !!! Warning "注意"
     需要保证 `Extraction Results`, `Comparison Results`，以及 `ERC Results` 都没有报错。
 
-### 常见的 LVS 报错
+### 5.5 常见的 LVS 报错
 
 !!! Bug "Under development!"
 
-## 5.4.4 DRC 物理验证
+## 6. DRC 物理验证
 
-### 设置 DRC 运行选项
+### 6.1 设置 DRC 运行选项
 
 因为 DRC 物理验证流程与 LVS 类似，都是适用 Calibre Interactive 窗口进行操作，也可以保存/读取 DRC Runset，主要有以下几个步骤：
 
@@ -419,7 +419,7 @@ make virtuoso
 * **保存 DRC Runset**：在 Calibre Interactive 上方菜单栏选择 `File -> Save Runset As`，并保存至 `pv/workspace/runset/drc.runset` 路径；
 * **读取 DRC Runset**：在 Calibre Interactive 上方菜单栏选择 `File -> Load Runset` 读取之前保存的 Runset 文件。
 
-### 数字子系统的 DRC 流程
+### 6.2 数字子系统的 DRC 流程
 
 在 Calibre Interactive 左侧选择 `Run DRC`。可以在 `pv/workspace/drc/` 中查看 DRC 报告，或者在 GUI 界面中查看更多的版图信息，包括报错的 Cell、Net 位置等。
 
@@ -432,7 +432,7 @@ make virtuoso
   <figcaption>Demo of DRC verification</figcaption>
 </figure>
 
-## 5.4.5 天线效应物理验证
+## 7. 天线效应物理验证
 
 天线效应的物理验证流程除了规则文件，其他与 DRC 完全一致。
 天线效应的规则文件位于 `/PDK/TSMC_22NM/PDK/1P9M_6X1Z1U_iPDK_CRN22ULL_shrink_T-N22-CR-SP-004-W1_v1.3_1p1a_20211230/Calibre/drc/calibre.ant`。

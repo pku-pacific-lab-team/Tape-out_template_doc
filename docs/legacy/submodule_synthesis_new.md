@@ -1,11 +1,11 @@
-# 2. 数字子系统的逻辑综合（重构版）
+# 数字子系统的逻辑综合（重构版）
 
 !!! tip "TLDR"
     1. 模板文件路径：`/work/home/limingxuan/common/SOC_CVA6/`
     2. 仿真脚本：`/work/home/limingxuan/common/SOC_CVA6/Makefile`
     3. 仿真命令：`b make genus`
 
-## 2.1 模板文件
+## 1. 模板文件
 
 我们使用 CVA6 作为逻辑综合模板示例，其文件夹路径为：
 
@@ -49,15 +49,15 @@ SOC_CVA6
     该 DCIM 自检电路仅作为**逻辑综合**流程的模板文件，其中不包含用于 Cadence Innovus 的脚本。
     如果希望后续进行**物理设计**流程，请使用[数字子系统的物理设计](submodule_implementation_new.md)中的模板文件！
 
-## 2.2 逻辑综合流程
+## 2. 逻辑综合流程
 
-### 添加源文件
+### 2.1 添加源文件
 
 在 `src/filelist.f` 中添加你的子模块源文件。
 
 如果在子模块中例化了 SRAM IP，或者其他的定制 IP，则不需要在 `src/filelist.f` 中添加源文件，但是需要在后续综合参数中添加 SRAM 实例以及宏单元的名称。
 
-### 修改综合参数
+### 2.2 修改综合参数
 
 根据注释修改 `config/user_define.tcl` 中的综合参数。
 你需要定义的参数如下：
@@ -82,7 +82,7 @@ SOC_CVA6
     如果你想要进一步修改综合参数，可以参考 `syn/scripts/init_syn.tcl`。
 
 <a id="修改时序约束"></a>
-### 修改时序约束
+### 2.3 修改时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `config/constraints_soc.sdc`。
 
@@ -106,7 +106,7 @@ SOC_CVA6
 
 请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
-### 运行逻辑综合
+### 2.4 运行逻辑综合
 
 在 `SOC_CVA6` 文件夹下运行以下命令：
 
@@ -146,14 +146,14 @@ syn
 ...
 ```
 
-### 查看主要输出报告
+### 2.5 查看主要输出报告
 
 * `./syn/logs/<top_module_name>.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查逻辑综合流程是否有误。
 * `./syn/<top_module_name>/*_postsyn.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
 * `./syn/<top_module_name>/reports/timing/*_timing.rpt`：各个 PVT 的时序报告，可以查找 `VIOLATED` 关键词检查时序是否满足。
 * `./syn/<top_module_name>/reports/area/area.rpt`：该模块的面积报告，可以作为后续后端设计版图大小的参考。
 
-### 恢复设计
+### 2.6 恢复设计
 
 在进行一次逻辑综合后，可以在 `SOC_CVA6` 路径下通过如下指令快速恢复设计：
 

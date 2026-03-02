@@ -1,6 +1,6 @@
-# 8. 划片与封装
+# 划片与封装
 
-## 8.1 划片
+## 1. 划片
 
 [芯片分割](https://en.wikipedia.org/wiki/Die_singulation)（Die singulation），也称为晶圆切割（wafer dicing）。
 在这个过程中，一个大的硅晶圆被切割成许多小的，独立的半导体芯片或集成电路。
@@ -20,9 +20,9 @@
   <figcaption>划片图示例</figcaption>
 </figure>
 
-划片所需的时间大约为**1-2天**，20颗50颗划片时间基本一样。
+划片所需的时间大约为**1-2 天**，20 颗 50 颗划片时间基本一样。
 
-## 8.2 封装
+## 2. 封装
 
 [芯片封装](https://en.wikipedia.org/wiki/Integrated_circuit_packaging)（Integrated circuit packaging，chip packaging）发生在硅晶圆划片之后。封装的主要目的是保护微小、脆弱的半导体芯片，同时提供交互接口，**使芯片可以和电子设备的其他部分进行电气连接**。
 
@@ -31,7 +31,7 @@
 - 插座封装（Socketed Packaging）
 - COB（Chip on Board）
 
-### 插座封装
+### 2.1 插座封装
 
 这种封装方式的主要特点是将芯片封装在一个管壳（package）中，并通过插座（socket）将其连接到电路板上。这种方法的优点是**便于更换、升级和维护芯片**，缺点是**电气性能稍差**。
 
@@ -51,18 +51,18 @@
 
 芯片封装有很多种类型，我们使用的封装类型为[QFN](https://en.wikipedia.org/wiki/Flat_no-leads_package)（Quad Flat No-leads）封装。
 QFN（Quad Flat No-leads）封装是一种四面平无引脚封装。
-它的特点是四个边都是平的，没有传统意义上的引脚，而是采用周边的pad（电接触垫）来实现电路的连接。
-QFN封装体积小、高度低，因此对于需要小型化的电子设备来说，非常适合。
+它的特点是四个边都是平的，没有传统意义上的引脚，而是采用周边的 pad（电接触垫）来实现电路的连接。
+QFN 封装体积小、高度低，因此对于需要小型化的电子设备来说，非常适合。
 
 <figure>
   <img src="../../assets/images/post_tapeout/qfn_sideview.png" width=100%>
   <figcaption>QFN 封装侧视图</figcaption>
 </figure>
 
-QFN后面的数字（如QFN64、QFN88 10\*10）通常指的是封装上的pad的数量。
-例如，QFN64的封装就有64个pad，而QFN88的封装则有88个pad。"10\*10"则通常指的是封装的物理尺寸，单位通常是毫米(mm)。
+QFN 后面的数字（如 QFN64、QFN88 10\*10）通常指的是封装上的 pad 的数量。
+例如，QFN64 的封装就有 64 个 pad，而 QFN88 的封装则有 88 个 pad。"10\*10"则通常指的是封装的物理尺寸，单位通常是毫米(mm)。
 
-我们需要将芯片的IO与QFN封装的pad进行对应，以便在封装过程中正确连接芯片的电路。
+我们需要将芯片的 IO 与 QFN 封装的 pad 进行对应，以便在封装过程中正确连接芯片的电路。
 
 <figure>
   <img src="../../assets/images/post_tapeout/qfn_pad_connect.png" width=70%>
@@ -72,8 +72,8 @@ QFN后面的数字（如QFN64、QFN88 10\*10）通常指的是封装上的pad的
 插座封装需要提供的资料如下：
 
 - **打线图**：封装厂商需要根据该图完成引线
-- **封装类型和尺寸**：即 QFN64 8\*8、QFN88 10\*10等
-- **QFN插座**：需要淘宝自行购买与封装类型相匹配的socket，直接邮寄给PCB厂商焊接
+- **封装类型和尺寸**：即 QFN64 8\*8、QFN88 10\*10 等
+- **QFN 插座**：需要淘宝自行购买与封装类型相匹配的 socket，直接邮寄给 PCB 厂商焊接
 
 !!! Warning "注意"
     留意封装厂商提供的封装类型和尺寸信息，以确保购买正确的插座！
@@ -176,23 +176,23 @@ QFN后面的数字（如QFN64、QFN88 10\*10）通常指的是封装上的pad的
 
 
 封装厂商一般会提供**快封**和**塑封**两种管壳封装形式。
-快封划片后大概**1-2天**封好；塑封要等芯片划片完成后大概**一周**左右出货。
+快封划片后大概**1-2 天**封好；塑封要等芯片划片完成后大概**一周**左右出货。
 二者性能上面没有什么区别，外观和常规量产芯片有些不一样，表面塑封料颜色不一样。
 
-### COB
+### 2.2 COB
 
-COB，全称Chip On Board，即直接将芯片安装在电路板上的封装技术。
+COB，全称 Chip On Board，即直接将芯片安装在电路板上的封装技术。
 这种技术中，裸芯片被放置在电路板上，然后通过金线或铜线进行键合，与电路板上的其他组件进行电气连接。
 然后，芯片和键合线会被一种特殊的环氧树脂（通常被称为"**黑胶**"）覆盖，以保护它们免受物理损伤和环境影响。
 
-相比插座封装，COB技术由于减少了连接点，**电气性能更好**，信号传输更稳定，电阻更低。相应的，一旦芯片安装到PCB上，**维修和更换芯片非常困难**。
+相比插座封装，COB 技术由于减少了连接点，**电气性能更好**，信号传输更稳定，电阻更低。相应的，一旦芯片安装到 PCB 上，**维修和更换芯片非常困难**。
 
 <figure>
   <img src="../../assets/images/post_tapeout/cob.png" width=40%>
-  <figcaption>COB封装示例</figcaption>
+  <figcaption>COB 封装示例</figcaption>
 </figure>
 
-COB封装**不需要**提供打线图和插座，只需要将芯片寄给封装厂商即可，划片后大概需要**1-2天**完成。
+COB 封装**不需要**提供打线图和插座，只需要将芯片寄给封装厂商即可，划片后大概需要**1-2 天**完成。
 
 !!! success ""
     特别感谢 [Yanchi Dong](https://ieeexplore.ieee.org/author/37089975778)，[Yiyang Sun](https://ieeexplore.ieee.org/author/37089999502)，[Yiqi Jing](https://ieeexplore.ieee.org/author/37089916688) 对本页内容的贡献和校对！

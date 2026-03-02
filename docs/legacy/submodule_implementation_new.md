@@ -1,4 +1,4 @@
-# 4. 数字子系统的物理设计（重构版）
+# 数字子系统的物理设计（重构版）
 
 !!! tip "TLDR（太长不看）"
     1. 模板文件路径：`/work/home/limingxuan/common/SOC_CVA6/`
@@ -8,7 +8,7 @@
     5. 修改并运行脚本：`pnr/scripts/innovus_implementation.tcl`
     6. 查看结果文件夹：`pnr/<top_module_name>`
 
-## 4.1 模板文件
+## 1. 模板文件
 
 我们使用开源 RISC-V CPU CVA6 作为物理实现模板示例，其文件夹路径为：
 
@@ -70,7 +70,7 @@ SOC_CVA6
 
 `<macro_name_1>`, `<macro_name_2>` 是更低层级的子系统。`<top_module_name>` 是该数字子系统的顶层模块名称，例如 `soc`。
 
-### 4.1.1 修改配置文件
+### 1.1 修改配置文件
 
 根据注释修改 `config/user_define.tcl` 中的物理设计参数。你需要定义的参数如下：
 
@@ -86,14 +86,14 @@ SOC_CVA6
 - `topRoutingLayer`：顶层布线层。
 - `bottomRoutingLayer`：底层布线层，除非布线资源紧张，否则一般使用 `M2`。
 
-### 4.1.2 编写时序约束
+### 1.2 编写时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，一共需要编写两个文件，分别用于时钟树综合前的阶段和时钟树综合后的阶段。
 可以分别参考 `config/constraints_soc.sdc, config/cts_constraints_soc.sdc,`。其中 `config/constraints_soc.sdc` 也会在数字子系统的逻辑综合阶段用到。
 
 `sdc` 文件的更多信息详见逻辑综合中的[相关章节](submodule_synthesis_new.md#修改时序约束)。请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc, cts_constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
-### 4.1.3 启动 Innovus
+### 1.3 启动 Innovus
 
 在 `SOC_CVA6` 文件夹下，运行如下命令启动 Innovus。
 
@@ -118,11 +118,11 @@ b make innovus TOP=<top_module_name>
 !!! warning "检查 Warning/Error"
     检查 terminal 或者 `pnr/logs/<top_module_name>.log` 中的 Warning 和 Error，确保初始化没有问题。
 
-### 4.1.4 修改并运行脚本
+### 1.4 修改并运行脚本
 
 按照 `pnr/scripts/innovus_implementation.tcl` 中的注释，依次修改对应的子脚本并手动运行，直到该父脚本中的所有子脚本均被运行完毕。
 
-### 4.1.5 结果文件
+### 1.5 结果文件
 
 物理实现完成后，会在 `pnr` 文件夹下生成 `<top_module_name>` 文件夹，其中包含了 Innovus 的结果文件，包括如下几个文件：
 
@@ -136,7 +136,7 @@ b make innovus TOP=<top_module_name>
 
 另外，每个阶段还会生成对应的**时序报告**，位于 `pnr/<top_module_name>/reports` 文件夹中。
 
-### 4.1.6 恢复设计
+### 1.6 恢复设计
 
 `pnr/scripts/innovus_implementation.tcl` 中在每一阶段结束后有 `saveDesign` 命令，可以将当前阶段的设计保存到 `pnr/<top_module_name>/backup` 文件夹中，以便后续恢复设计。
 
@@ -148,7 +148,7 @@ b make restore_innovus TOP=<top_module_name> STAGE=<stage_name>
 
 其中 `<stage_name>` 为需要恢复的阶段名称，一共有 6 种选择：`Floorplan, Powerplan, Place, CTS, Route, Signoff`，注意**大小写**。
 
-## 4.2 物理设计流程
+## 2. 物理设计流程
 
 物理实现（后端）主要分为如下几个步骤：
 
@@ -178,13 +178,13 @@ Innovus 拥有全局 TCL 变量，这些变量都形如 `init_*`，可以通过 
 !!! Tip "GUI 操作与脚本命令"
     所有的 GUI 操作都有对应的脚本命令，可以通过 GUI 操作后查看 `pnr/logs/<top_module_name>.cmd` 得到对应的脚本命令。
 
-### 4.2.1 Floorplan
+### 2.1 Floorplan
 
 布局规划（Floorplan）决定了**数字逻辑模块（soft module）**的位置、尺寸和形状以及**硬宏（hard macro）**的放置。
 布局规划包括确定整体尺寸、I/O 引脚布局、凸块（bump）分配（倒装芯片，flip chip）等。
 布局规划与布局（placement）、早期全局布线（early global routing）相结合，是一个**迭代设计**过程。
 
-#### 查看 Floorplan
+#### 2.1.1 查看 Floorplan
 
 在 Innovus GUI 界面右上角选择 `Floorplan View`，如下图所示。
 
@@ -207,14 +207,14 @@ Innovus 拥有全局 TCL 变量，这些变量都形如 `init_*`，可以通过 
   <figcaption>Floorplan Box Definition</figcaption>
 </figure>
 
-所有标准单元的宽度各不相同，但是高度均为 `$cell_height`（对于22nm工艺，即为0.7um，pre-shrink）。
+所有标准单元的宽度各不相同，但是高度均为 `$cell_height`（对于 22nm 工艺，即为 0.7um，pre-shrink）。
 在 Core box 的四周到 I/O 管脚之间通常留有一定的间距，用于摆放 Core Ring 和 I/O 管脚布线。
 
 除去中央的 Die Box 之外，左侧的粉色正方形为 RTL 代码中的数字顶层模块，正方形的大小表示了模块的预估面积。
 
 ??? question "TU & EU"
     正方形左上角 `TU=64.7%` 为 Target Utilization (TU)，是指所有的标准单元和 Macro 的面积除以版图的面积。
-    此外，还有 Effective Utilization (EU)，在整体版图面积的基础上除掉了 Placement，Routing Blockage 等其他阻碍物的面积，Innovus 默认不会显示EU。
+    此外，还有 Effective Utilization (EU)，在整体版图面积的基础上除掉了 Placement，Routing Blockage 等其他阻碍物的面积，Innovus 默认不会显示 EU。
 
 Die Box 右侧为该数字模块中例化的 IP 硬核（SRAM、Macro）。
 
@@ -240,7 +240,7 @@ Floorplan 左侧所有 RTL 模块都拥有各自的 Floorplan 约束，可以通
 - `cover`：该硬核被预放置，但是不能移动。
 - `softFixed`：该硬核被预放置，只能在合法化的过程中被移动。
 
-#### 设置 Floorplan（`pnr/scripts/floorplan/floorplan.tcl`）
+#### 2.1.2 设置 Floorplan（`pnr/scripts/floorplan/floorplan.tcl`）
 
 一般情况下，我们使用如下命令设置 Floorplan。
 
@@ -248,11 +248,11 @@ Floorplan 左侧所有 RTL 模块都拥有各自的 Floorplan 约束，可以通
 floorPlan -d {W H Left Bottom Right Top}
 ```
 
-使用该命令设置版图大小总共需要6个参数，分别代表：
+使用该命令设置版图大小总共需要 6 个参数，分别代表：
 
 * 完整版图 (Die box) 的宽度。
 * 完整版图的高度。
-* Core box（用于摆放标准单元的版图部分）到I/O左侧边界的距离。
+* Core box（用于摆放标准单元的版图部分）到 I/O 左侧边界的距离。
 * Core box 到 I/O 底部边界的距离。
 * Core box 到 I/O 右侧边界的距离。
 * Core box 到 I/O 上方边界的距离。
@@ -276,7 +276,7 @@ floorPlan -d {W H Left Bottom Right Top}
 
     版图的面积会由如下公式计算得到：coreArea = stdCellArea ÷ stdCellDensity + macroArea。
 
-#### 设置 Macro 别名（`pnr/scripts/floorplan/macro_alias.tcl`）
+#### 2.1.3 设置 Macro 别名（`pnr/scripts/floorplan/macro_alias.tcl`）
 
 Macro 的名称通常比较长，为了后续脚本简洁，建议使用 TCL 命令 `set nickName realName` 给 Macro 设置简短的别名，例如 `set icache_data0 i_wt_dcache_i_wt_dcache_mem/gen_data_banks[0].i_data_sram`。
 Macro 的名称可以在 `Floorplan View` 中右键点击 Macro 选择 `Attrbite Editor -> Name`（快捷键 Q）查看。
@@ -296,7 +296,7 @@ set icache_tag_srams [list $icache_tag0 $icache_tag1]
 ```
 
 
-#### 摆放 Macro（`pnr/scripts/floorplan/macro_preplace.tcl`）
+#### 2.1.4 摆放 Macro（`pnr/scripts/floorplan/macro_preplace.tcl`）
 
 *脚本命令*
 
@@ -349,7 +349,7 @@ setInstancePlacementStatus -allHardMacros -status {fixed | placed | cover | soft
   <figcaption>Layout after placing macros</figcaption>
 </figure>
 
-#### 设置 Macro Halo 和 _（可选）_ Placement/Routing blockage（`pnr/scripts/floorplan/halo_blockage.tcl`）
+#### 2.1.5 设置 Macro Halo 和 _（可选）_ Placement/Routing blockage（`pnr/scripts/floorplan/halo_blockage.tcl`）
 
 Halo 用于**防止 Macro 四周**摆放标准单元，可以减缓**布线阻塞**。
 
@@ -373,7 +373,7 @@ createPlaceBlockage -name     setdensity_blk1 \
 ```
 
 * `createPlaceBlockage`：设置 Cell placement blockage，用于**阻碍**在特定区域内标准单元的摆放。
-  * `-type partial`：指定该 Placement blockage 的类型，总共有4种类型，包括 `hard`（默认选项，**不能**在指定区域摆放任何标准单元），`soft`（不能在**布局阶段**摆放标准单元，但可以在后续布局优化、时钟树综合等阶段摆放标准单元），`partial`（设定指定区域内标准单元的**最大密度**），还有`macroOnly`（允许摆放标准单元，但**不允许**摆放 Macro）。
+  * `-type partial`：指定该 Placement blockage 的类型，总共有 4 种类型，包括 `hard`（默认选项，**不能**在指定区域摆放任何标准单元），`soft`（不能在**布局阶段**摆放标准单元，但可以在后续布局优化、时钟树综合等阶段摆放标准单元），`partial`（设定指定区域内标准单元的**最大密度**），还有`macroOnly`（允许摆放标准单元，但**不允许**摆放 Macro）。
   * `-density 75`：指定了该 Partial placement blockage 所允许的最大密度，该选项一定需要和 `-type Partial` 一起使用。
   * `-box 300 50 1000 500`：如下图所示，设置了该 Placement blockage 的具体范围（粉色方格区域），使用左下角和右上角的横纵坐标表示。
 
@@ -406,7 +406,7 @@ createRouteBlk  -cover \
 !!! tip "Route Blockage `-layer` 参数"
     参数的设定一般为最底层金属层到 Macro 的最高层电源金属层，例如 SRAM 为 M1-M4。
 
-#### 添加 Pin（`pnr/scripts/floorplan/pin_add.tcl`）
+#### 2.1.6 添加 Pin（`pnr/scripts/floorplan/pin_add.tcl`）
 
 对于大规模的数字模块，信号 I/O 管脚数量可能是成百上千的，手动编写命令设置每个管脚的摆放过于繁琐。
 因此，我们使用 Innovus GUI 界面添加数字子系统的信号 I/O 管脚。
@@ -426,7 +426,7 @@ createRouteBlk  -cover \
     在管脚较多的情况下，可以将不同的管脚分配到同一条边的不同金属层。
 
 !!! question "关于数字子系统的 Power/Ground 的 Pin 管脚"
-    数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层1-2层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在后续步骤做进一步介绍。
+    数字子系统的 Power/Ground 管脚和不同信号线的管脚有所区别，往往是以顶层 1-2 层的电源网格的形式给数字子系统进行供电，因此在布局布线完成之后使用 `createPGPin` 命令生成，在后续步骤做进一步介绍。
 
 添加完 Pin 后的版图如下图所示，每一个黄色的三角形代表一个 Pin 管脚，Zoom In 可以进一步看到每个管脚的名称，所在的金属层，以及管脚的具体形状 (Pin Width, Pin Depth)。
 
@@ -435,12 +435,12 @@ createRouteBlk  -cover \
   <figcaption>Layout after adding I/O pins</figcaption>
 </figure>
 
-### 4.2.2 Powerplan
+### 2.2 Powerplan
 
 电源规划（Powerplan）是指在版图中规划**电源和接地网络**，以确保数字模块的稳定供电。
 主要包括定义电源线地线（Power/Ground net）、电源格栅（Power Stripe）、电源环（Power Ring）等。
 
-#### 定义电源信号和接地信号（`pnr/scripts/powerplan/global_net_connect.tcl`）
+#### 2.2.1 定义电源信号和接地信号（`pnr/scripts/powerplan/global_net_connect.tcl`）
 
 我们需要定义电源信号和接地信号的名称（已经在 `config/user_define.tcl` 中定义），并且将其与所有标准单元、Macro 的电源和接地端口连接起来。
 使用的命令如下所示：
@@ -483,7 +483,7 @@ globalNetConnect <globalNetName> {-type pgpin -pin <pinNamePattern> | -type tieh
 !!! question "关于 Tie-high 与 Tie-low 标准单元"
     在数字模块中，我们有时会有类似于 `assign a = 1'b1` 的赋值语句。在后端流程时，这些 `1'b1` 与 `1'b0` 会转化成 Tie-high 和 Tie-low 标准单元。在定义电源信号和接地信号时，我们需要指明这些 Tie-high 和 Tie-low 标准单元和哪些电源信号和接地信号相连。
 
-#### 添加 Power ring（`pnr/scripts/powerplan/power_ring.tcl`）
+#### 2.2.2 添加 Power ring（`pnr/scripts/powerplan/power_ring.tcl`）
 
 Power ring 用来确保电源信号的**稳定供电**，通常是在 Core box、Macro 的四周摆放一圈电源线，一般包括 Core ring 和 Block ring。
 
@@ -551,7 +551,7 @@ addRing -nets {VDD VSS} \
 !!! Warning "Block Ring 的作用"
     Block ring 的作用是为了加强环周围**标准单元**的电源稳定性，因此在布局布线资源紧张的时候，可以考虑**删除** block ring。
 
-#### 添加电源格栅（`pnr/scripts/powerplan/power_stripe.tcl`）
+#### 2.2.3 添加电源格栅（`pnr/scripts/powerplan/power_stripe.tcl`）
 
 电源格栅（Power Stripe）是指在版图中规划**电源线**，一般情况下是高层金属。
 Power Stripe 一次只能添加一层金属，指令如下所示。
@@ -649,7 +649,7 @@ addStripe         -layer                            M6 \
   <figcaption>Layout after adding power stripes</figcaption>
 </figure>
 
-#### 电源布线（`pnr/scripts/powerplan/power_route.tcl`）
+#### 2.2.4 电源布线（`pnr/scripts/powerplan/power_route.tcl`）
 
 **标准单元**通过 **M1** 金属层供电/接地，这些供电/接地的 M1 金属被称为**电源轨道（Power rail）**。
 需要将高层金属层的 Power Stripe 与 M1 金属层的 Power Stripe 通过贯穿多层金属的 VIA 连接起来。
@@ -711,19 +711,19 @@ sroute -connect                { corePin } \
 
     如果发现连接有误，需要及时修改 `pnr/scripts/floorplan/global_net_connect.tcl` 和 `pnr/scripts/powerplan/power_stripe.tcl` 中的相关命令，并通过查看 `LEF` 文件或者 Innovus GUI 界面查看 各个 Macro 内部 P/G Pin 所在的金属层。
 
-### 4.2.3 Placement
+### 2.3 Placement
 
 布局遵循**布局规划约束**，完成标准单元、Macro 等的所有模块的摆放。
 
 <a id="摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl"></a>
-#### 摆放 Physical-only Cell（`pnr/scripts/placement/physical_cell_insert.tcl`）
+#### 2.3.1 摆放 Physical-only Cell（`pnr/scripts/placement/physical_cell_insert.tcl`）
 
 Physical-only Cell 是一种**不包含任何逻辑功能**的标准单元，用于**填充**版图中的空白区域，以满足物理特性的要求，包括 End-Cap、Well-Tap、Decap 和 Filler。
 
 End-Cap 是预先放置的纯物理单元，用于满足某些设计规则。
 在数字集成电路设计中，特别是使用自动布局布线工具时，标准单元在整个硅片区域内按行排列。
 这些标准单元是设计的构建模块，包含逻辑门、触发器和其他数字电路。
-当最后一个标准单元不能完美地适应行的长度时，Endcap Cells用于**填充标准单元行末端的剩余空间**。
+当最后一个标准单元不能完美地适应行的长度时，Endcap Cells 用于**填充标准单元行末端的剩余空间**。
 它们提供电气和物理隔离，将硅片的活动区域与周围结构（如划片线或芯片边缘）隔离开来。
 
 ``` tcl
@@ -786,7 +786,7 @@ addWellTap  -prefix       DECAP \
 !!! Warning "摆放顺序"
     End-Cap 应该**先于** Well-Tap 和 Decap 摆放。
 
-#### 摆放标准单元（`pnr/scripts/placement/stdcell_place.tcl`）
+#### 2.3.2 摆放标准单元（`pnr/scripts/placement/stdcell_place.tcl`）
 
 ``` tcl
 deleteTieHiLo
@@ -831,7 +831,7 @@ place_opt_design  -incremental
     * 调整初始 Floorplan。
     * 修改 RTL 中关键路径的逻辑。
 
-### 4.2.4 Clock Tree Synthesis（`pnr/scripts/clock_tree/cts.tcl`）
+### 2.4 Clock Tree Synthesis（`pnr/scripts/clock_tree/cts.tcl`）
 
 时钟树综合（Clock Tree Synthesis，CTS）是指在版图中规划**时钟网络**，以确保时钟信号的**稳定传输**。
 所有的触发器都由时钟信号驱动，时钟信号的传输质量直接影响到整个数字系统的稳定性和功耗。
@@ -893,7 +893,7 @@ optDesign -postCTS -hold
   <figcaption>Clock Tree Debugger Example</figcaption>
 </figure>
 
-### 4.2.5 Routing
+### 2.5 Routing
 
 布线分为两步：全局布线（Global Route）和局部布线（Detail Route）。
 另一个重要的概念是 ECO Route (Engineering Change Order)，用于在布线之后对设计进行修改，用于**修复 DRC 违例**。
@@ -901,7 +901,7 @@ ECO 布线包括增量式的全局和局部。
 在 ECO 布线期间，会尽量保持整体布线不变，进行最小程度的更改。
 除了布线，在这一阶段还需要满足时序约束、无 DRC 违例。
 
-#### 布线并收敛时序（`pnr/scripts/routing/route.tcl`）
+#### 2.5.1 布线并收敛时序（`pnr/scripts/routing/route.tcl`）
 
 ``` tcl
 setExtractRCMode -engine postRoute \
@@ -932,7 +932,7 @@ optDesign -postRoute -hold
     * 调整初始 Floorplan（减少布局密度）。
     * 修改 RTL 中关键路径的逻辑。
 
-#### DRC 修复并检查（`pnr/scripts/routing/drc_fix.tcl`）
+#### 2.5.2 DRC 修复并检查（`pnr/scripts/routing/drc_fix.tcl`）
 
 ``` tcl
 deleteRouteBlk -all
@@ -977,11 +977,11 @@ verify_drc
 !!! question "标准单元的移动距离"
     在移动标准单元时，**至少**需要移动**2 格**，留下**足够的空间**为后续填充标准单元之间的间隙。
 
-### 4.2.6 Signoff
+### 2.6 Signoff
 
 在完成布局布线并且满足时序和 DRC 约束之后，需要进行版图填充、添加电源端口、导出文件等收尾操作。
 
-#### 版图填充（`pnr/scripts/signoff/filler_decap.tcl`）
+#### 2.6.1 版图填充（`pnr/scripts/signoff/filler_decap.tcl`）
 
 整个版图中没有摆放标准单元的区域称为**空白区域**，需要通过版图填充（Filler）填充，以保证版图的**平衡性**和**均匀性**。
 我们使用 Decap 作为填充单元，进一步增强电源的稳定性。
@@ -996,7 +996,7 @@ verify_drc
 * `ecoRoute -fix_drc`：在填充 Filler 之后修复 DRC 违例。
 * `verify_drc`：检查 DRC 违例，确保没有引入新的 DRC。
 
-#### 添加电源端口（`pnr/scripts/signoff/pg_pin.tcl`）
+#### 2.6.2 添加电源端口（`pnr/scripts/signoff/pg_pin.tcl`）
 
 之前使用的 `globalNetConnect` 命令只是定义了**逻辑**上的电源端口，但是在版图中并没有实际的电源端口。
 在 Signoff 阶段，需要添加实际的电源端口。
@@ -1046,7 +1046,7 @@ for { set i 0 } { $i <= 32 } { incr i } {
 </figure>
 
 <a id="结果文件导出pnrscriptssignofffile_gentcl"></a>
-#### 结果文件导出（`pnr/scripts/signoff/file_gen.tcl`）
+#### 2.6.3 结果文件导出（`pnr/scripts/signoff/file_gen.tcl`）
 
 **直接运行**`pnr/scripts/signoff/file_gen.tcl` 脚本即可导出 Innovus 的结果文件。
 该脚本会在 `pnr/<top_module_name>` 文件夹下生成 Innovus 的结果文件，包括如下几个文件：
@@ -1058,7 +1058,7 @@ for { set i 0 } { $i <= 32 } { incr i } {
 - `<top_module_name>.lef`：物理实现后的版图信息，用于**顶层模块集成**。
 - `<top_module_name>.gds2`：物理实现后的**版图文件**。
 
-#### 网表格式转换（`pnr/scripts/signoff/netlist2cdl.tcl`）
+#### 2.6.4 网表格式转换（`pnr/scripts/signoff/netlist2cdl.tcl`）
 
 为了便于后续的 **LVS 物理验证**，需要将网表转换为 CDL（Circuit Description Language）格式。
 
