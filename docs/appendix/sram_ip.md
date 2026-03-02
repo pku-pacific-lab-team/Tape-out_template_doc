@@ -76,7 +76,7 @@ SRAM 的尺寸是由 `Number of Words`、`Number of Bits`、`Multiplexer Width` 
 </div>
 
 <figure>
-  <img src="../assets/images/sram_array.png" width=80%>
+  <img src="../assets/images/appendix/sram_array.png" width=80%>
   <figcaption>SRAM Array Architecture</figcaption>
 </figure>
 
@@ -238,11 +238,11 @@ STOV 功能允许**覆盖**存储器内部时钟脉冲的**自定时生成**。
 ## 时序
 
 <figure>
-  <img src="../assets/images/sram_read_timing.png" width=80%>
+  <img src="../assets/images/appendix/sram_read_timing.png" width=80%>
   <figcaption>SRAM Read-cycle Timing</figcaption>
 </figure>
 
 <figure>
-  <img src="../assets/images/sram_write_timing.png" width=80%>
+  <img src="../assets/images/appendix/sram_write_timing.png" width=80%>
   <figcaption>SRAM Write-cycle Timing</figcaption>
 </figure>

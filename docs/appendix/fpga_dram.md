@@ -55,7 +55,7 @@
 本章节详细拆解存储子系统的内部构造。该 Block Design 模块化地集成了物理接口、时钟跨域处理、总线互联及硬件调试功能。
 
 <figure>
-  <img src="../assets/images/FPGA_DRAM_bd1_diagram.png" width=100%>
+  <img src="../assets/images/appendix/fpga_dram_bd1_diagram.png" width=100%>
   <figcaption>DDR4 Subsystem Block Design Diagram</figcaption>
 </figure>
 
@@ -76,7 +76,7 @@
     *   **PLL 限制说明**: 该选项受 `Memory Device Interface Speed` 影响。MIG 内部 PLL 需根据目标 DDR 运行速率（如 1200 MHz / 833 ps）和输入时钟计算倍频/分频系数（M/D）。若无法整除，IP 核列表可能不显示精确的 5000ps 选项。此时选择**最接近**的值（例如 4998 ps / 200.08 MHz）即可，这在 PLL 锁相环允许的误差范围内。
 
 <figure>
-  <img src="../assets/images/FPGA_DRAM_MIG_basic.png" width=80%>
+  <img src="../assets/images/appendix/fpga_dram_mig_basic.png" width=80%>
   <figcaption>DDR4 Subsystem MIG Basic Configurations</figcaption>
 </figure>
 
@@ -119,7 +119,7 @@
     *   *示例*：若起始地址为 `0x30000000`，最大映射 Range 只能为 **256M** (因为 `0x30000000` 能被 `0x10000000` 整除，但不能被 `0x40000000` 整除)。
 
 <figure>
-  <img src="../assets/images/FPGA_DRAM_bd1_Address_Editor.png" width=80%>
+  <img src="../assets/images/appendix/fpga_dram_bd1_address_editor.png" width=80%>
   <figcaption>DDR4 Subsystem MIG Basic Configurations</figcaption>
 </figure>
 

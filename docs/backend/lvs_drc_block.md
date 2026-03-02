@@ -71,7 +71,7 @@ LVS 会在 `pv/reports/lvs.summary` 生成 LVS 报告文件。
 看到如下内容则表示 LVS 物理验证通过：
 
 <figure>
-  <img src="../assets/images/lvs_pass_batch.png" width=80%>
+  <img src="../assets/images/backend/lvs_pass_batch.png" width=80%>
   <figcaption>LVS Pass Report</figcaption>
 </figure>
 
@@ -89,7 +89,7 @@ DRC 会在 `pv/reports/drc.summary` 生成 DRC 报告文件。
 看到如下内容则表示 DRC 物理验证通过：
 
 <figure>
-  <img src="../assets/images/block_drc_pass_batch.png" width=80%>
+  <img src="../assets/images/backend/block_drc_pass_batch.png" width=80%>
   <figcaption>Block-Level DRC Pass Report</figcaption>
 </figure>
 
@@ -116,7 +116,7 @@ make ant
 看到如下内容则表示天线效应物理验证通过：
 
 <figure>
-  <img src="../assets/images/antenna_pass_batch.png" width=80%>
+  <img src="../assets/images/backend/antenna_pass_batch.png" width=80%>
   <figcaption>Antenna Pass Report</figcaption>
 </figure>
 
@@ -146,14 +146,14 @@ make lvs GUI=1
 会弹出如下窗口，点击 `Run LVS` 即可开始 LVS 物理验证。
 
 <figure>
-  <img src="../assets/images/lvs_gui.png" width=80%>
+  <img src="../assets/images/backend/lvs_gui.png" width=80%>
   <figcaption>LVS GUI</figcaption>
 </figure>
 
 运行结束后会弹出如下窗口。
 
 <figure>
-  <img src="../assets/images/virtuoso_lvs_results.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_lvs_results.png" width=80%>
   <figcaption>Demo of a successful LVS verification</figcaption>
 </figure>
 
@@ -170,14 +170,14 @@ make drc GUI=1
 会弹出如下窗口，点击 `Run DRC` 即可开始 DRC 物理验证。
 
 <figure>
-  <img src="../assets/images/drc_gui.png" width=80%>
+  <img src="../assets/images/backend/drc_gui.png" width=80%>
   <figcaption>DRC GUI</figcaption>
 </figure>
 
 运行结束后会弹出如下窗口。
 
 <figure>
-  <img src="../assets/images/virtuoso_drc_results.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_drc_results.png" width=80%>
   <figcaption>Demo of DRC verification</figcaption>
 </figure>
 
@@ -205,14 +205,14 @@ make ant GUI=1
 会弹出和 DRC 验证一致窗口，点击 `Run DRC` 即可开始天线效应物理验证。
 
 <figure>
-  <img src="../assets/images/drc_gui.png" width=80%>
+  <img src="../assets/images/backend/drc_gui.png" width=80%>
   <figcaption>DRC GUI</figcaption>
 </figure>
 
 运行结束后会弹出如下窗口。
 
 <figure>
-  <img src="../assets/images/ant_pass_gui.png" width=80%>
+  <img src="../assets/images/backend/ant_pass_gui.png" width=80%>
   <figcaption>Demo of a successful Antenna verification</figcaption>
 </figure>
 
@@ -238,40 +238,40 @@ make virtuoso
 首先，在 Virtuoso 中新建一个 Library 用于存放我们的设计。在弹出的 Virtuoso Terminal 中选择 `File -> New -> Library`，如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_create_new_library_1.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_create_new_library_1.png" width=80%>
   <figcaption>Create new library in Virtuoso</figcaption>
 </figure>
 
 随后，输入该 Library 的名字，并选择 `Attach to an existing technology library`。对于 TSMC 22nm 的流片，选择 `tsmcN22`，如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_create_new_library_2.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_create_new_library_2.png" width=80%>
   <figcaption>Attach to an existing technology library</figcaption>
 </figure>
 
 新建一个 Library 之后，回到 Virtuoso Terminal，并选择 `File -> Import -> Stream`，如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_import_design_1.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_import_design_1.png" width=80%>
   <figcaption>Import existing design to Virtuoso (1)</figcaption>
 </figure>
 
 随后，在弹出的 `XStream In` 窗口中导入我们设计的 `<top_module_name>.gds2` 文件。文件在 `pnr/<top_module_name>` 文件夹下生成。之后，选择将设计导入到之前新建的 Library 中，最后点击 `Translate`。
 
 <figure>
-  <img src="../assets/images/virtuoso_import_design_2.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_import_design_2.png" width=80%>
   <figcaption>Import existing design to Virtuoso (2)</figcaption>
 </figure>
 
 <figure>
-  <img src="../assets/images/virtuoso_import_design_3.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_import_design_3.png" width=80%>
   <figcaption>Import existing design to Virtuoso (3)</figcaption>
 </figure>
 
 ??? tip "StreamIn 报错"
     在 Virtuoso 导入设计之后，可能会出现类似下面这样的报错，可以不予理会。
     <figure>
-      <img src="../assets/images/virtuoso_streamIn_warning.png" width=80%>
+      <img src="../assets/images/backend/virtuoso_stream_in_warning.png" width=80%>
       <figcaption>Virtuoso StreamIn Warning</figcaption>
     </figure>
 
@@ -280,7 +280,7 @@ make virtuoso
 如果之前已经把设计导入到 Virtuoso 中，则可以在 Virtuoso Terminal 中选择 `Open` 打开设计，具体步骤如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_open_design.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_open_design.png" width=80%>
   <figcaption>Open design layout in Virtuoso</figcaption>
 </figure>
 
@@ -296,7 +296,7 @@ make virtuoso
 在 Virtuoso Layout Suite L 上方菜单栏中选择 `Calibre -> Run nmLVS`，如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_open_calibre.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_open_calibre.png" width=80%>
   <figcaption>Open Calibre options in Virtuoso</figcaption>
 </figure>
 
@@ -308,21 +308,21 @@ make virtuoso
 随后，按照如下操作步骤导入 LVS Rules，文件位于 `/PDK/TSMC_22NM/PDK/1P9M_6X1Z1U_iPDK_CRN22ULL_shrink_T-N22-CR-SP-004-W1_v1.3_1p1a_20211230/Calibre/lvs/calibre.lvs` 路径。
 
 <figure>
-  <img src="../assets/images/virtuoso_import_lvs_rule.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_import_lvs_rule.png" width=80%>
   <figcaption>Import LVS rules in Calibre</figcaption>
 </figure>
 
 为了保持工作目录规整，我们指定将 LVS 输出文件放在 `pv/workspace/lvs` 路径下，如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_choose_lvs_dir.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_choose_lvs_dir.png" width=80%>
   <figcaption>Choose LVS directory in Calibre</figcaption>
 </figure>
 
 随后，在 Calibre Interactive 窗口中选择 `Inputs`，并在 `Netlist` 中导入 Innovus 生成的 CDL 网表文件，步骤如下。
 
 <figure>
-  <img src="../assets/images/virtuoso_import_cdl_netlist.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_import_cdl_netlist.png" width=80%>
   <figcaption>Import CDL netlist in Calibre</figcaption>
 </figure>
 
@@ -341,14 +341,14 @@ make virtuoso
 * 在 `Supply` 中添加 `Power nets` 与 `Ground nets`，与 Innovus 物理实现的设置保持一致。
 
 <figure>
-  <img src="../assets/images/virtuoso_configure_lvs_pg_nets.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_configure_lvs_pg_nets.png" width=80%>
   <figcaption>Configure P/G nets in LVS options</figcaption>
 </figure>
 
 * 在 `Connect` 中勾选 `Connect nets with colon`，以及 `Don't connect nets by name`，如下所示。
 
 <figure>
-  <img src="../assets/images/virtuoso_configure_lvs_options_connect.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_configure_lvs_options_connect.png" width=80%>
   <figcaption>Configure connections in LVS options</figcaption>
 </figure>
 
@@ -358,7 +358,7 @@ make virtuoso
     在此展示一种通过 `Filter Unused Device Options` 中的设置解决 LVS 报错的例子。对于我们的 CVA6 CPU 进行层次化 LVS 物理验证，并将 SRAM IP 设置 LVS Box，只对逻辑综合出来的标准单元进行物理验证，最终 LVS 报告如下，显示有许多的 Instances 和 Nets 在网标中缺失。
 
     <figure>
-      <img src="../assets/images/virtuoso_lvs_fail_demo.png" width=80%>
+      <img src="../assets/images/backend/virtuoso_lvs_fail_demo.png" width=80%>
       <figcaption>Demo of LVS verification failure</figcaption>
     </figure>
 
@@ -369,14 +369,14 @@ make virtuoso
     另一种解决 LVS 报错的方法，则是在导出网表文件时去掉 `-excludeCellInst` 选项，那么在生成的 Verilog（以及后续生成的 CDL）门级网表中就会包含这些标准单元，它们没有逻辑功能，只有 P/G Pin 连接。
 
 <figure>
-  <img src="../assets/images/virtuoso_configure_lvs_options_gates.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_configure_lvs_options_gates.png" width=80%>
   <figcaption>Configure unused device in LVS options</figcaption>
 </figure>
 
 * 在 `LVS Box` 可以选择 (a) 不处理特定的模块或者子电路，进行常规的 LVS 流程；(b) 根据设计的情况选择添加 LVS Box，需要在 GUI 界面中手动添加想添加 Box 的**子模块名称**，名称需要和 Virtuoso 设计中 Cell 名称保持一致。如下图所示，我们给 CVA6 CPU 中的 2 种 SRAM IP 添加了 LVS Box。
 
 <figure>
-  <img src="../assets/images/virtuoso_lvs_box.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_lvs_box.png" width=80%>
   <figcaption>Configure LVS box in LVS options</figcaption>
 </figure>
 
@@ -396,7 +396,7 @@ make virtuoso
 一个通过 LVS 物理验证的 GUI 界面如下。
 
 <figure>
-  <img src="../assets/images/virtuoso_lvs_results.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_lvs_results.png" width=80%>
   <figcaption>Demo of a successful LVS verification</figcaption>
 </figure>
 
@@ -428,7 +428,7 @@ make virtuoso
 一个 DRC 物理验证报告的 GUI 界面如下。
 
 <figure>
-  <img src="../assets/images/virtuoso_drc_results.png" width=80%>
+  <img src="../assets/images/backend/virtuoso_drc_results.png" width=80%>
   <figcaption>Demo of DRC verification</figcaption>
 </figure>
 

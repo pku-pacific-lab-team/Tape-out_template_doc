@@ -159,7 +159,7 @@ export NUM_JOBS=<num of processors>
 	打开任务管理器，左栏中选择“性能”选项卡，右下角即可看到 CPU 核数（逻辑处理器）。
 
 	<figure>
-	  <img src="../assets/images/nproc_win.png" width=70%>
+	  <img src="../assets/images/appendix/nproc_win.png" width=70%>
 	  <figcaption>Windows 查看逻辑处理器个数</figcaption>
 	</figure>
 

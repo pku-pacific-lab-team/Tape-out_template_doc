@@ -46,7 +46,7 @@
 #### SRAM Compiler 使用说明
 
 <figure>
-  <img src="../assets/images/sram_compiler.png" width=80%>
+  <img src="../assets/images/legacy/sram_compiler.png" width=80%>
   <figcaption>ARM SRAM Compiler</figcaption>
 </figure>
 
@@ -69,7 +69,7 @@
   增加 bank 和 mux 的数量均会导致延迟的**减小**。
 
 <figure>
-  <img src="../assets/images/corners.png">
+  <img src="../assets/images/legacy/corners.png">
   <figcaption>SRAM Compiler Available Corners </figcaption>
 </figure>
 
@@ -82,7 +82,7 @@
 * `GDSII Layout`：用于后端设计的 DRC 检查和最终版图导出。
 
 <figure>
-  <img src="../assets/images/views.png">
+  <img src="../assets/images/legacy/views.png">
   <figcaption>SRAM Compiler Available Views </figcaption>
 </figure>
 
@@ -91,7 +91,7 @@
 与 `SRAM Compiler` 流程类似，少了一个 `Number of Banks` 选择。
 
 <figure>
-  <img src="../assets/images/register_file_compiler.png" width=80%>
+  <img src="../assets/images/legacy/register_file_compiler.png" width=80%>
   <figcaption>ARM Register File Compiler</figcaption>
 </figure>
 
@@ -336,7 +336,7 @@ foreach sram ${sram_insts} { \
 一个较完整的例子如下：
 
 <figure>
-  <img src="../assets/images/add_lib_files.png" width=80%>
+  <img src="../assets/images/legacy/add_lib_files.png" width=80%>
   <figcaption>添加 LIB 文件</figcaption>
 </figure>
 
