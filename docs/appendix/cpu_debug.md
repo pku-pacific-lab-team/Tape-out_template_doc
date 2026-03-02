@@ -387,7 +387,7 @@ Type "apropos word" to search for commands related to "word".
 ## 10.4 调试程序
 
 !!! tip "GDB 原理"
-    有关 GDB 原理，请参考 [0. Linux 环境下的 EDA 工具使用：0.1 Linux 常用工具 GDB](../background/eda_tools_environment.md)。
+    有关 GDB 原理，请参考 [Linux 环境与常用工具：5.1 GDB](linux_environment.md#gdb)。
 
 接着，你就可以通过 GDB 调试程序和访问内存了。 一些常用的 GDB 指令如下：
 

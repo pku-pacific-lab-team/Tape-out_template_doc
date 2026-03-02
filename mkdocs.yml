@@ -124,6 +124,7 @@ nav:
     - 18. FPU Specification: appendix/fpu_spec.md
     - 19. Using DRAM on FPGA: appendix/fpga_dram.md
     - 20. STA & Power: appendix/sta_power.md
+    - 21. Linux Environment & Common Tools: appendix/linux_environment.md
   - VI. Legacy:
     - Behavioral Simulation (Deprecated): legacy/behavioral_simulation.md
     - Gate-Level Simulation (Deprecated): legacy/gate_level_simulation.md
