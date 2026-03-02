@@ -158,6 +158,7 @@ Cadence 的官方说明手册和文件：
 
 ---
 
+<a id="arm-sram-compiler"></a>
 ### ARM 22NM Register File Compiler
 
 许多数字模块中依赖于较大规模的寄存器堆/SRAM高速缓存，这些模块需要替换成专门的 IP 核，而不是使用 RTL 代码直接综合，从而可以显著减小模块面积。

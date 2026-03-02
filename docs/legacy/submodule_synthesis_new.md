@@ -81,6 +81,7 @@ SOC_CVA6
 
     如果你想要进一步修改综合参数，可以参考 `syn/scripts/init_syn.tcl`。
 
+<a id="修改时序约束"></a>
 ### 修改时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `config/constraints_soc.sdc`。

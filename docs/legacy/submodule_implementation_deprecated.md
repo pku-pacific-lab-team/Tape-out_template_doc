@@ -67,6 +67,7 @@ gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_scr
 观察 `./my_scripts/innovus_script.tcl`，可以看到 Innovus 的物理设计流程大致分成了几个阶段，在 Innovus 终端中读入相应的命令即可（例如 `source ../my_scripts/add_pin.tcl`）。
 接下来按照顺序对物理设计流程中的关键命令进行说明。
 
+<a id="43-执行-invs_init_settingtcl"></a>
 ### 执行 `invs_init_setting.tcl`
 
 观察 `./my_scripts/invs_init_setting.tcl` 中包含的命令。
@@ -308,6 +309,7 @@ createRouteBlk -cover -inst $dcim_macro1 -exceptpgnet -layer {M1 M2 M3 M4 M5 M6 
 </figure>
 
 
+<a id="46-执行-global_net_connecttcl"></a>
 ### 执行 `global_net_connect.tcl`
 
 ``` tcl
@@ -399,6 +401,7 @@ setPinAssignMode -pinEditInBatch false
 
     **Decap Cells**（去耦电容单元）：主要用于减少电源噪声和稳定电源电压。它们通过提供额外的电容来平滑电源电压的波动，防止电源噪声影响电路性能。Decap Cells 常放置在电源网络中，以确保电源电压的稳定性，特别是在高频信号和快速开关电路中。Decap Cells 主要关注电源电压的稳定性，而 Welltap Cells 主要关注衬底电位的稳定性。
 
+<a id="添加-endcap-cells"></a>
 #### 添加 Endcap Cells
 
 ``` tcl
@@ -842,6 +845,7 @@ addFiller -fixDRC -fitGap -cell $rm_fill_cells
 verify_drc
 ```
 
+<a id="416-执行-add_pg_pintcl"></a>
 ### 执行 `add_PG_pin.tcl`
 
 ``` tcl

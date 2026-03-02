@@ -715,6 +715,7 @@ sroute -connect                { corePin } \
 
 布局遵循**布局规划约束**，完成标准单元、Macro 等的所有模块的摆放。
 
+<a id="摆放-physical-only-cellpnrscriptsplacementphysical_cell_inserttcl"></a>
 #### 摆放 Physical-only Cell（`pnr/scripts/placement/physical_cell_insert.tcl`）
 
 Physical-only Cell 是一种**不包含任何逻辑功能**的标准单元，用于**填充**版图中的空白区域，以满足物理特性的要求，包括 End-Cap、Well-Tap、Decap 和 Filler。
@@ -1044,6 +1045,7 @@ for { set i 0 } { $i <= 32 } { incr i } {
   <figcaption>Power/Ground Pin</figcaption>
 </figure>
 
+<a id="结果文件导出pnrscriptssignofffile_gentcl"></a>
 #### 结果文件导出（`pnr/scripts/signoff/file_gen.tcl`）
 
 **直接运行**`pnr/scripts/signoff/file_gen.tcl` 脚本即可导出 Innovus 的结果文件。
