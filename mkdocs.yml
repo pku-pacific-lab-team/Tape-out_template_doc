@@ -93,10 +93,8 @@ nav:
   - Welcome to Tape-out Docs!: index.md
   - I. EDA Tools & Environment: background/eda_tools_environment.md
   - II. Frontend:
-    - 1. Behavioral Simulation: frontend/behavioral_simulation.md
-    - 2. Simulation: frontend/simulation.md
-    - 3. Gate-Level Simulation: frontend/gate_level_simulation.md
-    - 4. Submodule Synthesis:
+    - 1. Simulation: frontend/simulation.md
+    - 2. Submodule Synthesis:
       - TSMC N22 Synthesis: frontend/submodule_synthesis_22nm.md
       - TSMC N12 Synthesis: frontend/submodule_synthesis_12nm.md
   - III. Backend:
@@ -127,6 +125,8 @@ nav:
     - 19. Using DRAM on FPGA: appendix/fpga_dram.md
     - 20. STA & Power: appendix/sta_power.md
   - VI. Legacy:
+    - Behavioral Simulation (Deprecated): legacy/behavioral_simulation.md
+    - Gate-Level Simulation (Deprecated): legacy/gate_level_simulation.md
     - Submodule Synthesis (Deprecated): legacy/submodule_synthesis_deprecated.md
     - Submodule Synthesis (New): legacy/submodule_synthesis_new.md
     - Submodule Implementation (Deprecated): legacy/submodule_implementation_deprecated.md

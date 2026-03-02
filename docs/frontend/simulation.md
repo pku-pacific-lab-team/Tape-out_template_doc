@@ -12,6 +12,7 @@
     - **前仿命令**: `make verdi TOP=<top_module_name>_tb SIM_MODE=RTL`
     - **后仿命令**: `make verdi TOP=<top_module_name>_tb SIM_MODE=SYN` 或 `SIM_MODE=PR`
 
+<a id="behavioral-simulation"></a>
 ## 1. 行为级仿真 (前仿)
 
 行为级仿真在RTL设计完成后进行，用于验证设计的逻辑功能是否符合预期。
