@@ -10,31 +10,31 @@
         <meta name="author" content="Bwoah-Kimi">
       
       
-        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/appendix/sta_power/">
+        <link rel="canonical" href="https://bwoah-kimi.github.io/Tape-out_template_doc/post_tapeout/testing/testing_equipment/">
       
       
-        <link rel="prev" href="../fpga_dram/">
+        <link rel="prev" href="../../package/">
       
       
-        <link rel="next" href="../linux_environment/">
+        <link rel="next" href="../cpu_debugging/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/brand/pku_logo_red.png">
+      <link rel="icon" href="../../../assets/brand/pku_logo_red.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>20. STA & Power - Documentation for Tape-out</title>
+        <title>3.1 Testing Equipment - Documentation for Tape-out</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../extra.css">
+      <link rel="stylesheet" href="../../../extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sta-primetime-ptpx" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -96,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="Documentation for Tape-out" class="md-header__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
+    <a href="../../.." title="Documentation for Tape-out" class="md-header__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
       
-  <img src="../../assets/brand/pku_logo.png" alt="logo">
+  <img src="../../../assets/brand/pku_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              20. STA & Power
+              3.1 Testing Equipment
             
           </span>
         </div>
@@ -241,9 +241,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Documentation for Tape-out" class="md-nav__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
+    <a href="../../.." title="Documentation for Tape-out" class="md-nav__button md-logo" aria-label="Documentation for Tape-out" data-md-component="logo">
       
-  <img src="../../assets/brand/pku_logo.png" alt="logo">
+  <img src="../../../assets/brand/pku_logo.png" alt="logo">
 
     </a>
     Documentation for Tape-out
@@ -270,7 +270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -304,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../background/eda_tools_environment/" class="md-nav__link">
+      <a href="../../../background/eda_tools_environment/" class="md-nav__link">
         
   
   
@@ -432,14 +432,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend/rtl_design/dcim_ip_spec/" class="md-nav__link">
+      <a href="../../../frontend/rtl_design/sram_ip_spec/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Digital-CIM IP Specification
+    1.1 SRAM IP Specification
   
 
     
@@ -467,14 +467,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend/rtl_design/sram_ip_spec/" class="md-nav__link">
+      <a href="../../../frontend/rtl_design/fpu_ip_spec/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    SRAM IP Specification
+    1.2 FPU IP Specification
   
 
     
@@ -502,49 +502,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend/rtl_design/fpu_ip_spec/" class="md-nav__link">
+      <a href="../../../frontend/rtl_design/system_integration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    FPU IP Specification
-  
-
-    
-  </span>
-  
-    
-  
-  
-    <span class="md-status md-status--encrypted"></span>
-  
-
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../frontend/rtl_design/system_integration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    System Integration
+    1.3 System Integration
   
 
     
@@ -579,41 +544,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../frontend/simulation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2. Simulation
-  
-
-    
-  </span>
-  
-    
-  
-  
-    <span class="md-status md-status--encrypted"></span>
-  
-
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -623,17 +553,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    3. Submodule Synthesis
+    2. Submodule Synthesis
   
 
     
@@ -644,12 +574,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    3. Submodule Synthesis
+    2. Submodule Synthesis
   
 
           </label>
@@ -662,14 +592,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend/submodule_synthesis_22nm/" class="md-nav__link">
+      <a href="../../../frontend/submodule_synthesis_22nm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSMC N22 Synthesis
+    2.1 TSMC N22 Synthesis
   
 
     
@@ -697,14 +627,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend/submodule_synthesis_12nm/" class="md-nav__link">
+      <a href="../../../frontend/submodule_synthesis_12nm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSMC N12 Synthesis
+    2.2 TSMC N12 Synthesis
   
 
     
@@ -812,7 +742,7 @@
   <span class="md-ellipsis">
     
   
-    3. Submodule Physical Implementation
+    1. Submodule Physical Implementation
   
 
     
@@ -828,7 +758,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    3. Submodule Physical Implementation
+    1. Submodule Physical Implementation
   
 
           </label>
@@ -841,14 +771,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/submodule_implementation_22nm/" class="md-nav__link">
+      <a href="../../../backend/submodule_implementation_22nm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSMC N22 Implementation
+    1.1 TSMC N22 Implementation
   
 
     
@@ -876,14 +806,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/submodule_implementation_12nm/" class="md-nav__link">
+      <a href="../../../backend/submodule_implementation_12nm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSMC N12 Implementation
+    1.2 TSMC N12 Implementation
   
 
     
@@ -937,7 +867,7 @@
   <span class="md-ellipsis">
     
   
-    4. TOP IO Implementation
+    2. TOP IO Implementation
   
 
     
@@ -953,7 +883,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    4. TOP IO Implementation
+    2. TOP IO Implementation
   
 
           </label>
@@ -966,14 +896,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/top_io_implementation_22nm/" class="md-nav__link">
+      <a href="../../../backend/top_io_implementation_22nm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSMC N22 Implementation
+    2.1 TSMC N22 Implementation
   
 
     
@@ -1001,14 +931,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/top_io_implementation_12nm/" class="md-nav__link">
+      <a href="../../../backend/top_io_implementation_12nm/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSMC N12 Implementation
+    2.2 TSMC N12 Implementation
   
 
     
@@ -1062,7 +992,7 @@
   <span class="md-ellipsis">
     
   
-    5. Physical Verification
+    3. Physical Verification
   
 
     
@@ -1078,7 +1008,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    5. Physical Verification
+    3. Physical Verification
   
 
           </label>
@@ -1091,14 +1021,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/lvs_drc_block/" class="md-nav__link">
+      <a href="../../../backend/lvs_drc_block/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Block-Level Verification
+    3.1 Block-Level Verification
   
 
     
@@ -1126,14 +1056,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/lvs_drc_top/" class="md-nav__link">
+      <a href="../../../backend/lvs_drc_top/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Top-Level Verification
+    3.2 Top-Level Verification
   
 
     
@@ -1169,14 +1099,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backend/final_layout/" class="md-nav__link">
+      <a href="../../../backend/final_layout/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. Tape-out
+    4. Tape-out
   
 
     
@@ -1229,7 +1159,7 @@
   <span class="md-ellipsis">
     
   
-    IV. Post-tapeout
+    IV. Verification
   
 
     
@@ -1245,7 +1175,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    IV. Post-tapeout
+    IV. Verification
   
 
           </label>
@@ -1258,14 +1188,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../post_tapeout/pcb/" class="md-nav__link">
+      <a href="../../../verification/simulation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. PCB
+    1. Subsystem Simulation
   
 
     
@@ -1293,14 +1223,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../post_tapeout/package/" class="md-nav__link">
+      <a href="../../../verification/fpga_verification/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Packaging
+    2. FPGA Verification
   
 
     
@@ -1328,14 +1258,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../post_tapeout/testing/" class="md-nav__link">
+      <a href="../../../verification/sta_power/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    9. Testing
+    3. STA & Power
   
 
     
@@ -1390,7 +1320,7 @@
   <span class="md-ellipsis">
     
   
-    V. Appendix
+    V. Post-tapeout
   
 
     
@@ -1406,7 +1336,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    V. Appendix
+    V. Post-tapeout
   
 
           </label>
@@ -1419,14 +1349,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../cpu_debug/" class="md-nav__link">
+      <a href="../../pcb/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    10. RISC-V CPU Debugging
+    1. PCB
   
 
     
@@ -1454,14 +1384,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../c_compiling/" class="md-nav__link">
+      <a href="../../package/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    11. C Compiling
+    2. Packaging
   
 
     
@@ -1486,141 +1416,50 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../wsl/" class="md-nav__link">
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    12. WSL
-  
-
-    
-  </span>
-  
-    
-  
-  
-    <span class="md-status md-status--encrypted"></span>
-  
-
-  
-  
-
-      </a>
-    </li>
-  
-
-              
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fpga_verification/" class="md-nav__link">
-        
   
   
   <span class="md-ellipsis">
     
   
-    13. FPGA Verification
+    3. Testing
   
 
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--encrypted"></span>
   
 
-  
-  
-
-      </a>
-    </li>
-  
-
-              
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
             
-              
-                
   
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pdk_setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    14. PDK Setup
+    3. Testing
   
 
-    
-  </span>
-  
-    
-  
-  
-    <span class="md-status md-status--encrypted"></span>
-  
-
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fpga_dram/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    19. Using DRAM on FPGA
-  
-
-    
-  </span>
-  
-    
-  
-  
-    <span class="md-status md-status--encrypted"></span>
-  
-
-  
-  
-
-      </a>
-    </li>
-  
-
-              
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1645,7 +1484,7 @@
   <span class="md-ellipsis">
     
   
-    20. STA & Power
+    3.1 Testing Equipment
   
 
     
@@ -1670,7 +1509,7 @@
   <span class="md-ellipsis">
     
   
-    20. STA & Power
+    3.1 Testing Equipment
   
 
     
@@ -1706,19 +1545,30 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 整体工作流程
+        1. 通用安全与准备
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 整体工作流程">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dc-power-supply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 可编程直流电源（DC Power Supply）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 可编程直流电源（DC Power Supply）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 库文件准备
+        2.1 基本连接与输出策略
       
     </span>
   </a>
@@ -1726,10 +1576,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-ptptpx" class="md-nav__link">
+  <a href="#22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 运行PT/PTPX分析
+        2.2 常见问题
       
     </span>
   </a>
@@ -1742,72 +1592,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#3-oscilloscope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 三种分析模式
+        3. 示波器（Oscilloscope）
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 三种分析模式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-averaged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 Averaged 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-vectorfree" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 VectorFree 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-time_based" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 Time_Based 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 关键检查点与结果分析
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. 关键检查点与结果分析">
+    <nav class="md-nav" aria-label="3. 示波器（Oscilloscope）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#31" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 检查输入文件加载
+        3.1 探头与接地
       
     </span>
   </a>
@@ -1815,10 +1615,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-sta" class="md-nav__link">
+  <a href="#32" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 检查时序违例 (STA结果)
+        3.2 触发与采样
       
     </span>
   </a>
@@ -1826,21 +1626,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-averagedtime_based" class="md-nav__link">
+  <a href="#33" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3 检查翻转活动标注率 (针对Averaged/Time_Based模式)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4 分析功耗结果
+        3.3 常用观测项
       
     </span>
   </a>
@@ -1868,14 +1657,251 @@
   
   
     <li class="md-nav__item">
-      <a href="../linux_environment/" class="md-nav__link">
+      <a href="../cpu_debugging/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    21. Linux Environment & Common Tools
+    3.2 RISC-V CPU Debugging
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VI. Appendix
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VI. Appendix
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../appendix/c_compiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. C Compiling
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../appendix/wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. WSL
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../appendix/pdk_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. PDK Setup
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../appendix/fpga_dram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Using DRAM on FPGA
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../appendix/linux_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Linux Environment & Common Tools
   
 
     
@@ -1918,17 +1944,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    VI. Legacy
+    VII. Legacy
   
 
     
@@ -1939,12 +1965,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
-    VI. Legacy
+    VII. Legacy
   
 
           </label>
@@ -1957,14 +1983,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../legacy/behavioral_simulation/" class="md-nav__link">
+      <a href="../../../legacy/behavioral_simulation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Behavioral Simulation (Deprecated)
+    1. Behavioral Simulation (Deprecated)
   
 
     
@@ -1992,14 +2018,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../legacy/gate_level_simulation/" class="md-nav__link">
+      <a href="../../../legacy/gate_level_simulation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Gate-Level Simulation (Deprecated)
+    2. Gate-Level Simulation (Deprecated)
   
 
     
@@ -2027,14 +2053,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../legacy/submodule_synthesis_deprecated/" class="md-nav__link">
+      <a href="../../../legacy/submodule_synthesis_deprecated/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Submodule Synthesis (Deprecated)
+    3. Submodule Synthesis (Deprecated)
   
 
     
@@ -2062,14 +2088,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../legacy/submodule_synthesis_new/" class="md-nav__link">
+      <a href="../../../legacy/submodule_synthesis_new/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Submodule Synthesis (New)
+    4. Submodule Synthesis (New)
   
 
     
@@ -2097,14 +2123,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../legacy/submodule_implementation_deprecated/" class="md-nav__link">
+      <a href="../../../legacy/submodule_implementation_deprecated/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Submodule Implementation (Deprecated)
+    5. Submodule Implementation (Deprecated)
   
 
     
@@ -2132,14 +2158,49 @@
   
   
     <li class="md-nav__item">
-      <a href="../../legacy/submodule_implementation_new/" class="md-nav__link">
+      <a href="../../../legacy/submodule_implementation_new/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Submodule Implementation (New)
+    6. Submodule Implementation (New)
+  
+
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../legacy/dcim_ip_spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Digital-CIM IP Specification (Deprecated)
   
 
     
@@ -2174,14 +2235,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/" class="md-nav__link">
+      <a href="../../../contribute/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    VII. Join Us! How to Contribute?
+    VIII. Join Us! How to Contribute?
   
 
     
@@ -2231,19 +2292,30 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 整体工作流程
+        1. 通用安全与准备
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 整体工作流程">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dc-power-supply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 可编程直流电源（DC Power Supply）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 可编程直流电源（DC Power Supply）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 库文件准备
+        2.1 基本连接与输出策略
       
     </span>
   </a>
@@ -2251,10 +2323,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-ptptpx" class="md-nav__link">
+  <a href="#22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 运行PT/PTPX分析
+        2.2 常见问题
       
     </span>
   </a>
@@ -2267,72 +2339,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#3-oscilloscope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 三种分析模式
+        3. 示波器（Oscilloscope）
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 三种分析模式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-averaged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 Averaged 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-vectorfree" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 VectorFree 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-time_based" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 Time_Based 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 关键检查点与结果分析
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. 关键检查点与结果分析">
+    <nav class="md-nav" aria-label="3. 示波器（Oscilloscope）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#31" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 检查输入文件加载
+        3.1 探头与接地
       
     </span>
   </a>
@@ -2340,10 +2362,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-sta" class="md-nav__link">
+  <a href="#32" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 检查时序违例 (STA结果)
+        3.2 触发与采样
       
     </span>
   </a>
@@ -2351,21 +2373,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-averagedtime_based" class="md-nav__link">
+  <a href="#33" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3 检查翻转活动标注率 (针对Averaged/Time_Based模式)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4 分析功耗结果
+        3.3 常用观测项
       
     </span>
   </a>
@@ -2399,14 +2410,14 @@
     
       
     
-    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/appendix/sta_power.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/Bwoah-Kimi/Tape-out_template_doc/raw/main/docs/post_tapeout/testing/testing_equipment.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<div id="mkdocs-encrypted-content" style="display:none">LSi9T9yp/UebF1qYBb1krw==;+nmlea3Gbn8ZwOmK46zSfil/XNeMsGMHzs/okWLX3hZfSoILmCGNniAYZ3BTJHcSEkXMUnBer9EVLEuHVGCbQjoW3giRDZSsJcLhfb2QhQ1JnBDUwLDpncXG54pldbjka9fNVpp6gV//1ZLXy0ARb0i/vQw8sGtQt/dB+uk75nH475W1mSOBiOSJ2FybpRtU3cmInAzllJiWkNOpiHxPDNq84zM48XdMW/THfgV+IQ3fEd37eTvd7GsQwsKaRP4N6q4ASvijpUcSCI9MIjsPEXexrQXElGyDwqhc1HMEehSZWVcy+SY1g3wBc0USgxPRfgGHapdXKbmJAguUEezYE/GGm+5hGRJSnzGHCp4UJu9cA/HwFX6XVlF/R4OTTsctY/flq7QvzhPqQgZamjdAdmY0JvptYlYbk0FL3vjdeoiyX/NYw0kfcZilNuHC6a/mg1+DXf72V8sfMHkrfedIL1h2od1V1MNMgeeAKoxBNCPZEVaIVpwG5hyuWuXaUafzfNqWjO4veg2/E2aTGbmwN4nc2T7dWr1CBnbNevr+dxtJZQlCXX45pxgX7qI6ecFsWf0MlWkzikjeiMMKDUykqVBUCMUO46YFgu8jiqIrPVoaHgwpZtlM4bc5QnCmeGA+ufNBMfoRuc30dC1K9fVaA0nhEKmglPXJLewuDA1S/UvWtLW4mHVgjMVyu1qMeu25xM3lko0DBIWLUBtHC9zjRbTbdWw0qtFV5KhJNq/OE0wgtgU+drJi4cRBK3R1O+1eHWN/Ao5iqtGeE+sAhIJOu68Y+MyhdujUzc3GLATlydIS2DJS9ktvb36tBJI5mrDYtXkL9atYxKto5P1YuOBvNmjzBF4WDV4imPIy9+2q3XpXZeBxd49JuXHLTQ1gPGb6z7BPLrkw0SmOj1he4WBgkei1pcaXeiogBLrIK8MVy9bYCkQTWXf02ypmojWoW2cMG6QOTDpr0pfngm5gOB4bS7NO3VFm+oR6WlsERRc260wTc0dR7wHp10686+XDFSetbnmrDnk4+N/eet11YV1lMNmKmQrBqXGoJDzdxOWQul1Po3yWG2qcLtL5lo25Wyk0Q8ysIgrWySJlBzRKkdrnaSuI/ZslwNWG1c3EBCyaVqScMG/RgIwWsRV4ZyE9UY4OxNfcLu8XTCB28/8HNhsT7DzbSmt1FORJ9ZqPE0FhIg2URu6g2jsCGtYUH2ownqdaTXCMJlM3IQKo8BzEZ4KiTuOp/kh4+yFw7+EgXensRhY1e00xVy8l/HOh2zNARb89BjgzX9SMJV+hLZfgMaz3KP6UmmXTj/+27tuFwYPmjSU6BQJ8B/LmP5CxbKruvxVgMVKLQSSeFhEimxNcOx4Qz9j94yswy+EtpuQtaN3Kfjw0jhVAVwtGEoVVBIKNkd6BRFvG4a0teEVgx/OlzLQbUjFzfCqhlUiHe1jzGHivMFnZFrmK5P7dC7PmTj1wcPA/bIrrtGNbQKbrt9ZrsNQDoLzTrxwc1w4hiqjmbUF4lhMGqaLglKnuqpT/Azhf52tZgvCMpEwm0W4Z6KgORXhuevLqPFfClPXauGoBrZrjFy64dpa8mi7v6+1AjDREnmFvw8gEGAGNMbaSxYRBFBxQyVt9+rwpD07xsSj8/SGlj1CpCX/j/NHlO3FuPYfryh4WpxE6sJ0VfvTYyF0CkFAExAn02lHdq1eMqeQTYM34OB3wki6RLSsyhSGNHb/y/z5pBiJK0LuP9FkK5vy28FBOu4NnFTfysk7g56FUy7SUIFEE54xmeRYtzBDUpf5J6R9EuvC+UhYFiSNSS3HnNLVKEtwztVUNrYnRAqNdnjqJnyTyvBr0f/zH3YJWBGcJ5FI8M03h3shafpcSSfIOG5Lr0kvd65LgbJ7Yffj9nP8+UKMaybf2+rd5WpnqfmqcpgRMjd4uVxDqAExtCzDXKsgQLT2K7GaGhsKaP7AESzb8YqBJkCu9jAwikIvkh+vmXx0VapqwyouZL5aspJZICFUIdYMnjlidLoxJBaY2l3jPlsgEN5LD25sE9FWKH6CV2MrRZ9xCvNNPJv6eSJLrXl3lWOO93KzDVjjO/zPuUCbgM5fpsENLporc401UL6PXzijy8CRZK7ibYuYgZhyi6yKtXzVsdytMO0FhpLrcQJJ55jx6r7X/uTmIvQAV51jGx/AP7l4mMYyp/rkLQCpAsi0pb8xUR73j1iJdPMgOLRAKyNmpjy8eUZV9pc/L75gY+0F27gOZ/lZ4W15ZVlWFB8lwnFamgovUELJm7zpTcLs+DF6i1N86QQB0jerZ0ZGbWDSzUnkuq2Xj3TAQLqJrQL/Tl3/YTt3RqfhwgNkZszYP26mURIKsJSWapjdg/yJnKbDgX4hpuFMiUJfmhjxWNvvmZbs2GrQVQEFIVo5oUFxhbnSacsYL5lFO46bExxIGsjedr7Z1lgbVQGztfzE/RTSBFBbwPdbASgpVpbgQmOvNi1gYJQH4clN8P5Pu+BO8HKDo6N8UJ9abP8/uC4Ofl8fPp8FxgyAQwPRuQJ3Yt46MyYqKM3v53L3wGSDNwO0SCkKwe32f6QOb96Vx65zz+y57kkOHU2RaaqA96WeGiCWdv77UlL6buNMdhO0zPMTyLHu4h+HBhWPMGL7dIgaMgj0lui/HbUkR9AW1wQN5BhyJfsPVe3wyqrHLuJ493UcU/I75awZDzmq5A6ZkhqJLRsUqck106OwR4l7GZhQGekBkwTmoBCDZ4hEJ/WB7+p7fyxKPrbdmrY68GUFr7BXsXu1aHvSeysNQV+vkDw30pH3rX66+WSnKpJV0InZcz4gS2gzzvxbuNJdTZRI/n0XuBJGXnpAbf3tOS0hr1sw/r+2PhzIAM/hPuspxHmRdEg5nduLxo/KlTYsaRsRNB4/Kkve0BcL/YnBrRB1PNhMt0FKUyw8qP50+xOcO4KYaYbMkpv/E7m2JVRUAVZw1uzYHzIKAx4EUy5MAUv+7PYqjRvLQG9tZI4OfzPKuCAhzk7zdwlnxzpx4GrFpHSTQ6WPcmrR/VWfSdFr1JXhGUEK8on3/y111tkRC/wYAkH3yJcrk90H0+JN+MLrl1+iLGP5/5QqT+wXjIwAtj5Wva4i1VZGJWXo3/3EjLiAF9kfil0igLVuYdtqGAawI6XYnAiKMBsx9McOyvqGXwArgS2wIFRJpZnsWHVwrBuzArmqP607Kf97p/KlxTubKFex73NU0ijE9rMvJAFTzcuspIa12pCO+i7ZAca54wrgDQFkNQtMNBN4mEOhhz5moFxVIUG1ctxn++xG72uCfdLPtw8iHGrvQ+70kM1zTUgBJmqpOCESFAQraE0KzSu9xrxuLuilcdsKKDoq3JzkiMcP1fUuofLox8P9PriEmOGN8t5cJbPWvJ8KG8EiduFHrJjXppb+hFi14G2qz1vZ0CcJz4dk9bb0LidS6vfxCWF8n2mHy7nIE6PNwrELZ6ZVr0wYm7i2dY+xoxlYJ7nYlDPJm7RkQAJfhm48eebnajMASdbNE5xmk/3YRlf1GuMHAVRKp091je3fnsRRlioFN2o3i7nuvd2oHmEa5bcsTmcaMWNyOv1nc2wjkVIWv/gUizFnqSt9y1UygxJP/lroYxRjAuwZCneXNj168Ojxhjh1Rre89EwFdg8l5mpyMHfvvp4rk359XGBaRgjlus9c+u0C65OEj0nk21VA0M4BV8iz2wSDg3kFkj1Sb9VvY4Cg0TMd8z9OK92yHlEBxUY/yfEIz4M2fDF/cCQwtmLNAPeM7lFCEyOeMZP3u05KV5OQHG4DIP2mHma4mJuZ8TA44Xq1+sjmhaIfbGYcg2y2g957RECjNS4zSSVS+gnMXn05jpoBXgf3EuvXSkF+6w4qs/P6N31GbCwi+7UUYPEt7OvmiIlaKtmdbTMur4ObXb324L7N1v9M+1pADIZs6rXNp1J4azWlUFanill2zQh6U/sIvRhKewK7PuyGxbs/DE6ilB/X7InlWDlplDUKSdf2V6iiRsKafN9IelFm3IyC4jbCEIC2oc/FHKlTIq9Z3N4ivRKGJxWHzbXYidLcPpOmiOVnogAjt69wijdahzQwhisW/N/Cd7K157WaEmpqbgXAuuAM+1iNDLCGsZK4PDQ80Bw19INIV4r7yytFZmXvEmasRPrML0D/vf7K4kYgSiOrNKW6xT5Ze4uwS4FlE43rwUk9vKJ9XTFJoX8UHRgcaer6zwYcvZJgOGJ3RGLn7bWAfiXImiHw8qdGJebL2sMpVNQAiLnmr0jsVH7AteD3H/xyHX2t1HbrCU+Y1p+BjDFaCnBo2teNdjhf5F7gtvim+piVZH3e5LJrdyAMB42NmWRkmbnM0P3otg2wT9AuZ0q/tNBbNtcovjBMtss+tGXwFQbYXS5V1P1tlqclutC5vGQrvvWfej1cHd2LPA34g0Z1YZNfm6hyMLSa4yGSPcHhPSzQmXwmGovTdb+4RL4H3aa2NR9PGcCo0PtbuiyRMkEhQxi8Y+5v7IkhR5gdwgR1/XJvmmj4oXqoHpNpnU896WYRMSp3wdMzAIIR+hsM3MIJ9O799GF9H5IGEtMRPyjhjdN7sexnojXwmYfKz4uB9obPjEEFY7K7RBpL4CyHhl8QdvdyAR+ctf8LhHTV6WHvEYeo5PzKHSfy42n9XWq1KntJCb+jsbUxtO9HDk2vQQgQqjSdmLVLUHuiwWAtLkCPcYp/aUw0mmnRdvKOBhob4wCChjqFUSCkBvSQQLeZtaaSHkWnq0otI6jORIwP2yr8Swr8Y3A6GjX5DeEB2nEGfhwsYMB1oH5Wxy3RB3Uh+T9iMXnh7UfvxN1DCABaHyGavLOsQyfutZEQALCqe58eEdeIBCkHivfUURehbH0vpP+p/k/KEUiN23m0ofqLfjfR8HVLP8cNkWcm19qTpl61W8paKIEnn/ZkshSoMqSRMrbLKsGr8Sd0xlshK3LkoDP4KmrrVjm/GOIzecICB5owNnUJocLzQ1GQPg+8VwDn+5xQUsl7IoTaGJfN3FcMwTT/Ky7/MRFROpI/yKJ8SMKXBGNiM98/V3+FJWp3AkEzMCbXRRZoOqp0rNdYg8U57LKxuwhhARZe8gV6VOY2FsN4S5hVX07vtnR/UIxEXX4ZwBQv1ZZwjJWpnp0REN/ME1pPHntN+oYRx+csCRIFk06DgWViXOnLXCBYfAoBtRRxlCxW8lDhm9UzQAFpmMSg17DtQ/OOJ+kA8RMcH5TlbACifBNpedmEMBY0F4TiWdCoHovlv4f6FCfjuH9DzgUqIUXn8eN7jutrEKMY1DP742Um0DYRUs63pGxuhuptlA8sZazJSWjXmbZmWvom4lDAcbilswL3KNcbBngNjx+k3IRu6IRI1XG5pIC7yprZKlML5WoPqG55AFdYSsYKVXfV0msQDH1SGgVoK9UfEi+dWNBObs1DXdTVu6vT7v6V0FnLqEtnI4Np+NtKWiHfF5tDCgGthmRsy9mXByOL5GfT6okgTBibZrCYxw5iXcKSKOGYmr/v8EpDtrqnaQyFvTth2a8V8I+OoDqkqTad6eNEjG5g03TJiyWTYpZsRZfCKBwnMk/7T8IBbS2qD1QDG5bIDBz8Fy0YdZRYMmaj3yJDOAuw8tpFplFlDQNX8s/Saxy8eFppm43wzylN2ncSJJDvwO+uldJedXcvgj5OqAkTxPL4EmMcRIUBD6m6V96CUQaJjQEBZkgq2sniZWBay0xjn4+ZTaBDTk4LgHpYPyovR1kcdnmwUciQFwNOU4zazK0pAfQ3b+Y7jSeYeI4wsjsxjRRJPcuIDKQiqUrUt6GZJI+fuUxWeA8Xr/pXOSqgoxiNznS3ueZvM8C5X0lvPAF5Sv9nH2JWBk3kR2Df+JbRUnraczywSgnRWsq3Kmu9IWj+LOv0pCT9JP9KB5iRrpn7BC9KLEhtSIfAEaBsWniuPymRlwGiSRQHHwgbq4indhZhfFa0F7QUPdAdqYZ8a9IiUnskKDXTM7aShvvPjX39KmoVA/Z9Q3KSIPtlGeRmLbDQD8x6rdkaojCpbnI8K8VGDUgXenkvdN797s7oHW5an73oPm/6IJL/UVwL/qtjT46vXrc+vrZTu1u3+YEZlEhQ47K6L5Ka0Ryp7KllCqbHkM832b4S0SLLY4TWVplJNeunOcAkQ562LgeqhsDLT8ZFmv5uSl75y2tWBY3zXfWw3dBpWzJNwzxPEQjS/oK4lNb7ok6niwZtGiAgY4xVVdCv3Gzadalh2KvKB3CsS/8uMEflFkU8+CHBtYulUQaOvyrg3fVNvWAtK45hkTGyPn3VZxjqqKO9sxTQrbV9IAtNlZgnOEBeCAHFIWtwM59RRnBUXwwj78Wf5s795XwWFv0zXYJEUbAp6AsypEb7Ly0d7eBZpUroZVyLzlAWvzHXHyQKREvzd6FbwLCcB3D//5PwD7Ly+7Xu17TPYp7+IQHRu8zRu17pD4ZO1oxA6JWiHGg/iMGNEyESIVG7l5A9+m1uOC9cV4zUNYWEMIFpxxvEfFms26iCnSJvDhjI9wkssHSZx9y97VgDXEbY5jd244KXcZJghoaOABKLE2E6pX/jLJCF+DjSXKyA72KRrVa4tGtrMd6updhzF0kvqxT3YKphR/wWv4zCgvkURZlBwQLQ0YBoJioS1Jf/EdrAXUfLolpKJa/zbvvFwKha+Mmh5Nj7XWY3cVO4nbP1ezpkttl1K+vNkBwnsbILrNTOE3p4jyAx3hKLxxRZbHYONwPa3owtQJ15VHzsX0yosU3Qg3DgpMTOaXYtgYTfkgeC+heEzJN/pH1ZT5oPRZFZohHg2zNwwgyH2YpW4ekhyCeO4SUdvicvfxqdR25SR1ogO2gMbtXeQ6NfEBsDJhRNb867l6xDQE47cAWhoGX1lqRiu9IubypE8ZYxkQ+RdrJMGuVmdNntfhTxzidKkTwEnpOhGxKS581wy51KsaW4D21JBrzvyZmh/QUEr3Wk1ckWqOP7bt/MYRW7j1lkx+LQ+5M51ePy/uQttclVDMT7TnQnhcbvYlZxSoq+lPTsgBgqvsyCejV68A6nbz4xvx/T0EFS+OeiBO+hYwIYfIkO5rEjbA/wkX71b33ceBum2uxrhrhmo+M7LjS4i9ar3w08ycvfR3ZMnGT/UeNHSzJKMkQnEOmu/dQbyfsid/ln1c/Ov1BzsxpRa33wAQ8ClEYktUNQWEQ5Rfmddw4AlMRZMz8KP248vBds7zCW2aGxiz6tHdDTICce9nVB6iFMcv9gtHUpdkKHTs9//vD7+w2AqrcmMJqvTFnXdGFgHo8qAaCid0L+XN6QpeQzWWFxztgBVL8ig5XE1c80M6BL3WdgS38ABR9t8Znvqyt2Qe4PSr0ZqXgqDsBZ8GJZzYSnrSWpsTwFi3U8sR/AFKnCqj5lozMQzjvSjtdwZY+hHoPYL8nAo2zoHFgvDXhLEbbnmtHPpL0GlEx1QG6TaPsYbZ3A0Mc3Rx6CWzHbX0jMxttBk8iiqqXt0DoYjg1P26RkR5YetIBGQExStXUFgzjOw3uCkpqEUwpApe2wDEmFTgt97mXtMEH7SUyFaqylTDNkTuAbazawlK8ygnAifgylwlzmTaUXR3hSf/YczOE9x1z3ZWo5R1HO5B733SUryvuL+H1ikhqm6d5DPRGNHL3/u1EoA2AJPfBEHnnppMfNRzOkPm1JU6MIe1GtZ2Gx7sdjYvPOqKCUFftyMtakouJgb1xRB/xgQl5c1A4Fov7KMbj1Rq0WgRve3DbaVRjMF90qbGVCsoMfoNZcBIG2gDjUlxu8YWacbpngiWzZlwWrk3hbU8OyU0pypPIek8Xe5MUslvtfx1kvBRkINOcyU4fJZcM6FbNYxZ2CKBIgYZtx+EpCkA7OlcqaRVhaLwXCcdg2vG73PNc6k6cJ0iw5GthpRcCRfdrxB3x2Ir9m+SMQ17hU05tiQID+QOmr6wTbwKrvpymtRt5XkVBs4LMQww6Lq07GEKg414PPHAbKG05115N9gnqdBxYcQPvtZhP787yLEL8GONZYId2VbsKdi4caiVcBMXq3tFgAWeM2b9JaU6OfL4PbE2WoLboKkKmjBvAnLRjPuI4g2iqGVH+txaI1pX3M04QIsK8JdDBcUuDqphTUnM6JO7ZmvD352H3s/F06Bq6Dasqp9pffXahLtrGvtbADpXxQ0q6dGVjd+y5rOZ9Ly1JGojWhvjxGJgJWwVKZEKgsgY/2ZvzwpLIhNrD/VNwn9mE/iCoBE2knwunYPr8znS92IK+MMfBe3AK+HIz87vhmR4iFr4MICFGH6kmDbDfsSiHbrITzoHDNVuVDqyva5W0lZ76icGadek4mFtOYf8JkYuaZJB4zeRKPpIi5ogs/bfV7hAFKgsFYEZdkVKiFu50izklxAsqhiY0iiaWLE8vUaln16Usgxm+j6J4nrzg3Qhcdm6GZkeVBCTHaHVTgawXwR7IGZ+uKNqtDMTran2w/q5Hl14lYaD1bwc7Dq+V0oVFP1GVWIzhP/4mWO7lu5gkYsTuXTGGAKJYj3p17uel/St6ITxd+CFPkFe+I1eydntGQVOk+Xqz3kmNrZQiIYScX3aQMLd3ruHQvTI6hZQBxwEQmHkZJadIYhIdQKjjFbNQ4e9BvsLb60ueWyLENAqaoufhm3Set02dSNVzZmT3PdUWAfHFjkW0F0xj9cjzMDhE1HejsGytthEISyJh4g7cUIpIDmrNIqU/gPmO0U2MnG7sACfZDwsq6RcSxzjSL4lz0osulzQ+0QvHoV1yyeXe9m4twW5rq73awzt0elyO+lR4HhbdCY2iRCrXIMrSM3qBinesOHHaG3rvwA31Ql/BjthxM0gixVbflMlf0AnzQkDqRelMOV+4m529OKYrIrJN8/h+gVQxvL6qKYSuTopAmOWgkd6BE+dwzHYcu/YzoMWgoRtIXLppTKv1nvNPqOwsbAh8Eehm6/ZTU4TTCtUkZsF5MoP7K1NHTncHkg2WBfJsfh6b5U/XkZDIEL2fpW4l76WaCokeoByfQqQh6pOc8F1gnLnhwktpAiBvasy2fFLfErwo3/wvNrXHrG9xDvgu5gvTGzxS8RCulpspme7ghXNlnyWcu171ExMGX6c+aYEUtvT0hTRP0kqES6eNUzuaVKb3whuK0zTuDUnGU5k2vEsThXvfKs+nW9ASAeeJQokqW3+lx4HAH+7JNmNoZQl6nomp6UohNHOp52w6ZpWGMUcihqOCqX2th/EtYmFvVv7/FXS+Ixi/HGui5J/d3TWMNI1W76Kn2iqixH8YPyDcJMGzlFi4FU4gwthg1TI6vlLe2TKTeG42U/ScLpwbio2w+kwRIjdfoojRri8Zwiqd3OZ1rlbME5PxUMJHlJuyRKD0TDW0YTwWvYiYcyGykJF6Ijl/goWtGVThGyXRN+M3lkOkIVEbadWS8GSN9x5Cj+NYyEIWEH7qr0/4W5+8sqJOvsGbMlapX1zzdd7ybw3Y6GjlQl9xjaUOUHVnwrCJ8nIoaB5LCmBc1VRyXxzj5gbazIQptZzUxX8+h2mqLa3VEcUjnOczEz3pcWtMyIOqTt4NXLc0jffYrt8fLW0sbbtLWUgWzeX5jK9pAcjymZ41UHw4VzXCPixNmIgIGoGEVJxB/A+YjCzo57DNLAtQsmwJvYP8v5Kaq1lxJiZKjNllmwFL/gC0BHuqYisX0RV7siLCChtnc3EOy/8EVPjEXz/7T0rHtv4KwRXMFnnzn4ioTmvAh2HbyL6ITfsjYuP0SZZQjukAIRoEkuz1zgdaZQk+HEbSel3m1NHJbW6dD0umV99JDLCw1g2MonQjbBu8c7y4mKFf9eMxNatt0Kge2+4FkMj2y9FriaLMhNumOZ/NvE4cOVnxCt3kpOp09Si6cUdIpGXb+lU4UAuhZ549aiZ/UlvwT7BRucxAdtMdmOzuhJMKtSvMr1Xg5nDXSbX2SGEA8LuxvMNISsZzrhtY6eBt+tAteYu7fogS3teN7f99FFXhT6Zmk1NP3OWuPFgsBWmFkwN0q74TrrYiElij0+k4dDUVKnDagipIdpDre1ZmoYNZqD04MNX2xc7m77jWFzqvVZj2/Pmzkg4xNzTswVfepxOxPesMOzMuLGpb41ycdoklLUkkUX50WZH8Z9og3XejnHZGk27q/lV80li45eIBasVJWKfQ2CrLtiMEyDtbKfOC8fxah7QnOEcpIMS0x1gnpSZwF5Qq8s6/s7MRii6c38FlUH4sAAvamPxjn9vurLbtCeDRmhnS3Rvc7ZezLRqtC0q1qLWW9X/hDm3l+Dmlp2qhxgacYrRdo3c8rw3Y3qPXPQWGT4sg5If9W8GOpiRoYytu01aXltHWiMXp/jJX2LC//Hl7DjRdBBJ0/MyQqrFv6T0A1PdNWzvKc3XsnGcOf9DKtUSSXfWpltAqo8mLjz3MlJd4utuiKE2RUgRaZZSpot20w1JY/AdTM8Sv2R960bi/zMvCNd7qMTmVzanoqncMVvvefIdbxSJDDZYOtu9UN9j45vfqiwanZAMdC382Pri6VVSqkX8CsGNT9uLpdA4wRYUlD8tMHyAUge1y0/kFu87tapT6f74DcgYaJ4m5LE23c2bVbfNC+2AA7JGWNYICba6yv7sIQ9HP8LXLTDA/HEl3mYC4RpgY1rcEXsYOtLaOeygtPFKVvJDFKqyPDeVPurHbZyTxY2s3tGWDQUyXDKqWNkPhugBXa+9PJMa346VjRlZlv4POMz+qqsYdfc22/z2HFor1Fsw8HgOvrqYdMQQSs2RYwMBnYDhIRECCB+4QEg0/0pDQ3B4pHeJ631tfgdNug1Q3WX5JRrUfO5tqhK+KzN/b8tNYC/rE/mvCueTwfn4xlHmXuxL2bVyTn5lM27mwvTzCnoU4Qy0zmM1IKvh58P0zpNV4eCsfvh7ffj/wiNyl2UyRqec4RE8Wy5xR5fE1659BCXUq/7LjZnvlUf6J/eWVJHmEpm6gaeap6t9wUm516dP55/nsdIQjQ2vVKsRInVTm+pMwPtZNSx8J3GuEiJwfiGkJ34Y3yc+KilhYO1YhACRS6oVqYqLqNNt0L/onoAJV90Vn2vfG4g+9RlBfAgGdWar6OUjx21TGhEKIDZqVjsGayA7WIuHfYoRHhr02to3WKm0+sSukC7ZtHcel829Soc8zlCuPm4W82p+1jtEtFgDZ3cP0ExeeOEqkFJjA7ZVp+yl7Kgj7Qp1rdD</div>
+<div id="mkdocs-encrypted-content" style="display:none">Ajf6u14NVp723J4GrIPGOA==;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</div>
 <div id="mkdocs-decrypted-content" style="display:none">
     <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
         <h1>This content is protected with AES encryption. </h1>
@@ -2419,9 +2430,9 @@
 
 <script type="text/javascript">
 var encryptcontent_id = "encryptcontent_1";
-var encryptcontent_path = "Tape-out_template_doc/appendix/sta_power/";
+var encryptcontent_path = "Tape-out_template_doc/post_tapeout/testing/testing_equipment/";
 var decryption_failure_message = "Invalid password.";
-var encryptcontent_keystore = ["/zQHC1W/BlkwrTKV7rt+QQ==;e1VV5pubAaq5lC+eUJraqlT30e31jabzhWC0Hcrs6atRcTbo/14zLXQHye91xaw3O1Z9t4CP1A3tPmtEgvLZwuPX1jSdeFvl8JDQUwj/i0Kd+2nEkHKTK33bmplATRex;mLhkvnTHpqkTSjykNVESWQ=="];
+var encryptcontent_keystore = ["LUqXTjZcLKaFIFU2Ztz7EQ==;jL+ZDod7OhshDx0rW7PtOM6b9VCljMlJ4K5pjA5kPN8D1yJKhJ3aORm2PD2K4MkW5nQBdGl2h7YF4JbjklSZTE6IfnoFO9rYvVlL884Vej/E0t+WMgo/m93EeqZtXeRv;gn5TJB1LCtiilatgq7Hk+A=="];
 var encryptcontent_obfuscate = 0;
 
 const encryptcontent_event = new Event("encryptcontent_event");
@@ -2429,7 +2440,7 @@ var encryptcontent_done = false;
 </script>
 <script type="module">
 if (!window.hasOwnProperty("init_decryptor")) {
-    import("../../assets/javascripts/decrypt-contents.js");
+    import("../../../assets/javascripts/decrypt-contents.js");
 } else {
     init_decryptor();
 }
@@ -2456,7 +2467,7 @@ if (!window.hasOwnProperty("init_decryptor")) {
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月2日 07:38:35 UTC">2026年3月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月3日 02:47:58 UTC">2026年3月3日</span>
   </span>
 
     
@@ -2466,7 +2477,7 @@ if (!window.hasOwnProperty("init_decryptor")) {
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月3日 03:47:15 UTC">2026年1月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月3日 02:47:58 UTC">2026年3月3日</span>
   </span>
 
     
@@ -2476,12 +2487,11 @@ if (!window.hasOwnProperty("init_decryptor")) {
   <span class="md-source-file__fact">
     <span class="md-icon" title="贡献者">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
       
     </span>
     <nav>
       
-        <a href="mailto:12849675@qq.com">holi</a>, 
         <a href="mailto:jameszhu.20021122@gmail.com">Bwoah-Kimi</a>
     </nav>
   </span>
@@ -2522,7 +2532,7 @@ if (!window.hasOwnProperty("init_decryptor")) {
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:12849675@qq.com'>holi</a> (96.46%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (3.54%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a></span>
       </small>
     </div>
   
@@ -2549,7 +2559,7 @@ if (!window.hasOwnProperty("init_decryptor")) {
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../fpga_dram/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 19. Using DRAM on FPGA">
+          <a href="../../package/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 2. Packaging">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2559,20 +2569,20 @@ if (!window.hasOwnProperty("init_decryptor")) {
                 上一页
               </span>
               <div class="md-ellipsis">
-                19. Using DRAM on FPGA
+                2. Packaging
               </div>
             </div>
           </a>
         
         
           
-          <a href="../linux_environment/" class="md-footer__link md-footer__link--next" aria-label="下一页: 21. Linux Environment &amp; Common Tools">
+          <a href="../cpu_debugging/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3.2 RISC-V CPU Debugging">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                21. Linux Environment & Common Tools
+                3.2 RISC-V CPU Debugging
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2613,12 +2623,12 @@ if (!window.hasOwnProperty("init_decryptor")) {
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../js/extra.js"></script>
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
