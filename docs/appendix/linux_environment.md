@@ -83,7 +83,7 @@ rg "Warning" logs/ | wc -l
 
 ## 2. Vim (Gvim)
 
-### 2.1 GVIM 配置
+### 2.1 Gvim 配置
 
 全局配置文件：`~/.vimrc`。
 
@@ -301,9 +301,9 @@ clean:
 
 ---
 
-## 4. TCL
+## 4. Tcl
 
-目前大部分 EDA 工具都支持 `TCL` (Tool Command Language)。常见用途是串联工具命令、读取配置、批量生成报告。
+目前大部分 EDA 工具都支持 `Tcl` (Tool Command Language)。常见用途是串联工具命令、读取配置、批量生成报告。
 
 ### 4.1 变量、列表、字典
 

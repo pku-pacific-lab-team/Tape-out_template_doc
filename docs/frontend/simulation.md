@@ -12,7 +12,7 @@
 
 1.  **行为级仿真 (RTL Simulation)**：验证设计的逻辑功能是否正确。
 2.  **综合后仿真 (Post-synthesis Gate-level Simulation)**：验证综合后网表的功能是否与 RTL 一致，并进行初步的时序评估。
-3.  **PNR 后仿真 (Post-P&R Gate-level Simulation)**：在物理实现后，使用精确的布局布线延时信息进行最接近真实硬件行为的时序仿真。
+3.  **PNR 后仿真 (Post-PNR Gate-level Simulation)**：在物理实现后，使用精确的布局布线延时信息进行最接近真实硬件行为的时序仿真。
 
 <a id="behavioral-simulation"></a>
 ## 1. 行为级仿真 (前仿)
@@ -54,7 +54,7 @@ $ROOT
 
 ### 1.3 编写 Testbench
 
-通常情况下，SoC 级别的 `sim/soc_tb.sv` 已经提供了时钟和复位信号。你只需关注内存初始化文件 `sim/init_mem.hex` 的内容，该文件包含了 CPU 需要执行的程序。如果你只想仿真子模块，可以在 testbench 中单独例化你的模块。
+通常情况下，SoC 级别的 `sim/soc_tb.sv` 已经提供了时钟和复位信号。你只需关注内存初始化文件 `sim/init_mem.hex` 的内容，该文件包含了 CPU 需要执行的程序。如果你只想仿真子模块，可以在 Testbench 中单独例化你的模块。
 
 ### 1.4 运行仿真
 
@@ -100,7 +100,7 @@ make verdi TOP=<top_module_name>_tb SIM_MODE=SYN
 !!! info "综合后仿真的时序意义"
     综合后的网表没有时钟树等真实的布线信息，因此其时序仿真结果**参考意义有限**，主要用于验证网表的功能正确性。
 
-### 2.2 PNR 后仿真 (Post-P&R)
+### 2.2 PNR 后仿真 (Post-PNR)
 
 此阶段使用布局布线后生成的网表和更精确的时序信息进行仿真，其结果最接近芯片的实际表现。
 

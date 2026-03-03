@@ -172,7 +172,7 @@ b make restore_innovus TOP=<top_module_name> STAGE=<stage_name>
 - Timing Constraints：`.sdc` 文件，时序约束。
 - Multi-Mode Multi-Corner (MMMC) Setup for Timing：`.tcl` 文件，多模式多角约束。
 
-Innovus 拥有全局 TCL 变量，这些变量都形如 `init_*`，可以通过 `set` 命令修改。
+Innovus 拥有全局 Tcl 变量，这些变量都形如 `init_*`，可以通过 `set` 命令修改。
 `saveDesign` 命令会将这些全局变量保存到 `.globals` 文件中。
 
 !!! Tip "GUI 操作与脚本命令"
@@ -278,7 +278,7 @@ floorPlan -d {W H Left Bottom Right Top}
 
 #### 2.1.3 设置 Macro 别名（`pnr/scripts/floorplan/macro_alias.tcl`）
 
-Macro 的名称通常比较长，为了后续脚本简洁，建议使用 TCL 命令 `set nickName realName` 给 Macro 设置简短的别名，例如 `set icache_data0 i_wt_dcache_i_wt_dcache_mem/gen_data_banks[0].i_data_sram`。
+Macro 的名称通常比较长，为了后续脚本简洁，建议使用 Tcl 命令 `set nickName realName` 给 Macro 设置简短的别名，例如 `set icache_data0 i_wt_dcache_i_wt_dcache_mem/gen_data_banks[0].i_data_sram`。
 Macro 的名称可以在 `Floorplan View` 中右键点击 Macro 选择 `Attrbite Editor -> Name`（快捷键 Q）查看。
 
 ```tcl

@@ -7,7 +7,7 @@
 
 ## 1. Cadence Genus 22.1
 
-在该流片模板文件中，我们主要依赖于 `Makefile` 和 `TCL` 自动化脚本文件进行逻辑综合，一般情况下不需要单独启动 Genus 综合工具。如需进行较为细致的调试，在终端输入 `genus` 启动 Genus 综合工具。
+在该流片模板文件中，我们主要依赖于 `Makefile` 和 `Tcl` 自动化脚本文件进行逻辑综合，一般情况下不需要单独启动 Genus 综合工具。如需进行较为细致的调试，在终端输入 `genus` 启动 Genus 综合工具。
 默认情况下在当前目录下生成 `genus.log` 和 `genus.cmd` 日志文件，分别记录了 Genus 的终端输出和用户输入的命令。
 
 为了更加全面了解 Genus 综合工具，可以查看 Cadence 的官方说明手册和文件：
@@ -30,8 +30,8 @@ enc::gui_on
 enc::gui_off 
 ```
 
-大部分的设计流程使用 Innovus 的终端输入 `TCL` 脚本命令。
-若使用 GUI 界面进行操作，相应的操作也会自动转化成 `TCL` 指令，可以打开 `innovus.cmd` 查看 GUI 界面的操作与 Innovus 指令的对应关系。
+大部分的设计流程使用 Innovus 的终端输入 `Tcl` 脚本命令。
+若使用 GUI 界面进行操作，相应的操作也会自动转化成 `Tcl` 指令，可以打开 `innovus.cmd` 查看 GUI 界面的操作与 Innovus 指令的对应关系。
 
 Cadence 的官方说明手册和文件：
 

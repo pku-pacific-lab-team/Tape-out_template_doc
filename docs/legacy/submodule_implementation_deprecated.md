@@ -56,9 +56,9 @@ b innovus
 !!! tip "提示"
     每次启动 Innovus 都会生成一个新的日志文件，所以我们建议经常清理，以免文件过多影响后续操作。
 
-在终端中启动 Innovus 之后，可以在该终端中输入 `TCL` 脚本命令，也可以在弹出的 Innovus GUI 进行操作。
-在我们的模板文件中主要依赖于命令行脚本进行后端设计。使用 Innovus 进行后端设计所用到的 `TCL` 命令均存放在 `./my_scripts/` 中。
-使用文本编辑器打开 `./my_scripts/innovus_script.tcl` （推荐使用 GVIM ）。
+在终端中启动 Innovus 之后，可以在该终端中输入 `Tcl` 脚本命令，也可以在弹出的 Innovus GUI 进行操作。
+在我们的模板文件中主要依赖于命令行脚本进行后端设计。使用 Innovus 进行后端设计所用到的 `Tcl` 命令均存放在 `./my_scripts/` 中。
+使用文本编辑器打开 `./my_scripts/innovus_script.tcl` （推荐使用 Gvim ）。
 
 ``` shell
 gvim /work/home/ztzhu/tapeout_templates/submodule_tapeout/my_scripts/innovus_script.tcl
