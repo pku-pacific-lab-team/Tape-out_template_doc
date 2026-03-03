@@ -1,5 +1,8 @@
 # Digital-CIM 使用规范
 
+!!! warning "Deprecated"
+    本文档已废弃，仅用于历史参考。当前项目已无法访问该 Digital-CIM IP（DCIM IP）。
+
 ## 1. 概述
 
 CIM 是 Compute-in-Memory 的缩写，即存内计算。
@@ -16,7 +19,7 @@ CIM 的功能可以大致分为三类：
 ## 2. 规模
 
 <figure>
-  <img src="../../../assets/images/appendix/dcim_scale.png" width=80%>
+  <img src="../assets/images/appendix/dcim_scale.png" width=80%>
   <figcaption>DCIM Scale</figcaption>
 </figure>
 
@@ -145,7 +148,7 @@ DCIM 的规模为 512 行 x 256 列。
 ```
 
 <figure>
-  <img src="../../../assets/images/appendix/dcim_path.png" width=100%>
+  <img src="../assets/images/appendix/dcim_path.png" width=100%>
   <figcaption>DCIM Path</figcaption>
 </figure>
 

@@ -94,10 +94,9 @@ nav:
   - I. EDA Tools & Environment: background/eda_tools_environment.md
   - II. Frontend:
     - 1. RTL Design:
-      - 1.1 Digital-CIM IP Specification: frontend/rtl_design/dcim_ip_spec.md
-      - 1.2 SRAM IP Specification: frontend/rtl_design/sram_ip_spec.md
-      - 1.3 FPU IP Specification: frontend/rtl_design/fpu_ip_spec.md
-      - 1.4 System Integration: frontend/rtl_design/system_integration.md
+      - 1.1 SRAM IP Specification: frontend/rtl_design/sram_ip_spec.md
+      - 1.2 FPU IP Specification: frontend/rtl_design/fpu_ip_spec.md
+      - 1.3 System Integration: frontend/rtl_design/system_integration.md
     - 2. Simulation: frontend/simulation.md
     - 3. Submodule Synthesis:
       - 3.1 TSMC N22 Synthesis: frontend/submodule_synthesis_22nm.md
@@ -133,4 +132,5 @@ nav:
     - 4. Submodule Synthesis (New): legacy/submodule_synthesis_new.md
     - 5. Submodule Implementation (Deprecated): legacy/submodule_implementation_deprecated.md
     - 6. Submodule Implementation (New): legacy/submodule_implementation_new.md
+    - 7. Digital-CIM IP Specification (Deprecated): legacy/dcim_ip_spec.md
   - VII. Join Us! How to Contribute?: contribute.md
