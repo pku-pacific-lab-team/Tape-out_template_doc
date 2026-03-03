@@ -1,20 +1,20 @@
 # C 代码编译
 
 !!! info "阅读建议"
-    如果你不想了解编译原理，只想获得工具链和一个编译模板以便开发测试代码，可以直接跳到 11.2。
+    如果你不想了解编译原理，只想获得工具链和一个编译模板以便开发测试代码，可以直接跳到 [2. 安装 RISC-V Toolchain](#2-安装-risc-v-toolchain)。
     但我们建议你阅读整个章节，以便更好地理解编译的过程。
 
-## 11.1 编译流程
+## 1. 编译流程
 
-我们需要知道软件代码如何翻译成 CPU 可运行的指令，这个过程被称为编译（compiling）。
+我们需要知道软件代码如何翻译成 CPU 可运行的指令，这个过程被称为编译（Compilation）。
 将 C 程序翻译成计算机可运行的机器语言程序需要四个经典步骤：
 
-`foo.c` --compiler--> `foo.s` --assembler--> `foo.o` --linker--> `a.out` --loader--> CPU
+`foo.c` -- Compiler --> `foo.s` -- Assembler --> `foo.o` -- Linker --> `a.out` -- Loader --> CPU
 
 !!! note
     这些步骤是概念上的，实际上会合并某些步骤来加速翻译过程。
 
-### Compiler & Assembler
+### 1.1 Compiler & Assembler
 
 编译器负责将高级语言转换成汇编，汇编器负责将汇编转换成机器码。
 汇编器的作用不仅是用处理器可理解的指令生成目标代码，还支持一些对汇编语言程序员或编译器开发者有用的操作。
@@ -22,7 +22,7 @@
 最经典的例子为 `nop`，它在 RISC-V 中由 `addi x0, x0, 0` 实现。
 
 !!! note
-	在程序员视角下，32个GPR有不同于 x0 ~ x31 的名称，这被称为 ABI （Application Binary Interface）。
+	在程序员视角下，32 个 GPR 有不同于 x0 ~ x31 的名称，这被称为 ABI （Application Binary Interface）。
 
 
 下面是一段汇编
@@ -52,14 +52,14 @@
 ```
 
 
-以英文句号开头的命令称为汇编器指示符（assembler directives）。
+以英文句号开头的命令称为汇编器指示符（Assembler directives）。
 这些命令作用于汇编器，而非由其翻译的代码，具体用于通知汇编器在何处放置代码和数据、指定程序中使用的代码和数据常量等。
 
 !!! note
 
 	汇编器生成的文件为 ELF（Executable and Linkable Format，可执行可链接格式）[TIS Committee 1995] 标准格式目标文件。
 
-### Linker
+### 1.2 Linker
 
 链接器允许分别编译和汇编各文件，故只改动一个文件时无需重新编译所有源代码。
 链接器把新目标代码和已有机器语言模块（如函数库）“拼接” 起来，即编辑目标文件中所有 “跳转并链接（``jal``）” 指令的链接目标。
@@ -95,7 +95,7 @@
 	查看符号表： ``objdump -t your_file.o``；
 	查看重定位信息：``objdump -r your_file.o``。
 
-### Loader
+### 1.3 Loader
 
 运行一个程序时，加载器会将其加载到内存中，并跳转到它的起始地址。
 可执行文件可以接收命令行参数。这些参数在程序启动时通过 main 函数的参数传递给程序。
@@ -122,11 +122,11 @@ main 函数的原型为 ``int main(argc, *argv[])``。
 !!! Tip
 	你可以查询 [RISC-V Assembly Programmer's Manual](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md) 来了解如何编写 RISC-V 汇编语言。
 
-## 11.2 安装 RISC-V Toolchain
+## 2. 安装 RISC-V Toolchain
 
 !!! Warning
 	需要在 WSL 环境中安装！
-	WSL 的安装以及网络配置请参考 [13. WSL](wsl.md)。
+	WSL 的安装以及网络配置请参考 [WSL](wsl.md)。
 
 从 GitHub 上下载 RISC-V 工具链源码并进入该目录：
 
@@ -186,7 +186,7 @@ sh build-toolchain.sh $RISCV
 
 安装完成后，`$RISCV/bin` 目录下会有 RISC-V 工具链的可执行文件（例如 `riscv-none-elf-gcc`、`riscv-none-elf-gdb`）。
 
-## 11.3 编译模板
+## 3. 编译模板
 
 从 GitHub 上下载一个简单的 C 代码模板，用于编译 RISC-V 汇编代码。
 
@@ -240,7 +240,7 @@ Makefile 会生成如下两个文件：
 	- 如果必须放在 RAM 中，使用 MMU 或类似的机制来施加只读保护。
 	- 在没有硬件支持的嵌入式系统中，依赖编程约定来保证 `.rodata` 不被修改。
 
-## 11.4 数据加载到指定地址
+## 4. 数据加载到指定地址
 
 在测试流程中，我们可能需要将数据加载到特定的内存地址，例如指令基地址为 0x8000_0000，时钟配置寄存器基地址为 0x2000_0000 等。
 最直观、简单的加载数据方式为：在 C 代码中显式地定义地址指针，并对该地址进行赋值。

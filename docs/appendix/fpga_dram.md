@@ -1,4 +1,4 @@
-# 使用FPGA上的DRAM
+# 使用 FPGA 上的 DRAM
 
 !!! Warning "注意"
     本教程涉及的 Block Design 配置、物理引脚约束及 DDR4 时序参数仅适用于 Vivado 2024.2 下的 ALINX AXU15EG (ZU15EG) 开发板 PL 端 2GB DDR4 硬件资源，非同构硬件环境请谨慎复用。
@@ -87,7 +87,7 @@
 #### 4.1.3 Advanced Clocking 选项卡
 *   **System Clock Option**: 设置为 **Differential** (差分)，PL 端 DDR 参考时钟源为差分晶振。
 *   **UI Clock (用户接口时钟)**:
-    *   这是 MIG 输出给用户逻辑的主时钟 `c0_ddr4_ui_clk`。这里构成了除板载差分时钟外的第一个时钟（即 MIG 时钟域），它与 MIG 时钟域的 AXI 总线（即 MIG 的输入）相关联。你也可以在Additional Clock Output选项卡中配置所需的其他时钟。
+    *   这是 MIG 输出给用户逻辑的主时钟 `c0_ddr4_ui_clk`。这里构成了除板载差分时钟外的第一个时钟（即 MIG 时钟域），它与 MIG 时钟域的 AXI 总线（即 MIG 的输入）相关联。你也可以在 Additional Clock Output 选项卡中配置所需的其他时钟。
 
 !!! question "初始化与校准信号 (`c0_init_calib_complete`)"
     DDR4 SDRAM 上电后不能立即进行读写，必须经过复杂的**初始化与训练**过程。上电后，MIG 控制器会自动执行 ZQ 校准、Write Leveling（写平衡）和 Read Centering（读对中/DQS 训练），以补偿 PCB 走线延迟和信号完整性问题。此过程通常耗时几毫秒至几十毫秒。该信号行为如下：
