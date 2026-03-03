@@ -1,4 +1,4 @@
-# 1. 数字子系统的行为级仿真
+# 数字子系统的行为级仿真
 
 完成 RTL 设计后需要进行**行为级仿真**，以验证设计的功能是否符合预期。
 在将设计的模块集成到 SoC 之后，也需要对整个 SoC 进行仿真，通过 **CPU 指令**的方式验证整个 SoC 的功能。
@@ -8,7 +8,7 @@
     1. 仿真脚本：`./Makefile`、`sim/Makefile`
     2. 仿真命令：`make verdi`
 
-## 1.1 模板文件
+## 1. 模板文件
 
 我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为模板示例，其文件夹路径为：
 
@@ -35,19 +35,19 @@ $ROOT
 !!! question "集成到 SoC"
     参考[系统集成](../frontend/rtl_design/system_integration.md)章节，将你的模块集成到 SoC 中，进行 SoC 级别的行为级仿真。
 
-## 1.2 添加源文件
+## 2. 添加源文件
 
 在 `src/filelist.f` 中添加你的子模块源文件。
 
 如果在子模块中例化了 SRAM IP，或者其他的定制 IP，则不需要在 `src/filelist.f` 中添加行为级模型源文件，但是需要在 `sim/Makefile` 中通过 `SRC_LIST += <your_ip_behavior_model>.v` 的形式添加。
 
-## 1.3 编写 testbench
+## 3. 编写 Testbench
 
-在 `sim/soc_tb.sv` 中编写 testbench。
-对于系统仿真来说，testbench 只需要提供时钟、复位信号以及**仿真时长**。
-如果你只想仿真子模块，在 testbench 中实例化需要仿真的子模块即可。
+在 `sim/soc_tb.sv` 中编写 Testbench。
+对于系统仿真来说，Testbench 只需要提供时钟、复位信号以及**仿真时长**。
+如果你只想仿真子模块，在 Testbench 中实例化需要仿真的子模块即可。
 
-## 1.4 运行仿真
+## 4. 运行仿真
 
 在 `$ROOT` 主目录下运行如下指令即可完成 RTL 编译以及查看生成波形文件。
 

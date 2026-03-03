@@ -1,16 +1,16 @@
-# 2. 数字子系统的逻辑综合（TSMC N22）
+# 数字子系统逻辑综合（TSMC N22）
 
 !!! tip "TLDR"
-    1. 模板文件路径：`/project/common/block_flow_22nm/`
+    1. 模板文件路径：`/project/common/block_flow_n22/`
     2. 仿真脚本：`./Makefile`、`./syn/Makefile`
     3. 仿真命令：`make genus`
 
-## 2.1 模板文件
+## 1. 模板文件
 
 我们使用 CVA6 作为逻辑综合模板示例，其文件夹路径为：
 
 ```
-/project/common/block_flow_22nm/
+/project/common/block_flow_n22/
 ```
 
 该文件夹的结构为：
@@ -44,15 +44,15 @@ $ROOT
 ...                                             # Other Folders/Files
 ```
 
-## 2.2 逻辑综合流程
+## 2. 逻辑综合流程
 
-### 添加源文件
+### 2.1 添加源文件
 
 在 `src/filelist.f` 中添加你的子模块源文件。
 
-如果在子模块中例化了 SRAM IP，或者其他的定制 IP，则**不需要**在 `src/filelist.f` 中添加源文件，但是需要在后续综合参数中添加 SRAM 实例以及宏单元的名称。
+如果在子模块中例化了 SRAM IP 或其他定制 IP，则**不需要**在 `src/filelist.f` 中添加源文件，但是需要在后续综合参数中添加 SRAM 实例以及宏单元的名称。
 
-### 修改综合参数
+### 2.2 修改综合参数
 
 根据注释修改 `config/user_define.tcl` 中的综合参数。
 你需要定义的参数如下：
@@ -66,7 +66,7 @@ $ROOT
 - `syn_opt_level`：综合优化等级，可以选择 `none, standard`，一般默认 `standard` 即可。
 
 !!! tip "lib 文件命名"
-    lib 文件命名规则为 `<name>_<process>_<voltage>_<tempurature>`，可以参考 sram 的 lib 文件。
+    lib 文件命名规则为 `<name>_<process>_<voltage>_<tempurature>`，可以参考 SRAM 的 lib 文件。
 
 !!! warning "SRAM 与 Macro 文件"
     请注意，SRAM 与 Macro 文件夹下的文件名**务必**与 `sram_insts` 与 `macro_insts` 中的名称**一致**！参考模板文件夹的命名规则。
@@ -76,7 +76,7 @@ $ROOT
     如果你想要进一步修改综合参数，可以参考 `syn/scripts/init_syn.tcl`。
 
 <a id="修改时序约束"></a>
-### 修改时序约束
+### 2.3 修改时序约束
 
 每个子模块的时序约束都需要**自行编写** `sdc` 文件，可以参考 `config/constraints_soc.sdc`。
 
@@ -89,7 +89,7 @@ $ROOT
 - `set_output_delay`：设置输出延迟，告诉工具输出信号的延迟。
 - `set_false_path`：设置假路径，告诉工具哪些路径不需要做时序分析。
 
-其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值`30% clock_period`。
+其中，`set_input_delay` 和 `set_output_delay` 需要知道与该子模块对接的其他模块的时序信息，在第一次综合时可以假定为经验值 `30% clock_period`。
 
 !!! question "虚拟时钟"
     时序约束中，虚拟时钟是一个很常见的概念。
@@ -100,7 +100,7 @@ $ROOT
 
 请将你编写的 `sdc` 文件命名为 `constraints_<top_module_name>.sdc`，并放在 `config/` 文件夹中。
 
-### 运行逻辑综合
+### 2.4 运行逻辑综合
 
 在 `$ROOT` 路径下运行以下命令：
 
@@ -108,7 +108,7 @@ $ROOT
 make genus
 ```
 
-综合 CVA6 的时间大致需要 40-50 min 左右。
+综合 CVA6 的时间大致需要 40-50 min。
 逻辑综合会在如下 2 个文件夹内生成文件： `syn/logs, syn/<top_module_name>`，文件结构如下所示。
 
 ```
@@ -140,14 +140,14 @@ syn
 ...
 ```
 
-### 查看主要输出报告
+### 2.5 查看主要输出报告
 
 * `./syn/logs/<top_module_name>.log`：逻辑综合的日志文件，可以查找 `Error`, `Warning` 等关键词检查逻辑综合流程是否有误。
 * `./syn/<top_module_name>/*_postsyn.v`：生成的门级网表，用于后续 Cadence Innovus 的后端设计
 * `./syn/<top_module_name>/reports/timing/*_timing.rpt`：各个 PVT 的时序报告，可以查找 `VIOLATED` 关键词检查时序是否满足。
 * `./syn/<top_module_name>/reports/area/area.rpt`：该模块的面积报告，可以作为后续后端设计版图大小的参考。
 
-### 恢复设计
+### 2.6 恢复设计
 
 在进行一次逻辑综合后，可以在 `$ROOT` 路径下通过如下指令快速恢复设计：
 

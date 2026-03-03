@@ -94,43 +94,45 @@ nav:
   - I. EDA Tools & Environment: background/eda_tools_environment.md
   - II. Frontend:
     - 1. RTL Design:
-      - Digital-CIM IP Specification: frontend/rtl_design/dcim_ip_spec.md
-      - SRAM IP Specification: frontend/rtl_design/sram_ip_spec.md
-      - FPU IP Specification: frontend/rtl_design/fpu_ip_spec.md
-      - System Integration: frontend/rtl_design/system_integration.md
-    - 2. Simulation: frontend/simulation.md
-    - 3. Submodule Synthesis:
-      - TSMC N22 Synthesis: frontend/submodule_synthesis_22nm.md
-      - TSMC N12 Synthesis: frontend/submodule_synthesis_12nm.md
+      - 1.1 SRAM IP Specification: frontend/rtl_design/sram_ip_spec.md
+      - 1.2 FPU IP Specification: frontend/rtl_design/fpu_ip_spec.md
+      - 1.3 System Integration: frontend/rtl_design/system_integration.md
+    - 2. Submodule Synthesis:
+      - 2.1 TSMC N22 Synthesis: frontend/submodule_synthesis_22nm.md
+      - 2.2 TSMC N12 Synthesis: frontend/submodule_synthesis_12nm.md
   - III. Backend:
-    - 3. Submodule Physical Implementation:
-      - TSMC N22 Implementation: backend/submodule_implementation_22nm.md
-      - TSMC N12 Implementation: backend/submodule_implementation_12nm.md
-    - 4. TOP IO Implementation:
-      - TSMC N22 Implementation: backend/top_io_implementation_22nm.md
-      - TSMC N12 Implementation: backend/top_io_implementation_12nm.md
-    - 5. Physical Verification:
-      - Block-Level Verification: backend/lvs_drc_block.md
-      - Top-Level Verification: backend/lvs_drc_top.md
-    - 6. Tape-out: backend/final_layout.md
-  - IV. Post-tapeout:
-    - 7. PCB: post_tapeout/pcb.md
-    - 8. Packaging: post_tapeout/package.md
-    - 9. Testing: post_tapeout/testing.md
-  - V. Appendix:
-    - 10. RISC-V CPU Debugging: appendix/cpu_debug.md
-    - 11. C Compiling: appendix/c_compiling.md
-    - 12. WSL: appendix/wsl.md
-    - 13. FPGA Verification: appendix/fpga_verification.md
-    - 14. PDK Setup: appendix/pdk_setup.md
-    - 19. Using DRAM on FPGA: appendix/fpga_dram.md
-    - 20. STA & Power: appendix/sta_power.md
-    - 21. Linux Environment & Common Tools: appendix/linux_environment.md
-  - VI. Legacy:
-    - Behavioral Simulation (Deprecated): legacy/behavioral_simulation.md
-    - Gate-Level Simulation (Deprecated): legacy/gate_level_simulation.md
-    - Submodule Synthesis (Deprecated): legacy/submodule_synthesis_deprecated.md
-    - Submodule Synthesis (New): legacy/submodule_synthesis_new.md
-    - Submodule Implementation (Deprecated): legacy/submodule_implementation_deprecated.md
-    - Submodule Implementation (New): legacy/submodule_implementation_new.md
-  - VII. Join Us! How to Contribute?: contribute.md
+    - 1. Submodule Physical Implementation:
+      - 1.1 TSMC N22 Implementation: backend/submodule_implementation_22nm.md
+      - 1.2 TSMC N12 Implementation: backend/submodule_implementation_12nm.md
+    - 2. TOP IO Implementation:
+      - 2.1 TSMC N22 Implementation: backend/top_io_implementation_22nm.md
+      - 2.2 TSMC N12 Implementation: backend/top_io_implementation_12nm.md
+    - 3. Physical Verification:
+      - 3.1 Block-Level Verification: backend/lvs_drc_block.md
+      - 3.2 Top-Level Verification: backend/lvs_drc_top.md
+    - 4. Tape-out: backend/final_layout.md
+  - IV. Verification:
+    - 1. Subsystem Simulation: verification/simulation.md
+    - 2. FPGA Verification: verification/fpga_verification.md
+    - 3. STA & Power: verification/sta_power.md
+  - V. Post-tapeout:
+    - 1. PCB: post_tapeout/pcb.md
+    - 2. Packaging: post_tapeout/package.md
+    - 3. Testing:
+      - 3.1 Testing Equipment: post_tapeout/testing/testing_equipment.md
+      - 3.2 RISC-V CPU Debugging: post_tapeout/testing/cpu_debugging.md
+  - VI. Appendix:
+    - 1. C Compiling: appendix/c_compiling.md
+    - 2. WSL: appendix/wsl.md
+    - 3. PDK Setup: appendix/pdk_setup.md
+    - 4. Using DRAM on FPGA: appendix/fpga_dram.md
+    - 5. Linux Environment & Common Tools: appendix/linux_environment.md
+  - VII. Legacy:
+    - 1. Behavioral Simulation (Deprecated): legacy/behavioral_simulation.md
+    - 2. Gate-Level Simulation (Deprecated): legacy/gate_level_simulation.md
+    - 3. Submodule Synthesis (Deprecated): legacy/submodule_synthesis_deprecated.md
+    - 4. Submodule Synthesis (New): legacy/submodule_synthesis_new.md
+    - 5. Submodule Implementation (Deprecated): legacy/submodule_implementation_deprecated.md
+    - 6. Submodule Implementation (New): legacy/submodule_implementation_new.md
+    - 7. Digital-CIM IP Specification (Deprecated): legacy/dcim_ip_spec.md
+  - VIII. Join Us! How to Contribute?: contribute.md

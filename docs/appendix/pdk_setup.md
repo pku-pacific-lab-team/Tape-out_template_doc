@@ -1,7 +1,7 @@
-# 14. 设置PDK
+# 设置 PDK
 
 !!! Warning "Under development!"
 !!! Bug "FIXME!!!"
-    如何安装PDK。
+    如何安装 PDK。
 
 [./]
