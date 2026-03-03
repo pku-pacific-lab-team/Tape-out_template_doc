@@ -19,7 +19,7 @@ CIM 的功能可以大致分为三类：
 ## 2. 规模
 
 <figure>
-  <img src="../assets/images/appendix/dcim_scale.png" width=80%>
+  <img src="../../assets/images/appendix/dcim_scale.png" width=80%>
   <figcaption>DCIM Scale</figcaption>
 </figure>
 
@@ -148,7 +148,7 @@ DCIM 的规模为 512 行 x 256 列。
 ```
 
 <figure>
-  <img src="../assets/images/appendix/dcim_path.png" width=100%>
+  <img src="../../assets/images/appendix/dcim_path.png" width=100%>
   <figcaption>DCIM Path</figcaption>
 </figure>
 
