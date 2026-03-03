@@ -71,7 +71,7 @@ make ptpx MODE=<Averaged|VectorFree|Time_Based>
 PrimeTime 会首先进行静态时序分析。你需要检查 `sta/reports/report_global_timing.rpt` 文件中是否存在时序违例，以及 `sta/reports/report_timing.rpt` 文件中的最差时序路径。
 
 <figure>
-  <img src="../../assets/images/appendix/sta_global_timing.png" width=50%>
+  <img src="../assets/images/appendix/sta_global_timing.png" width=50%>
   <figcaption>Global Timing Report Example</figcaption>
 </figure>
 
@@ -85,7 +85,7 @@ PrimeTime 会首先进行静态时序分析。你需要检查 `sta/reports/repor
 如果使用了基于波形的分析模式，必须确认波形中的信号翻转信息被成功地标注到了设计的网络（net）上。检查 `sta/reports/report_activity_coverage.rpt` 文件。
 
 <figure>
-  <img src="../../assets/images/appendix/sta_switching_coverage.png" width=80%>
+  <img src="../assets/images/appendix/sta_switching_coverage.png" width=80%>
   <figcaption>Switching Activity Coverage Report</figcaption>
 </figure>
 
@@ -96,7 +96,7 @@ PrimeTime 会首先进行静态时序分析。你需要检查 `sta/reports/repor
 - **Averaged/VectorFree 模式**: 打开 `sta/reports/report_power_avg.rpt` 或 `report_power_verbose.rpt` 查看功耗 breakdown，包括内部功耗 (Internal Power，寄生参数充放电的功耗如 CMOS 短路电流)、开关功耗 (Switching Power，晶体管负载充放电的功耗) 和泄漏功耗 (Leakage Power，非理想漏电流的功耗) 的分布。
 
     <figure>
-    <img src="../../assets/images/appendix/ptpx_pwr_avg.png" width=80%>
+    <img src="../assets/images/appendix/ptpx_pwr_avg.png" width=80%>
     <figcaption>Averaged Power Report Example</figcaption>
     </figure>
 
@@ -106,7 +106,7 @@ PrimeTime 会首先进行静态时序分析。你需要检查 `sta/reports/repor
     在自动打开的 nWave 窗口中默认没有信号。你需要通过菜单栏 **Signal -> Get Signals** 或 **Get All Signals** 来加载功耗信号。你可以按层级查看不同模块的功耗波形，从而定位功耗热点。
 
     <figure>
-    <img src="../../assets/images/appendix/ptpx_pwr_wave.png" width=80%>
+    <img src="../assets/images/appendix/ptpx_pwr_wave.png" width=80%>
     <figcaption>Time-Based Power Waveform in nWave</figcaption>
     </figure>
     
