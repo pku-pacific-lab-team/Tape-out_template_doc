@@ -387,7 +387,7 @@ Type "apropos word" to search for commands related to "word".
 ## 4. 调试程序
 
 !!! tip "GDB 原理"
-    有关 GDB 原理，请参考 [Linux 环境与常用工具：5.1 GDB](linux_environment.md#gdb)。
+    有关 GDB 原理，请参考 [Linux 环境与常用工具：5.1 GDB](../../appendix/linux_environment.md#gdb)。
 
 接着，你就可以通过 GDB 调试程序和访问内存了。 一些常用的 GDB 指令如下：
 
@@ -440,7 +440,7 @@ Type "apropos word" to search for commands related to "word".
 </figure>
 
 !!! info "测试代码"
-    有关如何编写测试代码，请参考 [C 代码编译](c_compiling.md)。
+    有关如何编写测试代码，请参考 [C 代码编译](../../appendix/c_compiling.md)。
 
 !!! success ""
     特别感谢 Jiaqi Zhou，[Yiyang Sun](https://ieeexplore.ieee.org/author/37089999502)，Peiran Yan，Siyuan He 对本页内容的贡献和校对！

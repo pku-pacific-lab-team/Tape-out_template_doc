@@ -411,7 +411,7 @@ close $fout
 ### 5.1 GDB
 
 !!! tip "如何使用"
-    有关如何使用 GDB，请参考 [RISC-V CPU 调试：4. 调试程序](cpu_debug.md#4-调试程序)。
+    有关如何使用 GDB，请参考 [RISC-V CPU 调试：4. 调试程序](../post_tapeout/testing/cpu_debugging.md#4-调试程序)。
 
 GDB（GNU Debugger）是一个强大的调试工具，广泛用于调试 C、C++、Fortran 等程序。
 它通过多种机制与正在运行的程序（或程序的二进制文件）进行交互，以提供调试功能，如设置断点、单步执行、查看内存内容、修改变量值等。

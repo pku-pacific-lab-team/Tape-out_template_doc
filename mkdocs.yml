@@ -115,16 +115,17 @@ nav:
   - IV. Post-tapeout:
     - 1. PCB: post_tapeout/pcb.md
     - 2. Packaging: post_tapeout/package.md
-    - 3. Testing: post_tapeout/testing.md
+    - 3. Testing:
+      - 3.1 Testing Equipment: post_tapeout/testing/testing_equipment.md
+      - 3.2 RISC-V CPU Debugging: post_tapeout/testing/cpu_debugging.md
   - V. Appendix:
-    - 1. RISC-V CPU Debugging: appendix/cpu_debug.md
-    - 2. C Compiling: appendix/c_compiling.md
-    - 3. WSL: appendix/wsl.md
-    - 4. FPGA Verification: appendix/fpga_verification.md
-    - 5. PDK Setup: appendix/pdk_setup.md
-    - 6. Using DRAM on FPGA: appendix/fpga_dram.md
-    - 7. STA & Power: appendix/sta_power.md
-    - 8. Linux Environment & Common Tools: appendix/linux_environment.md
+    - 1. C Compiling: appendix/c_compiling.md
+    - 2. WSL: appendix/wsl.md
+    - 3. FPGA Verification: appendix/fpga_verification.md
+    - 4. PDK Setup: appendix/pdk_setup.md
+    - 5. Using DRAM on FPGA: appendix/fpga_dram.md
+    - 6. STA & Power: appendix/sta_power.md
+    - 7. Linux Environment & Common Tools: appendix/linux_environment.md
   - VI. Legacy:
     - 1. Behavioral Simulation (Deprecated): legacy/behavioral_simulation.md
     - 2. Gate-Level Simulation (Deprecated): legacy/gate_level_simulation.md
