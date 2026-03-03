@@ -5,13 +5,13 @@
 我们使用开源 CPU CVA6 以及 AXI 总线构成的 SoC 作为系统集成模板示例，其文件夹路径为：
 
 ```
-/project/common/block_flow_22nm/
+/project/common/block_flow_n22/
 ```
 
 该文件夹的结构为：
 
 ```
-block_flow_22nm
+block_flow_n22
 ├── src
 │   ├── cpu_cva6
 │   │   ├── ...
