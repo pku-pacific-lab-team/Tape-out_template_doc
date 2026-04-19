@@ -1,9 +1,9 @@
 site_name: Documentation for Tape-out
-site_url: https://bwoah-kimi.github.io/Tape-out_template_doc/
-site_author: Bwoah-Kimi
-copyright: Copyright &copy; 2024-2025 School of Integrated Circuits, Peking University
+site_url: https://pku-pacific-lab-team.github.io/Tape-out_template_doc/
+site_author: PKU-PACIFIC Lab
+copyright: Copyright &copy; 2024-2026 School of Integrated Circuits, Peking University
 
-repo_url: https://github.com/Bwoah-Kimi/Tape-out_template_doc
+repo_url: https://github.com/pku-pacific-lab-team/Tape-out_template_doc
 repo_name: GitHub Repo
 edit_uri: edit/main/docs/
 
@@ -65,22 +65,22 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
   - git-committers:
-      repository: Bwoah-Kimi/Tape-out_template_doc
+      repository: pku-pacific-lab-team/Tape-out_template_doc
       branch: main
-      token: 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
+      token: !ENV [GITHUB_TOKEN]
   - git-authors:
       show_contribution: true
       show_line_count: true
       count_empty_lines: true
-  - encryptcontent:
-      global_password: 'coICRGGm5sY9OyztWam0Q2n+tjwb++kv3J9qXAEx5vc=' # jialab-tapeout Base64 encoded
-      password_button: True
-      password_button_text: 'ENTER'
-      encryption_info_message: 'Contact your administrator for access to this page.'
-      decryption_failure_message: 'Invalid password.'
-      remember_keys: true
-      remember_password: true
-      title_prefix: ''
+  # - encryptcontent:
+  #     global_password: 'coICRGGm5sY9OyztWam0Q2n+tjwb++kv3J9qXAEx5vc=' # jialab-tapeout Base64 encoded
+  #     password_button: True
+  #     password_button_text: 'ENTER'
+  #     encryption_info_message: 'Contact your administrator for access to this page.'
+  #     decryption_failure_message: 'Invalid password.'
+  #     remember_keys: true
+  #     remember_password: true
+  #     title_prefix: ''
 
 extra_css:
   - extra.css
