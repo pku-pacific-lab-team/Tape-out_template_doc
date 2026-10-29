@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/brand/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2395,10 +2395,10 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">...</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="no">`ifdef</span><span class="w"> </span><span class="n">GATE_SIM</span><span class="w"> </span><span class="c1">// or POST_SIM</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p">...</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">rstn_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">1&#39;b1</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">rstn_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">1'b1</span><span class="p">;</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">#</span><span class="mi">4515352</span><span class="w"> </span><span class="c1">// Modify this! &lt;--- 需要修改这里的延迟值</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="c1">// Load memory content after zeroing</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p">$</span><span class="n">sformat</span><span class="p">(</span><span class="n">hex_filename</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;../build/init_mem_0.hex&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p">$</span><span class="n">sformat</span><span class="p">(</span><span class="n">hex_filename</span><span class="p">,</span><span class="w"> </span><span class="s">"../build/init_mem_0.hex"</span><span class="p">);</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="n">i_soc</span><span class="p">.</span><span class="n">i_main_mem_wrapper</span><span class="p">.</span><span class="n">\gen_main_mem[0].main_mem_inst</span><span class="w"> </span><span class="p">.</span><span class="n">loadmem</span><span class="p">(</span><span class="n">hex_filename</span><span class="p">);</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="p">...</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="no">`endif</span>
@@ -2443,7 +2443,7 @@
 
 <p>报告中列出了路径延时（Pathdelays）和时序检查（Tchecks）的反标数量和百分比。我们需要重点关注 <code>Annotated</code> 的百分比。<strong>通常情况下，整体反标率不应低于 97%</strong>。</p>
 <p>反标率低的一个常见原因是 SDF 文件中的<strong>时序角（corner）</strong>与仿真脚本中请求的角不匹配。在我们的 <code>soc_tb.sv</code> 中，SDF 反标任务写为：
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">$</span><span class="n">sdf_annotate</span><span class="p">(</span><span class="n">sdf_path</span><span class="p">,</span><span class="w"> </span><span class="n">i_soc</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sdf.log&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MINIMUM&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">$</span><span class="n">sdf_annotate</span><span class="p">(</span><span class="n">sdf_path</span><span class="p">,</span><span class="w"> </span><span class="n">i_soc</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s">"sdf.log"</span><span class="p">,</span><span class="w"> </span><span class="s">"MINIMUM"</span><span class="p">);</span>
 </code></pre></div>
 最后一个参数 <code>"MINIMUM"</code> 就是指定 VCS 从 SDF 文件中读取哪个时序角的数据进行反标。该参数有四个主要的可选值：<code>MINIMUM</code>, <code>TYPICAL</code>, <code>MAXIMUM</code>, <code>TOOL_CONTROL</code>。如果不指定该参数，VCS<strong>默认使用 <code>TYPICAL</code></strong>。</p>
 <p>因此，我们需要确认 Innovus 工具导出的 SDF 文件中包含了我们指定的角。SDF 文件中的延时值通常以 <code>(MIN:TYP:MAX)</code> 的三元组格式表示。</p>
@@ -2638,10 +2638,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../js/extra.js"></script>
       

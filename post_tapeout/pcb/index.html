@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/brand/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2253,17 +2253,21 @@
 </ol>
 </details>
 <p><strong>原理图设计 —— PCB 绘制 —— DRC 检查 —— PCB 下单 ——（SMT 下单）</strong></p>
-<p>原理图设计：设计电路板的原理图，这个过程中需要对调用的元器件进行选型。
-PCB 绘制：电路板真实的物理实现，包括电路板的大小边界、元器件位置摆放、走线链接。
-DRC: 检查设计的 PCB 是否符合 Design Rule、PCB 是否与原理图一致。
-PCB 下单：完成原理图 PCB 设计后，将设计好的 PCB 压缩可以通过嘉立创下单助手下单安排生产。 （空 PCB 无元器件）
-SMT 下单：SMT 是 PCB 厂家根据提供的 PCB 信息将所需要的元器件通过回流焊方式焊接。（PCB+元器件）</p>
+<ul>
+<li>原理图设计：设计电路板的原理图，这个过程中需要对调用的元器件进行选型。</li>
+<li>PCB 绘制：电路板真实的物理实现，包括电路板的大小边界、元器件位置摆放、走线链接。</li>
+<li>DRC：检查设计的 PCB 是否符合 Design Rule、PCB 是否与原理图一致。</li>
+<li>PCB 下单：完成原理图 PCB 设计后，将设计好的 PCB 压缩可以通过嘉立创下单助手下单安排生产。（空 PCB 无元器件）</li>
+<li>SMT 下单：SMT 是 PCB 厂家根据提供的 PCB 信息将所需要的元器件通过回流焊方式焊接。（PCB + 元器件）</li>
+</ul>
 <h3 id="11-eda">1.1 元器件与 EDA 工具</h3>
 <h4 id="111">1.1.1 元器件分类</h4>
 <p>为测试芯片绘制的 PCB 所用到的元器件通常可以分为三类：有源器件、无源器件、连接器。</p>
-<p>有源器件：芯片、二极管、LED 等需要供电的器件。
-无源器件：R、C、开关等无需供电的器件。
-连接器：排针，电源接口等传递电源和信号的接口。</p>
+<ul>
+<li>有源器件：芯片、二极管、LED 等需要供电的器件。</li>
+<li>无源器件：R、C、开关等无需供电的器件。</li>
+<li>连接器：排针，电源接口等传递电源和信号的接口。</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
 <p>对于数字芯片测试来说，如果使用外部稳压源来供电的话，通常无需使用板级 LDO/BUCK 来产生电源，因此只需要用到无源器件和连接器。</p>
@@ -2271,25 +2275,18 @@ SMT 下单：SMT 是 PCB 厂家根据提供的 PCB 信息将所需要的元器�
 <h4 id="112">1.1.2 元器件封装</h4>
 <p>封装从结构上可以分为插件与贴片两种，插件是通过通孔焊接在 PCB 上，贴片则是通过 PCB 的焊盘进行焊接。插件的机械稳定性更好，贴片的寄生参数更小。</p>
 <ul>
-<li>
-<p>有源器件的封装种类繁多，不一一赘述，可以在立创商城自行选型。</p>
-</li>
-<li>
-<p>无源器件封装
-RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字大小成正相关</p>
-</li>
+<li>有源器件的封装种类繁多，不一一赘述，可以在立创商城自行选型。</li>
 </ul>
+<p><strong>无源器件封装</strong>：RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字大小成正相关</p>
 <figure>
   <img src="../../assets/images/post_tapeout/mlcc_package.png" width=100%>
   <figcaption>RC Package</figcaption>
 </figure>
 
+<p><strong>连接器封装</strong>：</p>
 <ul>
 <li>
-<p>连接器封装</p>
-<ul>
-<li>
-<p>2.54 - 1(2) - 2/3/4/8P 排针, 常用为 GPIO 配置引脚，低频低电流下也可以作为信号 IO 和电源输入。</p>
+<p>2.54 - 1(2) - 2/3/4/8P 排针，常用为 GPIO 配置引脚，低频低电流下也可以作为信号 IO 和电源输入。</p>
 <ul>
 <li>2.54：排针 pin 间距为 2.54mm</li>
 <li>1(2)：单排(双排)</li>
@@ -2301,8 +2298,6 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 </li>
 <li>SMA，可用作高频信号传输，例如时钟</li>
 </ul>
-</li>
-</ul>
 <h4 id="113-eda">1.1.3 EDA 工具</h4>
 <p>常用的 PCB 设计 EDA 工具主要是 Altimu Designer，嘉立创 EDA。Altimu Designer 在北大软件中心中没有提供，需要从其他途径下载，嘉立创 EDA 可以免费试用。下面教程主要是基于 Altimu Designer，但两者的操作是很类似的。</p>
 <h3 id="12">1.2 元件库添加</h3>
@@ -2310,7 +2305,7 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 <h4 id="121">1.2.1 元件库导入</h4>
 <p>元件库分为.SCHLIB, .PCBLIB, .INTLIB，其中.SCHLIB 只有元件的 schematic，.PCBLIB 只有元件的 pcb，.INTLIB 则是两者都有。</p>
 <ol>
-<li>在右下角的 <strong>Panels</strong> 中把 <strong>Components</strong>选中，选择 <strong>File-based Libraries Preferences</strong></li>
+<li>在右下角的 <strong>Panels</strong> 中把 <strong>Components</strong> 选中，选择 <strong>File-based Libraries Preferences</strong></li>
 </ol>
 <figure>
   <img src="../../assets/images/post_tapeout/add_lib.jpg" width=100%>
@@ -2333,7 +2328,7 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 </figure>
 
 <p>对于导出的 Schematic/Footprint，在 Altimu designer 中打开它后在 <strong>Tools-Make Schematic/PCB Library</strong></p>
-<p>打开对应的 Library，copy 对应的 component，然后在右侧的<strong>Components</strong>中选择对应的库，随便找一个元件右键选择<strong>Edit</strong>来打开这个库，再将刚刚复制的 component 粘贴进去即可。</p>
+<p>打开对应的 Library，copy 对应的 component，然后在右侧的 <strong>Components</strong> 中选择对应的库，随便找一个元件右键选择 <strong>Edit</strong> 来打开这个库，再将刚刚复制的 component 粘贴进去即可。</p>
 <figure>
   <img src="../../assets/images/post_tapeout/copy_component.jpg" width=100%>
   <figcaption>Copy component</figcaption>
@@ -2364,29 +2359,29 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 
 <ol>
 <li>
-<p>现在可以在 schematic 绘制电路图，P 键可以弹出绘制的选择面板，<strong>Place Part</strong>会在右侧现实 component 的 SCHLIB，将想要的器件拖到 schematic 中，然后进行连接。</p>
+<p>现在可以在 schematic 绘制电路图，P 键可以弹出绘制的选择面板，<strong>Place Part</strong> 会在右侧现实 component 的 SCHLIB，将想要的器件拖到 schematic 中，然后进行连接。</p>
 </li>
 <li>
-<p>连接可以通过<strong>Wire</strong>或者<strong>Net Label</strong>进行，<strong>Power Port</strong>用来识别电源端口作用与 Label 相同
-<em>选中器件后空格键可以对器件进行旋转</em></p>
+<p>连接可以通过 <strong>Wire</strong> 或者 <strong>Net Label</strong> 进行，<strong>Power Port</strong> 用来识别电源端口作用与 Label 相同。</p>
 </li>
 </ol>
+<p><em>选中器件后空格键可以对器件进行旋转。</em></p>
 <figure>
   <img src="../../assets/images/post_tapeout/place_part.jpg" width=100%>
   <figcaption>Place Part</figcaption>
 </figure>
 
 <ol>
-<li>对于元器件，右键可以查看其 Properties，修改 Comment（PCB 的丝印）以及 Footprint</li>
+<li>对于元器件，右键可以查看其 Properties，修改 Comment（PCB 的丝印）以及 Footprint。</li>
 </ol>
 <h3 id="14-pcb">1.4 PCB 绘制</h3>
 <ol>
-<li>在进行 PCB 设计前我们需要先修改一下 Design rule 来满足我们的需求，通过<strong>Design-Rules</strong>打开面板，主要是修改间距与连接方式，因为默认设置很保守且适用面也较窄。（后续设计过程中也可以进一步继续调整满足需求）<ul>
-<li>修改<strong>Electrical-Clearance</strong>，调整 clearance，PCB 中的间距不太重要，可以尽可能往小设，不会出错。</li>
-<li>修改<strong>Electrical-Short Circuits</strong>，勾掉 Allow Short Circuit。</li>
-<li>修改<strong>Routing-Width/Routing Via Style</strong>，调整 minimum（6）与 maximum（100）范围。</li>
-<li>修改<strong>Plane-Power Plane Connect Style/Polygon Connect Style</strong>，修改 connect style 为 Direct Connect。</li>
-<li>修改<strong>Manufacturing-Hole Size/Silk To Solder Mask Clearance/Silk To Silk Clearance</strong>，修改 clearance，其中 silk 的 clearance 无所谓，即使重合也没事。</li>
+<li>在进行 PCB 设计前我们需要先修改一下 Design rule 来满足我们的需求，通过 <strong>Design-Rules</strong> 打开面板，主要是修改间距与连接方式，因为默认设置很保守且适用面也较窄。（后续设计过程中也可以进一步继续调整满足需求）<ul>
+<li>修改 <strong>Electrical-Clearance</strong>，调整 clearance，PCB 中的间距不太重要，可以尽可能往小设，不会出错。</li>
+<li>修改 <strong>Electrical-Short Circuits</strong>，勾掉 Allow Short Circuit。</li>
+<li>修改 <strong>Routing-Width/Routing Via Style</strong>，调整 minimum（6）与 maximum（100）范围。</li>
+<li>修改 <strong>Plane-Power Plane Connect Style/Polygon Connect Style</strong>，修改 connect style 为 Direct Connect。</li>
+<li>修改 <strong>Manufacturing-Hole Size/Silk To Solder Mask Clearance/Silk To Silk Clearance</strong>，修改 clearance，其中 silk 的 clearance 无所谓，即使重合也没事。</li>
 </ul>
 </li>
 </ol>
@@ -2396,16 +2391,16 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 </figure>
 
 <ol>
-<li>设置 PCB 层数：PCB 我们可能用到 2 层板或者 4 层板，2 层板组合为 signal-signal，4 层板组合常用 signal-power-ground-signal。其中 signal layer 是正铜层所绘制的为真正的线路，plane layer 是负铜层所绘制的是没有线路的地方。
-在<strong>Design-Layer Stack Manager</strong>中可以添加层。推荐使用 4 层板。</li>
+<li>设置 PCB 层数：PCB 我们可能用到 2 层板或者 4 层板，2 层板组合为 signal-signal，4 层板组合常用 signal-power-ground-signal。其中 signal layer 是正铜层所绘制的为真正的线路，plane layer 是负铜层所绘制的是没有线路的地方。</li>
 </ol>
+<p>在 <strong>Design-Layer Stack Manager</strong> 中可以添加层。推荐使用 4 层板。</p>
 <figure>
   <img src="../../assets/images/post_tapeout/pcb_layer.jpg" width=100%>
   <figcaption>PCB Layer</figcaption>
 </figure>
 
 <ol>
-<li>定义 PCB 形状：选中 KeepOut Layer 或者 Mechanical Layer，用 wire 画出想要的形状后，选中所有，<strong>Design-Board Shape-Define Board Shape from Selected Objects</strong></li>
+<li>定义 PCB 形状：选中 KeepOut Layer 或者 Mechanical Layer，用 wire 画出想要的形状后，选中所有，<strong>Design-Board Shape-Define Board Shape from Selected Objects</strong>。</li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
@@ -2422,7 +2417,7 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 <li>q 切换公制/英制</li>
 <li>ctrl + F 翻面</li>
 <li>ctrl + M 尺子</li>
-<li>shift + s 切换多层还是单层显示, ctrl + shift + 鼠标滑轮切换层/键盘"-", "+"</li>
+<li>shift + s 切换多层还是单层显示，ctrl + shift + 鼠标滑轮切换层/键盘 "-", "+"</li>
 <li>ctrl + w 走线</li>
 <li>shift + w 切换线宽</li>
 <li>P + R 铺铜</li>
@@ -2430,26 +2425,24 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
 </ul>
 </li>
 <li>
-<p>铺铜设置，调整为<strong>Pour Over All Same Net Objects</strong>并且勾选去除死铜。然后对铺铜进行平滑倒角，按住角 拖动（shift + 空格调整形状）。
-完成设计后最后在 Top 与 Bottom layer 空余地方上都铺上 GND，即拉一个很大的铺铜罩住整个板子。
-（<strong>右键-Polygon Actions-Polygon Manager</strong>可以设置不同网络铺铜的优先级）</p>
+<p>铺铜设置，调整为 <strong>Pour Over All Same Net Objects</strong> 并且勾选去除死铜。然后对铺铜进行平滑倒角，按住角拖动（shift + 空格调整形状）。</p>
 </li>
 </ol>
+<p>完成设计后最后在 Top 与 Bottom layer 空余地方上都铺上 GND，即拉一个很大的铺铜罩住整个板子。</p>
+<p>（<strong>右键-Polygon Actions-Polygon Manager</strong> 可以设置不同网络铺铜的优先级）</p>
 <figure>
   <img src="../../assets/images/post_tapeout/smooth.jpg" width=100%>
   <figcaption>Polygon Smooth</figcaption>
 </figure>
 
 <ol>
-<li>
-<p>缝合孔：在 TOP/BOTTOM 的 signal layer 以及 Power/Ground plane layer 中都会存在 power/gnd 的铺铜，同一网络在不同 layer 的铺铜层需要用缝合孔进行连接。
-<strong>Tools-Via Stitching/Shielding-Add Stitching to Net...</strong></p>
-</li>
-<li>
-<p>滴泪：在 TOP/BOTTOM 的 signal layer 以及 Power/Ground plane layer 中都会存在 power/gnd 的铺铜，同一网络在不同 layer 的铺铜层需要用缝合孔进行连接。
-<strong>Tools-Via Stitching/Shielding-Add Stitching to Net...</strong></p>
-</li>
+<li>缝合孔：在 TOP/BOTTOM 的 signal layer 以及 Power/Ground plane layer 中都会存在 power/gnd 的铺铜，同一网络在不同 layer 的铺铜层需要用缝合孔进行连接。</li>
 </ol>
+<p><strong>Tools-Via Stitching/Shielding-Add Stitching to Net...</strong></p>
+<ol>
+<li>滴泪：在 TOP/BOTTOM 的 signal layer 以及 Power/Ground plane layer 中都会存在 power/gnd 的铺铜，同一网络在不同 layer 的铺铜层需要用缝合孔进行连接。</li>
+</ol>
+<p><strong>Tools-Via Stitching/Shielding-Add Stitching to Net...</strong></p>
 
 
 
@@ -2472,7 +2465,7 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月2日 14:55:02 UTC">2026年3月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月29日 12:34:08 UTC">2026年10月29日</span>
   </span>
 
     
@@ -2539,7 +2532,7 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:453990380@qq.com'>syhesyh</a> (78.68%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (11.68%), <a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (9.64%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:453990380@qq.com'>syhesyh</a> (65.22%), <a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (25.6%), <a href='mailto:mingxuanli_siris@163.com'>Siris-Li</a> (9.18%)</span>
       </small>
     </div>
   
@@ -2630,10 +2623,10 @@ RC 通常使用贴片封装 0402、0603、0805、1206。器件的尺寸与数字
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../js/extra.js"></script>
       

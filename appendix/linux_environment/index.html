@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/brand/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2733,7 +2733,7 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>tail<span class="w"> </span>-f<span class="w"> </span>sim.log
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 递归搜索关键词（推荐）</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>rg<span class="w"> </span><span class="s2">&quot;ERROR|FATAL|Timing&quot;</span><span class="w"> </span>logs/
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>rg<span class="w"> </span><span class="s2">"ERROR|FATAL|Timing"</span><span class="w"> </span>logs/
 </code></pre></div>
 <h3 id="14">1.4 环境变量与配置生效</h3>
 <p>很多 EDA 工具依赖环境变量（例如 <code>PATH</code>、工具安装路径、License 路径）。</p>
@@ -2754,7 +2754,7 @@
 <li>使用管道 <code>|</code> 组合命令，例如：</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 查找所有包含 Warning 的行，并统计数量</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rg<span class="w"> </span><span class="s2">&quot;Warning&quot;</span><span class="w"> </span>logs/<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rg<span class="w"> </span><span class="s2">"Warning"</span><span class="w"> </span>logs/<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 </code></pre></div>
 <hr />
 <h2 id="2-vim-gvim">2. Vim (Gvim)</h2>
@@ -2795,11 +2795,11 @@
 <li><code>.</code>：重复上一次编辑操作（非常高效）。</li>
 </ul>
 <h3 id="25">2.5 查找与批量替换</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/pattern              <span class="c">&quot; 向下查找 pattern</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">n</span>                     <span class="c">&quot; 跳到下一个匹配</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>N                     <span class="c">&quot; 跳到上一个匹配</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">:</span>%s<span class="sr">/old/</span><span class="k">new</span>/<span class="k">g</span>         <span class="c">&quot; 全文替换</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">:</span>%s<span class="sr">/old/</span><span class="k">new</span>/gc        <span class="c">&quot; 全文替换（逐个确认）</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/pattern              <span class="c">" 向下查找 pattern</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">n</span>                     <span class="c">" 跳到下一个匹配</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>N                     <span class="c">" 跳到上一个匹配</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">:</span>%s<span class="sr">/old/</span>new/<span class="k">g</span>         <span class="c">" 全文替换</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">:</span>%s<span class="sr">/old/</span>new/gc        <span class="c">" 全文替换（逐个确认）</span>
 </code></pre></div>
 <h3 id="26">2.6 多文件与窗口协作</h3>
 <ul>
@@ -2817,20 +2817,20 @@
 <li>按 <code>I</code> 输入内容，按 <code>Esc</code> 后会批量作用于选中行。</li>
 </ol>
 <p>宏可以录制重复操作：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">qa</span>        <span class="c">&quot; 开始录制到寄存器 a</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>...       <span class="c">&quot; 执行一组编辑动作</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">q</span>         <span class="c">&quot; 结束录制</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>@<span class="k">a</span>        <span class="c">&quot; 执行一次宏</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="m">10</span>@<span class="k">a</span>      <span class="c">&quot; 执行 10 次宏</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">qa</span>        <span class="c">" 开始录制到寄存器 a</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>...       <span class="c">" 执行一组编辑动作</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">q</span>         <span class="c">" 结束录制</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>@<span class="k">a</span>        <span class="c">" 执行一次宏</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="m">10</span>@<span class="k">a</span>      <span class="c">" 执行 10 次宏</span>
 </code></pre></div>
 <h3 id="28-vimrc">2.8 推荐 <code>.vimrc</code> 最小配置</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">set</span> <span class="k">number</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">set</span> <span class="nb">number</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">set</span> <span class="nb">relativenumber</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">4</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">4</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">set</span> <span class="k">shiftwidth</span><span class="p">=</span><span class="m">4</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">set</span> <span class="nb">expandtab</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">set</span> <span class="nb">autoindent</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">set</span> <span class="nb">hlsearch</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">set</span> <span class="k">hlsearch</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">set</span> <span class="nb">incsearch</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">set</span> <span class="nb">ignorecase</span>
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">set</span> <span class="nb">smartcase</span>
@@ -2848,7 +2848,7 @@
 <h3 id="30-makefile">3.0 Makefile 基本结构</h3>
 <p>Makefile 由<strong>目标 (target)</strong>、<strong>依赖 (prerequisites)</strong> 和<strong>命令 (recipe)</strong> 组成：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nf">target</span><span class="o">:</span><span class="w"> </span><span class="n">dep</span>1 <span class="n">dep</span>2
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;run target&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>@echo<span class="w"> </span><span class="s2">"run target"</span>
 </code></pre></div>
 <ul>
 <li>当依赖更新时，<code>make</code> 会重新执行对应目标命令。</li>
@@ -2944,7 +2944,7 @@
 <p>目前大部分 EDA 工具都支持 <code>Tcl</code> (Tool Command Language)。常见用途是串联工具命令、读取配置、批量生成报告。</p>
 <h3 id="41">4.1 变量、列表、字典</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c"># 变量</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">set</span><span class="w"> </span>top<span class="w"> </span><span class="s2">&quot;soc_top&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">set</span><span class="w"> </span>top<span class="w"> </span><span class="s2">"soc_top"</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">set</span><span class="w"> </span>freq_mhz<span class="w"> </span><span class="mi">200</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c"># 列表</span>
@@ -2952,27 +2952,27 @@
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nb">puts</span><span class="w"> </span><span class="k">[</span><span class="nb">lindex</span><span class="w"> </span><span class="nv">$libs</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span><span class="w">   </span><span class="k">;</span><span class="c"># slow.lib</span>
 <a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
 <a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c"># 字典</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nb">dict</span><span class="w"> </span>set<span class="w"> </span>cfg<span class="w"> </span>mode<span class="w"> </span><span class="s2">&quot;Averaged&quot;</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nb">dict</span><span class="w"> </span>set<span class="w"> </span>cfg<span class="w"> </span>corner<span class="w"> </span><span class="s2">&quot;tt_0p8v_25c&quot;</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nb">dict</span><span class="w"> </span>set<span class="w"> </span>cfg<span class="w"> </span>mode<span class="w"> </span><span class="s2">"Averaged"</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nb">dict</span><span class="w"> </span>set<span class="w"> </span>cfg<span class="w"> </span>corner<span class="w"> </span><span class="s2">"tt_0p8v_25c"</span>
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nb">puts</span><span class="w"> </span><span class="k">[</span><span class="nb">dict</span><span class="w"> </span>get<span class="w"> </span><span class="nv">$cfg</span><span class="w"> </span>mode<span class="k">]</span>
 </code></pre></div>
 <h3 id="42">4.2 流程控制</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">set</span><span class="w"> </span>mode<span class="w"> </span><span class="s2">&quot;Averaged&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">set</span><span class="w"> </span>mode<span class="w"> </span><span class="s2">"Averaged"</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">if</span><span class="w"> </span><span class="k">{</span><span class="nv">$mode</span><span class="w"> </span><span class="nv">eq</span><span class="w"> </span><span class="s2">&quot;Averaged&quot;</span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;run averaged flow&quot;</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">}</span><span class="w"> </span><span class="k">elseif</span><span class="w"> </span><span class="k">{</span><span class="nv">$mode</span><span class="w"> </span><span class="nv">eq</span><span class="w"> </span><span class="s2">&quot;VectorFree&quot;</span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;run vector-free flow&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">if</span><span class="w"> </span><span class="k">{</span><span class="nv">$mode</span><span class="w"> </span><span class="nv">eq</span><span class="w"> </span><span class="s2">"Averaged"</span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"run averaged flow"</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">}</span><span class="w"> </span><span class="k">elseif</span><span class="w"> </span><span class="k">{</span><span class="nv">$mode</span><span class="w"> </span><span class="nv">eq</span><span class="w"> </span><span class="s2">"VectorFree"</span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"run vector-free flow"</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;unknown mode&quot;</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"unknown mode"</span>
 <a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">}</span>
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
 <a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">foreach</span><span class="w"> </span>corner<span class="w"> </span><span class="k">{</span><span class="nv">ss</span><span class="w"> </span>tt<span class="w"> </span>ff<span class="k">}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;analyze corner: $corner&quot;</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"analyze corner: $corner"</span>
 <a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="k">}</span>
 <a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
 <a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="k">for</span><span class="w"> </span><span class="k">{set</span><span class="w"> </span>i<span class="w"> </span><span class="mi">0</span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nv">$i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">3</span><span class="k">}</span><span class="w"> </span><span class="k">{</span><span class="nb">incr</span><span class="w"> </span>i<span class="k">}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;loop index = $i&quot;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"loop index = $i"</span>
 <a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="k">}</span>
 <a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
 <a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="k">set</span><span class="w"> </span>retry<span class="w"> </span><span class="mi">0</span>
@@ -2981,40 +2981,40 @@
 <a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="k">}</span>
 <a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>
 <a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="k">switch</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="nv">$mode</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">    </span><span class="nv">Averaged</span><span class="w">   </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;avg&quot;</span><span class="k">}</span>
-<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span><span class="nv">VectorFree</span><span class="w"> </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;vf&quot;</span><span class="k">}</span>
-<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">    </span><span class="nv">default</span><span class="w">    </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;n/a&quot;</span><span class="k">}</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">    </span><span class="nv">Averaged</span><span class="w">   </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">"avg"</span><span class="k">}</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span><span class="nv">VectorFree</span><span class="w"> </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">"vf"</span><span class="k">}</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">    </span><span class="nv">default</span><span class="w">    </span><span class="k">{</span><span class="nb">puts</span><span class="w"> </span><span class="s2">"n/a"</span><span class="k">}</span>
 <a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="k">}</span>
 </code></pre></div>
 <h3 id="43">4.3 过程与参数</h3>
 <p><code>proc</code> 用于封装可复用逻辑：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">proc</span><span class="w"> </span>report_mode<span class="w"> </span><span class="k">{</span><span class="nv">mode</span><span class="w"> </span><span class="k">{</span><span class="nv">verbose</span><span class="w"> </span><span class="mi">0</span><span class="k">}}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;mode = $mode&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"mode = $mode"</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">{</span><span class="nv">$verbose</span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">        </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;verbose enabled&quot;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">        </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"verbose enabled"</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="k">}</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">}</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nv">report_mode</span><span class="w"> </span><span class="s2">&quot;Averaged&quot;</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nv">report_mode</span><span class="w"> </span><span class="s2">"Averaged"</span><span class="w"> </span><span class="mi">1</span>
 </code></pre></div>
 <h3 id="44">4.4 字符串与正则</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">set</span><span class="w"> </span>line<span class="w"> </span><span class="s2">&quot;  Timing  ERROR: setup violation  &quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">set</span><span class="w"> </span>line<span class="w"> </span><span class="s2">"  Timing  ERROR: setup violation  "</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">set</span><span class="w"> </span>clean<span class="w"> </span><span class="k">[</span><span class="nb">string</span><span class="w"> </span>trim<span class="w"> </span><span class="nv">$line</span><span class="k">]</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">if</span><span class="w"> </span><span class="k">{[</span><span class="nb">regexp</span><span class="w"> </span><span class="k">{</span><span class="nv">ERROR</span><span class="o">:</span><span class="w"> </span><span class="k">(</span><span class="nv">.</span><span class="o">+</span><span class="k">)}</span><span class="w"> </span><span class="nv">$clean</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>msg<span class="k">]}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;found error: $msg&quot;</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">"found error: $msg"</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">}</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
 <a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="k">set</span><span class="w"> </span>fixed<span class="w"> </span><span class="k">[</span><span class="nb">regsub</span><span class="w"> </span><span class="k">{</span><span class="nv">setup</span><span class="w"> </span>violation<span class="k">}</span><span class="w"> </span><span class="nv">$clean</span><span class="w"> </span><span class="k">{</span><span class="nv">setup_violation</span><span class="k">}]</span>
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="nb">puts</span><span class="w"> </span><span class="nv">$fixed</span>
 </code></pre></div>
 <h3 id="45-io">4.5 文件 I/O</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">set</span><span class="w"> </span>fin<span class="w"> </span><span class="k">[</span><span class="nb">open</span><span class="w"> </span><span class="s2">&quot;pt.log&quot;</span><span class="w"> </span>r<span class="k">]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">set</span><span class="w"> </span>fout<span class="w"> </span><span class="k">[</span><span class="nb">open</span><span class="w"> </span><span class="s2">&quot;summary.log&quot;</span><span class="w"> </span>w<span class="k">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">set</span><span class="w"> </span>fin<span class="w"> </span><span class="k">[</span><span class="nb">open</span><span class="w"> </span><span class="s2">"pt.log"</span><span class="w"> </span>r<span class="k">]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">set</span><span class="w"> </span>fout<span class="w"> </span><span class="k">[</span><span class="nb">open</span><span class="w"> </span><span class="s2">"summary.log"</span><span class="w"> </span>w<span class="k">]</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">while</span><span class="w"> </span><span class="k">{[</span><span class="nb">gets</span><span class="w"> </span><span class="nv">$fin</span><span class="w"> </span>line<span class="k">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nv">0</span><span class="k">}</span><span class="w"> </span><span class="k">{</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">{[</span><span class="nb">string</span><span class="w"> </span>match<span class="w"> </span><span class="s2">&quot;*WNS*&quot;</span><span class="w"> </span><span class="nv">$line</span><span class="k">]}</span><span class="w"> </span><span class="k">{</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">{[</span><span class="nb">string</span><span class="w"> </span>match<span class="w"> </span><span class="s2">"*WNS*"</span><span class="w"> </span><span class="nv">$line</span><span class="k">]}</span><span class="w"> </span><span class="k">{</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span><span class="nb">puts</span><span class="w"> </span><span class="nv">$fout</span><span class="w"> </span><span class="nv">$line</span>
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="k">}</span>
 <a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">}</span>
@@ -3223,10 +3223,10 @@ GDB 使用这些调试信息来将二进制代码与源代码行、变量、函�
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../js/extra.js"></script>
       

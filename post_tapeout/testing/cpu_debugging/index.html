@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../assets/brand/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2316,7 +2316,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 </details>
 <p>在 Powershell 中执行如下指令映射指定设备：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">$</span> <span class="n">usbipd</span> <span class="n">attach</span> <span class="p">-</span><span class="n">-wsl</span> <span class="p">-</span><span class="n">-busid</span><span class="p">=&lt;</span><span class="n">BUSID</span><span class="p">&gt;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">WSL</span> <span class="n">distribution</span> <span class="s1">&#39;Ubuntu&#39;</span> <span class="n">to</span> <span class="n">attach</span><span class="p">;</span> <span class="n">the</span> <span class="n">device</span> <span class="n">will</span> <span class="n">be</span> <span class="n">available</span> <span class="k">in</span> <span class="n">all</span> <span class="n">WSL</span> <span class="n">2</span> <span class="n">distributions</span><span class="p">.</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">WSL</span> <span class="n">distribution</span> <span class="s1">'Ubuntu'</span> <span class="n">to</span> <span class="n">attach</span><span class="p">;</span> <span class="n">the</span> <span class="n">device</span> <span class="n">will</span> <span class="n">be</span> <span class="n">available</span> <span class="k">in</span> <span class="n">all</span> <span class="n">WSL</span> <span class="n">2</span> <span class="n">distributions</span><span class="p">.</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">usbipd</span><span class="p">:</span> <span class="n">info</span><span class="p">:</span> <span class="n">Using</span> <span class="n">IP</span> <span class="n">address</span> <span class="n">172</span><span class="p">.</span><span class="n">26</span><span class="p">.</span><span class="n">80</span><span class="p">.</span><span class="n">1</span> <span class="n">to</span> <span class="n">reach</span> <span class="n">the</span> <span class="n">host</span><span class="p">.</span>
 </code></pre></div>
 <p>如果成功映射，我们可以在 WSL 端执行如下指令：</p>
@@ -2352,7 +2352,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>
 <a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>init
 <a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>halt
-<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>echo &quot;Ready for Remote Connections&quot;
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>echo "Ready for Remote Connections"
 </code></pre></div>
 <div class="admonition bug">
 <p class="admonition-title">FIXME!!!</p>
@@ -2367,7 +2367,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Licensed<span class="w"> </span>under<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>v2
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>For<span class="w"> </span>bug<span class="w"> </span>reports,<span class="w"> </span><span class="nb">read</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span>http://openocd.org/doc/doxygen/bugs.html
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Info<span class="w"> </span>:<span class="w"> </span>auto-selecting<span class="w"> </span>first<span class="w"> </span>available<span class="w"> </span>session<span class="w"> </span>transport<span class="w"> </span><span class="s2">&quot;jtag&quot;</span>.<span class="w"> </span>To<span class="w"> </span>override<span class="w"> </span>use<span class="w"> </span><span class="s1">&#39;transport select &lt;transport&gt;&#39;</span>.
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Info<span class="w"> </span>:<span class="w"> </span>auto-selecting<span class="w"> </span>first<span class="w"> </span>available<span class="w"> </span>session<span class="w"> </span>transport<span class="w"> </span><span class="s2">"jtag"</span>.<span class="w"> </span>To<span class="w"> </span>override<span class="w"> </span>use<span class="w"> </span><span class="s1">'transport select &lt;transport&gt;'</span>.
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Info<span class="w"> </span>:<span class="w"> </span>clock<span class="w"> </span>speed<span class="w"> </span><span class="m">100</span><span class="w"> </span>kHz
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Info<span class="w"> </span>:<span class="w"> </span>JTAG<span class="w"> </span>tap:<span class="w"> </span>riscv.cpu<span class="w"> </span>tap/device<span class="w"> </span>found:<span class="w"> </span>0x00000001<span class="w"> </span><span class="o">(</span>mfg:<span class="w"> </span>0x000<span class="w"> </span><span class="o">(</span>&lt;invalid&gt;<span class="o">)</span>,<span class="w"> </span>part:<span class="w"> </span>0x0000,<span class="w"> </span>ver:<span class="w"> </span>0x0<span class="o">)</span>
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Info<span class="w"> </span>:<span class="w"> </span><span class="o">[</span>riscv.cpu<span class="o">]</span><span class="w"> </span><span class="nv">datacount</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">progbufsize</span><span class="o">=</span><span class="m">8</span>
@@ -2426,7 +2426,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>
 <a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>init
 <a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>halt
-<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>echo &quot;Ready for Remote Connections&quot;
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>echo "Ready for Remote Connections"
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">获取 WSL IP 地址</p>
@@ -2452,7 +2452,7 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">Licensed</span> <span class="n">under</span> <span class="n">GNU</span> <span class="n">GPL</span> <span class="n">v2</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">For</span> <span class="n">bug</span> <span class="n">reports</span><span class="p">,</span> <span class="n">read</span>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="n">http</span><span class="p">://</span><span class="n">openocd</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">doc</span><span class="p">/</span><span class="n">doxygen</span><span class="p">/</span><span class="n">bugs</span><span class="p">.</span><span class="n">html</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">auto-selecting</span> <span class="n">first</span> <span class="n">available</span> <span class="n">session</span> <span class="n">transport</span> <span class="s2">&quot;jtag&quot;</span><span class="p">.</span> <span class="n">To</span> <span class="n">override</span> <span class="n">use</span> <span class="s1">&#39;transport select &lt;transport&gt;&#39;</span><span class="p">.</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">auto-selecting</span> <span class="n">first</span> <span class="n">available</span> <span class="n">session</span> <span class="n">transport</span> <span class="s2">"jtag"</span><span class="p">.</span> <span class="n">To</span> <span class="n">override</span> <span class="n">use</span> <span class="s1">'transport select &lt;transport&gt;'</span><span class="p">.</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">clock</span> <span class="n">speed</span> <span class="n">100</span> <span class="n">kHz</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">Info</span> <span class="p">:</span> <span class="n">JTAG</span> <span class="n">tap</span><span class="p">:</span> <span class="n">riscv</span><span class="p">.</span><span class="n">cpu</span> <span class="n">tap</span><span class="p">/</span><span class="n">device</span> <span class="n">found</span><span class="p">:</span> <span class="n">0x00000001</span> <span class="p">(</span><span class="n">mfg</span><span class="p">:</span> <span class="n">0x000</span> <span class="p">(&lt;</span><span class="n">invalid</span><span class="p">&gt;),</span> <span class="n">part</span><span class="p">:</span> <span class="n">0x0000</span><span class="p">,</span> <span class="n">ver</span><span class="p">:</span> <span class="n">0x0</span><span class="p">)</span>
 <a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">Info</span> <span class="p">:</span> <span class="no">[riscv.cpu]</span> <span class="n">datacount</span><span class="p">=</span><span class="n">2</span> <span class="n">progbufsize</span><span class="p">=</span><span class="n">8</span>
@@ -2474,16 +2474,16 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;--host=x86_64-pc-linux-gnu --target=riscv-none-elf&quot;</span>.
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>Type<span class="w"> </span><span class="s2">"show copying"</span><span class="w"> </span>and<span class="w"> </span><span class="s2">"show warranty"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">"--host=x86_64-pc-linux-gnu --target=riscv-none-elf"</span>.
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>Type<span class="w"> </span><span class="s2">"show configuration"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
 <a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
 <a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
 <a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
 <a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
 <a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>.
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">"help"</span>.
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>Type<span class="w"> </span><span class="s2">"apropos word"</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">"word"</span>.
 <a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="o">(</span>gdb<span class="o">)</span>
 </code></pre></div>
 <p>如果你的 OpenOCD 安装在 <strong>WSL</strong> 中，那么输入如下指令：</p>
@@ -2737,10 +2737,10 @@ VID:PID 为 <code>0403:6014</code> 的设备即为 FTDI 芯片。</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../js/extra.js"></script>
       

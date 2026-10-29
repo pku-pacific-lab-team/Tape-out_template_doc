@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../assets/brand/pku_logo_red.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2455,31 +2455,31 @@
 
 <h3 id="24">2.4 使用样例</h3>
 <p>FPU 的核心配置如下所示，以 BF16 的运算为例，这里的配置信号会决定具体的 fpnew 硬件实现方式。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>localparam fpnew_pkg::fpu_features_t FPU_FEATURES = &#39;{
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>localparam fpnew_pkg::fpu_features_t FPU_FEATURES = '{
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>      Width:         WIDTH,
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      EnableVectors: 1&#39;b1,
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      EnableNanBox:  1&#39;b1,     // 开启 NaN Boxing
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      EnableVectors: 1'b1,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      EnableNanBox:  1'b1,     // 开启 NaN Boxing
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      // Enable Format {FP16ALT,FP8,FP16,FP64,FP32}
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      FpFmtMask:     5&#39;b11111, // All FP format enabled
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      FpFmtMask:     5'b11111, // All FP format enabled
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      // Enable Format {INT64,INT32,INT16,INT8}
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      IntFmtMask:    4&#39;b1111   // All INT format enabled
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      IntFmtMask:    4'b1111   // All INT format enabled
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  };
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  localparam fpnew_pkg::fpu_implementation_t FPU_IMPLEMENTATION = &#39;{
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      PipeRegs: &#39;{
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  localparam fpnew_pkg::fpu_implementation_t FPU_IMPLEMENTATION = '{
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      PipeRegs: '{
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>          // ADDMUL: 
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>          &#39;{default: 2}, 
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>          '{default: 2}, 
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>          // DIVSQRT
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>          &#39;{default: 5},
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>          '{default: 5},
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>          // NONCOMP
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>          &#39;{default: 1},
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>          '{default: 1},
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>          // CONV
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>          &#39;{default: 1}
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>          '{default: 1}
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>      },
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>      UnitTypes: &#39;{
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>          &#39;{default: fpnew_pkg::PARALLEL}, // ADDMUL
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>          &#39;{default: fpnew_pkg::MERGED},   // DIVSQRT
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>          &#39;{default: fpnew_pkg::PARALLEL}, // NONCOMP
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>          &#39;{default: fpnew_pkg::MERGED}    // CONV
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>      UnitTypes: '{
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>          '{default: fpnew_pkg::PARALLEL}, // ADDMUL
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>          '{default: fpnew_pkg::MERGED},   // DIVSQRT
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>          '{default: fpnew_pkg::PARALLEL}, // NONCOMP
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>          '{default: fpnew_pkg::MERGED}    // CONV
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>      },
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>      PipeConfig: fpnew_pkg::DISTRIBUTED
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>  };
@@ -2496,28 +2496,28 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  );
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>      begin
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>          // NaN Boxing: Fill upper 48 bits with 1s
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>          operands_i[0]  &lt;= {48&#39;hFFFF_FFFF_FFFF, op_a_bf16};
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>          operands_i[1]  &lt;= {48&#39;hFFFF_FFFF_FFFF, op_b_bf16};
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>          operands_i[2]  &lt;= {48&#39;hFFFF_FFFF_FFFF, op_c_bf16};
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>          operands_i[0]  &lt;= {48'hFFFF_FFFF_FFFF, op_a_bf16};
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>          operands_i[1]  &lt;= {48'hFFFF_FFFF_FFFF, op_b_bf16};
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>          operands_i[2]  &lt;= {48'hFFFF_FFFF_FFFF, op_c_bf16};
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>          op_i           &lt;= op;               // Operation
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>          op_mod_i       &lt;= op_mod;           // ADD时 =1表示减法
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>          // BF16 is typically mapped to FP16ALT in fpnew
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>          src_fmt_i      &lt;= fpnew_pkg::FP16ALT; 
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>          dst_fmt_i      &lt;= fpnew_pkg::FP16ALT;
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>          int_fmt_i      &lt;= fpnew_pkg::INT64; // Don&#39;t care
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>          int_fmt_i      &lt;= fpnew_pkg::INT64; // Don't care
 <a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>          rnd_mode_i     &lt;= fpnew_pkg::RNE;   // Round Nearest Even
 <a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>          tag_i          &lt;= tag_id;
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>          vectorial_op_i &lt;= 1&#39;b0;             // 是否为向量操作
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>          in_valid_i     &lt;= 1&#39;b1;
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>          vectorial_op_i &lt;= 1'b0;             // 是否为向量操作
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>          in_valid_i     &lt;= 1'b1;
 <a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
 <a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>          do begin
 <a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>              @(posedge clk_i);
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>          end while (in_ready_o == 1&#39;b0);
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>          in_valid_i     &lt;= 1&#39;b0;
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>          end while (in_ready_o == 1'b0);
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>          in_valid_i     &lt;= 1'b0;
 <a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
 <a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>          do begin
 <a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>              @(posedge clk_i);
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>          end while (busy_o == 1&#39;b1);
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>          end while (busy_o == 1'b1);
 <a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>      end
 <a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>  endtask
 </code></pre></div>
@@ -2574,7 +2574,7 @@
 </div>
 
 <p>为了确保编译器能正确生成 F/D 浮点、整数、压缩等指令，需要在构建 riscv-gnu-toolchain 时配置：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>GCC_CONFIGURE_OPTS=&quot;\
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>GCC_CONFIGURE_OPTS="\
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    --prefix=$PREFIX \
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    --target=$TARGET \
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    --enable-languages=c \
@@ -2583,7 +2583,7 @@
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    --disable-libmudflap
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    --with-arch=rv64gc \
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    --with-abi=lp64d \
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    --enable-multilib&quot;
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    --enable-multilib"
 </code></pre></div>
 <p>其中
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>--with-arch=rv64gc
@@ -2779,10 +2779,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.instant", "navigation.footer", "content.code.copy", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../js/extra.js"></script>
       
