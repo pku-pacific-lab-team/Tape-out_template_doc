@@ -16,7 +16,7 @@
         <link rel="prev" href="../simulation/">
       
       
-        <link rel="next" href="../sta_power/">
+        <link rel="next" href="../fpga_dram_axu15eg/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>2. FPGA Verification - Documentation for Tape-out</title>
+        <title>4.1 FPGA Verification - Documentation for Tape-out</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2. FPGA Verification
+              4.1 FPGA Verification
             
           </span>
         </div>
@@ -1121,6 +1121,55 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. FPGA Verification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. FPGA Verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -1136,7 +1185,7 @@
   <span class="md-ellipsis">
     
   
-    2. FPGA Verification
+    4.1 FPGA Verification
   
 
     
@@ -1154,7 +1203,7 @@
   <span class="md-ellipsis">
     
   
-    2. FPGA Verification
+    4.1 FPGA Verification
   
 
     
@@ -1318,9 +1367,84 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#18-fpga-dram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 使用 FPGA 上的 DRAM 资源
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fpga_dram_axu15eg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1.1 Using DRAM on AXU15EG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fpga_dram_vu19p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1.2 Using DRAM on VU19P-SOLO V3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1701,34 +1825,6 @@
     
   
     3. PDK Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../appendix/fpga_dram/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4. Using DRAM on FPGA
   
 
     
@@ -2219,6 +2315,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#18-fpga-dram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 使用 FPGA 上的 DRAM 资源
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2384,6 +2491,13 @@ BRAM 的使用可以显著提高 FPGA 设计的性能和效率，特别是在需
 <p>布局布线完成之后，FPGA 资源利用率会有所变化，这是因为在布局布线的过程中会改变逻辑单元的位置，导致 LUT 等资源的使用产生变化。</p>
 <h3 id="17-generate-bitstream">1.7 Generate Bitstream</h3>
 <p>在布局布线完成之后，需要生成比特流，连接 FPGA 板，并把相应的代码录入到 FPGA 核心之中，实现硬件逻辑的重构。</p>
+<h2 id="18-fpga-dram">1.8 使用 FPGA 上的 DRAM 资源</h2>
+<p>如果 FPGA 验证流程涉及 DDR4 / DRAM，请按目标板选择对应流程，不要直接套用其他板卡的引脚、时钟或 MIG 配置：</p>
+<ul>
+<li><a href="../fpga_dram_axu15eg/">4.1.1 使用 AXU15EG 上的 DRAM</a></li>
+<li><a href="../fpga_dram_vu19p/">4.1.2 使用 VU19P-SOLO V3 上的 DRAM</a></li>
+</ul>
+<p>后续新增 FPGA 目标板的使用流程，也应在 FPGA Verification 章节下增加对应子章节。</p>
 
 
 
@@ -2406,7 +2520,7 @@ BRAM 的使用可以显著提高 FPGA 设计的性能和效率，特别是在需
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月3日 03:09:52 UTC">2026年3月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月30日 02:27:16 UTC">2026年10月30日</span>
   </span>
 
     
@@ -2472,7 +2586,7 @@ BRAM 的使用可以显著提高 FPGA 设计的性能和效率，特别是在需
   
     <div class="md-source-date">
       <small>
-          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (62.5%), <a href='mailto:hyouka0129'>Hyouka0129</a> (37.5%)</span>
+          Page Authors: <span class='git-page-authors git-authors'><a href='mailto:jameszhu.20021122@gmail.com'>Bwoah-Kimi</a> (64.32%), <a href='mailto:hyouka0129'>Hyouka0129</a> (35.68%)</span>
       </small>
     </div>
   
@@ -2516,13 +2630,13 @@ BRAM 的使用可以显著提高 FPGA 设计的性能和效率，特别是在需
         
         
           
-          <a href="../sta_power/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3. STA &amp; Power">
+          <a href="../fpga_dram_axu15eg/" class="md-footer__link md-footer__link--next" aria-label="下一页: 4.1.1 Using DRAM on AXU15EG">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                3. STA & Power
+                4.1.1 Using DRAM on AXU15EG
               </div>
             </div>
             <div class="md-footer__button md-icon">
