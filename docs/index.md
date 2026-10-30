@@ -87,6 +87,8 @@ EDA 的设计流程主要包含了**逻辑综合**和**后端实现**两个部�
 * IV. 验证
     * [数字子系统仿真](verification/simulation.md)
     * [FPGA 验证](verification/fpga_verification.md)
+        * [AXU15EG 上使用 DRAM](verification/fpga_dram_axu15eg.md)
+        * [VU19P-SOLO V3 上使用 DRAM](verification/fpga_dram_vu19p.md)
     * [静态时序分析与功耗分析](verification/sta_power.md)
 * V. 回片测试
     * [PCB 绘制](post_tapeout/pcb.md)
@@ -98,7 +100,6 @@ EDA 的设计流程主要包含了**逻辑综合**和**后端实现**两个部�
     * [C 代码编译](appendix/c_compiling.md)
     * [WSL](appendix/wsl.md)
     * [PDK 设置](appendix/pdk_setup.md)
-    * [通过 FPGA 使用 DRAM](appendix/fpga_dram.md)
     * [Linux 环境与常用工具](appendix/linux_environment.md)
 * VII. 旧版文档
     * [Digital-CIM 使用规范（Deprecated）](legacy/dcim_ip_spec.md)

@@ -174,3 +174,12 @@ Vivado 会根据综合结果识别出设计中的输入时钟信号：
 ### 1.7 Generate Bitstream
 
 在布局布线完成之后，需要生成比特流，连接 FPGA 板，并把相应的代码录入到 FPGA 核心之中，实现硬件逻辑的重构。
+
+## 1.8 使用 FPGA 上的 DRAM 资源
+
+如果 FPGA 验证流程涉及 DDR4 / DRAM，请按目标板选择对应流程，不要直接套用其他板卡的引脚、时钟或 MIG 配置：
+
+- [4.1.1 使用 AXU15EG 上的 DRAM](fpga_dram_axu15eg.md)
+- [4.1.2 使用 VU19P-SOLO V3 上的 DRAM](fpga_dram_vu19p.md)
+
+后续新增 FPGA 目标板的使用流程，也应在 FPGA Verification 章节下增加对应子章节。

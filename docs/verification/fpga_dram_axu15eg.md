@@ -1,4 +1,4 @@
-# 使用 FPGA 上的 DRAM
+# 4.1.1 使用 AXU15EG 上的 DRAM
 
 !!! Warning "注意"
     本教程涉及的 Block Design 配置、物理引脚约束及 DDR4 时序参数仅适用于 Vivado 2024.2 下的 ALINX AXU15EG (ZU15EG) 开发板 PL 端 2GB DDR4 硬件资源，非同构硬件环境请谨慎复用。

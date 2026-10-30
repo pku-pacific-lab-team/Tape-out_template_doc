@@ -113,7 +113,10 @@ nav:
     - 4. Tape-out: backend/final_layout.md
   - IV. Verification:
     - 1. Subsystem Simulation: verification/simulation.md
-    - 2. FPGA Verification: verification/fpga_verification.md
+    - 2. FPGA Verification:
+      - 4.1 FPGA Verification: verification/fpga_verification.md
+      - 4.1.1 Using DRAM on AXU15EG: verification/fpga_dram_axu15eg.md
+      - 4.1.2 Using DRAM on VU19P-SOLO V3: verification/fpga_dram_vu19p.md
     - 3. STA & Power: verification/sta_power.md
   - V. Post-tapeout:
     - 1. PCB: post_tapeout/pcb.md
@@ -125,7 +128,6 @@ nav:
     - 1. C Compiling: appendix/c_compiling.md
     - 2. WSL: appendix/wsl.md
     - 3. PDK Setup: appendix/pdk_setup.md
-    - 4. Using DRAM on FPGA: appendix/fpga_dram.md
     - 5. Linux Environment & Common Tools: appendix/linux_environment.md
   - VII. Legacy:
     - 1. Behavioral Simulation (Deprecated): legacy/behavioral_simulation.md
